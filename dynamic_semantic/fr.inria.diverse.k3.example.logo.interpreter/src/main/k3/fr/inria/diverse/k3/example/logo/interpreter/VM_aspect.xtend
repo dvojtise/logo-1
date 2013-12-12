@@ -25,10 +25,10 @@ class PointAspect
 		res.y = _self.y + dy	
 		return res		
 	}
-	/*
-	override String toString() {
-		return "[" + x as int + "," + y as int + "]"
-	} */
+	
+	def String asString() {
+		return "[" + _self.x as int + "," + _self.y as int + "]"
+	} 
 }
 
 @Aspect(className=typeof(Segment)) 		
@@ -69,10 +69,10 @@ class TurtleAspect {
 	def void move(double dx, double  dy) {
 		var Point newPos = _self.position.getDelta(dx,dy)
 		if(_self.penUp) {
-			println("Turtle move to "+ newPos.toString)	
+			println("Turtle move to "+ newPos.asString)	
 		}
 		else {
-			println("Turtle trace to "+ newPos.toString)
+			println("Turtle trace to "+ newPos.asString)
 			_self.drawings.add(vmLogo.VmLogoFactory.eINSTANCE.createSegment.initialize(_self.position,newPos))
 		}
 		_self.position = newPos

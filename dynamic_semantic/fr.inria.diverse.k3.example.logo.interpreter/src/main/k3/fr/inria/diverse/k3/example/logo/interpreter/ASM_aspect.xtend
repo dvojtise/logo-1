@@ -66,6 +66,8 @@ import static extension fr.inria.diverse.k3.example.logo.interpreter.WhileAspect
 import  static extension fr.inria.diverse.k3.example.logo.interpreter.ControlStructureAspect.*
 import  static extension fr.inria.diverse.k3.example.logo.interpreter.BinaryExpAspect.*
 
+
+import static extension fr.inria.diverse.k3.example.logo.interpreter.PointAspect.*
 import static extension fr.inria.diverse.k3.example.logo.interpreter.SegmentAspect.*
 import static extension fr.inria.diverse.k3.example.logo.interpreter.TurtleAspect.*
 
