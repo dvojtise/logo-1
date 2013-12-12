@@ -2,6 +2,10 @@ package fr.inria.diverse.k3.example.logo.interpreter
 
 import java.util.Hashtable
 import java.util.ArrayList
+import vmLogo.Turtle
+import vmLogo.VmLogoFactory;
+
+import static extension fr.inria.diverse.k3.example.logo.interpreter.TurtleAspect.*
 
 class Context {
 	
@@ -18,7 +22,7 @@ class Context {
 
 		new() {
 			stack = new ArrayList<Hashtable<String,Integer>>()
-			turtle = new Turtle()
+			turtle = VmLogoFactory.eINSTANCE.createTurtle.initialize
 		}
 		
 		def void reset () {

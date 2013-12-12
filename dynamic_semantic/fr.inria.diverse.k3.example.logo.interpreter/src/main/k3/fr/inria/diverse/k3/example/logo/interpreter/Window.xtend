@@ -7,6 +7,13 @@ import javax.swing.RepaintManager.PaintManager
 import javax.swing.JPanel
 import java.awt.Paint
 
+
+import vmLogo.Segment
+import vmLogo.Turtle
+
+//import static extension fr.inria.diverse.k3.example.logo.interpreter.SegmentAspect.*
+//import static extension fr.inria.diverse.k3.example.logo.interpreter.TurtleAspect.*
+
 class Window {
 	JFrame frame;
 	
@@ -40,8 +47,8 @@ class Board extends JPanel{
 	
 	override paint(Graphics g){
 		for(Segment seg : turtle.drawings){
-			g.drawLine(	(seg.begin.x+x_offset) as int,(seg.begin.y+y_offset) as int,
-						(seg.end.x+x_offset) as int,(seg.end.y+y_offset) as int
+			g.drawLine(	(seg.origin.x+x_offset) as int,(seg.origin.y+y_offset) as int,
+						(seg.destination.x+x_offset) as int,(seg.destination.y+y_offset) as int
 			)
 		}		
 	}

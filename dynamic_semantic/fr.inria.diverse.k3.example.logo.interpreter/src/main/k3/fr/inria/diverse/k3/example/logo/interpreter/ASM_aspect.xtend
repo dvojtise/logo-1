@@ -33,6 +33,9 @@ import fr.inria.diverse.k3.example.logo.model.logoASM.While
 import fr.inria.diverse.k3.example.logo.model.logoASM.ControlStructure
 import fr.inria.diverse.k3.example.logo.model.logoASM.BinaryExp
 
+import vmLogo.Segment
+import vmLogo.Turtle
+
 import static extension fr.inria.diverse.k3.example.logo.interpreter.InstructionAspect.*
 import static extension fr.inria.diverse.k3.example.logo.interpreter.BackAspect.*
 import static extension fr.inria.diverse.k3.example.logo.interpreter.BlockAspect.*
@@ -62,6 +65,10 @@ import static extension fr.inria.diverse.k3.example.logo.interpreter.RightAspect
 import static extension fr.inria.diverse.k3.example.logo.interpreter.WhileAspect.*
 import  static extension fr.inria.diverse.k3.example.logo.interpreter.ControlStructureAspect.*
 import  static extension fr.inria.diverse.k3.example.logo.interpreter.BinaryExpAspect.*
+
+import static extension fr.inria.diverse.k3.example.logo.interpreter.SegmentAspect.*
+import static extension fr.inria.diverse.k3.example.logo.interpreter.TurtleAspect.*
+
 
 @Aspect(className=typeof(Instruction)) 
 class InstructionAspect {
