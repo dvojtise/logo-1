@@ -73,11 +73,9 @@ import static extension fr.inria.diverse.k3.example.logo.interpreter.TurtleAspec
 
 
 @Aspect(className=typeof(Instruction)) 
-class InstructionAspect {
+abstract class InstructionAspect {
 
-	def public int eval (Context context ) {
-		return 0
-	}  
+	 public def abstract int eval (Context context )  
 
 }
 

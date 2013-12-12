@@ -50,19 +50,7 @@ class LogoInterpreter{
 	}
 	
 	public def  LogoProgram load(String fileName){
-		//val Injector injector = new LogoTextualSyntaxStandaloneSetup().createInjector();
 		var Injector injector = new LogoTextualSyntaxStandaloneSetup().createInjectorAndDoEMFRegistration
-		
-		//injector.
-		/*  val org.eclipse.xtext.resource.IResourceFactory resourceFactory = injector.getInstance(org.eclipse.xtext.resource.IResourceFactory)
-		val org.eclipse.xtext.resource.IResourceServiceProvider serviceProvider = injector.getInstance(org.eclipse.xtext.resource.IResourceServiceProvider);
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("logo", resourceFactory);
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
-				Resource.Factory.Registry.DEFAULT_EXTENSION,
-				new XMIResourceFactoryImpl());
-		
-		org.eclipse.xtext.resource.IResourceServiceProvider.Registry.INSTANCE.getExtensionToFactoryMap().put("logo", serviceProvider);
-		*/
 		
 		var XtextResourceSet resourceSet = injector.getInstance(XtextResourceSet);
 		resourceSet.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
