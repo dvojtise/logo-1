@@ -8,9 +8,9 @@ import fr.inria.diverse.k3.example.logo.model.logoASM.LogoProgram
 import fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntaxStandaloneSetup
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.common.util.URI
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.XtextResourceSet;
