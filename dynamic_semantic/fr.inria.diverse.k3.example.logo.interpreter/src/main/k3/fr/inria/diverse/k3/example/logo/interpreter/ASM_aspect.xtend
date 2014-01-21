@@ -27,6 +27,7 @@ import fr.inria.diverse.k3.example.logo.model.logoASM.PenUp
 import fr.inria.diverse.k3.example.logo.model.logoASM.Plus
 import fr.inria.diverse.k3.example.logo.model.logoASM.Primitive
 import fr.inria.diverse.k3.example.logo.model.logoASM.ProcCall
+import fr.inria.diverse.k3.example.logo.model.logoASM.ProcDeclaration
 import fr.inria.diverse.k3.example.logo.model.logoASM.Repeat
 import fr.inria.diverse.k3.example.logo.model.logoASM.Right
 import fr.inria.diverse.k3.example.logo.model.logoASM.While
@@ -60,6 +61,7 @@ import static extension fr.inria.diverse.k3.example.logo.interpreter.PenUpAspect
 import static extension fr.inria.diverse.k3.example.logo.interpreter.PlusAspect.*
 import static extension fr.inria.diverse.k3.example.logo.interpreter.PrimitiveAspect.*
 import static extension fr.inria.diverse.k3.example.logo.interpreter.ProcCallAspect.*
+import static extension fr.inria.diverse.k3.example.logo.interpreter.ProcDeclarationAspect.*
 import static extension fr.inria.diverse.k3.example.logo.interpreter.RepeatAspect.*
 import static extension fr.inria.diverse.k3.example.logo.interpreter.RightAspect.*
 import static extension fr.inria.diverse.k3.example.logo.interpreter.WhileAspect.*
@@ -70,7 +72,6 @@ import  static extension fr.inria.diverse.k3.example.logo.interpreter.BinaryExpA
 import static extension fr.inria.diverse.k3.example.logo.interpreter.PointAspect.*
 import static extension fr.inria.diverse.k3.example.logo.interpreter.SegmentAspect.*
 import static extension fr.inria.diverse.k3.example.logo.interpreter.TurtleAspect.*
-
 
 @Aspect(className=typeof(Instruction)) 
 abstract class InstructionAspect {
@@ -222,6 +223,14 @@ public class ProcCallAspect extends ExpressionAspect{
 	}
 
 	 int res = 0
+}
+
+@Aspect(className=typeof(ProcDeclaration))
+public class ProcDeclarationAspect extends ExpressionAspect{
+	@OverrideAspectMethod
+	def int eval (Context context) {
+		return 0
+	}
 }
 
 @Aspect(className=typeof(Block))
