@@ -1,11 +1,11 @@
-package fr.inria.diverse.k3.example.logo.interpreter
+package example.logo.interpreter
 
 import java.util.Hashtable
 import java.util.ArrayList
 import vmLogo.Turtle
 import vmLogo.VmLogoFactory;
 
-import static extension fr.inria.diverse.k3.example.logo.interpreter.TurtleAspect.*
+import static extension example.logo.interpreter.TurtleAspect.*
 
 class Context {
 	

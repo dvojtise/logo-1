@@ -1,11 +1,11 @@
-package fr.inria.diverse.k3.example.logo.interpreter
+package example.logo.interpreter
 
 
 import com.google.inject.Injector
 
-import fr.inria.diverse.k3.example.logo.model.logoASM.LogoASMPackage
-import fr.inria.diverse.k3.example.logo.model.logoASM.LogoProgram
-import fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntaxStandaloneSetup
+import example.logo.model.logoASM.LogoASMPackage
+import example.logo.model.logoASM.LogoProgram
+import example.logo.xtext_editor.LogoTextualSyntaxStandaloneSetup
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.XtextResourceSet;
 
-import static extension fr.inria.diverse.k3.example.logo.interpreter.LogoProgramAspect.*
+import static extension example.logo.interpreter.LogoProgramAspect.*
 
 class LogoInterpreter{
 
@@ -51,7 +51,7 @@ class LogoInterpreter{
 	}
 	
 	public def  LogoProgram load(String fileName){
-		var Injector injector = new LogoTextualSyntaxStandaloneSetup().createInjectorAndDoEMFRegistration
+		var Injector injector = new LogoTextualSyntaxStandaloneSetup().createInjectorAndDoEMFRegistration()
 		
 		var XtextResourceSet resourceSet = injector.getInstance(XtextResourceSet);
 		resourceSet.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);

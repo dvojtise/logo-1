@@ -1,4 +1,4 @@
-package fr.inria.diverse.k3.example.logo.interpreter
+package example.logo.interpreter
 
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
@@ -7,9 +7,9 @@ import vmLogo.Point
 import vmLogo.Segment
 import vmLogo.Turtle
 
-import static extension fr.inria.diverse.k3.example.logo.interpreter.PointAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.SegmentAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.TurtleAspect.*
+import static extension example.logo.interpreter.PointAspect.*
+import static extension example.logo.interpreter.SegmentAspect.*
+import static extension example.logo.interpreter.TurtleAspect.*
 
 @Aspect(className=typeof(Point)) 
 class PointAspect

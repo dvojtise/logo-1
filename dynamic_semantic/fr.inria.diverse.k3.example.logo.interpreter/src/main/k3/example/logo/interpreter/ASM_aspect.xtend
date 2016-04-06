@@ -1,77 +1,77 @@
-package fr.inria.diverse.k3.example.logo.interpreter
+package example.logo.interpreter
 
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
 
 import java.util.Hashtable
-import fr.inria.diverse.k3.example.logo.model.logoASM.Back
-import fr.inria.diverse.k3.example.logo.model.logoASM.Block
-import fr.inria.diverse.k3.example.logo.model.logoASM.Clear
-import fr.inria.diverse.k3.example.logo.model.logoASM.Constant
-import fr.inria.diverse.k3.example.logo.model.logoASM.Div
-import fr.inria.diverse.k3.example.logo.model.logoASM.Equals
-import fr.inria.diverse.k3.example.logo.model.logoASM.Expression
-import fr.inria.diverse.k3.example.logo.model.logoASM.Forward
-import fr.inria.diverse.k3.example.logo.model.logoASM.Greater
-import fr.inria.diverse.k3.example.logo.model.logoASM.If
-import fr.inria.diverse.k3.example.logo.model.logoASM.Instruction
-import fr.inria.diverse.k3.example.logo.model.logoASM.Left
-import fr.inria.diverse.k3.example.logo.model.logoASM.LogoProgram
-import fr.inria.diverse.k3.example.logo.model.logoASM.Lower
-import fr.inria.diverse.k3.example.logo.model.logoASM.Minus
-import fr.inria.diverse.k3.example.logo.model.logoASM.Mult
-import fr.inria.diverse.k3.example.logo.model.logoASM.Parameter
-import fr.inria.diverse.k3.example.logo.model.logoASM.ParameterCall
-import fr.inria.diverse.k3.example.logo.model.logoASM.PenDown
-import fr.inria.diverse.k3.example.logo.model.logoASM.PenUp
-import fr.inria.diverse.k3.example.logo.model.logoASM.Plus
-import fr.inria.diverse.k3.example.logo.model.logoASM.Primitive
-import fr.inria.diverse.k3.example.logo.model.logoASM.ProcCall
-import fr.inria.diverse.k3.example.logo.model.logoASM.ProcDeclaration
-import fr.inria.diverse.k3.example.logo.model.logoASM.Repeat
-import fr.inria.diverse.k3.example.logo.model.logoASM.Right
-import fr.inria.diverse.k3.example.logo.model.logoASM.While
-import fr.inria.diverse.k3.example.logo.model.logoASM.ControlStructure
-import fr.inria.diverse.k3.example.logo.model.logoASM.BinaryExp
+import example.logo.model.logoASM.Back
+import example.logo.model.logoASM.Block
+import example.logo.model.logoASM.Clear
+import example.logo.model.logoASM.Constant
+import example.logo.model.logoASM.Div
+import example.logo.model.logoASM.Equals
+import example.logo.model.logoASM.Expression
+import example.logo.model.logoASM.Forward
+import example.logo.model.logoASM.Greater
+import example.logo.model.logoASM.If
+import example.logo.model.logoASM.Instruction
+import example.logo.model.logoASM.Left
+import example.logo.model.logoASM.LogoProgram
+import example.logo.model.logoASM.Lower
+import example.logo.model.logoASM.Minus
+import example.logo.model.logoASM.Mult
+import example.logo.model.logoASM.Parameter
+import example.logo.model.logoASM.ParameterCall
+import example.logo.model.logoASM.PenDown
+import example.logo.model.logoASM.PenUp
+import example.logo.model.logoASM.Plus
+import example.logo.model.logoASM.Primitive
+import example.logo.model.logoASM.ProcCall
+import example.logo.model.logoASM.ProcDeclaration
+import example.logo.model.logoASM.Repeat
+import example.logo.model.logoASM.Right
+import example.logo.model.logoASM.While
+import example.logo.model.logoASM.ControlStructure
+import example.logo.model.logoASM.BinaryExp
 
 import vmLogo.Segment
 import vmLogo.Turtle
 
-import static extension fr.inria.diverse.k3.example.logo.interpreter.InstructionAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.BackAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.BlockAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.ClearAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.ConstantAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.DivAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.EqualsAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.ExpressionAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.ForwardAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.GreaterAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.IfAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.InstructionAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.LeftAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.LogoProgramAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.LowerAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.MinusAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.MultAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.ParameterAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.ParameterCallAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.PenDownAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.PenUpAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.PlusAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.PrimitiveAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.ProcCallAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.ProcDeclarationAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.RepeatAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.RightAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.WhileAspect.*
-import  static extension fr.inria.diverse.k3.example.logo.interpreter.ControlStructureAspect.*
-import  static extension fr.inria.diverse.k3.example.logo.interpreter.BinaryExpAspect.*
+import static extension example.logo.interpreter.InstructionAspect.*
+import static extension example.logo.interpreter.BackAspect.*
+import static extension example.logo.interpreter.BlockAspect.*
+import static extension example.logo.interpreter.ClearAspect.*
+import static extension example.logo.interpreter.ConstantAspect.*
+import static extension example.logo.interpreter.DivAspect.*
+import static extension example.logo.interpreter.EqualsAspect.*
+import static extension example.logo.interpreter.ExpressionAspect.*
+import static extension example.logo.interpreter.ForwardAspect.*
+import static extension example.logo.interpreter.GreaterAspect.*
+import static extension example.logo.interpreter.IfAspect.*
+import static extension example.logo.interpreter.InstructionAspect.*
+import static extension example.logo.interpreter.LeftAspect.*
+import static extension example.logo.interpreter.LogoProgramAspect.*
+import static extension example.logo.interpreter.LowerAspect.*
+import static extension example.logo.interpreter.MinusAspect.*
+import static extension example.logo.interpreter.MultAspect.*
+import static extension example.logo.interpreter.ParameterAspect.*
+import static extension example.logo.interpreter.ParameterCallAspect.*
+import static extension example.logo.interpreter.PenDownAspect.*
+import static extension example.logo.interpreter.PenUpAspect.*
+import static extension example.logo.interpreter.PlusAspect.*
+import static extension example.logo.interpreter.PrimitiveAspect.*
+import static extension example.logo.interpreter.ProcCallAspect.*
+import static extension example.logo.interpreter.ProcDeclarationAspect.*
+import static extension example.logo.interpreter.RepeatAspect.*
+import static extension example.logo.interpreter.RightAspect.*
+import static extension example.logo.interpreter.WhileAspect.*
+import  static extension example.logo.interpreter.ControlStructureAspect.*
+import  static extension example.logo.interpreter.BinaryExpAspect.*
 
 
-import static extension fr.inria.diverse.k3.example.logo.interpreter.PointAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.SegmentAspect.*
-import static extension fr.inria.diverse.k3.example.logo.interpreter.TurtleAspect.*
+import static extension example.logo.interpreter.PointAspect.*
+import static extension example.logo.interpreter.SegmentAspect.*
+import static extension example.logo.interpreter.TurtleAspect.*
 
 @Aspect(className=typeof(Instruction)) 
 abstract class InstructionAspect {

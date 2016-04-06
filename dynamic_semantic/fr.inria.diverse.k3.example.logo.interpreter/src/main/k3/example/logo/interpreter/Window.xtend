@@ -1,4 +1,4 @@
-package fr.inria.diverse.k3.example.logo.interpreter
+package example.logo.interpreter
 
 import javax.swing.JFrame
 import java.awt.Color
@@ -11,8 +11,8 @@ import java.awt.Paint
 import vmLogo.Segment
 import vmLogo.Turtle
 
-//import static extension fr.inria.diverse.k3.example.logo.interpreter.SegmentAspect.*
-//import static extension fr.inria.diverse.k3.example.logo.interpreter.TurtleAspect.*
+//import static extension example.logo.interpreter.SegmentAspect.*
+//import static extension example.logo.interpreter.TurtleAspect.*
 
 class Window {
 	JFrame frame;
