@@ -42,6 +42,7 @@ class LogoInterpreter{
 		else{
 			println('No valid parameter passed, starting interpreter on '+fileName)
 		}
+		println('running '+fileName)
 		new LogoInterpreter().run(fileName)
 	}
 	

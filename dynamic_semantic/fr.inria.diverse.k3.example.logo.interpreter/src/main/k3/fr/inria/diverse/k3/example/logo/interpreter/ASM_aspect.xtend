@@ -1,7 +1,7 @@
 package fr.inria.diverse.k3.example.logo.interpreter
 
-import fr.inria.triskell.k3.Aspect
-import fr.inria.triskell.k3.OverrideAspectMethod
+import fr.inria.diverse.k3.al.annotationprocessor.Aspect
+import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
 
 import java.util.Hashtable
 import fr.inria.diverse.k3.example.logo.model.logoASM.Back
@@ -225,16 +225,16 @@ public class ProcCallAspect extends ExpressionAspect{
 	 int res = 0
 }
 
-@Aspect(className=typeof(ProcDeclaration))
-public class ProcDeclarationAspect extends ExpressionAspect{
+@Aspect(className=ProcDeclaration)
+public class ProcDeclarationAspect extends InstructionAspect{
 	@OverrideAspectMethod
 	def int eval (Context context) {
 		return 0
 	}
 }
 
-@Aspect(className=typeof(Block))
-public class BlockAspect extends ExpressionAspect{
+@Aspect(className=Block)
+public class BlockAspect extends InstructionAspect{
 
 	int res = 0
 	@OverrideAspectMethod
