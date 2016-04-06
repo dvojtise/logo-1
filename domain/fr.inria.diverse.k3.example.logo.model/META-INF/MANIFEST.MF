@@ -11,5 +11,5 @@ Export-Package: fr.inria.diverse.k3.example.logo.model.logoASM,
  fr.inria.diverse.k3.example.logo.model.logoASM.impl,
  fr.inria.diverse.k3.example.logo.model.logoASM.util
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore
+ org.eclipse.emf.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy
