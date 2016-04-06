@@ -7,9 +7,9 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: fr.inria.diverse.k3.example.logo.model.logoASM,
- fr.inria.diverse.k3.example.logo.model.logoASM.impl,
- fr.inria.diverse.k3.example.logo.model.logoASM.util
+Export-Package: example.logo.model.logoASM,
+ example.logo.model.logoASM.impl,
+ example.logo.model.logoASM.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy

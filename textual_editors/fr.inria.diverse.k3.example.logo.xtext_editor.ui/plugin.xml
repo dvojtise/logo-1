@@ -6,48 +6,48 @@
     <extension
             point="org.eclipse.ui.editors">
         <editor
-            class="fr.inria.diverse.k3.example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+            class="example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
             contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
             default="true"
             extensions="logo"
-            id="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax"
+            id="example.logo.xtext_editor.LogoTextualSyntax"
             name="LogoTextualSyntax Editor">
         </editor>
     </extension>
     <extension
         point="org.eclipse.ui.handlers">
         <handler
-            class="fr.inria.diverse.k3.example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
+            class="example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
             commandId="org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclaration">
             <activeWhen>
                 <reference
-                    definitionId="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax.Editor.opened">
+                    definitionId="example.logo.xtext_editor.LogoTextualSyntax.Editor.opened">
                 </reference>
             </activeWhen>
         </handler>
         <handler
-            class="fr.inria.diverse.k3.example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
-            commandId="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax.validate">
+            class="example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
+            commandId="example.logo.xtext_editor.LogoTextualSyntax.validate">
          <activeWhen>
             <reference
-                    definitionId="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax.Editor.opened">
+                    definitionId="example.logo.xtext_editor.LogoTextualSyntax.Editor.opened">
             </reference>
          </activeWhen>
       	</handler>
       	<!-- copy qualified name -->
         <handler
-            class="fr.inria.diverse.k3.example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
+            class="example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
             commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName">
             <activeWhen>
-				<reference definitionId="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax.Editor.opened" />
+				<reference definitionId="example.logo.xtext_editor.LogoTextualSyntax.Editor.opened" />
             </activeWhen>
         </handler>
         <handler
-            class="fr.inria.diverse.k3.example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
+            class="example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
             commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName">
             <activeWhen>
             	<and>
-            		<reference definitionId="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax.XtextEditor.opened" />
+            		<reference definitionId="example.logo.xtext_editor.LogoTextualSyntax.XtextEditor.opened" />
 	                <iterate>
 						<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
 					</iterate>
@@ -56,22 +56,22 @@
         </handler>
     </extension>
     <extension point="org.eclipse.core.expressions.definitions">
-        <definition id="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax.Editor.opened">
+        <definition id="example.logo.xtext_editor.LogoTextualSyntax.Editor.opened">
             <and>
                 <reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
                 <with variable="activeEditor">
                     <test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-                        value="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax" 
+                        value="example.logo.xtext_editor.LogoTextualSyntax" 
                         forcePluginActivation="true"/>
                 </with>        
             </and>
         </definition>
-        <definition id="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax.XtextEditor.opened">
+        <definition id="example.logo.xtext_editor.LogoTextualSyntax.XtextEditor.opened">
             <and>
                 <reference definitionId="isXtextEditorActive"/>
                 <with variable="activeEditor">
                     <test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-                        value="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax" 
+                        value="example.logo.xtext_editor.LogoTextualSyntax" 
                         forcePluginActivation="true"/>
                 </with>        
             </and>
@@ -80,33 +80,33 @@
     <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            class="fr.inria.diverse.k3.example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax"
+            class="example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+            id="example.logo.xtext_editor.LogoTextualSyntax"
             name="LogoTextualSyntax">
-            <keywordReference id="fr.inria.diverse.k3.example.logo.xtext_editor.ui.keyword_LogoTextualSyntax"/>
+            <keywordReference id="example.logo.xtext_editor.ui.keyword_LogoTextualSyntax"/>
         </page>
         <page
-            category="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax"
-            class="fr.inria.diverse.k3.example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
-            id="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax.coloring"
+            category="example.logo.xtext_editor.LogoTextualSyntax"
+            class="example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
+            id="example.logo.xtext_editor.LogoTextualSyntax.coloring"
             name="Syntax Coloring">
-            <keywordReference id="fr.inria.diverse.k3.example.logo.xtext_editor.ui.keyword_LogoTextualSyntax"/>
+            <keywordReference id="example.logo.xtext_editor.ui.keyword_LogoTextualSyntax"/>
         </page>
         <page
-            category="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax"
-            class="fr.inria.diverse.k3.example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
-            id="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax.templates"
+            category="example.logo.xtext_editor.LogoTextualSyntax"
+            class="example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
+            id="example.logo.xtext_editor.LogoTextualSyntax.templates"
             name="Templates">
-            <keywordReference id="fr.inria.diverse.k3.example.logo.xtext_editor.ui.keyword_LogoTextualSyntax"/>
+            <keywordReference id="example.logo.xtext_editor.ui.keyword_LogoTextualSyntax"/>
         </page>
     </extension>
     <extension
             point="org.eclipse.ui.propertyPages">
         <page
-            class="fr.inria.diverse.k3.example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax"
+            class="example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+            id="example.logo.xtext_editor.LogoTextualSyntax"
             name="LogoTextualSyntax">
-            <keywordReference id="fr.inria.diverse.k3.example.logo.xtext_editor.ui.keyword_LogoTextualSyntax"/>
+            <keywordReference id="example.logo.xtext_editor.ui.keyword_LogoTextualSyntax"/>
             <enabledWhen>
 	            <adapt type="org.eclipse.core.resources.IProject"/>
 			</enabledWhen>
@@ -116,14 +116,14 @@
     <extension
         point="org.eclipse.ui.keywords">
         <keyword
-            id="fr.inria.diverse.k3.example.logo.xtext_editor.ui.keyword_LogoTextualSyntax"
+            id="example.logo.xtext_editor.ui.keyword_LogoTextualSyntax"
             label="LogoTextualSyntax"/>
     </extension>
     <extension
          point="org.eclipse.ui.commands">
       <command
             description="Trigger expensive validation"
-            id="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax.validate"
+            id="example.logo.xtext_editor.LogoTextualSyntax.validate"
             name="Validate">
       </command>
       <!-- copy qualified name -->
@@ -144,12 +144,12 @@
         <menuContribution
             locationURI="popup:#TextEditorContext?after=group.edit">
              <command
-                 commandId="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax.validate"
+                 commandId="example.logo.xtext_editor.LogoTextualSyntax.validate"
                  style="push"
                  tooltip="Trigger expensive validation">
             <visibleWhen checkEnabled="false">
                 <reference
-                    definitionId="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax.Editor.opened">
+                    definitionId="example.logo.xtext_editor.LogoTextualSyntax.Editor.opened">
                 </reference>
             </visibleWhen>
          </command>  
@@ -159,7 +159,7 @@
          	<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName" 
          		style="push" tooltip="Copy Qualified Name">
             	<visibleWhen checkEnabled="false">
-                	<reference definitionId="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax.Editor.opened" />
+                	<reference definitionId="example.logo.xtext_editor.LogoTextualSyntax.Editor.opened" />
             	</visibleWhen>
          	</command>  
          </menuContribution>
@@ -167,7 +167,7 @@
          	<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
             	style="push" tooltip="Copy Qualified Name">
             	<visibleWhen checkEnabled="false">
-                	<reference definitionId="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax.Editor.opened" />
+                	<reference definitionId="example.logo.xtext_editor.LogoTextualSyntax.Editor.opened" />
             	</visibleWhen>
          	</command>  
          </menuContribution>
@@ -176,7 +176,7 @@
 				style="push" tooltip="Copy Qualified Name">
          		<visibleWhen checkEnabled="false">
 	            	<and>
-	            		<reference definitionId="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax.XtextEditor.opened" />
+	            		<reference definitionId="example.logo.xtext_editor.LogoTextualSyntax.XtextEditor.opened" />
 						<iterate>
 							<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
 						</iterate>
@@ -189,7 +189,7 @@
 		<menuContribution locationURI="popup:#TextEditorContext?endof=group.find">
 			<command commandId="org.eclipse.xtext.ui.editor.FindReferences">
 				<visibleWhen checkEnabled="false">
-                	<reference definitionId="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax.Editor.opened">
+                	<reference definitionId="example.logo.xtext_editor.LogoTextualSyntax.Editor.opened">
                 	</reference>
             	</visibleWhen>
 			</command>
@@ -197,11 +197,11 @@
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 	    <handler
-            class="fr.inria.diverse.k3.example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
+            class="example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
             commandId="org.eclipse.xtext.ui.editor.FindReferences">
             <activeWhen>
                 <reference
-                    definitionId="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax.Editor.opened">
+                    definitionId="example.logo.xtext_editor.LogoTextualSyntax.Editor.opened">
                 </reference>
             </activeWhen>
         </handler>
@@ -212,19 +212,19 @@
 	<extension
 		point="org.eclipse.emf.ecore.extension_parser">
 		<parser
-			class="fr.inria.diverse.k3.example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
+			class="example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
 			type="logo">
 		</parser>
 	</extension>
 	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
         <resourceServiceProvider
-            class="fr.inria.diverse.k3.example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
+            class="example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
             uriExtension="logo">
         </resourceServiceProvider>
     </extension>
 
 
-	<!-- marker definitions for fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax -->
+	<!-- marker definitions for example.logo.xtext_editor.LogoTextualSyntax -->
 	<extension
 	        id="logotextualsyntax.check.fast"
 	        name="LogoTextualSyntax Problem"
@@ -250,27 +250,27 @@
    <extension
          point="org.eclipse.xtext.builder.participant">
       <participant
-            class="fr.inria.diverse.k3.example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant">
+            class="example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant">
       </participant>
    </extension>
    <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            category="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax"
-            class="fr.inria.diverse.k3.example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-            id="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax.compiler.preferencePage"
+            category="example.logo.xtext_editor.LogoTextualSyntax"
+            class="example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+            id="example.logo.xtext_editor.LogoTextualSyntax.compiler.preferencePage"
             name="Compiler">
-            <keywordReference id="fr.inria.diverse.k3.example.logo.xtext_editor.ui.keyword_LogoTextualSyntax"/>
+            <keywordReference id="example.logo.xtext_editor.ui.keyword_LogoTextualSyntax"/>
         </page>
     </extension>
     <extension
             point="org.eclipse.ui.propertyPages">
         <page
-            category="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax"
-            class="fr.inria.diverse.k3.example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-            id="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax.compiler.propertyPage"
+            category="example.logo.xtext_editor.LogoTextualSyntax"
+            class="example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+            id="example.logo.xtext_editor.LogoTextualSyntax.compiler.propertyPage"
             name="Compiler">
-            <keywordReference id="fr.inria.diverse.k3.example.logo.xtext_editor.ui.keyword_LogoTextualSyntax"/>
+            <keywordReference id="example.logo.xtext_editor.ui.keyword_LogoTextualSyntax"/>
             <enabledWhen>
 	            <adapt type="org.eclipse.core.resources.IProject"/>
 			</enabledWhen>
@@ -282,11 +282,11 @@
 	<extension
 		point="org.eclipse.ui.handlers">
 		<handler 
-			class="fr.inria.diverse.k3.example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
+			class="example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
 			commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline">
 			<activeWhen>
 				<reference
-					definitionId="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax.Editor.opened">
+					definitionId="example.logo.xtext_editor.LogoTextualSyntax.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -306,33 +306,33 @@
 				style="push"
 				tooltip="Open Quick Outline">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax.Editor.opened"/>
+					<reference definitionId="example.logo.xtext_editor.LogoTextualSyntax.Editor.opened"/>
 				</visibleWhen>
 			</command>
 		</menuContribution>
 	</extension>
-    <!-- quickfix marker resolution generator for fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax -->
+    <!-- quickfix marker resolution generator for example.logo.xtext_editor.LogoTextualSyntax -->
     <extension
             point="org.eclipse.ui.ide.markerResolution">
         <markerResolutionGenerator
-            class="fr.inria.diverse.k3.example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-            markerType="fr.inria.diverse.k3.example.logo.xtext_editor.ui.logotextualsyntax.check.fast">
+            class="example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            markerType="example.logo.xtext_editor.ui.logotextualsyntax.check.fast">
             <attribute
                 name="FIXABLE_KEY"
                 value="true">
             </attribute>
         </markerResolutionGenerator>
         <markerResolutionGenerator
-            class="fr.inria.diverse.k3.example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-            markerType="fr.inria.diverse.k3.example.logo.xtext_editor.ui.logotextualsyntax.check.normal">
+            class="example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            markerType="example.logo.xtext_editor.ui.logotextualsyntax.check.normal">
             <attribute
                 name="FIXABLE_KEY"
                 value="true">
             </attribute>
         </markerResolutionGenerator>
         <markerResolutionGenerator
-            class="fr.inria.diverse.k3.example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-            markerType="fr.inria.diverse.k3.example.logo.xtext_editor.ui.logotextualsyntax.check.expensive">
+            class="example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            markerType="example.logo.xtext_editor.ui.logotextualsyntax.check.expensive">
             <attribute
                 name="FIXABLE_KEY"
                 value="true">
@@ -342,11 +342,11 @@
    	<!-- Rename Refactoring -->
 	<extension point="org.eclipse.ui.handlers">
 		<handler 
-			class="fr.inria.diverse.k3.example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
+			class="example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
 			commandId="org.eclipse.xtext.ui.refactoring.RenameElement">
 			<activeWhen>
 				<reference
-					definitionId="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax.Editor.opened">
+					definitionId="example.logo.xtext_editor.LogoTextualSyntax.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -358,7 +358,7 @@
                style="push">
             <visibleWhen checkEnabled="false">
                <reference
-                     definitionId="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax.Editor.opened">
+                     definitionId="example.logo.xtext_editor.LogoTextualSyntax.Editor.opened">
                </reference>
             </visibleWhen>
          </command>
@@ -366,29 +366,29 @@
    </extension>
    <extension point="org.eclipse.ui.preferencePages">
 	    <page
-	        category="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax"
-	        class="fr.inria.diverse.k3.example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
-	        id="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax.refactoring"
+	        category="example.logo.xtext_editor.LogoTextualSyntax"
+	        class="example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
+	        id="example.logo.xtext_editor.LogoTextualSyntax.refactoring"
 	        name="Refactoring">
-	        <keywordReference id="fr.inria.diverse.k3.example.logo.xtext_editor.ui.keyword_LogoTextualSyntax"/>
+	        <keywordReference id="example.logo.xtext_editor.ui.keyword_LogoTextualSyntax"/>
 	    </page>
 	</extension>
 
   <extension point="org.eclipse.compare.contentViewers">
-    <viewer id="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax.compare.contentViewers"
-            class="fr.inria.diverse.k3.example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+    <viewer id="example.logo.xtext_editor.LogoTextualSyntax.compare.contentViewers"
+            class="example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
             extensions="logo">
     </viewer>
   </extension>
   <extension point="org.eclipse.compare.contentMergeViewers">
-    <viewer id="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax.compare.contentMergeViewers"
-            class="fr.inria.diverse.k3.example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+    <viewer id="example.logo.xtext_editor.LogoTextualSyntax.compare.contentMergeViewers"
+            class="example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
             extensions="logo" label="LogoTextualSyntax Compare">
      </viewer>
   </extension>
   <extension point="org.eclipse.ui.editors.documentProviders">
-    <provider id="fr.inria.diverse.k3.example.logo.xtext_editor.LogoTextualSyntax.editors.documentProviders"
-            class="fr.inria.diverse.k3.example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
+    <provider id="example.logo.xtext_editor.LogoTextualSyntax.editors.documentProviders"
+            class="example.logo.xtext_editor.ui.LogoTextualSyntaxExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
             extensions="logo">
     </provider>
   </extension>

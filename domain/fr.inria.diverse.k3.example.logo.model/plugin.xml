@@ -10,7 +10,7 @@
       <!-- @generated ASMLogo -->
       <package
             uri="http://www.kermeta.org/logoASM"
-            class="fr.inria.diverse.k3.example.logo.model.logoASM.LogoASMPackage"
+            class="example.logo.model.logoASM.LogoASMPackage"
             genModel="model/ASMLogo.genmodel"/>
    </extension>
 
