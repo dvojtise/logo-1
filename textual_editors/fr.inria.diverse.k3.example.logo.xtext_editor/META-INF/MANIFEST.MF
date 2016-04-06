@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: fr.inria.diverse.k3.example.logo.xtext_editor
 Bundle-Vendor: My Company
 Bundle-Version: 1.0.0.qualifier
-Bundle-SymbolicName: fr.inria.diverse.k3.example.logo.xtext_editor; singleton:=true
+Bundle-SymbolicName: example.logo.xtext_editor;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  org.eclipse.xtext.xbase;resolution:=optional;visibility:=reexport,
@@ -12,7 +12,7 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  org.eclipse.emf.codegen.ecore;resolution:=optional,
  org.eclipse.emf.mwe.utils;resolution:=optional,
  org.eclipse.emf.mwe2.launch;resolution:=optional,
- fr.inria.diverse.k3.example.logo.model,
+ example.logo.model,
  org.eclipse.xtext.util,
  org.antlr.runtime,
  org.eclipse.xtext.common.types
