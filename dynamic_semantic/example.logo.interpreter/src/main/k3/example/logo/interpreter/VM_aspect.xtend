@@ -1,3 +1,4 @@
+// MDE_BOOK_START
 package example.logo.interpreter
 
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
@@ -10,7 +11,7 @@ import vmLogo.Turtle
 import static extension example.logo.interpreter.PointAspect.*
 import static extension example.logo.interpreter.SegmentAspect.*
 import static extension example.logo.interpreter.TurtleAspect.*
-
+//MDE_BOOK_END
 @Aspect(className=typeof(Point)) 
 class PointAspect
 { 
@@ -40,7 +41,7 @@ class SegmentAspect
 		return _self
 	}
 }
-
+//MDE_BOOK_START
 @Aspect(className=typeof(Turtle)) 
 class TurtleAspect {
 	
@@ -90,3 +91,4 @@ class TurtleAspect {
 		return steps * factor
 	}
 }
+//MDE_BOOK_END

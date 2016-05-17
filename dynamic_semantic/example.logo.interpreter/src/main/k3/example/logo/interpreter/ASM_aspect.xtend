@@ -1,8 +1,9 @@
+////MDE_BOOK_START
 package example.logo.interpreter
 
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
 import fr.inria.diverse.k3.al.annotationprocessor.OverrideAspectMethod
-
+//MDE_BOOK_END
 import java.util.Hashtable
 import example.logo.model.logoASM.Back
 import example.logo.model.logoASM.Block
@@ -36,8 +37,9 @@ import example.logo.model.logoASM.BinaryExp
 
 import vmLogo.Segment
 import vmLogo.Turtle
-
+//MDE_BOOK_START
 import static extension example.logo.interpreter.InstructionAspect.*
+//MDE_BOOK_END
 import static extension example.logo.interpreter.BackAspect.*
 import static extension example.logo.interpreter.BlockAspect.*
 import static extension example.logo.interpreter.ClearAspect.*
@@ -45,8 +47,10 @@ import static extension example.logo.interpreter.ConstantAspect.*
 import static extension example.logo.interpreter.DivAspect.*
 import static extension example.logo.interpreter.EqualsAspect.*
 import static extension example.logo.interpreter.ExpressionAspect.*
+//MDE_BOOK_START
 import static extension example.logo.interpreter.ForwardAspect.*
 import static extension example.logo.interpreter.GreaterAspect.*
+//MDE_BOOK_END
 import static extension example.logo.interpreter.IfAspect.*
 import static extension example.logo.interpreter.InstructionAspect.*
 import static extension example.logo.interpreter.LeftAspect.*
@@ -57,8 +61,10 @@ import static extension example.logo.interpreter.MultAspect.*
 import static extension example.logo.interpreter.ParameterAspect.*
 import static extension example.logo.interpreter.ParameterCallAspect.*
 import static extension example.logo.interpreter.PenDownAspect.*
+//MDE_BOOK_START
 import static extension example.logo.interpreter.PenUpAspect.*
 import static extension example.logo.interpreter.PlusAspect.*
+//MDE_BOOK_END
 import static extension example.logo.interpreter.PrimitiveAspect.*
 import static extension example.logo.interpreter.ProcCallAspect.*
 import static extension example.logo.interpreter.ProcDeclarationAspect.*
@@ -73,12 +79,12 @@ import static extension example.logo.interpreter.PointAspect.*
 import static extension example.logo.interpreter.SegmentAspect.*
 import static extension example.logo.interpreter.TurtleAspect.*
 
+//MDE_BOOK_START
 @Aspect(className=typeof(Instruction)) 
 abstract class InstructionAspect {
-
 	 public def abstract int eval (Context context )  
-
 }
+//MDE_BOOK_END
 
 @Aspect(className=typeof(Primitive)) 
 public class PrimitiveAspect extends InstructionAspect{  
@@ -102,10 +108,9 @@ public class BackAspect extends PrimitiveAspect{
 	}
 
 }
-
+//MDE_BOOK_START
 @Aspect(className=typeof(Forward))
 public class ForwardAspect extends PrimitiveAspect{
-
 	@OverrideAspectMethod
 	def int eval (Context context) {
 		var int param = _self.steps.eval(context)
@@ -113,9 +118,8 @@ public class ForwardAspect extends PrimitiveAspect{
 		context.turtle.forward(param)
 		return 0
 	}
-
 }
- 
+//MDE_BOOK_END 
 @Aspect(className=typeof(Left))
 public class LeftAspect extends PrimitiveAspect{
 
@@ -252,10 +256,9 @@ public class ControlStructureAspect extends InstructionAspect{
 		return 0
 	}
 }
-
+//MDE_BOOK_START
 @Aspect(className=typeof(If))
 public class IfAspect extends ControlStructureAspect{
-
 	@OverrideAspectMethod
 	def int eval (Context context) {
 		if (_self.condition.eval(context) != 0) {
@@ -265,8 +268,8 @@ public class IfAspect extends ControlStructureAspect{
 			return _self.elsePart.eval(context)
 		}
 	}
-
 }
+//MDE_BOOK_END
 
 @Aspect(className=typeof(Repeat))
 public class RepeatAspect extends ControlStructureAspect{
@@ -321,17 +324,15 @@ public class BinaryExpAspect extends ExpressionAspect{
 		return 0
 	}
 }
-
+//MDE_BOOK_START
 @Aspect(className=typeof(Plus))
 public class PlusAspect extends BinaryExpAspect{
-
 	@OverrideAspectMethod
 	def int eval (Context context) {
 		return _self.lhs.eval(context) + _self.rhs.eval(context)
 	}
-
 }
-
+//MDE_BOOK_END
 @Aspect(className=typeof(Minus))
 public class MinusAspect extends BinaryExpAspect{
 
@@ -381,10 +382,9 @@ public class EqualsAspect extends BinaryExpAspect{
 	}
 
 }
-
+//MDE_BOOK_START
 @Aspect(className=typeof(Greater))
 public class GreaterAspect extends BinaryExpAspect{
-
 	@OverrideAspectMethod
 	def int eval (Context context) {
 		if(_self.lhs.eval(context) > _self.rhs.eval(context)) {
@@ -394,9 +394,8 @@ public class GreaterAspect extends BinaryExpAspect{
 			return 0
 		}
 	}
-
 }
-
+//MDE_BOOK_END
 @Aspect(className=typeof(Lower))
 public class LowerAspect extends BinaryExpAspect{
 
