@@ -158,18 +158,16 @@ public class PenDownAspect extends PrimitiveAspect{
 
 }
 
+//MDE_BOOK_START
 @Aspect(className=typeof(PenUp))
 public class PenUpAspect extends PrimitiveAspect{
-
 	@OverrideAspectMethod
 	def int eval (Context context) {
-		println("PENUP")
 		context.turtle.setPenUp(true)
 		return 0
 	}
-
 }
-
+//MDE_BOOK_END
 @Aspect(className=typeof(Clear))
 public class ClearAspect extends PrimitiveAspect{
 	
