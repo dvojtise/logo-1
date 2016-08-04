@@ -1,11 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" name="logo" version="8.1.0">
-  <ownedViewpoints name="Logo" modelFileExtension="*.xmi">
-    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="Logo" initialisation="true" domainClass="LogoProgram">
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" name="logo" version="8.1.0">
+  <ownedViewpoints name="Logo" modelFileExtension="*.xmi *.logo *.logoasm">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="Logo" label="Logo Diagram" initialisation="true" domainClass="logoASM.LogoProgram">
       <metamodel href="../../example.logo.model/model/ASMLogo.ecore#/"/>
       <defaultLayer name="Default">
-        <nodeMappings name="MainInstructionNode" semanticCandidatesExpression="[instructions/]" domainClass="logoASM.Instruction"/>
+        <nodeMappings name="PrimitiveInstructionNode" semanticCandidatesExpression="feature:eContents" domainClass="logoASM.Primitive">
+          <style xsi:type="style:SquareDescription" labelExpression="service:getLabelForInstruction()" resizeKind="NSEW">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+          </style>
+        </nodeMappings>
+        <nodeMappings name="ProcCallNode" semanticCandidatesExpression="feature:eContents" domainClass="logoASM.ProcCall">
+          <style xsi:type="style:SquareDescription" labelExpression="['call '/]" resizeKind="NSEW">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+          </style>
+        </nodeMappings>
+        <edgeMappings name="NextInstructionEdge" sourceMapping="//@ownedViewpoints[name='Logo']/@ownedRepresentations[name='Logo']/@defaultLayer/@nodeMappings[name='ProcCallNode'] //@ownedViewpoints[name='Logo']/@ownedRepresentations[name='Logo']/@defaultLayer/@nodeMappings[name='PrimitiveInstructionNode'] //@ownedViewpoints[name='Logo']/@ownedRepresentations[name='Logo']/@defaultLayer/@containerMappings[name='ControlStructureInstructionNode']" targetMapping="//@ownedViewpoints[name='Logo']/@ownedRepresentations[name='Logo']/@defaultLayer/@nodeMappings[name='ProcCallNode'] //@ownedViewpoints[name='Logo']/@ownedRepresentations[name='Logo']/@defaultLayer/@nodeMappings[name='PrimitiveInstructionNode'] //@ownedViewpoints[name='Logo']/@ownedRepresentations[name='Logo']/@defaultLayer/@containerMappings[name='ControlStructureInstructionNode']" targetFinderExpression="service:getNextInstruction()">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="CalledProcEdge" sourceMapping="//@ownedViewpoints[name='Logo']/@ownedRepresentations[name='Logo']/@defaultLayer/@nodeMappings[name='ProcCallNode']" targetMapping="//@ownedViewpoints[name='Logo']/@ownedRepresentations[name='Logo']/@defaultLayer/@containerMappings[name='ProcDeclarationContainer']" targetFinderExpression="feature:declaration">
+          <style lineStyle="dash" sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <containerMappings name="ProcDeclarationContainer" semanticCandidatesExpression="feature:eContents" domainClass="logoASM.ProcDeclaration" reusedNodeMappings="//@ownedViewpoints[name='Logo']/@ownedRepresentations[name='Logo']/@defaultLayer/@nodeMappings[name='PrimitiveInstructionNode'] //@ownedViewpoints[name='Logo']/@ownedRepresentations[name='Logo']/@defaultLayer/@nodeMappings[name='ProcCallNode']">
+          <subContainerMappings xsi:type="description_1:ContainerMappingImport" reusedContainerMappings="//@ownedViewpoints[name='Logo']/@ownedRepresentations[name='Logo']/@defaultLayer/@containerMappings[name='BlockNode']" importedMapping="//@ownedViewpoints[name='Logo']/@ownedRepresentations[name='Logo']/@defaultLayer/@containerMappings[name='ControlStructureInstructionNode']"/>
+          <style xsi:type="style:FlatContainerStyleDescription">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+          </style>
+        </containerMappings>
+        <containerMappings name="ControlStructureInstructionNode" semanticCandidatesExpression="feature:eContents" domainClass="logoASM.ControlStructure" reusedNodeMappings="//@ownedViewpoints[name='Logo']/@ownedRepresentations[name='Logo']/@defaultLayer/@nodeMappings[name='PrimitiveInstructionNode'] //@ownedViewpoints[name='Logo']/@ownedRepresentations[name='Logo']/@defaultLayer/@nodeMappings[name='ProcCallNode']" reusedContainerMappings="//@ownedViewpoints[name='Logo']/@ownedRepresentations[name='Logo']/@defaultLayer/@containerMappings[name='BlockNode']">
+          <subContainerMappings xsi:type="description_1:ContainerMappingImport" name="ControlStructureContainerImport" reusedNodeMappings="//@ownedViewpoints[name='Logo']/@ownedRepresentations[name='Logo']/@defaultLayer/@nodeMappings[name='PrimitiveInstructionNode'] //@ownedViewpoints[name='Logo']/@ownedRepresentations[name='Logo']/@defaultLayer/@nodeMappings[name='ProcCallNode']" reusedContainerMappings="//@ownedViewpoints[name='Logo']/@ownedRepresentations[name='Logo']/@defaultLayer/@containerMappings[name='BlockNode']" importedMapping="//@ownedViewpoints[name='Logo']/@ownedRepresentations[name='Logo']/@defaultLayer/@containerMappings[name='ControlStructureInstructionNode']"/>
+          <style xsi:type="style:FlatContainerStyleDescription" labelExpression="service:getLabelForControlStructure()">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+          </style>
+        </containerMappings>
+        <containerMappings name="BlockNode" semanticCandidatesExpression="feature:eContents" domainClass="logoASM.Block" reusedNodeMappings="//@ownedViewpoints[name='Logo']/@ownedRepresentations[name='Logo']/@defaultLayer/@nodeMappings[name='PrimitiveInstructionNode'] //@ownedViewpoints[name='Logo']/@ownedRepresentations[name='Logo']/@defaultLayer/@nodeMappings[name='ProcCallNode']">
+          <style xsi:type="style:FlatContainerStyleDescription" labelExpression="service:getLabelForInstruction()">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+          </style>
+        </containerMappings>
       </defaultLayer>
     </ownedRepresentations>
+    <ownedJavaExtensions qualifiedClassName="example.logo.design.services.LogoDiagramServices"/>
   </ownedViewpoints>
 </description:Group>
