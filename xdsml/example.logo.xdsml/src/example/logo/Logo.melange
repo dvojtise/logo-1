@@ -1,0 +1,42 @@
+package example.logo
+
+language Logo {
+	syntax "platform:/resource//example.logo.model/model/ASMLogo.ecore"
+	
+	with example.logo.interpreter.MultAspect
+	with example.logo.interpreter.LowerAspect
+	with example.logo.interpreter.ExpressionAspect
+	with example.logo.interpreter.DivAspect
+	with example.logo.interpreter.ForwardAspect
+	with example.logo.interpreter.RepeatAspect
+	with example.logo.interpreter.BackAspect
+	with example.logo.interpreter.SegmentAspect
+	with example.logo.interpreter.BinaryExpAspect
+	with example.logo.interpreter.BlockAspect
+	with example.logo.interpreter.ParameterCallAspect
+	with example.logo.interpreter.LogoProgramAspect
+	with example.logo.interpreter.GreaterAspect
+	with example.logo.interpreter.PointAspect
+	with example.logo.interpreter.ClearAspect
+	with example.logo.interpreter.TurtleAspect
+	with example.logo.interpreter.PlusAspect
+	with example.logo.interpreter.IfAspect
+	with example.logo.interpreter.PenUpAspect
+	with example.logo.interpreter.ProcCallAspect
+	with example.logo.interpreter.PrimitiveAspect
+	with example.logo.interpreter.ConstantAspect
+	with example.logo.interpreter.RightAspect
+	with example.logo.interpreter.ParameterAspect
+	with example.logo.interpreter.MinusAspect
+	with example.logo.interpreter.EqualsAspect
+	with example.logo.interpreter.InstructionAspect
+	with example.logo.interpreter.ProcDeclarationAspect
+	with example.logo.interpreter.WhileAspect
+	with example.logo.interpreter.LeftAspect
+	with example.logo.interpreter.ControlStructureAspect
+	with example.logo.interpreter.PenDownAspect
+
+	sirius "/example.logo.design/description/logo.odesign"
+
+	exactType LogoMT
+}

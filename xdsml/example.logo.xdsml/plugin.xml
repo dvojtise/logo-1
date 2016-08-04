@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+  <extension point="org.gemoc.gemoc_language_workbench.sequential.xdsml">
+    <XDSML_Definition modelLoader_class="org.gemoc.executionframework.extensions.sirius.modelloader.DefaultModelLoader" name="example.logo.Logo" xdsmlFilePath="/example.logo.xdsml/bin/example/logo/Logo.melange" />
+  </extension>
+  <extension point="fr.inria.diverse.melange.modeltype">
+    <modeltype id="example.logo.LogoMT" uri="http://logomt/" />
+  </extension>
+  <extension point="fr.inria.diverse.melange.language">
+    <language aspects="" entryPoints="" exactType="example.logo.LogoMT" id="example.logo.Logo" uri="http://www.kermeta.org/logoASM" />
+  </extension>
+</plugin>

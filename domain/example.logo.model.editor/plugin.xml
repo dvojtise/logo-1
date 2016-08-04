@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated ASMLogo -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="example.logo.model.logoASM.presentation.LogoASMModelWizardID"
+            name="%_UI_LogoASMModelWizard_label"
+            class="example.logo.model.logoASM.presentation.LogoASMModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/LogoASMModelFile.gif">
+         <description>%_UI_LogoASMModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated ASMLogo -->
+      <editor
+            id="example.logo.model.logoASM.presentation.LogoASMEditorID"
+            name="%_UI_LogoASMEditor_label"
+            icon="icons/full/obj16/LogoASMModelFile.gif"
+            extensions="logoasm"
+            class="example.logo.model.logoASM.presentation.LogoASMEditor"
+            contributorClass="example.logo.model.logoASM.presentation.LogoASMActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
