@@ -78,6 +78,7 @@ import  static extension example.logo.interpreter.BinaryExpAspect.*
 import static extension example.logo.interpreter.PointAspect.*
 import static extension example.logo.interpreter.SegmentAspect.*
 import static extension example.logo.interpreter.TurtleAspect.*
+import fr.inria.diverse.k3.al.annotationprocessor.Step
 
 //MDE_BOOK_START
 @Aspect(className=typeof(Instruction)) 
@@ -98,7 +99,8 @@ public class PrimitiveAspect extends InstructionAspect{
 
 @Aspect(className=typeof(Back))
 public class BackAspect extends PrimitiveAspect{
-
+	
+	@Step
 	@OverrideAspectMethod
 	def int eval (Context context) {
 		var int param = -1*  _self.steps.eval(context)
@@ -111,6 +113,8 @@ public class BackAspect extends PrimitiveAspect{
 //MDE_BOOK_START
 @Aspect(className=typeof(Forward))
 public class ForwardAspect extends PrimitiveAspect{
+	
+	@Step
 	@OverrideAspectMethod
 	def int eval (Context context) {
 		var int param = _self.steps.eval(context)
@@ -123,6 +127,7 @@ public class ForwardAspect extends PrimitiveAspect{
 @Aspect(className=typeof(Left))
 public class LeftAspect extends PrimitiveAspect{
 
+	@Step
 	@OverrideAspectMethod
 	def int eval (Context context) {
 		var int param = (-1)  *_self.angle.eval(context)
@@ -136,6 +141,7 @@ public class LeftAspect extends PrimitiveAspect{
 @Aspect(className=typeof(Right))
 public class RightAspect extends PrimitiveAspect{
 
+	@Step
 	@OverrideAspectMethod
 	def int eval (Context context) {
 		var int param = _self.angle.eval(context)
@@ -149,6 +155,7 @@ public class RightAspect extends PrimitiveAspect{
 @Aspect(className=typeof(PenDown))
 public class PenDownAspect extends PrimitiveAspect{
 
+	@Step
 	@OverrideAspectMethod
 	def int eval (Context context) {
 		println("PENDOWN")
@@ -161,6 +168,8 @@ public class PenDownAspect extends PrimitiveAspect{
 //MDE_BOOK_START
 @Aspect(className=typeof(PenUp))
 public class PenUpAspect extends PrimitiveAspect{
+	
+	@Step
 	@OverrideAspectMethod
 	def int eval (Context context) {
 		context.turtle.setPenUp(true)
@@ -171,6 +180,7 @@ public class PenUpAspect extends PrimitiveAspect{
 @Aspect(className=typeof(Clear))
 public class ClearAspect extends PrimitiveAspect{
 	
+	@Step
 	@OverrideAspectMethod
 	def int eval (Context context) {
 		println("CLEAR")
@@ -202,7 +212,8 @@ public class ConstantAspect extends ExpressionAspect{
 
 @Aspect(className=typeof(ProcCall))
 public class ProcCallAspect extends ExpressionAspect{
-
+	
+	@Step
 	@OverrideAspectMethod
 	def int eval (Context context) {
 		println("Calling of : " + _self.declaration.name)
@@ -239,6 +250,8 @@ public class ProcDeclarationAspect extends InstructionAspect{
 public class BlockAspect extends InstructionAspect{
 
 	int res = 0
+	
+	@Step
 	@OverrideAspectMethod
 	def int eval (Context context) {
 		_self.instructions.forEach[instruction | _self.res = instruction.eval(context)]
@@ -257,6 +270,8 @@ public class ControlStructureAspect extends InstructionAspect{
 //MDE_BOOK_START
 @Aspect(className=typeof(If))
 public class IfAspect extends ControlStructureAspect{
+	
+	@Step
 	@OverrideAspectMethod
 	def int eval (Context context) {
 		if (_self.condition.eval(context) != 0) {
@@ -271,7 +286,8 @@ public class IfAspect extends ControlStructureAspect{
 
 @Aspect(className=typeof(Repeat))
 public class RepeatAspect extends ControlStructureAspect{
-
+	
+	@Step
 	@OverrideAspectMethod
 	def int eval (Context context) {
 		var int time =  _self.condition.eval(context)
@@ -286,7 +302,8 @@ public class RepeatAspect extends ControlStructureAspect{
 
 @Aspect(className=typeof(While))
 public class WhileAspect extends ControlStructureAspect{
-
+	
+	@Step
 	@OverrideAspectMethod
 	def int eval (Context context) {
 		while(_self.condition.eval(context) > 0){
@@ -325,6 +342,8 @@ public class BinaryExpAspect extends ExpressionAspect{
 //MDE_BOOK_START
 @Aspect(className=typeof(Plus))
 public class PlusAspect extends BinaryExpAspect{
+	
+	@Step
 	@OverrideAspectMethod
 	def int eval (Context context) {
 		return _self.lhs.eval(context) + _self.rhs.eval(context)
@@ -333,7 +352,8 @@ public class PlusAspect extends BinaryExpAspect{
 //MDE_BOOK_END
 @Aspect(className=typeof(Minus))
 public class MinusAspect extends BinaryExpAspect{
-
+	
+	@Step
 	@OverrideAspectMethod
 	def int eval (Context context) {
 		return _self.lhs.eval(context) - _self.rhs.eval(context)
@@ -343,7 +363,8 @@ public class MinusAspect extends BinaryExpAspect{
 
 @Aspect(className=typeof(Mult))
 public class MultAspect extends BinaryExpAspect{
-
+	
+	@Step
 	@OverrideAspectMethod
 	def int eval (Context context) {
 		return _self.lhs.eval(context) * _self.rhs.eval(context)
@@ -353,7 +374,8 @@ public class MultAspect extends BinaryExpAspect{
 
 @Aspect(className=typeof(Div))
 public class DivAspect extends BinaryExpAspect{
-
+	
+	@Step
 	@OverrideAspectMethod
 	def int eval (Context context) {
 		if(_self.rhs.eval(context) != 0) {
@@ -368,7 +390,8 @@ public class DivAspect extends BinaryExpAspect{
 
 @Aspect(className=typeof(Equals))
 public class EqualsAspect extends BinaryExpAspect{
-
+	
+	@Step
 	@OverrideAspectMethod
 	def int eval (Context context) {
 		if(_self.lhs.eval(context) == _self.rhs.eval(context)) {
@@ -410,12 +433,19 @@ public class LowerAspect extends BinaryExpAspect{
 
 @Aspect(className=typeof(LogoProgram))
 public class LogoProgramAspect {
-
+	
 	def int eval (Context context) {
 		println("LogoProgram eval !")
 		_self.instructions.forEach[instr  | instr.eval(context)]
 		return 0
 	}
+	
+	@fr.inria.diverse.k3.al.annotationprocessor.Main
+    def public void xDSMLMain() {
+       	var Context context = new Context()
+		_self.eval(context)
+		new Window(context.turtle)
+    }
 
 }
 
