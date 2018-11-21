@@ -1,0 +1,49 @@
+grammar fr.inria.sed.logo.xtext.Logo with org.eclipse.xtext.common.Terminals
+
+generate logo "http://www.inria.fr/sed/logo/xtext/Logo"
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+LogoProgram :
+	{LogoProgram}
+	instructions+=Instruction (  instructions+=Instruction)* 
+	;
+
+
+
+Instruction :
+	Forward | Left | Right | ProcDeclaration | ProcCall;
+
+ProcDeclaration :
+	{ProcDeclaration}
+	'to'
+	name=EString
+		(  args+=Parameter)* 
+		instructions+=Instruction (  instructions+=Instruction)*  
+	'end';
+	
+Parameter:
+	{Parameter}
+	':'name=EString;
+
+ProcCall:
+	declaration=[ProcDeclaration|EString]
+	'(' (actualArgs+=EInt)? ( "," actualArgs+=EInt)* ')' 
+	;	
+
+Forward :
+	'forward' steps=EInt;
+
+Left:
+	{Left}
+	'left' angle=EInt;
+
+Right :
+	{Right}
+	'right' angle=EInt;
+	
+EInt returns ecore::EInt:
+	'-'? INT;
+	
+EString returns ecore::EString:
+	STRING | ID;
