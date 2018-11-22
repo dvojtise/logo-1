@@ -1,0 +1,27 @@
+to koch :level :width 
+	ifelse ( :level < 1 ) 
+	[ 
+		forward :width 
+	] 
+	[ 
+		koch ( ( :level - 1 ) , ( :width / 3 ) ) 
+		left 60 
+		koch ( ( :level - 1 ) , ( :width / 3 ) ) 
+		right 120 
+		koch ( ( :level  - 1 ) , ( :width / 3 ) ) 
+		left 60 
+	] 
+end 
+
+to snowflake :slevel :swidth 
+	repeat 3 
+	[ 
+		right 120 
+		koch ( :slevel , :swidth ) 
+	] 
+end 
+
+clear 
+pendown 
+snowflake ( 3 , 750 ) 
+penup 

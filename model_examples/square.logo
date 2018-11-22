@@ -1,0 +1,8 @@
+clear
+pendown 
+repeat 4 [ 
+	forward 25 
+	right 90 
+] 
+penup 
+

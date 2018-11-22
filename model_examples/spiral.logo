@@ -1,0 +1,15 @@
+to recursive_spiral :size 
+	ifelse ( :size < 30 ) 
+	[ 
+		forward :size 
+		right 30 
+		recursive_spiral ( ( ( :size * 110 ) / 100 ) ) 
+	] 
+	[ 
+	] 
+end 
+
+clear 
+pendown 
+recursive_spiral ( 10 ) 
+penup 

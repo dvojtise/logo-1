@@ -1,0 +1,12 @@
+to circle :ne :size 
+	repeat :ne 
+	[ 
+		right  (360 / :ne)  
+		forward :size 
+	] 
+end 
+
+clear 
+pendown 
+circle ( 36 , 20 ) 
+penup 
