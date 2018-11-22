@@ -65,7 +65,7 @@ ProcDeclaration  :
 	name=EString
 	
 		(  args+=Parameter)* 
-		instructions+=Instruction (  instructions+=Instruction)*  
+		(  instructions+=Instruction)*  
 	'end';
 
 Parameter :
