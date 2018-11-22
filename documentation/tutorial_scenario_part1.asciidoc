@@ -1,0 +1,131 @@
+## Scenario tutorial day one
+
+### basic xtext
+* File -> new -> project -> xtext project
+** project name: fr.inria.sed.logo.xtext
+** Name: fr.inria.sed.logo.xtext.Logo
+** Extensions: logo
+* montrer la grammaire de base
+* generate mwe2
+* lancer un second workbench
+** new -> project
+** new -> file avec la bonne extension
+** show completion/outline
+
+back to LWB
+
+* show model/generated/ecore as tree view
+* create aird (warning as xtext delete the content of the "generated" folder , do not create the aird in it and prefer model or directly the root of the project
+** right click on model -> create representation, -> Initialization from semantic resource -> select the Logo.ecore file
+** select "Design" representation
+** create Entities in class diagram
+** popuplate with ecore content
+** show ecore model as diagram
+
+* improve grammar, let's play grammar first
+
+[source,]
+----
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+LogoProgram :
+	{LogoProgram}
+	instructions+=Instruction (  instructions+=Instruction)*  
+	;
+
+Instruction :
+	Forward | Left | Right  ;
+
+Forward:
+	'forward' steps=EInt;
+
+Left :
+	{Left}
+	'left' angle=EInt;
+
+Right :
+	{Right}
+	'right' angle=EInt;
+	
+EInt returns ecore::EInt:
+	'-'? INT;
+
+----
+
+add proc decl
+
+[source,]
+----
+Instruction :
+	Forward | Left | Right | ProcDeclaration ;
+
+ProcDeclaration :
+	{ProcDeclaration}
+	'to'
+	name=EString
+	
+		(  args+=Parameter)* 
+		instructions+=Instruction (  instructions+=Instruction)*  
+	'end';
+	
+Parameter returns Parameter:
+	{Parameter}
+	':'name=EString;
+EString returns ecore::EString:
+	STRING | ID;
+----
+
+add proc call, ie. reference to a proc decl
+
+[source,]
+----
+Instruction :
+	Forward | Left | Right | ProcDeclaration | ProcCall;
+ProcCall :
+	declaration=[ProcDeclaration|EString]
+	'(' (actualArgs+=EInt)? ( "," actualArgs+=EInt)* ')' 
+	;
+----
+
+show completion in MWB
+
+show how to complete validation
+[source,java]
+----
+	@Check
+	def checkPassedParameters(ProcCall procCall){
+		if(procCall.actualArgs.size != procCall.declaration.args.size){
+			warning('invalid number of argument, (expecting '+procCall.declaration.args.size+')',
+				procCall,
+				LogoPackage.Literals.PROC_CALL__ACTUAL_ARGS
+			)
+		}
+	}
+----
+
+
+show open with -> Sample Reflective Ecore editor
+
+explain the tree view + property view
+
+
+
+
+add expression
+
+TODO vérifier l'utilisation de - dan les valeurs xtext
+
+
+
+
+NOTE pour MM first vs grammar first
+* permet de mieux controler les arbres d'héritage
+
+
+
+projet de test: grammaire
+
+rapide et utile pour la non regression
+
+
+
