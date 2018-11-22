@@ -87,7 +87,6 @@ public class LogoParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getProcDeclarationAccess().getNameAssignment_2(), "rule__ProcDeclaration__NameAssignment_2");
 			builder.put(grammarAccess.getProcDeclarationAccess().getArgsAssignment_3(), "rule__ProcDeclaration__ArgsAssignment_3");
 			builder.put(grammarAccess.getProcDeclarationAccess().getInstructionsAssignment_4(), "rule__ProcDeclaration__InstructionsAssignment_4");
-			builder.put(grammarAccess.getProcDeclarationAccess().getInstructionsAssignment_5(), "rule__ProcDeclaration__InstructionsAssignment_5");
 			builder.put(grammarAccess.getParameterAccess().getNameAssignment_2(), "rule__Parameter__NameAssignment_2");
 			builder.put(grammarAccess.getBlockAccess().getInstructionsAssignment_2(), "rule__Block__InstructionsAssignment_2");
 			builder.put(grammarAccess.getIfAccess().getConditionAssignment_0_1(), "rule__If__ConditionAssignment_0_1");

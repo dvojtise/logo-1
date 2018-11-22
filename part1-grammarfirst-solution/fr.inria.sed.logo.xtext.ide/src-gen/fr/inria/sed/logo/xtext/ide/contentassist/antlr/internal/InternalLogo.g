@@ -1882,7 +1882,7 @@ rule__ProcDeclaration__Group__4__Impl
 :
 (
 	{ before(grammarAccess.getProcDeclarationAccess().getInstructionsAssignment_4()); }
-	(rule__ProcDeclaration__InstructionsAssignment_4)
+	(rule__ProcDeclaration__InstructionsAssignment_4)*
 	{ after(grammarAccess.getProcDeclarationAccess().getInstructionsAssignment_4()); }
 )
 ;
@@ -1896,7 +1896,6 @@ rule__ProcDeclaration__Group__5
 	}
 :
 	rule__ProcDeclaration__Group__5__Impl
-	rule__ProcDeclaration__Group__6
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -1908,35 +1907,9 @@ rule__ProcDeclaration__Group__5__Impl
 	}
 :
 (
-	{ before(grammarAccess.getProcDeclarationAccess().getInstructionsAssignment_5()); }
-	(rule__ProcDeclaration__InstructionsAssignment_5)*
-	{ after(grammarAccess.getProcDeclarationAccess().getInstructionsAssignment_5()); }
-)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__ProcDeclaration__Group__6
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	rule__ProcDeclaration__Group__6__Impl
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__ProcDeclaration__Group__6__Impl
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-(
-	{ before(grammarAccess.getProcDeclarationAccess().getEndKeyword_6()); }
+	{ before(grammarAccess.getProcDeclarationAccess().getEndKeyword_5()); }
 	'end'
-	{ after(grammarAccess.getProcDeclarationAccess().getEndKeyword_6()); }
+	{ after(grammarAccess.getProcDeclarationAccess().getEndKeyword_5()); }
 )
 ;
 finally {
@@ -3649,21 +3622,6 @@ rule__ProcDeclaration__InstructionsAssignment_4
 		{ before(grammarAccess.getProcDeclarationAccess().getInstructionsInstructionParserRuleCall_4_0()); }
 		ruleInstruction
 		{ after(grammarAccess.getProcDeclarationAccess().getInstructionsInstructionParserRuleCall_4_0()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__ProcDeclaration__InstructionsAssignment_5
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	(
-		{ before(grammarAccess.getProcDeclarationAccess().getInstructionsInstructionParserRuleCall_5_0()); }
-		ruleInstruction
-		{ after(grammarAccess.getProcDeclarationAccess().getInstructionsInstructionParserRuleCall_5_0()); }
 	)
 ;
 finally {

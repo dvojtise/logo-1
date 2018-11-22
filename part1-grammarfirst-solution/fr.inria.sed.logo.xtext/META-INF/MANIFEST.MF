@@ -26,5 +26,6 @@ Export-Package: fr.inria.sed.logo.xtext.parser.antlr.internal,
  fr.inria.sed.logo.xtext.logo.util,
  fr.inria.sed.logo.xtext.logo.impl,
  fr.inria.sed.logo.xtext.logo,
- fr.inria.sed.logo.xtext.services
+ fr.inria.sed.logo.xtext.services,
+ fr.inria.sed.logo.xtext.formatting2
 Import-Package: org.apache.log4j

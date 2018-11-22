@@ -139,16 +139,61 @@ add this line in the mwe2 file (ine the language section
 			fragment = ui.quickfix.QuickfixProviderFragment2 {}
 ----
 
-regernerate
+regenerate
 
 in the project xxx.logo.xtext.ui
-open new file LogoQuickfixProvider.xtend
-add the following
+open new file *LogoQuickfixProvider.xtend* and add the following:
 [source,java]
 ----
+	@Fix(Diagnostic.LINKING_DIAGNOSTIC)
+	def void fixMissingProcDecl(Issue issue,
+								IssueResolutionAcceptor acceptor) {
+		if (issue.message.contains("ProcDeclaration")) {
+			createMissingProcDecl(issue, acceptor);
+		}
+	}
+	
+	private def createMissingProcDecl(Issue issue, IssueResolutionAcceptor acceptor) {
+		acceptor.accept(issue,
+			"Create missing procedure declaration",
+			"Create a new empty procedure declaration at the beginning of the file",
+			null, // no icon 
+			[ element, context |
+				val root = element.getContainerOfType(typeof(LogoProgram))				
+				root.instructions.add(
+					0,
+					LogoFactory::eINSTANCE.createProcDeclaration() => [
+						name = context.xtextDocument.get(issue.offset,
+						issue.length)
+					]
+				)
+			]
+		);
+	}
 ----
 
+When testing you can observe that there is no line break.
 
+Additionnaly, if you do a right click -> source -> format, everything goes on single line.
+
+Let's provide some autoformat informations: (see https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#formatting )
+
+add in the mwe2 file:
+[source]
+----
+language = StandardLanguage {
+			...
+			// formatter API 
+			fragment = formatting.Formatter2Fragment2 {}
+}
+----
+launch mwe2 generate.
+
+open and fill the newly created *xxx.logo.xtext.formatting2.LogoFormatter.xtend* file.
+[source,java]
+----
+
+----
 
 
 
@@ -192,3 +237,25 @@ autres truc cool à tester éventuellement sur certains languages: https://www.e
 * template proposal
 * advanced syntax coloring (lexical and semantic)
 *
+
+support for qualified name, add in the mwe2 :
+[source]
+----
+language = StandardLanguage {
+			...
+			qualifiedNamesProvider = {}
+}
+----
+
+support for outline labels, add in the mwe2 :
+[source]
+----
+language = StandardLanguage {
+			...
+			labelProvider = {
+				generateStub = true
+			}
+}
+----
+then customize the stub
+
