@@ -11,6 +11,9 @@ import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor
 import org.eclipse.xtext.diagnostics.Diagnostic
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
+import fr.inria.sed.logo.xtext.logo.LogoFactory
+import fr.inria.sed.logo.xtext.logo.ProcDeclaration
+import fr.inria.sed.logo.xtext.logo.LogoProgram
 
 /**
  * Custom quickfixes.
@@ -29,24 +32,29 @@ class LogoQuickfixProvider extends DefaultQuickfixProvider {
 //		]
 //	}
 
-//	@Fix(Diagnostic.LINKING_DIAGNOSTIC)
-//	def void createMissingProcDe(Issue issue,
-//								IssueResolutionAcceptor acceptor) {
-//		acceptor.accept(issue,
-//			"Create missing entity",
-//			"Create missing entity",
-//			"Entity.gif",
-//			[ element, context |
-//				val currentEntity = element.getContainerOfType(typeof(Entity))
-//				val model = currentEntity.eContainer as Model
-//				model.entities.add(
-//					model.entities.indexOf(currentEntity)+1,
-//					EntitiesFactory::eINSTANCE.createEntity() => [
-//						name = context.xtextDocument.get(issue.offset,
-//						issue.length)
-//					]
-//				)
-//			]
-//		);
-//	}
+	@Fix(Diagnostic.LINKING_DIAGNOSTIC)
+	def void fixMissingProcDecl(Issue issue,
+								IssueResolutionAcceptor acceptor) {
+		if (issue.message.contains("ProcDeclaration")) {
+			createMissingProcDecl(issue, acceptor);
+		}
+	}
+	
+	private def createMissingProcDecl(Issue issue, IssueResolutionAcceptor acceptor) {
+		acceptor.accept(issue,
+			"Create missing procedure declaration",
+			"Create missing procedure declaration",
+			null, // no icon 
+			[ element, context |
+				val root = element.getContainerOfType(typeof(LogoProgram))				
+				root.instructions.add(
+					0,
+					LogoFactory::eINSTANCE.createProcDeclaration() => [
+						name = context.xtextDocument.get(issue.offset,
+						issue.length)
+					]
+				)
+			]
+		);
+	}
 }

@@ -1,25 +1,47 @@
 ## Scenario tutorial day one
 
-### basic xtext
+### Installation steps
+
+* Install an Oracle Java JDK (minimum 8, max 10,  Oracle is preferred due to 
+support of openFX used for tha day 2 tutorial)  
+* grab and unzip the latest dev version of GEMOC Studio  http://download.eclipse.org/gemoc/packages/nightly/
+
+### Basic xText
+
+NOTE: Start the first Eclipse, we will call it the *Language Workbench*
+
 * File -> new -> project -> xtext project
 ** project name: fr.inria.sed.logo.xtext
 ** Name: fr.inria.sed.logo.xtext.Logo
 ** Extensions: logo
 * montrer la grammaire de base
 * generate mwe2
-* lancer un second workbench
-** new -> project
-** new -> file avec la bonne extension
-** show completion/outline
 
-back to LWB
+Create a launch configuration that runs a new Eclipse similar to the current one  but also including the plugins under development in the workspace: 
+
+* Run -> Run configurations... -> Right click on Eclipse Application -> new configutation
+
+[NOTE]
+====
+ 
+Start the Second Eclipse,
+we will call it the *Modeling workbench*
+==== 
+
+Create a  project with an example model:
+
+** new -> project
+** new -> file, use *.logo* as file extension.
+** Observe the basic features of the editor: completion/outline/syntax error marker
+
+NOTE: Switch back to the *Language Workbench*
 
 * show model/generated/ecore as tree view
 * create aird (warning as xtext delete the content of the "generated" folder , do not create the aird in it and prefer model or directly the root of the project
 ** right click on model -> create representation, -> Initialization from semantic resource -> select the Logo.ecore file
 ** select "Design" representation
 ** create Entities in class diagram
-** popuplate with ecore content
+** populate with ecore content
 ** show ecore model as diagram
 
 * improve grammar, let's play grammar first
@@ -87,9 +109,13 @@ ProcCall :
 	;
 ----
 
-show completion in MWB
+NOTE: Switch to the *Modeling Workbench*
+Observe the completion at work
 
-show how to complete validation
+NOTE: Switch back to the *Language Workbench*
+
+* open the *LogoValidator.xtend* file
+* add some checker
 [source,java]
 ----
 	@Check
@@ -104,23 +130,50 @@ show how to complete validation
 ----
 
 
+Add quickfix
+
+add this line in the mwe2 file (ine the language section
+[source]
+----
+	// quickfix API
+			fragment = ui.quickfix.QuickfixProviderFragment2 {}
+----
+
+regernerate
+
+in the project xxx.logo.xtext.ui
+open new file LogoQuickfixProvider.xtend
+add the following
+[source,java]
+----
+----
+
+
+
+
+
+
 show open with -> Sample Reflective Ecore editor
 
 explain the tree view + property view
+
+Points à faire attention/pièges:
+containment du ecore resultant
 
 
 
 
 add expression
 
-TODO vérifier l'utilisation de - dan les valeurs xtext
+TODO: vérifier l'utilisation de - dan les valeurs xtext
 
 
 
 
 NOTE pour MM first vs grammar first
 * permet de mieux controler les arbres d'héritage
-
+* car difficulté de "regrouper" les attributs dans les classes parentes
+(UnaryExpression, binaryExpression, contriol Structure
 
 
 projet de test: grammaire
@@ -128,4 +181,14 @@ projet de test: grammaire
 rapide et utile pour la non regression
 
 
+autres truc cool à tester éventuellement sur certains languages: https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html
 
+* rename refactoring https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#refactoring
+* project and file wizard https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#projectwizard
+* code mining https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#code-mining
+* hyperlinking
+* outline view and label provider (but it might be more productive to do it on the edit plugin when using model first approach
+* content assist
+* template proposal
+* advanced syntax coloring (lexical and semantic)
+*
