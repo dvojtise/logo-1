@@ -1,0 +1,16 @@
+to drawLeaf :angle
+	repeat 2 [ repeat :angle [
+			forward 2
+			right 1
+		]
+		right (180 - :angle)
+	]
+end
+
+clear
+pendown
+repeat 18 [
+	drawLeaf (100)
+	right (-20)
+]
+penup
