@@ -19,9 +19,20 @@ class LogoParsingTest {
 	ParseHelper<LogoProgram> parseHelper
 	
 	@Test
-	def void loadModel() {
+	def void canParseCircleProgram() {
 		val result = parseHelper.parse('''
-			Hello Xtext!
+			to circle :ne :size 
+				repeat :ne 
+				[ 
+					right  (360 / :ne)  
+					forward :size 
+				] 
+			end 
+			
+			clear 
+			pendown 
+			circle ( 36 , 20 ) 
+			penup 
 		''')
 		Assert.assertNotNull(result)
 		val errors = result.eResource.errors

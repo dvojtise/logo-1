@@ -2,6 +2,8 @@
 
 This document indicates the steps to follow in order to reproduce the tutorial.
 
+The solution of this tutorial is available in the folder _part1-grammarfirst-solution_.
+
 ## Installation
 
 * Install an Oracle Java JDK (minimum 8, max 10,  Oracle is preferred due to 
@@ -307,10 +309,21 @@ NOTE pour MM first vs grammar first
 (UnaryExpression, binaryExpression, contriol Structure
 
 
-projet de test: grammaire
+## Test project
 
-rapide et utile pour la non regression
+Useful for non regression and checking the features.
 
+open the _xxx.logo.xtext.tests_ and add some new test that checks a logo program.
+
+Launch it (_Right click on the project -> Run as -> JUnit Plugin test_ )
+
+[TIP]
+====
+For a better coverage of the feature (ie. Formatter test, validation test, etc) have a look 
+to the examples available in your eclipse _File -> New -> Examples... -> XText examples_
+====
+
+TIP: ui tests (outline, content assist, etc) are in _xxx.logo.xtext.ui.tests_
 
 ## Other cool feature of XText
 
