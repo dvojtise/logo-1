@@ -9,22 +9,53 @@ import fr.inria.sed.logo.xtext.logo.LogoProgram
 import fr.inria.sed.logo.xtext.services.LogoGrammarAccess
 import org.eclipse.xtext.formatting2.AbstractFormatter2
 import org.eclipse.xtext.formatting2.IFormattableDocument
+import fr.inria.sed.logo.xtext.logo.ProcDeclaration
+import fr.inria.sed.logo.xtext.logo.LogoPackage
+import fr.inria.sed.logo.xtext.logo.Instruction
+import fr.inria.sed.logo.xtext.logo.Block
 
+@SuppressWarnings("all")
 class LogoFormatter extends AbstractFormatter2 {
 	
 	@Inject extension LogoGrammarAccess
 
 	def dispatch void format(LogoProgram logoProgram, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
 		for (instruction : logoProgram.instructions) {
 			instruction.format
+			instruction.append[setNewLines(1, 1, 2)]
 		}
 	}
-
-	def dispatch void format(Backward backward, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		backward.steps.format
+	
+	def dispatch void format(ProcDeclaration procDeclaration, extension IFormattableDocument document) {
+		val to = procDeclaration.regionFor.keyword("to")
+		val end = procDeclaration.regionFor.keyword("end")
+		if(procDeclaration.args.empty) {
+			val declName = procDeclaration.regionFor.feature(LogoPackage.Literals.PROC_DECLARATION__NAME).append[newLine]		
+			interior(declName, end)[indent]
+		} else {
+			for ( arg : procDeclaration.args) {
+				arg.surround[oneSpace]
+			}
+			procDeclaration.args.last.append[newLine]
+			interior(procDeclaration.args.last.regionFor.feature(LogoPackage.Literals.PARAMETER__NAME), end)[indent]
+		}
+		for (instruction : procDeclaration.instructions) {
+			instruction.format
+			instruction.append[setNewLines(1, 1, 2)]
+		}
 	}
+	
+	def dispatch void format(Block block, extension IFormattableDocument document) {
+		val open = block.regionFor.keyword("[")
+		val close = block.regionFor.keyword("]")
+		open.append[newLine]
+		interior(open, close)[indent]	
+		for (instruction : block.instructions) {
+			instruction.format
+			instruction.append[setNewLines(1, 1, 2)]
+		}	
+	}
+	
 	
 	// TODO: implement for Forward, Left, Right, ProcCall, ProcDeclaration, Block, If, Repeat, While, Equals, Greater, Lower, Plus, Minus, Mult, Div
 }

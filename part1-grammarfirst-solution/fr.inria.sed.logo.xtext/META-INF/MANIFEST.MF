@@ -13,7 +13,8 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
  org.antlr.runtime,
  org.eclipse.xtext.util,
- org.eclipse.emf.common,
+ org.eclipse.emf.common, 
+ org.eclipse.xtext.common.types,
  org.eclipse.xtend.lib;bundle-version="2.14.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-10
 Export-Package: fr.inria.sed.logo.xtext.parser.antlr.internal,

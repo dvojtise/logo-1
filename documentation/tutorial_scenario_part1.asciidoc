@@ -1,12 +1,14 @@
-## Scenario tutorial day one
+# Tutorial scenario day one: Hands-on xText, the logo turtle language 
 
-### Installation steps
+This document indicates the steps to follow in order to reproduce the tutorial.
+
+## Installation
 
 * Install an Oracle Java JDK (minimum 8, max 10,  Oracle is preferred due to 
 support of openFX used for tha day 2 tutorial)  
 * grab and unzip the latest dev version of GEMOC Studio  http://download.eclipse.org/gemoc/packages/nightly/
 
-### Basic xText
+## Create project and basic grammar
 
 NOTE: Start the first Eclipse, we will call it the *Language Workbench*
 
@@ -44,7 +46,19 @@ NOTE: Switch back to the *Language Workbench*
 ** populate with ecore content
 ** show ecore model as diagram
 
-* improve grammar, let's play grammar first
+## Improving the grammar
+
+* improve grammar, let's play grammar first: create a few rules that allows to parse something like:
+
+[source]
+----
+left 45
+forward 15
+right 90
+forward 100
+----
+
+TIP: reference documentation https://www.eclipse.org/Xtext/documentation/301_grammarlanguage.html
 
 [source,]
 ----
@@ -74,7 +88,7 @@ EInt returns ecore::EInt:
 
 ----
 
-add proc decl
+add Procedure declaration
 
 [source,]
 ----
@@ -97,7 +111,7 @@ EString returns ecore::EString:
 	STRING | ID;
 ----
 
-add proc call, ie. reference to a proc decl
+add procedure call, ie. reference to a ProcDeclaration
 
 [source,]
 ----
@@ -110,9 +124,14 @@ ProcCall :
 ----
 
 NOTE: Switch to the *Modeling Workbench*
+
 Observe the completion at work
 
 NOTE: Switch back to the *Language Workbench*
+
+## Better validation
+
+TIP: reference documentation: https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
 
 * open the *LogoValidator.xtend* file
 * add some checker
@@ -129,6 +148,10 @@ NOTE: Switch back to the *Language Workbench*
 	}
 ----
 
+## Provide quickfix
+
+TIP: reference documentation: https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#quick-fixes
+
 
 Add quickfix
 
@@ -139,7 +162,7 @@ add this line in the mwe2 file (ine the language section
 			fragment = ui.quickfix.QuickfixProviderFragment2 {}
 ----
 
-regenerate
+Regenerate
 
 in the project xxx.logo.xtext.ui
 open new file *LogoQuickfixProvider.xtend* and add the following:
@@ -172,11 +195,17 @@ open new file *LogoQuickfixProvider.xtend* and add the following:
 	}
 ----
 
+## Formatting
+
+TIP: reference documentation: see https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#formatting 
+
 When testing you can observe that there is no line break.
 
-Additionnaly, if you do a right click -> source -> format, everything goes on single line.
+Additionally, if you do a right click -> source -> format, everything goes on single line.
 
-Let's provide some autoformat informations: (see https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#formatting )
+
+
+Let's provide some autoformat informations
 
 add in the mwe2 file:
 [source]
@@ -192,11 +221,50 @@ launch mwe2 generate.
 open and fill the newly created *xxx.logo.xtext.formatting2.LogoFormatter.xtend* file.
 [source,java]
 ----
+class LogoFormatter extends AbstractFormatter2 {
+	
+	@Inject extension LogoGrammarAccess
 
+	def dispatch void format(LogoProgram logoProgram, extension IFormattableDocument document) {
+		for (instruction : logoProgram.instructions) {
+			instruction.format
+			instruction.append[setNewLines(1, 1, 2)]
+		}
+	}
+	
+	def dispatch void format(ProcDeclaration procDeclaration, extension IFormattableDocument document) {
+		val to = procDeclaration.regionFor.keyword("to")
+		val end = procDeclaration.regionFor.keyword("end")
+		if(procDeclaration.args.empty) {
+			val declName = procDeclaration.regionFor.feature(LogoPackage.Literals.PROC_DECLARATION__NAME).append[newLine]		
+			interior(declName, end)[indent]
+		} else {
+			for ( arg : procDeclaration.args) {
+				arg.surround[oneSpace]
+			}
+			procDeclaration.args.last.append[newLine]
+			interior(procDeclaration.args.last.regionFor.feature(LogoPackage.Literals.PARAMETER__NAME), end)[indent]
+		}
+		for (instruction : procDeclaration.instructions) {
+			instruction.format
+			instruction.append[setNewLines(1, 1, 2)]
+		}
+	}
+	
+	def dispatch void format(Block block, extension IFormattableDocument document) {
+		val open = block.regionFor.keyword("[")
+		val close = block.regionFor.keyword("]")
+		open.append[newLine]
+		interior(open, close)[indent]	
+		for (instruction : block.instructions) {
+			instruction.format
+			instruction.append[setNewLines(1, 1, 2)]
+		}	
+	}
 ----
 
 
-
+## Adding a new editor: the tree base editor
 
 show open with -> Sample Reflective Ecore editor
 
@@ -226,10 +294,24 @@ projet de test: grammaire
 rapide et utile pour la non regression
 
 
+## Other cool feature of XText
+
 autres truc cool à tester éventuellement sur certains languages: https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html
 
 * rename refactoring https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#refactoring
 * project and file wizard https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#projectwizard
+[source]
+----
+language = StandardLanguage {
+			...
+			projectWizard = {
+				generate = true
+			}
+			fileWizard = {
+				generate = true
+			}
+}
+----
 * code mining https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#code-mining
 * hyperlinking
 * outline view and label provider (but it might be more productive to do it on the edit plugin when using model first approach
@@ -258,4 +340,21 @@ language = StandardLanguage {
 }
 ----
 then customize the stub
+
+
+## Conclusion
+
+[TIP]
+====
+XText documentation is relatively good but often difficult to reproduce. 
+This is mainly due to evolution in its api. 
+It is sometime useful to install the reference example provided in eclipse and mimic it in order to make it work.
+_File -> New -> Examples... -> XText examples_
+====
+
+Xtext is easy to use for "regular" languages. 
+
+Xtext ease the development of a provides a large set of modern editor features.
+
+It goes both for Eclipse but also some other IDE, including browser based editors (ex: Monaco).
 
