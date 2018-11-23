@@ -1,0 +1,125 @@
+grammar fr.inria.sed.logo.xtext.Logo with org.eclipse.xtext.common.Terminals
+
+//import "http://www.inria.fr/sed/logo/Logo"
+import "platform:/resource/fr.inria.sed.logo.model/model/Logo.ecore"
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+LogoProgram returns LogoProgram:
+	{LogoProgram}
+	instructions+=Instruction (  instructions+=Instruction)*  
+	;
+
+Instruction returns Instruction:
+	Backward | Forward | Left | Right | PenDown | PenUp | Clear  | ProcCall | ProcDeclaration | Block | If  | Repeat | While ;
+
+BlockInstruction returns Instruction:
+	Backward | Forward | Left | Right | PenDown | PenUp | Clear | ProcCall | ParameterCall | If  | Repeat | While ;
+
+//Expression returns Expression:
+//	Constant | ProcCall | ParameterCall | EqualExpression;
+
+
+Backward :
+	'back' steps=LiteralsExpression;
+
+Forward :
+	'forward' steps=LiteralsExpression;
+
+Left :
+	{Left}
+	'left' angle=LiteralsExpression;
+
+Right :
+	{Right}
+	'right' angle=LiteralsExpression;
+
+PenDown :
+	{PenDown}
+	'pendown'
+	;
+
+
+PenUp :
+	{PenUp}
+	'penup'
+	;
+
+Clear returns Clear:
+	{Clear}
+	'clear'
+	;
+
+
+Constant :
+	{Constant}
+	 integerValue=EInt;
+
+ProcCall :
+	declaration=[ProcDeclaration|EString]
+	'(' (actualArgs+=LiteralsExpression)? ( "," actualArgs+=LiteralsExpression)* ')' 
+	;
+
+ProcDeclaration  :
+	{ProcDeclaration}
+	'to'
+	name=EString
+	
+		(  args+=Parameter)* 
+		(  instructions+=Instruction)*  
+	'end';
+
+Parameter :
+	{Parameter}
+	':'name=EString;
+	
+Block  :
+	{Block}
+	'[' ( instructions+=BlockInstruction)* ']' 
+	;
+
+If  :
+	('ifelse' condition=LiteralsExpression 
+		 thenPart=Block 
+		 elsePart=Block) | 
+	('if' condition=LiteralsExpression 
+		 thenPart=Block) 
+	;
+
+
+Repeat  :
+	'repeat' condition=LiteralsExpression  
+		block=Block 
+	;
+
+While  :
+	'While' condition=LiteralsExpression
+	block=Block;
+
+ParameterCall  :
+	':'parameter=[Parameter|EString];
+
+
+EqualExpression returns Expression:
+	ComparisonExpression ( {Equals.lhs=current} '=' rhs=ComparisonExpression)*
+;
+ComparisonExpression returns Expression:
+	AddExpression ( ( ({Greater.lhs=current} '>')|({Lower.lhs=current}) '<') rhs=AddExpression)*
+;
+
+AddExpression returns Expression:
+	MultExpression ( ( ({Plus.lhs=current} '+')|({Minus.lhs=current} '-') ) rhs=MultExpression)*;
+
+MultExpression returns Expression:
+	LiteralsExpression ( ( ({Mult.lhs=current} '*')|({Div.lhs=current} '/') ) rhs=LiteralsExpression)*;
+
+LiteralsExpression returns Expression:
+	ParameterCall | Constant | '(' EqualExpression ')';
+
+EInt returns ecore::EInt:
+	'-'? INT;
+
+EString returns ecore::EString:
+	STRING | ID;
+
+

@@ -1,0 +1,157 @@
+## Scenario tutorial day two: Hands-on Sirius and GEMOC, the logo turtle language
+
+
+This document indicates the steps to follow in order to reproduce the tutorial.
+
+The solution of this tutorial is available in the folder _part2-mmfirst-solution_.
+
+
+
+
+
+
+Principes généraux:
+** MM first
+**	trick pour éviter Melange et simplifier le tuto
+	ajout d'un object abtrait "RuntimeContext" pour faciliter l'ancrage des concepts du RTD
+	et possiblement la création de plusieurs sémantique différentes
+
+
+
+## Convert Grammar first to metamodel first
+
+NOTE: As this part is not really important, as this is only code refactoring, you may also directly grab the version in _part2-mmfirst-base_
+
+* _File -> New -> Ecore Modeling Project_
+** name:  _fr.inria.sed.logo.model_
+** nsuri: http://www.inria.fr/sed/logo
+** package: Logo
+
+replace the _fr.inria.sed.logo.model/model/logo.ecore_ by the one in _fr.inria.sed.logo.xtext/model/generated/Logo.ecore_
+
+Optionnaly, open the ecore file, on the root package change _http://www.inria.fr/sed/logo/xtext/Logo_ to http://www.inria.fr/sed/logo/Logo_ 
+
+right click on Logo.genmodel -> Reload...
+
+* open the genmodel file
+* on the second node (Package "Logo"), in the "All" section, change the base package from _fr.inria.sed.logo.model_ to _fr.inria.sed_  
+* right click on the root node -> generate Model code ; 
+
+
+* in _fr.inria.sed.logo.xtext/src/fr/inria/sed/logo/xtext/Logo.xtext_ replace 
+[source]
+----
+generate logo "http://www.inria.fr/sed/logo/xtext/Logo"
+---- 
+by 
+[source]
+----
+// import "http://www.inria.fr/sed/logo/Logo"
+import "platform:/resource/fr.inria.sed.logo.model/model/Logo.ecore"
+----
+
+in xtext project
+
+in the mwe2 file, add:
+[source]
+----
+language = StandardLanguage {
+			...
+			referencedResource = "platform:/resource/fr.inria.sed.logo.model/model/Logo.genmodel"
+----
+add a dependency to the fr.inria.sed.logo.model project (by opening either plugin.xml or manifest.mf, then the Dependencies tab)
+Also make ssure to reexport the dependency.
+
+run the mwe2 generator
+
+fix any import such as _import fr.inria.sed.logo.xtext.logo.LogoProgram_ into _import fr.inria.sed.logo.LogoProgram_
+
+
+
+
+
+
+## semantic
+
+new gemoc sequential xdsml
+
+** fr.inria.logo
+
+template: simple sequential
+
+from language project : new k3dsa
+
+vérifier que le nouveau projet est bien dans les dépendances du projet fr.inria.logo
+vérifier que le nouveau projet est bien dans les dépendances du projet fr.inria.logo
+
+template:
+
+** aspect package prefix : fr.inria.sed
+
+ajout method @main sur logoProgram et eval qui "traverse/evalue" le programme 
+
+[source,]
+----
+@Aspect(className=LogoProgram)
+class LogoProgramAspect {
+	@Step 												
+	@InitializeModel									
+	def void initializeModel(EList<String> args){
+	
+	}
+	
+	@Main
+	def void main() {
+		println("Starting Logo program")
+		_self.eval()
+		println("Logo program ended")
+	}
+	def void eval(){		
+		println("Evaluating "+_self)
+		_self.instructions.forEach[i | i.eval]
+	}
+}
+
+@Aspect(className=Instruction)
+class InstructionAspect {
+	def void eval(){
+		println("Evaluating "+_self)
+	}
+}
+----
+
+mettre au point la semantique
+
+ajout du @Step
+
+ajout d'un context / runtime data
+
+
+trick par ajout d'un attribut Context à LogoProgram
+
+[source,]
+----
+LogoProgram :
+	{LogoProgram}
+	instructions+=Instruction (  instructions+=Instruction)* 
+	(runtimecontext = RuntimeContext)? 
+	;
+
+RuntimeContext returns RuntimeContext:
+	{RuntimeContext}
+	'RuntimeContext'
+;
+----
+
+
+discussion à propos du model first pou masquer cet aspect de la syntaxe
+
+ajout d'un projet ecore modeling "fr.inria.sed.logo.vm.model"
+
+ajout des concepts
+
+heritage de InterpreterContext vers RuntimeContext
+
+
+puis convertir en 2 languages avec melange : extended pour activer la timeline ou adapter le MM
+
