@@ -6,6 +6,14 @@ package fr.inria.sed.logo.xtext.ui.labeling
 import com.google.inject.Inject
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
+import fr.inria.sed.logo.xtext.logo.Forward
+import fr.inria.sed.logo.xtext.logo.Block
+import fr.inria.sed.logo.xtext.logo.Instruction
+import fr.inria.sed.logo.xtext.logo.Repeat
+import fr.inria.sed.logo.xtext.logo.ProcCall
+import fr.inria.sed.logo.xtext.logo.Backward
+import fr.inria.sed.logo.xtext.logo.Left
+import fr.inria.sed.logo.xtext.logo.Right
 
 /**
  * Provides labels for EObjects.
@@ -21,11 +29,35 @@ class LogoLabelProvider extends DefaultEObjectLabelProvider {
 
 	// Labels and icons can be computed like this:
 	
-//	def text(Greeting ele) {
-//		'A greeting to ' + ele.name
-//	}
-//
-//	def image(Greeting ele) {
-//		'Greeting.gif'
-//	}
+	def image(Instruction ele) {
+		ele.eClass.name+'.png'
+	}
+	
+	def text(Forward ele) {
+		'Forward'
+	}
+	
+	def text(Backward ele) {
+		'Backward'
+	}
+	
+	def text(Left ele) {
+		'Left'
+	}
+	
+	def text(Right ele) {
+		'Right'
+	}
+	
+	def text(Block ele) {
+		'Block'
+	}
+	
+	def text(Repeat ele) {
+		'Repeat'
+	}
+	
+	def text(ProcCall ele) {
+		'ProcCall'
+	}
 }

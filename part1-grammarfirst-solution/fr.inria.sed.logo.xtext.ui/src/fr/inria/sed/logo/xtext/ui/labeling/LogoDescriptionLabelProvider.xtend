@@ -4,6 +4,7 @@
 package fr.inria.sed.logo.xtext.ui.labeling
 
 import org.eclipse.xtext.ui.label.DefaultDescriptionLabelProvider
+import org.eclipse.xtext.resource.IEObjectDescription
 
 /**
  * Provides labels for IEObjectDescriptions and IResourceDescriptions.
@@ -14,11 +15,11 @@ class LogoDescriptionLabelProvider extends DefaultDescriptionLabelProvider {
 
 	// Labels and icons can be computed like this:
 	
-//	override text(IEObjectDescription ele) {
-//		ele.name.toString
-//	}
-//	 
-//	override image(IEObjectDescription ele) {
-//		ele.EClass.name + '.gif'
-//	}
+	override text(IEObjectDescription ele) {
+		ele.name.toString
+	}
+	 
+	override image(IEObjectDescription ele) {
+		ele.EClass.name + '.png'
+	}
 }

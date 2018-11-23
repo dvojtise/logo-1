@@ -268,11 +268,21 @@ class LogoFormatter extends AbstractFormatter2 {
 
 show open with -> Sample Reflective Ecore editor
 
-explain the tree view + property view
+explain the tree view + property view.
 
-Points à faire attention/pièges:
-containment du ecore resultant
+	label and icon customization 2 alternatives:
+	* if grammar first, use Xtext label provider https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#label-provider
+	* if MM first (and support of other editors), prefer to edit the label provider in the .edit project
 
+Common traps:
+management of the containment in the  ecore (othewise the file cannot be serialized/saved)
+
+
+[TIP]
+====
+advanced property view can be developed using tabs (https://www.eclipse.org/articles/Article-Tabbed-Properties/tabbed_properties_view.html 
+and https://news.obeo.fr/en/post/let-me-sirius-that-for-you-properties-view) 
+====
 
 ## Expression grammar  
 
