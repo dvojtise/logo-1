@@ -274,9 +274,17 @@ Points à faire attention/pièges:
 containment du ecore resultant
 
 
+## Expression grammar  
+
+TIP: reference documentation: https://www.eclipse.org/Xtext/documentation/307_special_languages.html#expressions
+
+add expression to evaluate 
 
 
-add expression
+
+
+TIP: for Left recursive grammar the keyword _current_ might be useful, see Associativity section in  https://www.eclipse.org/Xtext/documentation/307_special_languages.html#expressions
+
 
 TODO: vérifier l'utilisation de - dan les valeurs xtext
 
@@ -318,9 +326,9 @@ language = StandardLanguage {
 * content assist
 * template proposal
 * advanced syntax coloring (lexical and semantic)
-*
 
-support for qualified name, add in the mwe2 :
+
+* support for qualified name, add in the mwe2 :
 [source]
 ----
 language = StandardLanguage {
@@ -329,7 +337,7 @@ language = StandardLanguage {
 }
 ----
 
-support for outline labels, add in the mwe2 :
+* support for outline labels, add in the mwe2 :
 [source]
 ----
 language = StandardLanguage {
@@ -340,6 +348,22 @@ language = StandardLanguage {
 }
 ----
 then customize the stub
+
+
+other cool support:
+
+* import file
+* scope
+
+
+## Basic code/doc generator
+
+open _LogoGenerator.xtend_ and use it write an html file that contains a list of all procedures.
+
+This can be used to write some kind of compiler for exemple.
+
+TIP: Xtend supports a template syntax that is really convenient for writing strings. See https://www.eclipse.org/xtend/documentation/203_xtend_expressions.html#templates
+
 
 
 ## Conclusion
