@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+  <extension point="org.eclipse.sirius.componentization">
+    <component class="fr.inria.sed.logo.design.Activator"
+               id="fr.inria.sed.logo.design"
+	       name="logo">
+    </component>
+  </extension>
+</plugin>

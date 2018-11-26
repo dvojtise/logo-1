@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" name="logo" version="12.0.0.2017041100">
+  <ownedViewpoints name="LogoBlockViewpoint">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="LogoBlockDiagram" label="Logo Block Diagram" initialisation="true" showOnStartup="true" domainClass="LogoProgram" enablePopupBars="true">
+      <metamodel href="../../fr.inria.sed.logo.model/model/Logo.ecore#/"/>
+      <defaultLayer name="Default">
+        <nodeMappings name="InstructionNode" semanticCandidatesExpression="aql:self.eContents()->reject(x |  x.oclIsKindOf(logo::ProcDeclaration))" domainClass="logo::Instruction">
+          <style xsi:type="style:SquareDescription" labelExpression="aql:self.eClass().name" sizeComputationExpression="aql:self.eClass().name.size()" resizeKind="NSEW">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+          </style>
+        </nodeMappings>
+        <edgeMappings name="instructionSequenceEdge" sourceMapping="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@nodeMappings[name='InstructionNode']" targetMapping="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@nodeMappings[name='InstructionNode']" targetFinderExpression="aql:let i = self.eInverse('instructions').instructions->asSequence() in i->at(i->indexOf(self)+1)">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="procCallEdge" sourceMapping="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@nodeMappings[name='InstructionNode']" targetMapping="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@containerMappings[name='procDeclNode']" targetFinderExpression="aql:if self.oclIsKindOf(logo::ProcCall) then self.oclAsType(logo::ProcCall).declaration else null endif">
+          <style lineStyle="dash" sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <containerMappings name="procDeclNode" domainClass="logo::ProcDeclaration" reusedNodeMappings="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@nodeMappings[name='InstructionNode']">
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+          </style>
+        </containerMappings>
+      </defaultLayer>
+    </ownedRepresentations>
+    <ownedJavaExtensions qualifiedClassName="fr.inria.sed.logo.design.Services"/>
+  </ownedViewpoints>
+</description:Group>

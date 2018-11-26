@@ -68,16 +68,157 @@ fix any import such as _import fr.inria.sed.logo.xtext.logo.LogoProgram_ into _i
 
 
 
+## Sirius graphical editor
+
+We will create a block based graphical representation for Logo.
+
+Create the project for the graphical editor:
+
+* _File -> new -> Viewpoint Specification Project_
+** name: fr.inria.sed.logo.design
+
+* on the project (plugin.xml or manifest.mf) add a dependency to _fr.inria.sed.logo.model_ project
+
+* open the odesign
+** rename the viewpoint from _MyViewpoint_ to _LogoBlockViewpoint_ 
 
 
 
-## semantic
+Let's open some example using our representation. This can be done in the *Modeling Workbench* like xtext directly on .logo files.
 
-new gemoc sequential xdsml
+[TIP]
+====
+Most parts of Sirius are interpreted, a big part of the diagram specification can be done directly in the
+*Language Worbench* and changes in the diagram specification are directly reported to the opened model.
+This greatly simplifies the design of the diagram editor.
 
-** fr.inria.logo
+However, since xtext does not work this way we need to convert our .logo files into .xmi that don't require xtext.
 
-template: simple sequential
+You can directly create an xmi test file by :
+
+* open the ecore file -> Select the LogoProgram class -> right click -> Create dynamic instance
+
+Alternatively, your can convert a logo file into an xmi file. To do that:
+
+* in the *Modeling workbench* (with xtext support available...)
+* right click on the _.logo_ file -> Open with -> Other -> Sample Reflective Ecore Model Editor
+* File -> save as -> choose a name ending with *.xmi*
+* verify that the file is correctly encoded in xmi (ie. a xml flavor) by opening it with the generic text editor
+* change the header in order to be
+[source>
+----
+<logo:LogoProgram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:logo="http://www.inria.fr/sed/logo/Logo"
+	xsi:schemaLocation="http://www.inria.fr/sed/logo/Logo ../fr.inria.sed.logo.model/model/Logo.ecore">
+----
+copy or import the file in some test project in the *Language Workbench*
+====
+
+[TIP]
+====
+If the previous tip doesn't work correctly (for example, completion doesn't work in sirius). Then try the other way round:
+start the second eclipse in debug mode, import the _design_ project. You can then have both design and model in the same workspace.
+
+Using this technique you can directly open _.logo_ files without converting them in xmi.
+
+NOTE when using the second workbench, make sure to create the representation using the correct viewpoint, since it will appear twice.
+====
+ 
+
+In the odesign:
+
+* on the viewpoint; _right click -> new representation -> diagram description_
+* on the diagram description; 
+** on the metamodel tab: add a reference to the ecore file (add from workspace)
+** on the general tab:  
+*** Domain class = LogoProgram  (the completion should work)
+*** give an ID = LogoBlockDiagram (change the label for "Logo Block Diagram")
+*** tick "Initialization" and "show on startup"
+
+
+
+
+[NOTE]
+====
+Reference documentation for writing queries
+https://www.eclipse.org/sirius/doc/specifier/general/Writing_Queries.html
+https://www.eclipse.org/acceleo/documentation/
+====
+
+Display all procedure declarations:
+
+In the default layer
+* _New diagram element -> Container_ then in the properties view
+** Id: procDeclNode
+** domain class: logo::ProcDeclaration
+** New style -> Gradient
+
+Display all root instructions:
+
+* _New diagram element -> Node then in the properties view
+** Id: instructionNode
+** domain class: logo::Instruction
+** semantic candidate expression: _aql:self.eContents()->reject(x |  x.oclIsKindOf(logo::ProcDeclaration))_
+** _New style -> Square_
+** Label tab: Label expression: _aql:self.eClass().name_ (for a start, will be improved later)
+** advanced tab: size computation expression: _aql:self.eClass().name.size()_
+
+[TIP]
+====
+If you have nice default icons defined in the _.edit_ project, they'll be directly displayed.
+====
+
+
+Display all instructions of the procedure declaration:
+
+* On the procDeclNode, 
+** _Import tab_, Reused Node Mapping: _InstructionNode_ 
+
+[NOTE]
+====
+Another technique is to create as many "node" as meta classes, however it is often better to factorize a little bit.
+
+In our case a better solution would be to add some abstract metaclasses such as _SimpleInstruction_ and _ControlStructureInstruction_
+in order to be able to write dedicated representation for each group. 
+====
+
+Add a link between procedure call and the procedure declaration:
+
+* _New diagram element -> Relation based Edge then in the properties view
+** Id: procCallEdge
+** source mapping: InstructionNode
+** target mapping: procDeclNode
+** Target finder expression: _aql:if self.oclIsKindOf(logo::ProcCall) then self.oclAsType(logo::ProcCall).declaration else null endif_
+** make this link use dashed line
+
+Add a link representing the sequence of instructions
+
+* _New diagram element -> Relation based Edge then in the properties view
+** Id: instructionSequenceEdge
+** source mapping: InstructionNode
+** target mapping: InstructionNode
+** Target finder expression: _aql:let i = self.eInverse('instructions').instructions->asSequence() in i->at(i->indexOf(self)+1)_
+
+
+
+## Semantic
+
+Let's create a GEMOC Sequential project 
+
+
+
+* _File -> New -> GEMOC Sequential XDSML Project_
+** name: fr.inria.sed.logo.xdsml
+** use the default template: simple sequential
+** select the ecore.file
+** finish
+
+
+Create the project for the graphical editor:
+
+* right click on the _fr.inria.sed.logo.xdsml_ project -> GEMOC Language -> create
+DSA project for language 
+
 
 from language project : new k3dsa
 
