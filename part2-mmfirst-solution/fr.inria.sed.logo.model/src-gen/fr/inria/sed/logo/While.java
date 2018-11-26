@@ -19,7 +19,7 @@ package fr.inria.sed.logo;
  * @model
  * @generated
  */
-public interface While extends Instruction {
+public interface While extends ControlStructureInstruction {
 	/**
 	 * Returns the value of the '<em><b>Condition</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

@@ -84,6 +84,8 @@ public class LogoSwitch<T> extends Switch<T> {
 			Backward backward = (Backward) theEObject;
 			T result = caseBackward(backward);
 			if (result == null)
+				result = casePrimitiveInstruction(backward);
+			if (result == null)
 				result = caseInstruction(backward);
 			if (result == null)
 				result = defaultCase(theEObject);
@@ -92,6 +94,8 @@ public class LogoSwitch<T> extends Switch<T> {
 		case LogoPackage.FORWARD: {
 			Forward forward = (Forward) theEObject;
 			T result = caseForward(forward);
+			if (result == null)
+				result = casePrimitiveInstruction(forward);
 			if (result == null)
 				result = caseInstruction(forward);
 			if (result == null)
@@ -102,6 +106,8 @@ public class LogoSwitch<T> extends Switch<T> {
 			Left left = (Left) theEObject;
 			T result = caseLeft(left);
 			if (result == null)
+				result = casePrimitiveInstruction(left);
+			if (result == null)
 				result = caseInstruction(left);
 			if (result == null)
 				result = defaultCase(theEObject);
@@ -110,6 +116,8 @@ public class LogoSwitch<T> extends Switch<T> {
 		case LogoPackage.RIGHT: {
 			Right right = (Right) theEObject;
 			T result = caseRight(right);
+			if (result == null)
+				result = casePrimitiveInstruction(right);
 			if (result == null)
 				result = caseInstruction(right);
 			if (result == null)
@@ -120,6 +128,8 @@ public class LogoSwitch<T> extends Switch<T> {
 			PenDown penDown = (PenDown) theEObject;
 			T result = casePenDown(penDown);
 			if (result == null)
+				result = casePrimitiveInstruction(penDown);
+			if (result == null)
 				result = caseInstruction(penDown);
 			if (result == null)
 				result = defaultCase(theEObject);
@@ -129,6 +139,8 @@ public class LogoSwitch<T> extends Switch<T> {
 			PenUp penUp = (PenUp) theEObject;
 			T result = casePenUp(penUp);
 			if (result == null)
+				result = casePrimitiveInstruction(penUp);
+			if (result == null)
 				result = caseInstruction(penUp);
 			if (result == null)
 				result = defaultCase(theEObject);
@@ -137,6 +149,8 @@ public class LogoSwitch<T> extends Switch<T> {
 		case LogoPackage.CLEAR: {
 			Clear clear = (Clear) theEObject;
 			T result = caseClear(clear);
+			if (result == null)
+				result = casePrimitiveInstruction(clear);
 			if (result == null)
 				result = caseInstruction(clear);
 			if (result == null)
@@ -155,6 +169,8 @@ public class LogoSwitch<T> extends Switch<T> {
 		case LogoPackage.PROC_CALL: {
 			ProcCall procCall = (ProcCall) theEObject;
 			T result = caseProcCall(procCall);
+			if (result == null)
+				result = casePrimitiveInstruction(procCall);
 			if (result == null)
 				result = caseInstruction(procCall);
 			if (result == null)
@@ -190,6 +206,8 @@ public class LogoSwitch<T> extends Switch<T> {
 			If if_ = (If) theEObject;
 			T result = caseIf(if_);
 			if (result == null)
+				result = caseControlStructureInstruction(if_);
+			if (result == null)
 				result = caseInstruction(if_);
 			if (result == null)
 				result = defaultCase(theEObject);
@@ -198,6 +216,8 @@ public class LogoSwitch<T> extends Switch<T> {
 		case LogoPackage.REPEAT: {
 			Repeat repeat = (Repeat) theEObject;
 			T result = caseRepeat(repeat);
+			if (result == null)
+				result = caseControlStructureInstruction(repeat);
 			if (result == null)
 				result = caseInstruction(repeat);
 			if (result == null)
@@ -208,6 +228,8 @@ public class LogoSwitch<T> extends Switch<T> {
 			While while_ = (While) theEObject;
 			T result = caseWhile(while_);
 			if (result == null)
+				result = caseControlStructureInstruction(while_);
+			if (result == null)
 				result = caseInstruction(while_);
 			if (result == null)
 				result = defaultCase(theEObject);
@@ -217,9 +239,11 @@ public class LogoSwitch<T> extends Switch<T> {
 			ParameterCall parameterCall = (ParameterCall) theEObject;
 			T result = caseParameterCall(parameterCall);
 			if (result == null)
-				result = caseInstruction(parameterCall);
-			if (result == null)
 				result = caseExpression(parameterCall);
+			if (result == null)
+				result = casePrimitiveInstruction(parameterCall);
+			if (result == null)
+				result = caseInstruction(parameterCall);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -290,6 +314,24 @@ public class LogoSwitch<T> extends Switch<T> {
 			T result = caseDiv(div);
 			if (result == null)
 				result = caseExpression(div);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogoPackage.PRIMITIVE_INSTRUCTION: {
+			PrimitiveInstruction primitiveInstruction = (PrimitiveInstruction) theEObject;
+			T result = casePrimitiveInstruction(primitiveInstruction);
+			if (result == null)
+				result = caseInstruction(primitiveInstruction);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogoPackage.CONTROL_STRUCTURE_INSTRUCTION: {
+			ControlStructureInstruction controlStructureInstruction = (ControlStructureInstruction) theEObject;
+			T result = caseControlStructureInstruction(controlStructureInstruction);
+			if (result == null)
+				result = caseInstruction(controlStructureInstruction);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -686,6 +728,36 @@ public class LogoSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDiv(Div object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Primitive Instruction</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Primitive Instruction</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePrimitiveInstruction(PrimitiveInstruction object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Control Structure Instruction</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Control Structure Instruction</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseControlStructureInstruction(ControlStructureInstruction object) {
 		return null;
 	}
 

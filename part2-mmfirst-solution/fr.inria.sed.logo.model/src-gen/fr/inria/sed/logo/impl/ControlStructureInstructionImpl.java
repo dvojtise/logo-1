@@ -2,25 +2,25 @@
  */
 package fr.inria.sed.logo.impl;
 
-import fr.inria.sed.logo.Clear;
+import fr.inria.sed.logo.ControlStructureInstruction;
 import fr.inria.sed.logo.LogoPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Clear</b></em>'.
+ * An implementation of the model object '<em><b>Control Structure Instruction</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class ClearImpl extends PrimitiveInstructionImpl implements Clear {
+public abstract class ControlStructureInstructionImpl extends InstructionImpl implements ControlStructureInstruction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ClearImpl() {
+	protected ControlStructureInstructionImpl() {
 		super();
 	}
 
@@ -31,7 +31,7 @@ public class ClearImpl extends PrimitiveInstructionImpl implements Clear {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return LogoPackage.Literals.CLEAR;
+		return LogoPackage.Literals.CONTROL_STRUCTURE_INSTRUCTION;
 	}
 
-} //ClearImpl
+} //ControlStructureInstructionImpl

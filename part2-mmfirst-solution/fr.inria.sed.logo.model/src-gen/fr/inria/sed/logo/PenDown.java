@@ -12,5 +12,5 @@ package fr.inria.sed.logo;
  * @model
  * @generated
  */
-public interface PenDown extends Instruction {
+public interface PenDown extends PrimitiveInstruction {
 } // PenDown

@@ -12,5 +12,5 @@ package fr.inria.sed.logo;
  * @model
  * @generated
  */
-public interface Clear extends Instruction {
+public interface Clear extends PrimitiveInstruction {
 } // Clear

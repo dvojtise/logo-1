@@ -36,7 +36,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class ProcCallImpl extends InstructionImpl implements ProcCall {
+public class ProcCallImpl extends PrimitiveInstructionImpl implements ProcCall {
 	/**
 	 * The cached value of the '{@link #getDeclaration() <em>Declaration</em>}' reference.
 	 * <!-- begin-user-doc -->

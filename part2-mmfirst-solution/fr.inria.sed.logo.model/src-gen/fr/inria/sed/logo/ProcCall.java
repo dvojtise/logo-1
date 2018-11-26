@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface ProcCall extends Instruction {
+public interface ProcCall extends PrimitiveInstruction {
 	/**
 	 * Returns the value of the '<em><b>Declaration</b></em>' reference.
 	 * <!-- begin-user-doc -->

@@ -122,6 +122,34 @@ public interface LogoPackage extends EPackage {
 	int INSTRUCTION_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link fr.inria.sed.logo.impl.PrimitiveInstructionImpl <em>Primitive Instruction</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.sed.logo.impl.PrimitiveInstructionImpl
+	 * @see fr.inria.sed.logo.impl.LogoPackageImpl#getPrimitiveInstruction()
+	 * @generated
+	 */
+	int PRIMITIVE_INSTRUCTION = 26;
+
+	/**
+	 * The number of structural features of the '<em>Primitive Instruction</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_INSTRUCTION_FEATURE_COUNT = INSTRUCTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Primitive Instruction</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_INSTRUCTION_OPERATION_COUNT = INSTRUCTION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link fr.inria.sed.logo.impl.BackwardImpl <em>Backward</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -138,7 +166,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BACKWARD__STEPS = INSTRUCTION_FEATURE_COUNT + 0;
+	int BACKWARD__STEPS = PRIMITIVE_INSTRUCTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Backward</em>' class.
@@ -147,7 +175,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BACKWARD_FEATURE_COUNT = INSTRUCTION_FEATURE_COUNT + 1;
+	int BACKWARD_FEATURE_COUNT = PRIMITIVE_INSTRUCTION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Backward</em>' class.
@@ -156,7 +184,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BACKWARD_OPERATION_COUNT = INSTRUCTION_OPERATION_COUNT + 0;
+	int BACKWARD_OPERATION_COUNT = PRIMITIVE_INSTRUCTION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link fr.inria.sed.logo.impl.ForwardImpl <em>Forward</em>}' class.
@@ -175,7 +203,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FORWARD__STEPS = INSTRUCTION_FEATURE_COUNT + 0;
+	int FORWARD__STEPS = PRIMITIVE_INSTRUCTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Forward</em>' class.
@@ -184,7 +212,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FORWARD_FEATURE_COUNT = INSTRUCTION_FEATURE_COUNT + 1;
+	int FORWARD_FEATURE_COUNT = PRIMITIVE_INSTRUCTION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Forward</em>' class.
@@ -193,7 +221,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FORWARD_OPERATION_COUNT = INSTRUCTION_OPERATION_COUNT + 0;
+	int FORWARD_OPERATION_COUNT = PRIMITIVE_INSTRUCTION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link fr.inria.sed.logo.impl.LeftImpl <em>Left</em>}' class.
@@ -212,7 +240,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LEFT__ANGLE = INSTRUCTION_FEATURE_COUNT + 0;
+	int LEFT__ANGLE = PRIMITIVE_INSTRUCTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Left</em>' class.
@@ -221,7 +249,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LEFT_FEATURE_COUNT = INSTRUCTION_FEATURE_COUNT + 1;
+	int LEFT_FEATURE_COUNT = PRIMITIVE_INSTRUCTION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Left</em>' class.
@@ -230,7 +258,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LEFT_OPERATION_COUNT = INSTRUCTION_OPERATION_COUNT + 0;
+	int LEFT_OPERATION_COUNT = PRIMITIVE_INSTRUCTION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link fr.inria.sed.logo.impl.RightImpl <em>Right</em>}' class.
@@ -249,7 +277,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RIGHT__ANGLE = INSTRUCTION_FEATURE_COUNT + 0;
+	int RIGHT__ANGLE = PRIMITIVE_INSTRUCTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Right</em>' class.
@@ -258,7 +286,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RIGHT_FEATURE_COUNT = INSTRUCTION_FEATURE_COUNT + 1;
+	int RIGHT_FEATURE_COUNT = PRIMITIVE_INSTRUCTION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Right</em>' class.
@@ -267,7 +295,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RIGHT_OPERATION_COUNT = INSTRUCTION_OPERATION_COUNT + 0;
+	int RIGHT_OPERATION_COUNT = PRIMITIVE_INSTRUCTION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link fr.inria.sed.logo.impl.PenDownImpl <em>Pen Down</em>}' class.
@@ -286,7 +314,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PEN_DOWN_FEATURE_COUNT = INSTRUCTION_FEATURE_COUNT + 0;
+	int PEN_DOWN_FEATURE_COUNT = PRIMITIVE_INSTRUCTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Pen Down</em>' class.
@@ -295,7 +323,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PEN_DOWN_OPERATION_COUNT = INSTRUCTION_OPERATION_COUNT + 0;
+	int PEN_DOWN_OPERATION_COUNT = PRIMITIVE_INSTRUCTION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link fr.inria.sed.logo.impl.PenUpImpl <em>Pen Up</em>}' class.
@@ -314,7 +342,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PEN_UP_FEATURE_COUNT = INSTRUCTION_FEATURE_COUNT + 0;
+	int PEN_UP_FEATURE_COUNT = PRIMITIVE_INSTRUCTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Pen Up</em>' class.
@@ -323,7 +351,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PEN_UP_OPERATION_COUNT = INSTRUCTION_OPERATION_COUNT + 0;
+	int PEN_UP_OPERATION_COUNT = PRIMITIVE_INSTRUCTION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link fr.inria.sed.logo.impl.ClearImpl <em>Clear</em>}' class.
@@ -342,7 +370,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLEAR_FEATURE_COUNT = INSTRUCTION_FEATURE_COUNT + 0;
+	int CLEAR_FEATURE_COUNT = PRIMITIVE_INSTRUCTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Clear</em>' class.
@@ -351,7 +379,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLEAR_OPERATION_COUNT = INSTRUCTION_OPERATION_COUNT + 0;
+	int CLEAR_OPERATION_COUNT = PRIMITIVE_INSTRUCTION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link fr.inria.sed.logo.impl.ExpressionImpl <em>Expression</em>}' class.
@@ -435,7 +463,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROC_CALL__DECLARATION = INSTRUCTION_FEATURE_COUNT + 0;
+	int PROC_CALL__DECLARATION = PRIMITIVE_INSTRUCTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Actual Args</b></em>' containment reference list.
@@ -444,7 +472,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROC_CALL__ACTUAL_ARGS = INSTRUCTION_FEATURE_COUNT + 1;
+	int PROC_CALL__ACTUAL_ARGS = PRIMITIVE_INSTRUCTION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Proc Call</em>' class.
@@ -453,7 +481,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROC_CALL_FEATURE_COUNT = INSTRUCTION_FEATURE_COUNT + 2;
+	int PROC_CALL_FEATURE_COUNT = PRIMITIVE_INSTRUCTION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Proc Call</em>' class.
@@ -462,7 +490,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROC_CALL_OPERATION_COUNT = INSTRUCTION_OPERATION_COUNT + 0;
+	int PROC_CALL_OPERATION_COUNT = PRIMITIVE_INSTRUCTION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link fr.inria.sed.logo.impl.ProcDeclarationImpl <em>Proc Declaration</em>}' class.
@@ -594,6 +622,34 @@ public interface LogoPackage extends EPackage {
 	int BLOCK_OPERATION_COUNT = INSTRUCTION_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link fr.inria.sed.logo.impl.ControlStructureInstructionImpl <em>Control Structure Instruction</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.sed.logo.impl.ControlStructureInstructionImpl
+	 * @see fr.inria.sed.logo.impl.LogoPackageImpl#getControlStructureInstruction()
+	 * @generated
+	 */
+	int CONTROL_STRUCTURE_INSTRUCTION = 27;
+
+	/**
+	 * The number of structural features of the '<em>Control Structure Instruction</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROL_STRUCTURE_INSTRUCTION_FEATURE_COUNT = INSTRUCTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Control Structure Instruction</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROL_STRUCTURE_INSTRUCTION_OPERATION_COUNT = INSTRUCTION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link fr.inria.sed.logo.impl.IfImpl <em>If</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -610,7 +666,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IF__CONDITION = INSTRUCTION_FEATURE_COUNT + 0;
+	int IF__CONDITION = CONTROL_STRUCTURE_INSTRUCTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Then Part</b></em>' containment reference.
@@ -619,7 +675,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IF__THEN_PART = INSTRUCTION_FEATURE_COUNT + 1;
+	int IF__THEN_PART = CONTROL_STRUCTURE_INSTRUCTION_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Else Part</b></em>' containment reference.
@@ -628,7 +684,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IF__ELSE_PART = INSTRUCTION_FEATURE_COUNT + 2;
+	int IF__ELSE_PART = CONTROL_STRUCTURE_INSTRUCTION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>If</em>' class.
@@ -637,7 +693,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IF_FEATURE_COUNT = INSTRUCTION_FEATURE_COUNT + 3;
+	int IF_FEATURE_COUNT = CONTROL_STRUCTURE_INSTRUCTION_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>If</em>' class.
@@ -646,7 +702,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IF_OPERATION_COUNT = INSTRUCTION_OPERATION_COUNT + 0;
+	int IF_OPERATION_COUNT = CONTROL_STRUCTURE_INSTRUCTION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link fr.inria.sed.logo.impl.RepeatImpl <em>Repeat</em>}' class.
@@ -665,7 +721,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REPEAT__CONDITION = INSTRUCTION_FEATURE_COUNT + 0;
+	int REPEAT__CONDITION = CONTROL_STRUCTURE_INSTRUCTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Block</b></em>' containment reference.
@@ -674,7 +730,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REPEAT__BLOCK = INSTRUCTION_FEATURE_COUNT + 1;
+	int REPEAT__BLOCK = CONTROL_STRUCTURE_INSTRUCTION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Repeat</em>' class.
@@ -683,7 +739,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REPEAT_FEATURE_COUNT = INSTRUCTION_FEATURE_COUNT + 2;
+	int REPEAT_FEATURE_COUNT = CONTROL_STRUCTURE_INSTRUCTION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Repeat</em>' class.
@@ -692,7 +748,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REPEAT_OPERATION_COUNT = INSTRUCTION_OPERATION_COUNT + 0;
+	int REPEAT_OPERATION_COUNT = CONTROL_STRUCTURE_INSTRUCTION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link fr.inria.sed.logo.impl.WhileImpl <em>While</em>}' class.
@@ -711,7 +767,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WHILE__CONDITION = INSTRUCTION_FEATURE_COUNT + 0;
+	int WHILE__CONDITION = CONTROL_STRUCTURE_INSTRUCTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Block</b></em>' containment reference.
@@ -720,7 +776,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WHILE__BLOCK = INSTRUCTION_FEATURE_COUNT + 1;
+	int WHILE__BLOCK = CONTROL_STRUCTURE_INSTRUCTION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>While</em>' class.
@@ -729,7 +785,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WHILE_FEATURE_COUNT = INSTRUCTION_FEATURE_COUNT + 2;
+	int WHILE_FEATURE_COUNT = CONTROL_STRUCTURE_INSTRUCTION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>While</em>' class.
@@ -738,7 +794,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WHILE_OPERATION_COUNT = INSTRUCTION_OPERATION_COUNT + 0;
+	int WHILE_OPERATION_COUNT = CONTROL_STRUCTURE_INSTRUCTION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link fr.inria.sed.logo.impl.ParameterCallImpl <em>Parameter Call</em>}' class.
@@ -757,7 +813,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_CALL__PARAMETER = INSTRUCTION_FEATURE_COUNT + 0;
+	int PARAMETER_CALL__PARAMETER = EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Parameter Call</em>' class.
@@ -766,7 +822,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_CALL_FEATURE_COUNT = INSTRUCTION_FEATURE_COUNT + 1;
+	int PARAMETER_CALL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Parameter Call</em>' class.
@@ -775,7 +831,7 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_CALL_OPERATION_COUNT = INSTRUCTION_OPERATION_COUNT + 0;
+	int PARAMETER_CALL_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link fr.inria.sed.logo.impl.EqualsImpl <em>Equals</em>}' class.
@@ -1745,6 +1801,26 @@ public interface LogoPackage extends EPackage {
 	EReference getDiv_Rhs();
 
 	/**
+	 * Returns the meta object for class '{@link fr.inria.sed.logo.PrimitiveInstruction <em>Primitive Instruction</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Primitive Instruction</em>'.
+	 * @see fr.inria.sed.logo.PrimitiveInstruction
+	 * @generated
+	 */
+	EClass getPrimitiveInstruction();
+
+	/**
+	 * Returns the meta object for class '{@link fr.inria.sed.logo.ControlStructureInstruction <em>Control Structure Instruction</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Control Structure Instruction</em>'.
+	 * @see fr.inria.sed.logo.ControlStructureInstruction
+	 * @generated
+	 */
+	EClass getControlStructureInstruction();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2306,6 +2382,26 @@ public interface LogoPackage extends EPackage {
 		 * @generated
 		 */
 		EReference DIV__RHS = eINSTANCE.getDiv_Rhs();
+
+		/**
+		 * The meta object literal for the '{@link fr.inria.sed.logo.impl.PrimitiveInstructionImpl <em>Primitive Instruction</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.inria.sed.logo.impl.PrimitiveInstructionImpl
+		 * @see fr.inria.sed.logo.impl.LogoPackageImpl#getPrimitiveInstruction()
+		 * @generated
+		 */
+		EClass PRIMITIVE_INSTRUCTION = eINSTANCE.getPrimitiveInstruction();
+
+		/**
+		 * The meta object literal for the '{@link fr.inria.sed.logo.impl.ControlStructureInstructionImpl <em>Control Structure Instruction</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.inria.sed.logo.impl.ControlStructureInstructionImpl
+		 * @see fr.inria.sed.logo.impl.LogoPackageImpl#getControlStructureInstruction()
+		 * @generated
+		 */
+		EClass CONTROL_STRUCTURE_INSTRUCTION = eINSTANCE.getControlStructureInstruction();
 
 	}
 

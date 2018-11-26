@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class BackwardImpl extends InstructionImpl implements Backward {
+public class BackwardImpl extends PrimitiveInstructionImpl implements Backward {
 	/**
 	 * The cached value of the '{@link #getSteps() <em>Steps</em>}' containment reference.
 	 * <!-- begin-user-doc -->

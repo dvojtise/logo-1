@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class ForwardImpl extends InstructionImpl implements Forward {
+public class ForwardImpl extends PrimitiveInstructionImpl implements Forward {
 	/**
 	 * The cached value of the '{@link #getSteps() <em>Steps</em>}' containment reference.
 	 * <!-- begin-user-doc -->

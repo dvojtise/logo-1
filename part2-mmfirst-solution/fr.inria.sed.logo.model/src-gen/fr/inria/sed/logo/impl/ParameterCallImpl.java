@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class ParameterCallImpl extends InstructionImpl implements ParameterCall {
+public class ParameterCallImpl extends ExpressionImpl implements ParameterCall {
 	/**
 	 * The cached value of the '{@link #getParameter() <em>Parameter</em>}' reference.
 	 * <!-- begin-user-doc -->

@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class LeftImpl extends InstructionImpl implements Left {
+public class LeftImpl extends PrimitiveInstructionImpl implements Left {
 	/**
 	 * The cached value of the '{@link #getAngle() <em>Angle</em>}' containment reference.
 	 * <!-- begin-user-doc -->

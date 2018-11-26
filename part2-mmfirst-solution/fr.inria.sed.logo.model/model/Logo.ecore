@@ -6,29 +6,29 @@
         eType="#//Instruction" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Instruction"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Backward" eSuperTypes="#//Instruction">
+  <eClassifiers xsi:type="ecore:EClass" name="Backward" eSuperTypes="#//PrimitiveInstruction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="steps" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Forward" eSuperTypes="#//Instruction">
+  <eClassifiers xsi:type="ecore:EClass" name="Forward" eSuperTypes="#//PrimitiveInstruction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="steps" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Left" eSuperTypes="#//Instruction">
+  <eClassifiers xsi:type="ecore:EClass" name="Left" eSuperTypes="#//PrimitiveInstruction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="angle" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Right" eSuperTypes="#//Instruction">
+  <eClassifiers xsi:type="ecore:EClass" name="Right" eSuperTypes="#//PrimitiveInstruction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="angle" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PenDown" eSuperTypes="#//Instruction"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PenUp" eSuperTypes="#//Instruction"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Clear" eSuperTypes="#//Instruction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PenDown" eSuperTypes="#//PrimitiveInstruction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PenUp" eSuperTypes="#//PrimitiveInstruction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Clear" eSuperTypes="#//PrimitiveInstruction"/>
   <eClassifiers xsi:type="ecore:EClass" name="Constant" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="integerValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ProcCall" eSuperTypes="#//Instruction">
+  <eClassifiers xsi:type="ecore:EClass" name="ProcCall" eSuperTypes="#//PrimitiveInstruction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="declaration" eType="#//ProcDeclaration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actualArgs" upperBound="-1"
         eType="#//Expression" containment="true"/>
@@ -47,7 +47,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="instructions" upperBound="-1"
         eType="#//Instruction" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="If" eSuperTypes="#//Instruction">
+  <eClassifiers xsi:type="ecore:EClass" name="If" eSuperTypes="#//ControlStructureInstruction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Expression"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="thenPart" eType="#//Block"
@@ -55,19 +55,19 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="elsePart" eType="#//Block"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Repeat" eSuperTypes="#//Instruction">
+  <eClassifiers xsi:type="ecore:EClass" name="Repeat" eSuperTypes="#//ControlStructureInstruction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Expression"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//Block"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="While" eSuperTypes="#//Instruction">
+  <eClassifiers xsi:type="ecore:EClass" name="While" eSuperTypes="#//ControlStructureInstruction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Expression"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//Block"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ParameterCall" eSuperTypes="#//Instruction #//Expression">
+  <eClassifiers xsi:type="ecore:EClass" name="ParameterCall" eSuperTypes="#//Expression #//PrimitiveInstruction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" eType="#//Parameter"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression"/>
@@ -113,4 +113,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="rhs" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveInstruction" abstract="true"
+      eSuperTypes="#//Instruction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ControlStructureInstruction" abstract="true"
+      eSuperTypes="#//Instruction"/>
 </ecore:EPackage>
