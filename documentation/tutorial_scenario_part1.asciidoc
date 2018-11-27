@@ -7,7 +7,7 @@ The solution of this tutorial is available in the folder _part1-grammarfirst-sol
 ## Installation
 
 * Install an Oracle Java JDK (minimum 8, max 10,  Oracle is preferred due to 
-support of openFX used for tha day 2 tutorial)  
+support of openFX used for the day 2 tutorial)  
 * grab and unzip the latest dev version of GEMOC Studio  http://download.eclipse.org/gemoc/packages/nightly/
 
 ## Create project and basic grammar

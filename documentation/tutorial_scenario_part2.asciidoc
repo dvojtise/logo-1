@@ -60,12 +60,17 @@ language = StandardLanguage {
 			referencedResource = "platform:/resource/fr.inria.sed.logo.model/model/Logo.genmodel"
 ----
 add a dependency to the fr.inria.sed.logo.model project (by opening either plugin.xml or manifest.mf, then the Dependencies tab)
-Also make ssure to reexport the dependency.
+Also make sure to reexport the dependency.
 
 run the mwe2 generator
 
 fix any import such as _import fr.inria.sed.logo.xtext.logo.LogoProgram_ into _import fr.inria.sed.logo.LogoProgram_
 
+
+Do some refactoring in the metamodel:
+
+* add an abstract concept PrimitiveInstruction as super class for PenUp, Foward, clear, etc
+* add an abstract concept controlStructureInstruction as super class for If, Repeat, while, etc
 
 
 ## Sirius graphical editor
@@ -156,9 +161,10 @@ In the default layer
 Display all root instructions:
 
 * _New diagram element -> Node then in the properties view
-** Id: instructionNode
-** domain class: logo::Instruction
-** semantic candidate expression: _aql:self.eContents()->reject(x |  x.oclIsKindOf(logo::ProcDeclaration))_
+** Id: PrimitiveInstructionNode
+** domain class: logo::PrimitiveInstruction  (you can try with Instruction but you'll probably have to change it later ;-) )
+** semantic candidate expression: _aql:self.eContents()_
+(alternative to reject some kinds : _aql:self.eContents()->reject(x |  x.oclIsKindOf(logo::ProcDeclaration))_
 ** _New style -> Square_
 ** Label tab: Label expression: _aql:self.eClass().name_ (for a start, will be improved later)
 ** advanced tab: size computation expression: _aql:self.eClass().name.size()_
