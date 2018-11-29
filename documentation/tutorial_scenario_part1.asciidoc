@@ -170,6 +170,10 @@ in the project xxx.logo.xtext.ui
 open new file *LogoQuickfixProvider.xtend* and add the following:
 [source,java]
 ----
+import static extension org.eclipse.xtext.EcoreUtil2.*
+----
+[source,java]
+----
 	@Fix(Diagnostic.LINKING_DIAGNOSTIC)
 	def void fixMissingProcDecl(Issue issue,
 								IssueResolutionAcceptor acceptor) {
@@ -272,9 +276,10 @@ show open with -> Sample Reflective Ecore editor
 
 explain the tree view + property view.
 
-	label and icon customization 2 alternatives:
-	* if grammar first, use Xtext label provider https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#label-provider
-	* if MM first (and support of other editors), prefer to edit the label provider in the .edit project
+label and icon customization: 2 alternatives:
+
+* if grammar first, use Xtext label provider https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#label-provider
+* if MM first (and support of other editors), prefer to edit the label provider in the .edit project
 
 Common traps:
 management of the containment in the  ecore (othewise the file cannot be serialized/saved)
@@ -381,13 +386,31 @@ other cool support:
 
 ## Basic code/doc generator
 
-open _LogoGenerator.xtend_ and use it write an html file that contains a list of all procedures.
+open _LogoGenerator.xtend_ and use it to write an html file that contains a list of all procedures.
 
 This can be used to write some kind of compiler for exemple.
 
 TIP: Xtend supports a template syntax that is really convenient for writing strings. See https://www.eclipse.org/xtend/documentation/203_xtend_expressions.html#templates
 
-
+[source,java]
+----
+class LogoGenerator extends AbstractGenerator {
+	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+		val List<ProcDeclaration> allProcDecl = resource.allContents.filter(ProcDeclaration).toList
+		val content = '''
+		<html>
+			<body>
+				List of procedures declared in «resource.URI.segments.last».
+				«FOR procDecl : allProcDecl BEFORE '<UL>' AFTER '</UL>'»
+					<LI>«procDecl.name» («FOR arg : procDecl.args SEPARATOR ', '» «arg.name»«ENDFOR»)</LI>
+				«ENDFOR»
+			</body>
+		</html>
+		'''
+		fsa.generateFile(resource.URI.segments.last+"_summary.html", content)
+	}
+}
+----
 
 ## Conclusion
 
@@ -401,7 +424,7 @@ _File -> New -> Examples... -> XText examples_
 
 Xtext is easy to use for "regular" languages. 
 
-Xtext ease the development of a provides a large set of modern editor features.
+Xtext eases the development of a large set of modern editor features.
 
-It goes both for Eclipse but also some other IDE, including browser based editors (ex: Monaco).
+It targets Eclipse IDE but also some other IDEs, including browser based editors (ex: Monaco).
 
