@@ -3,16 +3,25 @@
   <ownedViewpoints name="LogoBlockViewpoint">
     <ownedRepresentations xsi:type="description_1:DiagramDescription" name="LogoBlockDiagram" label="Logo Block Diagram" initialisation="true" showOnStartup="true" domainClass="LogoProgram" enablePopupBars="true">
       <metamodel href="../../fr.inria.sed.logo.model/model/Logo.ecore#/"/>
+      <layout xsi:type="description_1:CompositeLayout"/>
       <defaultLayer name="Default">
         <nodeMappings name="PrimitiveInstructionNode" semanticCandidatesExpression="aql:self.eContents()" domainClass="logo::PrimitiveInstruction">
-          <style xsi:type="style:SquareDescription" labelExpression="aql:self.eClass().name" resizeKind="NSEW">
+          <style xsi:type="style:DotDescription" labelExpression="aql:self.eClass().name" labelAlignment="LEFT" sizeComputationExpression="1">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+          </style>
+        </nodeMappings>
+        <nodeMappings name="IfNode" semanticCandidatesExpression="aql:self.eContents()" domainClass="logo::If">
+          <style xsi:type="style:LozengeNodeDescription" labelExpression="aql:self.eClass().name" labelAlignment="LEFT" resizeKind="NSEW">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelFormat>italic</labelFormat>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
           </style>
         </nodeMappings>
-        <edgeMappings name="InstructionSequenceEdge" sourceMapping="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@nodeMappings[name='PrimitiveInstructionNode']" targetMapping="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@nodeMappings[name='PrimitiveInstructionNode']" targetFinderExpression="aql:let i = self.eInverse('instructions').instructions->asSequence() in i->at(i->indexOf(self)+1)">
-          <style sizeComputationExpression="2">
+        <edgeMappings name="InstructionSequenceEdge" sourceMapping="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@nodeMappings[name='PrimitiveInstructionNode']" targetMapping="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@nodeMappings[name='PrimitiveInstructionNode'] //@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@nodeMappings[name='IfNode']" targetFinderExpression="aql:let i = self.eInverse('instructions').instructions->asSequence() in i->at(i->indexOf(self)+1)">
+          <style sizeComputationExpression="2" routingStyle="manhattan">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
             <centerLabelStyleDescription>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -20,39 +29,39 @@
           </style>
         </edgeMappings>
         <edgeMappings name="procCallEdge" sourceMapping="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@nodeMappings[name='PrimitiveInstructionNode']" targetMapping="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@containerMappings[name='procDeclNode']" targetFinderExpression="aql:if self.oclIsKindOf(logo::ProcCall) then self.oclAsType(logo::ProcCall).declaration else null endif">
-          <style lineStyle="dash" sizeComputationExpression="2">
+          <style sizeComputationExpression="2" endsCentering="Both">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
             <centerLabelStyleDescription>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <containerMappings name="procDeclNode" domainClass="logo::ProcDeclaration" reusedNodeMappings="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@nodeMappings[name='PrimitiveInstructionNode']" reusedContainerMappings="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@containerMappings[name='IfNode']">
-          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1">
-            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+        <edgeMappings name="IfThenEdge" sourceMapping="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@nodeMappings[name='IfNode']" targetMapping="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@containerMappings[name='thenPartNode']" targetFinderExpression="aql:self.thenPart">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
           </style>
-        </containerMappings>
-        <containerMappings name="IfNode" semanticCandidatesExpression="aql:self.eContents()" domainClass="logo::If" childrenPresentation="VerticalStack">
-          <subContainerMappings name="thenPartNode" semanticCandidatesExpression="feature:thenPart" domainClass="logo::Block" reusedNodeMappings="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@nodeMappings[name='PrimitiveInstructionNode']" reusedContainerMappings="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@containerMappings[name='BlockNode'] //@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@containerMappings[name='IfNode']">
-            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="aql:'then'" labelAlignment="LEFT">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+        </edgeMappings>
+        <edgeMappings name="IfElseEdge" sourceMapping="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@nodeMappings[name='IfNode']" targetMapping="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@containerMappings[name='elsePartNode']" targetFinderExpression="aql:self.elsePart">
+          <style sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
-            </style>
-          </subContainerMappings>
-          <subContainerMappings name="elsePartNode" semanticCandidatesExpression="feature:elsePart" domainClass="logo::Block" reusedNodeMappings="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@nodeMappings[name='PrimitiveInstructionNode']" reusedContainerMappings="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@containerMappings[name='BlockNode'] //@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@containerMappings[name='IfNode']">
-            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="aql:'else'" labelAlignment="LEFT">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="EndIfSequenceEdge" sourceMapping="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@containerMappings[name='elsePartNode'] //@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@containerMappings[name='thenPartNode']" targetMapping="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@nodeMappings[name='PrimitiveInstructionNode'] //@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@nodeMappings[name='IfNode']" targetFinderExpression="aql:let i = self.eContainer().eInverse('instructions').instructions->asSequence() in i->at(i->indexOf(self.eContainer())+1)">
+          <style sizeComputationExpression="2" routingStyle="manhattan">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
-            </style>
-          </subContainerMappings>
-          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelExpression="aql:self.eClass().name" labelAlignment="LEFT">
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <containerMappings name="procDeclNode" domainClass="logo::ProcDeclaration" reusedNodeMappings="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@nodeMappings[name='PrimitiveInstructionNode'] //@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@nodeMappings[name='IfNode']" reusedContainerMappings="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@containerMappings[name='elsePartNode'] //@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@containerMappings[name='thenPartNode']">
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
@@ -65,6 +74,22 @@
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
             <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+          </style>
+        </containerMappings>
+        <containerMappings name="thenPartNode" semanticCandidatesExpression="aql: self.eContents()->filter(logo::If)->collect(i | i.thenPart))" domainClass="logo::Block" reusedNodeMappings="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@nodeMappings[name='PrimitiveInstructionNode']" reusedContainerMappings="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@containerMappings[name='BlockNode']">
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="aql:'then'" labelAlignment="LEFT">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_green']"/>
+          </style>
+        </containerMappings>
+        <containerMappings name="elsePartNode" semanticCandidatesExpression="aql: self.eContents()->filter(logo::If)->collect(i | i.elsePart))" domainClass="logo::Block" reusedNodeMappings="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@nodeMappings[name='PrimitiveInstructionNode']" reusedContainerMappings="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@containerMappings[name='BlockNode']">
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="aql:'else'" labelAlignment="LEFT">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_red']"/>
           </style>
         </containerMappings>
       </defaultLayer>
