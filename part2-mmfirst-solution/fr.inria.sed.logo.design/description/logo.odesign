@@ -11,6 +11,20 @@
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
           </style>
+          <conditionnalStyles predicateExpression="[self.oclIsKindOf(logo::Forward) or self.oclIsKindOf(logo::Backward)/]">
+            <style xsi:type="style:DotDescription" labelExpression="aql:self.eClass().name+' '+self.steps.xtextPrettyPrint()" labelAlignment="LEFT" sizeComputationExpression="1">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            </style>
+          </conditionnalStyles>
+          <conditionnalStyles predicateExpression="[self.oclIsKindOf(logo::Left) or self.oclIsKindOf(logo::Right) /]">
+            <style xsi:type="style:DotDescription" labelExpression="aql:self.eClass().name+' '+self.angle.xtextPrettyPrint()" labelAlignment="LEFT" sizeComputationExpression="1">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            </style>
+          </conditionnalStyles>
         </nodeMappings>
         <nodeMappings name="IfNode" semanticCandidatesExpression="aql:self.eContents()" domainClass="logo::If">
           <style xsi:type="style:LozengeNodeDescription" labelExpression="aql:self.condition.xtextPrettyPrint()" labelAlignment="LEFT" resizeKind="NSEW">
