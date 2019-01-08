@@ -13,7 +13,7 @@
           </style>
         </nodeMappings>
         <nodeMappings name="IfNode" semanticCandidatesExpression="aql:self.eContents()" domainClass="logo::If">
-          <style xsi:type="style:LozengeNodeDescription" labelExpression="aql:self.eClass().name" labelAlignment="LEFT" resizeKind="NSEW">
+          <style xsi:type="style:LozengeNodeDescription" labelExpression="aql:self.condition.xtextPrettyPrint()" labelAlignment="LEFT" resizeKind="NSEW">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelFormat>italic</labelFormat>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>

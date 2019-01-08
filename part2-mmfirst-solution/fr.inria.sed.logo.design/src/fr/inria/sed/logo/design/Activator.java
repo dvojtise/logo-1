@@ -3,6 +3,7 @@ package fr.inria.sed.logo.design;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.sirius.business.api.componentization.ViewpointRegistry;
 import org.eclipse.sirius.viewpoint.description.Viewpoint;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -63,4 +64,12 @@ public class Activator extends AbstractUIPlugin {
     public static Activator getDefault() {
 	return plugin;
     }
+    
+    public static void warn(String msg, Throwable e) {
+		Activator.getDefault().getLog().log(new Status(Status.WARNING, PLUGIN_ID, Status.OK, msg, e));
+	}
+
+	public static void error(String msg, Throwable e) {
+		Activator.getDefault().getLog().log(new Status(Status.ERROR, PLUGIN_ID, Status.OK, msg, e));
+	}
 }
