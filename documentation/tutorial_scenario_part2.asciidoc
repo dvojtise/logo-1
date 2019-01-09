@@ -1,5 +1,6 @@
-## Scenario tutorial day two: Hands-on Sirius and GEMOC, the logo turtle language
+== Scenario tutorial day two: Hands-on Sirius and GEMOC, the logo turtle language
 
+ 
 
 This document indicates the steps to follow in order to reproduce the tutorial.
 
@@ -13,12 +14,12 @@ The solution of this tutorial is available in the folder _part2-mmfirst-solution
 Principes généraux:
 ** MM first
 **	trick pour éviter Melange et simplifier le tuto
-	ajout d'un object abtrait "RuntimeContext" pour faciliter l'ancrage des concepts du RTD
+	ajout d'un object abstrait "RuntimeContext" pour faciliter l'ancrage des concepts du RTD
 	et possiblement la création de plusieurs sémantique différentes
 
 
 
-## Convert Grammar first to metamodel first
+== Convert Grammar first to metamodel first
 
 NOTE: As this part is not really important, as this is only code refactoring, you may also directly grab the version in _part2-mmfirst-base_
 
@@ -73,7 +74,7 @@ Do some refactoring in the metamodel:
 * add an abstract concept controlStructureInstruction as super class for If, Repeat, while, etc
 
 
-## Sirius graphical editor
+== Sirius graphical editor
 
 We will create a block based graphical representation for Logo.
 
@@ -103,7 +104,14 @@ You can directly create an xmi test file by :
 
 * open the ecore file -> Select the LogoProgram class -> right click -> Create dynamic instance
 
-Alternatively, your can convert a logo file into an xmi file. To do that:
+This is the recommended way if you do not have an xtext representation.
+
+====
+
+[TIP]
+====
+In some situation you may wish to convert an xtext represensation into xmi.
+IE. convert a logo file into an xmi file. To do that:
 
 * in the *Modeling workbench* (with xtext support available...)
 * right click on the _.logo_ file -> Open with -> Other -> Sample Reflective Ecore Model Editor
@@ -121,93 +129,406 @@ copy or import the file in some test project in the *Language Workbench*
 
 [TIP]
 ====
-If the previous tip doesn't work correctly (for example, completion doesn't work in sirius). Then try the other way round:
-start the second eclipse in debug mode, import the _design_ project. You can then have both design and model in the same workspace.
-
-Using this technique you can directly open _.logo_ files without converting them in xmi.
+For best result if working with both Sirius and Xtext.
+I recommend to open (import the project) the project containing the _design_ file
+ in both the Language workbench AND Modeling workbench. 
+ 
+Using this technique you can directly add a Sirius representation on top of the _.logo_ files without converting them in xmi.
 
 NOTE when using the second workbench, make sure to create the representation using the correct viewpoint, since it will appear twice.
 ====
  
+For our logo example, we'll mostly design the graphical represention from  the moeling workbench.  
 
 In the odesign:
 
 * on the viewpoint; _right click -> new representation -> diagram description_
 * on the diagram description; 
-** on the metamodel tab: add a reference to the ecore file (add from workspace)
+** on the metamodel tab: add a reference to the ecore file (_add from registry_ if you work with xtext and are working in the modeling workbench, 
+otherwise use _add from workspace_)
 ** on the general tab:  
 *** Domain class = LogoProgram  (the completion should work)
 *** give an ID = LogoBlockDiagram (change the label for "Logo Block Diagram")
 *** tick "Initialization" and "show on startup"
 
 
+=== Create a test model with it representation
+Create a test project and copy one or several _.logo_ files for testing the representation.
 
+Right click on the _.logo_ file -> New -> Representation file
 
-[NOTE]
+This allows to create one file containing the representations (ie. the diagrams) for the given _.logo_ file. 
+These representations will be contained in an _.aird_ file.
+
+[TIP]
 ====
-Reference documentation for writing queries
-https://www.eclipse.org/sirius/doc/specifier/general/Writing_Queries.html
-https://www.eclipse.org/acceleo/documentation/
+
+Sirius support another mode for the diagram using a project session:
+
+Using a _Modeling project_ does not require to create manually the _.aird_ file because it will create one by default for the project.
+
+However in this case, all representations of all models in the current project will be contained in a single "representation.aird" file. 
+While being convenient for some purposes, this behavior may not be suitable for all cases. 
 ====
 
-Display all procedure declarations:
+
+  
+
+
+=== Display all procedure declarations:
 
 In the default layer
+
 * _New diagram element -> Container_ then in the properties view
 ** Id: procDeclNode
 ** domain class: logo::ProcDeclaration
 ** New style -> Gradient
 
-Display all root instructions:
+
+[TIP]
+====
+I recommend to use explicit names as IDs in Sirius. 
+I usually start by the represented model element (ie. metaclass name) followed by the kind of representation (Container, Node, or edge) 
+using camel case text. 
+====
+
+
+=== Display all root instructions:
 
 * _New diagram element -> Node then in the properties view
 ** Id: PrimitiveInstructionNode
 ** domain class: logo::PrimitiveInstruction  (you can try with Instruction but you'll probably have to change it later ;-) )
-** semantic candidate expression: _aql:self.eContents()_
-(alternative to reject some kinds : _aql:self.eContents()->reject(x |  x.oclIsKindOf(logo::ProcDeclaration))_
+** semantic candidate expression:  ``aql:self.eContents()``
+then use this alternative to reject some kinds : ``aql:self.eContents()->reject(x |  x.oclIsKindOf(logo::ProcDeclaration))``
 ** _New style -> Square_
-** Label tab: Label expression: _aql:self.eClass().name_ (for a start, will be improved later)
-** advanced tab: size computation expression: _aql:self.eClass().name.size()_
+** Label tab: Label expression: ``aql:self.eClass().name`` (for a start, will be improved later)
+** advanced tab: size computation expression: ``aql:self.eClass().name.size()``
 
 [TIP]
 ====
 If you have nice default icons defined in the _.edit_ project, they'll be directly displayed.
 ====
 
+=== Display all root instructions:
 
-Display all instructions of the procedure declaration:
+* _New diagram element -> Node_ then in the properties view
+** Id: PrimitiveInstructionNode
+** domain class: logo::PrimitiveInstruction  (you can try with Instruction but you'll probably have to change it later ;-) )
+** semantic candidate expression: ``aql:self.eContents()``
+(alternative to reject some kinds : ``aql:self.eContents()->reject(x |  x.oclIsKindOf(logo::ProcDeclaration))``
+** _New style -> Dot_
+** Label tab: 
+*** Label expression: ``aql:self.eClass().name`` (for a start, will be improved later)
+*** Label position: border
+** Advanced tab:
+*** allow resizing : uncheck
+*** size computation expression: 1
 
-* On the procDeclNode, 
-** _Import tab_, Reused Node Mapping: _InstructionNode_ 
+
+[TIP]
+====
+you can try with a more generic type such as _Instruction_ and then reject some elements using a query such as:
+``aql:self.eContents()->reject(x |  x.oclIsKindOf(logo::ProcDeclaration))``
+
+However, this will not fit our final design. and using the _PrimitiveInstruction_ and _ControlStructureInstruction_ structure 
+of the metamodel allow to factorize some representation rules for each group. 
+
+====
+
+
+
 
 [NOTE]
 ====
-Another technique is to create as many "node" as meta classes, however it is often better to factorize a little bit.
 
-In our case a better solution would be to add some abstract metaclasses such as _SimpleInstruction_ and _ControlStructureInstruction_
-in order to be able to write dedicated representation for each group. 
+Reference documentation for writing queries
+https://www.eclipse.org/sirius/doc/specifier/general/Writing_Queries.html
+https://www.eclipse.org/acceleo/documentation/aql.html
+https://www.eclipse.org/acceleo/documentation/
+
 ====
 
-Add a link between procedure call and the procedure declaration:
 
-* _New diagram element -> Relation based Edge then in the properties view
-** Id: procCallEdge
-** source mapping: InstructionNode
-** target mapping: procDeclNode
-** Target finder expression: _aql:if self.oclIsKindOf(logo::ProcCall) then self.oclAsType(logo::ProcCall).declaration else null endif_
-** make this link use dashed line
 
-Add a link representing the sequence of instructions
 
-* _New diagram element -> Relation based Edge then in the properties view
+=== Display all instructions of the procedure declaration:
+
+We will indicates to the ProcedureDeclaration container that we want to reuse some display rules. 
+
+* On the procDeclNode, 
+** _Import tab_, Reused Node Mapping: _PrimitiveInstructionNode_ 
+
+
+=== Add a link representing the sequence of instructions
+
+* _New diagram element -> Relation based Edge_ then in the properties view
 ** Id: instructionSequenceEdge
 ** source mapping: InstructionNode
 ** target mapping: InstructionNode
-** Target finder expression: _aql:let i = self.eInverse('instructions').instructions->asSequence() in i->at(i->indexOf(self)+1)_
+** Target finder expression: ``aql:let i = self.eInverse('instructions').instructions->asSequence() in i->at(i->indexOf(self)+1)``
+
+
+=== Add a link between procedure call and the procedure declaration:
+
+* _New diagram element -> Relation based Edge_ then in the properties view
+** Id: procCallEdge
+** source mapping: InstructionNode
+** target mapping: procDeclNode
+** Target finder expression: ``aql:if self.oclIsKindOf(logo::ProcCall) then self.oclAsType(logo::ProcCall).declaration else null endif``
+** make this link use dashed line
 
 
 
-## Semantic
+[TIP]
+====
+ 
+ https://www.eclipse.org/sirius/doc/specifier/general/Writing_Queries.html
+ 
+ You can test your queries in order to write them: use the "Acceleo Model to Text > Interpreter" view
+ then switch to "Sirius" mode instead of "Acceleo" mode.
+ 
+ Warning: When using the Interpreter view from an element selected in a Sirius representation, the context of the expression is not the semantic element, but the view model element used internally by Sirius.
+ 
+  In the interpreter view, to get the semantic element, you must enter _aql:self.target_
+ 
+====
+
+=== Move procedure call - procedure declaration link into a separate layer
+
+on the Logo Block Diagram
+
+* _New diagram element -> additional layer_ then in the properties view
+** Id: ProcedureCall
+
+move procCallEdge to this layer
+
+In the diagram, observe how to enable/disable the layer.
+
+=== Add a default layout
+
+on the Logo Block Diagram
+
+* _New layout -> Composite layout_ then in the properties view
+** Padding: 20
+** top to bottom
+
+
+=== Create representation for If
+
+* _New diagram element -> Node_ then in the properties view
+** Id: IfNode
+** domain class: logo::If
+** semantic candidate expression: ``aql:self.eContents()``
+** _New style -> Diamond_
+** Label tab: 
+*** Label expression: ``aql:self.eClass().name`` (for a start, will be improved later)
+*** Label position: border
+** Advanced tab:
+*** allow resizing : uncheck
+*** size computation expression: 3
+
+* _New diagram element -> Container_ then in the properties view
+** Id: thenPartContainer
+** domain class: logo::Block
+** semantic candidate expression:``aql: self.eContents()->filter(logo::If)->collect(i | i.thenPart))``
+** _New style -> Diamond_
+** Label tab: 
+*** Label expression: _``aql:'then'`` 
+** Color tab
+*** Foreground color: light_green
+
+* _New diagram element -> Container_ then in the properties view
+** Id: elsePartContainer
+** domain class: logo::Block
+** semantic candidate expression: ``aql: self.eContents()->filter(logo::If)->collect(i | i.elsePart))``
+** _New style -> Diamond_
+** Label tab: 
+*** Label expression: ``aql:'else'`` 
+** Color tab
+*** Foreground color: light_red
+
+
+in the following containers: procDeclContainer,  thenPartContainer, and elsePartContainer;
+
+* Import tab:
+** Reused Node Mapping: PrimitiveIntrustionNode, IfNode
+** Reused Container Mapping: elsePartContainer, thenPartContainer
+
+
+* _New diagram element -> Relation based Edge_ then in the properties view
+** Id: IfThenEdge
+** source mapping: IfNode
+** target mapping: thenPartContainer
+** semantic candidate expression: ``aql: self.thenPart``
+
+* _New diagram element -> Relation based Edge_ then in the properties view
+** Id: IfElseEdge
+** source mapping: IfNode
+** target mapping: elsePartContainer
+** semantic candidate expression: ``aql: self.elsePart``
+
+* _New diagram element -> Relation based Edge_ then in the properties view
+** Id: EndIfSequenceEdge
+** source mapping: thenPartContainer, elsePartContainer
+** target mapping: PrimitiveInstructionNode, IfNode
+** semantic candidate expression: ``aql:let i = self.eContainer().eInverse('instructions').instructions->asSequence() in i->at(i->indexOf(self.eContainer())+1)``
+
+NOTE: Exercise for the motivated: reproduce similar structure for Repeat and While control structure
+
+
+== Improve labels and xtext integration
+
+We will create some java services to be used by sirius
+
+=== Add xtext aware service static methods
+
+close the modeling worbench (will need to be restarted in order to take into account the new methods)
+
+in the Language workbench.
+
+in the _xxx.design_ project
+open plugin.xml file, add a plugin dependency to _org.eclipse.xtext_, _org.eclipse.ui.ide_, 
+_org.eclipse.ui.workbench.texteditor_, and _org.eclipse.ui.workbench_.   
+
+
+copy the file https://github.com/dvojtise/mde-crashcourse-logo/blob/master/part2-mmfirst-solution/fr.inria.sed.logo.design/src/fr/inria/sed/logo/design/InfoPopUp.java[InfoPopUp.java]
+in the package next to the Services.java class.
+ 
+add the following methods in the Services.java file. (or copy the file from https://github.com/dvojtise/mde-crashcourse-logo/blob/master/part2-mmfirst-solution/fr.inria.sed.logo.design/src/fr/inria/sed/logo/design/Services.java[Services.java]). 
+ 
+[source, java]
+----
+    /**
+     * Try to retrieve an xtext resource for the given element and then get its String representation
+     * @param any EObject
+     * @return the xtext representation of the EObject or an empty string
+     */
+    public String xtextPrettyPrint(EObject any) {
+    	if (any != null && any.eResource() instanceof XtextResource && any.eResource().getURI() != null) {
+			String fileURI = any.eResource().getURI().toPlatformString(true);
+			IFile workspaceFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(fileURI));
+			if (workspaceFile != null) {
+				ICompositeNode node = NodeModelUtils.findActualNodeFor(any);
+				if (node != null) {
+					return node.getText().trim();
+				}
+			}
+    	}
+    	return "";
+    }
+    
+    public EObject openTextEditor(EObject any) {
+		if (any != null && any.eResource() instanceof XtextResource && any.eResource().getURI() != null) {
+
+			String fileURI = any.eResource().getURI().toPlatformString(true);
+			IFile workspaceFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(fileURI));
+			if (workspaceFile != null) {
+				IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+				try {
+					IEditorPart openEditor = IDE.openEditor(page, workspaceFile,
+							"fr.inria.sed.logo.xtext.Logo", true);
+					if (openEditor instanceof AbstractTextEditor) {
+						ICompositeNode node = NodeModelUtils.findActualNodeFor(any);
+						if (node != null) {
+							int offset = node.getOffset();
+							int length = node.getTotalEndOffset() - offset;
+							((AbstractTextEditor) openEditor).selectAndReveal(offset, length);
+						}
+					}
+					// editorInput.
+				} catch (PartInitException e) {
+					Activator.error(e.getMessage(), e);
+				}
+			}
+		}
+		System.out.println(any);
+		return any;
+	}
+	
+	public EObject openBasicHoveringDialog(EObject any) {
+		String xtextString = xtextPrettyPrint(any);
+		if (xtextString != null && !xtextString.isEmpty()) {
+			IEditorPart part = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();							
+			InfoPopUp pop = new InfoPopUp( part.getSite().getShell() , "Textual representation of the element","press ESC to close");
+			pop.setText(xtextString);
+			pop.open();
+		}
+		return any;
+	}
+
+----
+
+
+=== Use services to improve labels
+
+restart the modeling workbench
+
+TIP: If you start it in debug mode, small changes (code in an existing method) can be taken into account without a full restart.
+
+On the IfNode
+
+* Label tab
+** Label expression: ``aql:self.condition.xtextPrettyPrint()``
+
+On PrimitiveInstructionNode
+
+* _New conditional style_ 
+** Predicate expression: [self.oclIsKindOf(logo::Left) or self.oclIsKindOf(logo::Right) /]
+** copy the style of the PrimitiveInstructionNode into this new conditional style
+*** Label tab
+*** Label expression : ``aql:self.eClass().name+' '+self.angle.xtextPrettyPrint()``
+
+do the same for other types such as Forward, Backward, ProcCall ...
+
+
+TIP: service calling xtextPrettyPrint() might be usefull too in the _tooltip expression_ on the General tab of the styles.
+
+=== Add actions that open xtext editor
+
+* _new tool -> Section_
+** Id: edition  
+
+
+==== Open xtext editor via right click popup
+
+* _new menu -> Popup menu_
+** Id: OpenInTextEditorPopUp 
+** Icon: add an icon from your own (or get one from the solution)
+
+in the Begin element:
+
+* _new operation -> change context_
+** browse expression: `service:self.openTextEditor()`
+
+
+=== Add action that create  elements (Palette)
+
+* _new element creation -> node creation_
+** Id: addPenUp  (also change the label for a nicer name in the Paletter) 
+** Node Mappings: PrimitiveInstructionNode
+
+on Begin 
+
+* _new operation -> change context_
+** browse expression: `var:container`
+*** _new operation -> create instance_
+**** reference name: _instructions_
+**** Type name: _logo::PenUp_
+
+
+
+=== Add Validation rule (error marker)
+
+Sirius provide a way to define rules that'll report errors. (Markers)
+
+It is useful for example when creating element in sirius may lead to models that cannot be serialized in xtext.
+
+The validation rule can also contains quickfix actions.
+
+
+
+
+== Semantic
 
 Let's create a GEMOC Sequential project 
 
@@ -301,4 +622,7 @@ heritage de InterpreterContext vers RuntimeContext
 
 
 puis convertir en 2 languages avec melange : extended pour activer la timeline ou adapter le MM
+
+
+
 
