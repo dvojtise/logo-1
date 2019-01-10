@@ -46,33 +46,41 @@ Principes généraux:
 
 
 
-== Semantic
+== Define the dynamic semantic
 
-Let's create a GEMOC Sequential project 
-
-
+=== Create a GEMOC Sequential project 
 
 * _File -> New -> GEMOC Sequential XDSML Project_
 ** name: fr.inria.sed.logo.xdsml
-** use the default template: simple sequential
-** select the ecore.file
-** finish
+* _Next_
+** use the default template: Simple Sequential K3 language project
+** Ecore file location: select the ecore file in _fr.inria.sed.logo.model/model/Logo.ecore_
+* _Finish_
 
 
-Create the project for the graphical editor:
+=== Create the project for domain specific action (DSA):
 
 * right click on the _fr.inria.sed.logo.xdsml_ project -> GEMOC Language -> create
 DSA project for language 
+* _next_
+** Select template: _User Ecore Basic Aspects_
+* _next_
+** Aspect package prefix: fr.inria.sed.logo.k3dsa
+** Aspect package suffix: .aspects
+** Aspect file name: LogoAspects
+* _Finish_
+
+* add missing dependency from project _fr.inria.sed.logo.xdsml_ to _fr.inria.sed.logo.k3dsa_. 
+_(This action can be removed when https://github.com/eclipse/gemoc-studio-modeldebugging/issues/51[modeldebugging bug #51] is fixed)_. 
 
 
-from language project : new k3dsa
 
-vérifier que le nouveau projet est bien dans les dépendances du projet fr.inria.logo
-vérifier que le nouveau projet est bien dans les dépendances du projet fr.inria.logo
+TODO logovm.model
 
-template:
+TODO main pur java
 
-** aspect package prefix : fr.inria.sed
+TODO main GEMOC
+
 
 ajout method @main sur logoProgram et eval qui "traverse/evalue" le programme 
 
