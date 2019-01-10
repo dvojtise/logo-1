@@ -1,0 +1,146 @@
+== Scenario tutorial day two: Part 3: Hands-on GEMOC, the logo turtle language
+
+
+This document indicates the steps to follow in order to reproduce the tutorial.
+
+== Prerequisite
+
+This part follows the work done in part2. 
+While you can start from your own work, I suggest to replace it and start from the solution of part2.
+
+so the starting projects are available in the folder _part2-mmfirst-solution_.
+
+The solution of this tutorial is available in the folder _part3-mmfirst-solution_.
+
+
+
+== General principles
+
+We'll create an execution semantic for the behavior or our Logo language.
+
+It will provide features such as:
+
+* debugger
+* animation 
+
+[NOTE]
+====
+In order to keep the tutorial as simple as possible, we consider that we can modify the 
+metamodel directly. this is correct for most languages you create by your own, but in some situation 
+you may prefer to keep a stricter separation between the static and dynamic parts of the language. 
+GEMOC offers several strategies to achieve this but they are out of the scope of this tutorial.
+====
+ 
+
+
+
+
+
+
+Principes généraux:
+** MM first
+**	trick pour éviter Melange et simplifier le tuto
+	ajout d'un object abstrait "RuntimeContext" pour faciliter l'ancrage des concepts du RTD
+	et possiblement la création de plusieurs sémantique différentes
+
+
+
+
+== Semantic
+
+Let's create a GEMOC Sequential project 
+
+
+
+* _File -> New -> GEMOC Sequential XDSML Project_
+** name: fr.inria.sed.logo.xdsml
+** use the default template: simple sequential
+** select the ecore.file
+** finish
+
+
+Create the project for the graphical editor:
+
+* right click on the _fr.inria.sed.logo.xdsml_ project -> GEMOC Language -> create
+DSA project for language 
+
+
+from language project : new k3dsa
+
+vérifier que le nouveau projet est bien dans les dépendances du projet fr.inria.logo
+vérifier que le nouveau projet est bien dans les dépendances du projet fr.inria.logo
+
+template:
+
+** aspect package prefix : fr.inria.sed
+
+ajout method @main sur logoProgram et eval qui "traverse/evalue" le programme 
+
+[source,]
+----
+@Aspect(className=LogoProgram)
+class LogoProgramAspect {
+	@Step 												
+	@InitializeModel									
+	def void initializeModel(EList<String> args){
+	
+	}
+	
+	@Main
+	def void main() {
+		println("Starting Logo program")
+		_self.eval()
+		println("Logo program ended")
+	}
+	def void eval(){		
+		println("Evaluating "+_self)
+		_self.instructions.forEach[i | i.eval]
+	}
+}
+
+@Aspect(className=Instruction)
+class InstructionAspect {
+	def void eval(){
+		println("Evaluating "+_self)
+	}
+}
+----
+
+mettre au point la semantique
+
+ajout du @Step
+
+ajout d'un context / runtime data
+
+
+trick par ajout d'un attribut Context à LogoProgram
+
+[source,]
+----
+LogoProgram :
+	{LogoProgram}
+	instructions+=Instruction (  instructions+=Instruction)* 
+	(runtimecontext = RuntimeContext)? 
+	;
+
+RuntimeContext returns RuntimeContext:
+	{RuntimeContext}
+	'RuntimeContext'
+;
+----
+
+
+discussion à propos du model first pou masquer cet aspect de la syntaxe
+
+ajout d'un projet ecore modeling "fr.inria.sed.logo.vm.model"
+
+ajout des concepts
+
+heritage de InterpreterContext vers RuntimeContext
+
+
+puis convertir en 2 languages avec melange : extended pour activer la timeline ou adapter le MM
+
+
+
+
