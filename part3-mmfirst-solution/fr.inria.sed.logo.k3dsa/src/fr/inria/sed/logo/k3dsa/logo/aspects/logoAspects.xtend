@@ -1,6 +1,7 @@
 package fr.inria.sed.logo.k3dsa.logo.aspects
 
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect
+import fr.inria.diverse.k3.al.annotationprocessor.Main
 import fr.inria.sed.logo.LogoProgram
 import fr.inria.sed.logo.Instruction
 import fr.inria.sed.logo.Backward
@@ -58,10 +59,19 @@ import static extension fr.inria.sed.logo.k3dsa.logo.aspects.MultAspect.*
 import static extension fr.inria.sed.logo.k3dsa.logo.aspects.DivAspect.*
 import static extension fr.inria.sed.logo.k3dsa.logo.aspects.PrimitiveInstructionAspect.*
 import static extension fr.inria.sed.logo.k3dsa.logo.aspects.ControlStructureInstructionAspect.*
+import org.eclipse.gemoc.commons.eclipse.messagingsystem.api.MessagingSystemManager
 
 @Aspect(className=LogoProgram)
 class LogoProgramAspect {
-
+	
+	@Main
+	def void run(){
+		// println('hello world')
+		val MessagingSystemManager msManager = new MessagingSystemManager
+		val ms = msManager.createBestPlatformMessagingSystem("Logo","Simple Logo interpreter")
+ 		
+		ms.debug("Hello world on "+_self.eResource.URI, "Logo")
+	}
 }
 
 @Aspect(className=Instruction)

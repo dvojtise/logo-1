@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated vm -->
+      <package
+            uri="http://www.inria.fr/sed/logo/vm"
+            class="fr.inria.sed.logo.vm.model.vm.VmPackage"
+            genModel="model/vm.genmodel"/>
+   </extension>
+
+</plugin>

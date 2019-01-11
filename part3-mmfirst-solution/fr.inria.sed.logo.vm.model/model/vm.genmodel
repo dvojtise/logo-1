@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/fr.inria.sed.logo.vm.model/src-gen" creationIcons="false"
+    editDirectory="/fr.inria.sed.logo.vm.model.edit/src-gen" editorDirectory="/fr.inria.sed.logo.vm.model.editor/src-gen"
+    modelPluginID="fr.inria.sed.logo.vm.model" modelName="Vm" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="10.0"
+    copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>vm.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="Vm" basePackage="fr.inria.sed.logo.vm.model" disposableProviderFactory="true"
+      ecorePackage="vm.ecore#/">
+    <genClasses ecoreClass="vm.ecore#//Turtle">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vm.ecore#//Turtle/reachedPoints"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference vm.ecore#//Turtle/position"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vm.ecore#//Turtle/segments"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vm.ecore#//Turtle/penUp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vm.ecore#//Turtle/heading"/>
+    </genClasses>
+    <genClasses ecoreClass="vm.ecore#//Point">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vm.ecore#//Point/x"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vm.ecore#//Point/y"/>
+    </genClasses>
+    <genClasses ecoreClass="vm.ecore#//Segment">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference vm.ecore#//Segment/origin"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference vm.ecore#//Segment/destination"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -74,8 +74,130 @@ DSA project for language
 _(This action can be removed when https://github.com/eclipse/gemoc-studio-modeldebugging/issues/51[modeldebugging bug #51] is fixed)_. 
 
 
+=== Write a GEMOC based method to "hello world"
 
-TODO logovm.model
+In the k3dsa project, 
+
+add a plugin dependency to `org.eclipse.gemoc.commons.eclipse.messagingsystem.api`
+
+open the logoAspects.xtend file.
+
+add the following imports:
+[source,java]
+----
+import fr.inria.diverse.k3.al.annotationprocessor.Main
+----
+
+Add a _run_ method with *@Main* annotation in the class LogoProgramAspect.
+
+[source,java]
+----
+	@Main
+	def void run(){
+		// println('hello world')
+		val MessagingSystemManager msManager = new MessagingSystemManager
+		val ms = msManager.createBestPlatformMessagingSystem("Logo","Simple Logo interpreter")
+ 		
+		ms.debug("Hello world on "+_self.eResource.URI, "Logo")
+	}
+---- 
+
+Launch the Modeling workbench.
+
+* _Run -> Debug configurations..._
+** Right click on _Gemoc Sequential eXecutable Model_ -> _new configuration_
+*** Name: <your model file name>
+***  model to execute: browse and select the model file
+*** Languages: _fr.inria.sed.logo.Logo
+*** animator: (optionnal) the .aird file that has a diagram for your model
+*** Main method: select xxx.LogoProgramAspect.run(xxx)
+*** Main model element path: the LogoProgramImpl
+** _Debug_
+
+The console named "Simple Logo interpreter" will contain your output if you used the GEMOC MessagingSystem, 
+otherwise, `printl` will go to the standard output which is shown by the _Default MessagingSystem console_.
+
+NOTE: you may have to switch between the console in order to retrieve the one with your message.
+
+
+
+
+=== Define Runtime Data structure
+
+* _new Ecore Modeling Project_ 
+** project name: _fr.inria.sed.logo.vm.model_
+** Main package name: vm
+** NsUris: ``http://www.inria.fr/sed/logo/vm``
+
+[TIP]
+====
+Installing OCLinEcore allows to write the ecore model in text instead of using the three editor or the graphica editor.
+In our case, this will help to to copy/paste actions.
+
+* _Help -> Install new software..._
+** Work with: _Eclipse Repository - http://download.eclipse.org/releases/photon_
+** get: _OCL Examples and Editors SDK_
+** proceed to the installation and accept to restart eclipse
+
+A new editor is now available with a right click on `ecore` files: _Open with -> OCLInEcore Editor_. 
+====
+
+
+==== Create a data structure to capture the runtime state of the turtle running the logo program.
+
+The runtime will be turtle that also store the path it had drawn. 
+
+The path is stored as an ordered list of segments.
+
+Some attributes need to be encoded as Double in order to get a simple but realistic simulation. 
+
+image::images/vm_ecore_sirius.png[,500] 
+
+[TIP]
+====
+Instead of manually creating the various elements in the tree or Sirius editor you can directly 
+use this source and copy/paste using oclinecore editor.
+
+[source,]
+----
+import ecore : 'http://www.eclipse.org/emf/2002/Ecore' ;
+
+package logo_vm : logo_vm = 'http://fr.inria.sed/logo/logo_vm'
+{
+	class Turtle
+	{
+		property reachedPoints : Point[*|1] { ordered composes };
+		property position : Point[?];
+		property segments : Segment[*|1] { ordered composes };
+		attribute penUp : Boolean[1];
+		attribute heading : ecore::EDouble[1];
+	}
+	class Point
+	{
+		attribute x : ecore::EDouble[1];
+		attribute y : ecore::EDouble[1];
+	}
+	class Segment
+	{
+		property origin : Point[1];
+		property destination : Point[1];
+	}
+}
+----
+
+====
+
+* right click on the vm.genmodel file -> reload...
+* rigth click on the root element
+* generate Model code
+
+
+on the plugin.xml of the k3dsa project, add a dependency to _fr.inria.sed.logo.vm.model_.
+
+Create a link from  
+
+
+
 
 TODO main pur java
 

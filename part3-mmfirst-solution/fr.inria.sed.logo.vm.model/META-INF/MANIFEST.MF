@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: fr.inria.sed.logo.vm.model;singleton:=true
+Automatic-Module-Name: fr.inria.sed.logo.vm.model
+Bundle-Version: 0.1.0.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-10
+Export-Package: fr.inria.sed.logo.vm.model.vm,
+ fr.inria.sed.logo.vm.model.vm.impl,
+ fr.inria.sed.logo.vm.model.vm.util
+Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.core.runtime
+Bundle-ActivationPolicy: lazy
