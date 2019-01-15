@@ -47,5 +47,5 @@ to drawhilbert :level :size
 	lefthilbert ( :level , :size ) 
 	penup 
 end 
-
+penup
 drawhilbert ( 5 , 10 ) 
