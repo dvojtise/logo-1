@@ -20,12 +20,15 @@ public class TurtleBoardEngineAddon implements IEngineAddon {
 		IEngineAddon.super.engineStarted(executionEngine);
 		
 		String name = executionEngine.getName();
+		// workaround https://github.com/eclipse/gemoc-studio-modeldebugging/issues/80
+		// 			this method is called 2 times instead of one...
 		ITurtleGUI turtleGUI = turtleGUIs.get(name);
 		if(turtleGUI != null) {
 			
 			turtleGUI.dispose();
 		}
-			
+		// end of workaround
+		
 		turtleGUIs.put(name, 
 					new TurtleSimpleAWTGUI(
 							executionEngine.getExecutionContext().getResourceModel().getURI().lastSegment(), 

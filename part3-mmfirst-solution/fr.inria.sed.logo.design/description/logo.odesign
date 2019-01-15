@@ -3,7 +3,7 @@
   <ownedViewpoints name="LogoBlockViewpoint">
     <ownedRepresentations xsi:type="description_1:DiagramDescription" name="LogoBlockDiagram" label="Logo Block Diagram" initialisation="true" showOnStartup="true" domainClass="LogoProgram" enablePopupBars="true">
       <metamodel href="http://www.inria.fr/sed/logo/Logo#/"/>
-      <layout xsi:type="description_1:CompositeLayout" padding="20"/>
+      <layout xsi:type="description_1:CompositeLayout" padding="21"/>
       <defaultLayer name="Default">
         <nodeMappings name="PrimitiveInstructionNode" semanticCandidatesExpression="aql:self.eContents()" domainClass="logo::PrimitiveInstruction">
           <style xsi:type="style:DotDescription" labelExpression="aql:self.eClass().name" labelAlignment="LEFT" sizeComputationExpression="1">
@@ -151,7 +151,46 @@
           </style>
         </edgeMappings>
       </additionalLayers>
+      <additionalLayers name="Debug" activeByDefault="true">
+        <toolSections name="Debug">
+          <ownedTools xsi:type="tool:PopupMenu" name="Gemoc">
+            <menuItemDescription xsi:type="tool:OperationAction" name="Debug" icon="/org.eclipse.gemoc.executionframework.extensions.sirius/icons/debug_exc.gif">
+              <view name="views"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:ExternalJavaAction" name="Debug" icon="/org.eclipse.gemoc.executionframework.extensions.sirius/icons/debug_exc.gif" id="org.eclipse.gemoc.execution.sequential.javaengine.ui.debug.sirius.action.gemocDebugAs"/>
+              </initialOperation>
+            </menuItemDescription>
+            <menuItemDescription xsi:type="tool:OperationAction" name="Toggle breakpoint" icon="/org.eclipse.gemoc.executionframework.extensions.sirius/icons/debug_exc.gif">
+              <view name="views"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:ExternalJavaAction" name="Toggle Gemoc breakpoint" icon="/org.eclipse.gemoc.executionframework.extensions.sirius/icons/breakpoint.gif" id="org.eclipse.gemoc.execution.sequential.javaengine.ui.debug.sirius.action.GemocSequentialToggleBreakpointAction"/>
+              </initialOperation>
+            </menuItemDescription>
+            <menuItemDescription xsi:type="tool:OperationAction" name="Toggle conditional breakpoint" icon="/org.eclipse.gemoc.executionframework.extensions.sirius/icons/debug_exc.gif">
+              <view name="views"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool:ExternalJavaAction" name="Toggle Gemoc conditional breakpoint" icon="/org.eclipse.gemoc.executionframework.extensions.sirius/icons/breakpoint.gif" id="org.eclipse.gemoc.execution.sequential.javaengine.ui.debug.sirius.action.GemocSequentialToggleConditionalBreakpointAction"/>
+              </initialOperation>
+            </menuItemDescription>
+          </ownedTools>
+        </toolSections>
+        <decorationDescriptionsSet>
+          <decorationDescriptions xsi:type="description_1:MappingBasedDecoration" name="Enabled breakpoint" position="WEST" preconditionExpression="service:self.hasEnabledBreakpoint" imageExpression="/org.eclipse.gemoc.executionframework.extensions.sirius/icons/breakpoint_enabled.gif" mappings="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@nodeMappings[name='PrimitiveInstructionNode'] //@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@nodeMappings[name='IfNode'] //@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@edgeMappings[name='InstructionSequenceEdge'] //@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@edgeMappings[name='IfThenEdge'] //@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@edgeMappings[name='IfElseEdge'] //@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@edgeMappings[name='EndIfSequenceEdge'] //@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@containerMappings[name='procDeclContainer'] //@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@containerMappings[name='BlockNode'] //@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@containerMappings[name='thenPartContainer'] //@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@containerMappings[name='elsePartContainer'] //@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@additionalLayers[name='ProcedureCall']/@edgeMappings[name='procCallEdge']"/>
+          <decorationDescriptions xsi:type="description_1:MappingBasedDecoration" name="Disabled breakpoint" position="WEST" preconditionExpression="service:self.hasDisabledBreakpoint" imageExpression="/org.eclipse.gemoc.executionframework.extensions.sirius/icons/breakpoint_disabled.gif" mappings="//@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@nodeMappings[name='PrimitiveInstructionNode'] //@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@nodeMappings[name='IfNode'] //@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@edgeMappings[name='InstructionSequenceEdge'] //@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@edgeMappings[name='IfThenEdge'] //@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@edgeMappings[name='IfElseEdge'] //@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@edgeMappings[name='EndIfSequenceEdge'] //@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@containerMappings[name='procDeclContainer'] //@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@containerMappings[name='BlockNode'] //@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@containerMappings[name='thenPartContainer'] //@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@defaultLayer/@containerMappings[name='elsePartContainer'] //@ownedViewpoints[name='LogoBlockViewpoint']/@ownedRepresentations[name='LogoBlockDiagram']/@additionalLayers[name='ProcedureCall']/@edgeMappings[name='procCallEdge']"/>
+        </decorationDescriptionsSet>
+        <customization>
+          <vsmElementCustomizations xsi:type="description:VSMElementCustomization" predicateExpression="service:self.isCurrentInstruction">
+            <featureCustomizations xsi:type="description:EReferenceCustomization" applyOnAll="true" referenceName="borderColor" value="//@userColorsPalettes[name='LogoBlockDiagram%20Palette']/@entries[name='current%20instruction']"/>
+            <featureCustomizations xsi:type="description:EReferenceCustomization" applyOnAll="true" referenceName="strokeColor" value="//@userColorsPalettes[name='LogoBlockDiagram%20Palette']/@entries[name='current%20instruction']"/>
+            <featureCustomizations xsi:type="description:EReferenceCustomization" applyOnAll="true" referenceName="labelColor" value="//@userColorsPalettes[name='LogoBlockDiagram%20Palette']/@entries[name='current%20instruction']"/>
+          </vsmElementCustomizations>
+        </customization>
+      </additionalLayers>
     </ownedRepresentations>
     <ownedJavaExtensions qualifiedClassName="fr.inria.sed.logo.design.Services"/>
+    <ownedJavaExtensions qualifiedClassName="fr.inria.sed.logo.design.services.LogoblockdiagramDebugServices"/>
   </ownedViewpoints>
+  <userColorsPalettes name="LogoBlockDiagram Palette">
+    <entries xsi:type="description:UserFixedColor" red="255" green="255" blue="0" name="current instruction"/>
+  </userColorsPalettes>
 </description:Group>

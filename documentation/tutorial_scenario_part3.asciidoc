@@ -369,9 +369,48 @@ We put *@Step* only on `run` methods, since we do want the model debugger to all
 But do not add this annotation on the `eval` methods. 
 ====
 
-=== implements eval methods 
+=== implements eval methods of classes that inherit from Expression
 
-TODO 
+This is quite simple, most of them maps to very simple code in java/xtend.
+
+[source,java]
+----
+@Aspect(className=Plus)
+class PlusAspect extends ExpressionAspect {
+	def Integer eval(InterpreterRuntimeContext context){
+		return _self.lhs.eval(context) + _self.rhs.eval(context)
+	}
+}
+
+@Aspect(className=Minus)
+class MinusAspect extends ExpressionAspect {
+	def Integer eval(InterpreterRuntimeContext context){
+		return _self.lhs.eval(context) - _self.rhs.eval(context)
+	}
+}
+----
+
+For boolean expressions, we simpliflied the problem in the metamodel by returning only integer, where 0 is false and 1 is true.
+
+[source,java]
+----
+@Aspect(className=Equals)
+class EqualsAspect extends ExpressionAspect {
+
+	def Integer eval(InterpreterRuntimeContext context){
+		if( _self.lhs.eval(context) ==  _self.rhs.eval(context)) return 1
+		else return 0
+	}
+}
+
+@Aspect(className=Greater)
+class GreaterAspect extends ExpressionAspect {
+	def Integer eval(InterpreterRuntimeContext context){
+		if( _self.lhs.eval(context) >  _self.rhs.eval(context)) return 1
+		else return 0
+	}
+}
+----
 
 
 === Make the turtle move
@@ -488,7 +527,10 @@ correct import ( org.eclipse.gemoc.xdsmlframework.api.engine_addon.IEngineAddon 
 *** _source -> override/implements methods_
 *** select `engineStarted`, `engineAboutToDispose`, and `stepExecuted`
 *** implement the methods to call a GUI reading the model in the engine
-**** copy 
+**** copy the simple AWT UI implementation from https://github.com/dvojtise/mde-crashcourse-logo/tree/master/part3-mmfirst-solution/fr.inria.sed.logo.xdsml/src/fr/inria/sed/logo/xdsml/ui/turtleboard[https://github.com/dvojtise/mde-crashcourse-logo/tree/master/part3-mmfirst-solution/fr.inria.sed.logo.xdsml/src/fr/inria/sed/logo/xdsml/ui/turtleboard]
+also copy the `engineStarted`, `engineAboutToDispose`, and `stepExecuted` content.
+**** You can observe in https://github.com/dvojtise/mde-crashcourse-logo/blob/master/part3-mmfirst-solution/fr.inria.sed.logo.xdsml/src/fr/inria/sed/logo/xdsml/ui/turtleboard/TurtleBoardEngineAddon.java[TurtleBoardEngineAddon.java]
+How to access the model and runtime data.  
 
 [NOTE]
 ====
@@ -499,6 +541,10 @@ You must take care to not crash in an addon, otherwise the execution will crash 
 You must take care to long running process and consider using threads/jobs for them (unless this is an intended behavior of you UI). 
 ====
 
+
+In the modeling workbench, launch an execution on a simple logo model to obser this simple GUI.
+
+More complexe GUI can be written, for example by creating a view integrated in eclipse.
 
 
 === implement ProcedureCall
@@ -573,6 +619,15 @@ class ParameterCallAspect extends ExpressionAspect {
 }
 ----
 
+
+
+=== Add Sirius Debug support.
+
+This will create a dedicated layer that take into account debug interactions
+
+
+* Right click on the _fr.inria.sed.logo.xdsml_ project -> _GEMOC language_ -> _Create animator project for language_
+** _Add a debug layer to an existing diagram description_ -> _Next_ -> _Finish_
 
 
 
