@@ -12,5 +12,6 @@ Export-Package: fr.inria.sed.logo.vm.model.vm,
  fr.inria.sed.logo.vm.model.vm.impl,
  fr.inria.sed.logo.vm.model.vm.util
 Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
+ fr.inria.sed.logo.model;visibility:=reexport,
  org.eclipse.core.runtime
 Bundle-ActivationPolicy: lazy

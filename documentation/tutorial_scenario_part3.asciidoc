@@ -164,6 +164,10 @@ import ecore : 'http://www.eclipse.org/emf/2002/Ecore' ;
 
 package logo_vm : logo_vm = 'http://fr.inria.sed/logo/logo_vm'
 {
+	class InterpreterRuntimeContext
+	{
+		property turtle : Turtle[1] {composes};
+	}
 	class Turtle
 	{
 		property reachedPoints : Point[*|1] { ordered composes };
@@ -191,10 +195,384 @@ package logo_vm : logo_vm = 'http://fr.inria.sed/logo/logo_vm'
 * rigth click on the root element
 * generate Model code
 
-
 on the plugin.xml of the k3dsa project, add a dependency to _fr.inria.sed.logo.vm.model_.
 
-Create a link from  
+
+==== Link the RuntimeData to the Logo program
+
+Create an "anchor" element in the Logo program Logo.ecore. Ie add an class RuntimeContext and 
+a composition to it from the root model element. This runtimecontext is annotated with "aspect" annotation 
+in order to indicate that it can change during the execution. 
+
+NOTE: This is not mandatory for all execution scenarios but will help obtain all GEMOC features
+
+TIP: For some language you may directly weave runtime data in the language ecore. This might be useful to help navigation in the models and data.  
+
+.in Logo.ecore
+[source,]
+----
+	class LogoProgram
+	{
+		property instructions : Instruction[*|1] { ordered composes };
+		property runtimeContext : RuntimeContext[?] { composes }
+		{
+			annotation aspect;
+		}
+	}
+	
+	abstract class RuntimeContext;
+----
+
+add a plugin dependencies from _fr.inria.sed.logo.vm.model_ to _fr.inria.sed.logo.model_ 
+
+.in VM.ecore
+[source,]
+----
+import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/' ;
+import logo : '../../fr.inria.sed.logo.model/model/Logo.ecore#/' ;
+
+package vm : vm = 'http://www.inria.fr/sed/logo/vm'
+{
+	class InterpreterRuntimeContext extends logo::RuntimeContext
+	{
+		property turtle : Turtle[1] { composes };
+	}
+----
+
+regenerate model code of Logo and its VM (IE. from logo.genmodel and vm.genmodel files.)
+[WARNING]
+====
+when generating model from vm.genmodel, make sure to correctly reference and 
+reuse the logo.genmodel. Otherwise you'll get 2 copies of the java code for 
+the logo.ecore model that may conflict with each other.
+====
+
+
+=== Initialize RuntimeContext on start
+
+In the k3dsa project.
+
+.in logoAspects.xtend
+[source,java]
+----
+@Aspect(className=LogoProgram)
+class LogoProgramAspect {
+
+	@Step 												
+	@InitializeModel									
+	def void initializeModel(EList<String> args){
+		val context = VmFactory.eINSTANCE.createInterpreterRuntimeContext
+		context.turtle = VmFactory.eINSTANCE.createTurtle
+		val point = VmFactory.eINSTANCE.createPoint
+		point.x = 0
+		point.y = 0
+		context.turtle.reachedPoints.add(point)
+		context.turtle.position = point
+		_self.runtimeContext = context
+	}
+----
+
+
+
+=== Write a simple navigation
+
+
+[TIP]
+====
+for better performances and cleaner code, the logger accessor can be moved to the context as a "singleton"
+
+[source,java]
+----
+package fr.inria.sed.logo.k3dsa.logo.vm.aspects
+
+import fr.inria.diverse.k3.al.annotationprocessor.Aspect
+	
+import fr.inria.sed.logo.vm.model.vm.InterpreterRuntimeContext
+import org.eclipse.gemoc.commons.eclipse.messagingsystem.api.MessagingSystemManager
+import org.eclipse.gemoc.commons.eclipse.messagingsystem.api.MessagingSystem
+
+@Aspect(className=InterpreterRuntimeContext)
+class InterpreterRuntimeContextAspect {
+	var MessagingSystem internalLogger  
+	def MessagingSystem logger(){
+		if (_self.internalLogger === null) { 
+			val MessagingSystemManager msManager = new MessagingSystemManager
+			_self.internalLogger = msManager.createBestPlatformMessagingSystem("Logo","Simple Logo interpreter")
+			
+		} 
+		return _self.internalLogger
+	}
+}
+----
+
+====
+
+
+.in logoAspect.xtend
+[source, java]
+----
+@Aspect(className=LogoProgram)
+class LogoProgramAspect {
+	@Main
+	def void run(){
+		val context = _self.runtimeContext as InterpreterRuntimeContext
+ 		context.logger.debug("Running "+_self.eResource.URI, "Logo")
+		
+		_self.instructions.forEach[i | i.run(_self.runtimeContext as InterpreterRuntimeContext)]
+	}
+}
+
+@Aspect(className=Instruction)
+class InstructionAspect {
+	@Step
+	def void run(InterpreterRuntimeContext context){
+		context.logger.error("run of " +_self +" should never occur, please write method run for this class", 
+			"Logo")
+	}
+}
+
+@Aspect(className=Expression)
+class ExpressionAspect {
+	def Integer eval(InterpreterRuntimeContext context){
+		context.logger.error("eval of " +_self +" should never occur, please write method run for this class", 
+			"Logo")
+		return 0;
+	}
+}
+
+@Aspect(className=If)
+class IfAspect extends ControlStructureInstructionAspect {
+	@Step
+	def void run(InterpreterRuntimeContext context){
+		context.logger.debug("run of " +_self, "Logo")
+		if(_self.condition.eval(context) == 1) {
+			_self.thenPart.run(context)
+		} else {
+			_self.elsePart.run(context)
+		}
+	}
+}
+
+@Aspect(className=Constant)
+class ConstantAspect extends ExpressionAspect {
+	def Integer eval(InterpreterRuntimeContext context){
+		context.logger.debug("eval of " +_self, "Logo")
+		return _self.integerValue
+	}
+}
+----
+
+
+[NOTE]
+====
+We put *@Step* only on `run` methods, since we do want the model debugger to allows to stop there.
+But do not add this annotation on the `eval` methods. 
+====
+
+=== implements eval methods 
+
+TODO 
+
+
+=== Make the turtle move
+ 
+Ie. modify the runtime context (turtle, segment, ...)
+
+First add some helpers as aspect directly on the vm.
+
+.in fr.inria.sed.logo.k3dsa.logo.vm.aspects.TurtleAspect.xtend
+[source,java]
+----
+package fr.inria.sed.logo.k3dsa.logo.vm.aspects
+
+import fr.inria.diverse.k3.al.annotationprocessor.Aspect
+	
+import fr.inria.sed.logo.vm.model.vm.Turtle
+import fr.inria.sed.logo.vm.model.vm.VmFactory
+
+@Aspect(className=Turtle)
+class TurtleAspect {
+	
+	def void rotate(Integer angle) {
+		_self.heading = (_self.heading + angle) % 360
+	}
+			
+	def void move(double dx, double dy){
+		// create new Point for destination
+		val point = VmFactory.eINSTANCE.createPoint
+		point.x = _self.position.x + dx
+		point.y = _self.position.y + dy
+		_self.reachedPoints.add(point)
+		
+		if(!_self.penUp){
+			val drawnSegment = VmFactory.eINSTANCE.createSegment
+			drawnSegment.origin = _self.position
+			drawnSegment.destination = point
+			_self.segments.add(drawnSegment)
+		}
+		_self.position = point
+	}
+	
+	def void forward(Integer steps){
+		val headingAsRadian = Math.toRadians(_self.heading)
+		_self.move(_self.scale(steps, Math.sin(headingAsRadian)), _self.scale(steps, Math.cos(headingAsRadian)))
+	}
+	
+	/**
+	 * scale the "steps" expressed using integer by a factor
+	 */
+	def double scale(Integer steps, Double factor){
+		return (steps.doubleValue * factor) as Double
+	}		
+}
+----
+
+Then use them.
+
+.in logoAspects.xtend
+[source,java]
+----
+
+import static extension fr.inria.sed.logo.k3dsa.logo.vm.aspects.TurtleAspect.*
+
+@Aspect(className=Forward)
+class ForwardAspect extends PrimitiveInstructionAspect {
+	@Step
+	def void run(InterpreterRuntimeContext context){
+		context.turtle.forward(_self.steps.eval(context))
+	}
+}
+@Aspect(className=Forward)
+class BackwardAspect extends PrimitiveInstructionAspect {
+	@Step
+	def void run(InterpreterRuntimeContext context){
+		context.turtle.forward(- _self.steps.eval(context))
+	}
+}
+@Aspect(className=Left)
+class LeftAspect extends PrimitiveInstructionAspect {
+	@Step
+	def void run(InterpreterRuntimeContext context){
+		context.turtle.rotate(- _self.angle.eval(context))
+	}
+}
+
+@Aspect(className=Right)
+class RightAspect extends PrimitiveInstructionAspect {
+	@Step
+	def void run(InterpreterRuntimeContext context){
+		context.turtle.rotate(_self.angle.eval(context))
+	}
+}
+----
+
+=== Get dedicated custom GUI (using EngineAddon)
+
+NOTE: documentation about engine addon creation https://download.eclipse.org/gemoc/docs/nightly/_contributing.html#_developing_new_engines
+
+There are many ways to create a GUI for the simulator. One of them is to create a language specific engine addon.
+It will be started automatically when the engine starts. It will then be notified by the engine about any relevant event. 
+It has access to many informations including a full access to the model and runtime data model. 
+
+* open the plugin.xml file of the project `fr.inria.sed.logo.xdsml`
+** Right click on the  XDSML_Definition (fr.inria.sed.logo.Logo) -> New -> EngineAddon_Definition
+** Click on the link (blue) _engineAddon_class to create the missing class
+*** Package: fr.inria.sed.logo.xdsml.ui.turtleboard
+*** Name: TurtleBoardEngineAddon
+
+Due to: https://github.com/eclipse/gemoc-studio-modeldebugging/issues/44 remove import, and then apply quick fix to retrieve the 
+correct import ( org.eclipse.gemoc.xdsmlframework.api.engine_addon.IEngineAddon ).
+
+* in the TurtleBoardEngineAddon java class
+** Right click in the editor
+*** _source -> override/implements methods_
+*** select `engineStarted`, `engineAboutToDispose`, and `stepExecuted`
+*** implement the methods to call a GUI reading the model in the engine
+**** copy 
+
+[NOTE]
+====
+Callbacks to addons methods create pauses in the execution.
+
+You must take care to not crash in an addon, otherwise the execution will crash too.
+
+You must take care to long running process and consider using threads/jobs for them (unless this is an intended behavior of you UI). 
+====
+
+
+
+=== implement ProcedureCall
+
+==== add a stack of parameter maps in the runtime context
+
+.in the vm.ecore
+[source,]
+----
+	class InterpreterRuntimeContext extends logo::RuntimeContext
+	{
+		property turtle : Turtle[1] { composes };
+		attribute stack : ParamMap(String, ecore::EIntegerObject)[*|1] { ordered !unique };
+	}
+	datatype ParamMap(K, V) : 'java.util.HashMap' { serializable };
+----
+
+[TIP]
+====
+You can write this kind of code with generics directly in the tree editor, for this you must
+open the vm.ecore files with the "sample reflective editor" and in the top menu, then click on _sample reflective editor_
+and  _Show generics_
+====
+
+Add some helpers methods to manipulate this stack.
+
+.in InterpreterRuntimeContextAspect.xtend
+[source,java]
+----
+	/* paramMap helpers */
+	def void pushParamMap(HashMap<String, Integer> paramMap) {
+		_self.stack.add(paramMap)
+	}
+	def HashMap<String, Integer> peekParamMap(){
+		_self.stack.last
+	}
+	def  HashMap<String, Integer> popParamMap(){
+		_self.stack.last
+		_self.stack.remove(_self.stack.size -1)
+	}
+----
+
+==== Use the parameter map to implement the Procedure Call
+
+.in logoAspects.xtend
+[source,java]
+----
+import static extension fr.inria.sed.logo.k3dsa.logo.vm.aspects.InterpreterRuntimeContextAspect.*
+
+@Aspect(className=ProcCall)
+class ProcCallAspect extends PrimitiveInstructionAspect {
+	@Step
+	def void run(InterpreterRuntimeContext context){
+		context.logger.debug("run of " +_self, "Logo")
+		val HashMap<String, Integer> params = newHashMap;
+		(0..(_self.actualArgs.size-1)).forEach[i | 
+			val currentArg = _self.actualArgs.get(i).eval(context)
+			params.put(_self.declaration.args.get(i).name,currentArg)
+		]
+		context.pushParamMap(params)
+		_self.declaration.instructions.forEach[instruction | instruction.run(context)]
+		context.popParamMap()
+	}
+}
+
+@Aspect(className=ParameterCall, with=#[InstructionAspect] )
+class ParameterCallAspect extends ExpressionAspect {	
+	def Integer eval(InterpreterRuntimeContext context){
+		context.logger.debug("eval of " +_self, "Logo")
+		return context.peekParamMap.get(_self.parameter.name);
+	}
+}
+----
+
 
 
 
@@ -203,38 +581,6 @@ TODO main pur java
 
 TODO main GEMOC
 
-
-ajout method @main sur logoProgram et eval qui "traverse/evalue" le programme 
-
-[source,]
-----
-@Aspect(className=LogoProgram)
-class LogoProgramAspect {
-	@Step 												
-	@InitializeModel									
-	def void initializeModel(EList<String> args){
-	
-	}
-	
-	@Main
-	def void main() {
-		println("Starting Logo program")
-		_self.eval()
-		println("Logo program ended")
-	}
-	def void eval(){		
-		println("Evaluating "+_self)
-		_self.instructions.forEach[i | i.eval]
-	}
-}
-
-@Aspect(className=Instruction)
-class InstructionAspect {
-	def void eval(){
-		println("Evaluating "+_self)
-	}
-}
-----
 
 mettre au point la semantique
 

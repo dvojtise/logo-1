@@ -2,14 +2,19 @@
  */
 package fr.inria.sed.logo.vm.model.vm.impl;
 
+import fr.inria.sed.logo.LogoPackage;
+import fr.inria.sed.logo.vm.model.vm.InterpreterRuntimeContext;
 import fr.inria.sed.logo.vm.model.vm.Point;
 import fr.inria.sed.logo.vm.model.vm.Segment;
 import fr.inria.sed.logo.vm.model.vm.Turtle;
 import fr.inria.sed.logo.vm.model.vm.VmFactory;
 import fr.inria.sed.logo.vm.model.vm.VmPackage;
 
+import java.util.HashMap;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -22,6 +27,13 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  * @generated
  */
 public class VmPackageImpl extends EPackageImpl implements VmPackage {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass interpreterRuntimeContextEClass = null;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -42,6 +54,13 @@ public class VmPackageImpl extends EPackageImpl implements VmPackage {
 	 * @generated
 	 */
 	private EClass segmentEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType paramMapEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -92,6 +111,9 @@ public class VmPackageImpl extends EPackageImpl implements VmPackage {
 
 		isInited = true;
 
+		// Initialize simple dependencies
+		LogoPackage.eINSTANCE.eClass();
+
 		// Create package meta-data objects
 		theVmPackage.createPackageContents();
 
@@ -104,6 +126,33 @@ public class VmPackageImpl extends EPackageImpl implements VmPackage {
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(VmPackage.eNS_URI, theVmPackage);
 		return theVmPackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getInterpreterRuntimeContext() {
+		return interpreterRuntimeContextEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getInterpreterRuntimeContext_Turtle() {
+		return (EReference) interpreterRuntimeContextEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getInterpreterRuntimeContext_Stack() {
+		return (EAttribute) interpreterRuntimeContextEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -219,6 +268,15 @@ public class VmPackageImpl extends EPackageImpl implements VmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EDataType getParamMap() {
+		return paramMapEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public VmFactory getVmFactory() {
 		return (VmFactory) getEFactoryInstance();
 	}
@@ -243,6 +301,10 @@ public class VmPackageImpl extends EPackageImpl implements VmPackage {
 		isCreated = true;
 
 		// Create classes and their features
+		interpreterRuntimeContextEClass = createEClass(INTERPRETER_RUNTIME_CONTEXT);
+		createEReference(interpreterRuntimeContextEClass, INTERPRETER_RUNTIME_CONTEXT__TURTLE);
+		createEAttribute(interpreterRuntimeContextEClass, INTERPRETER_RUNTIME_CONTEXT__STACK);
+
 		turtleEClass = createEClass(TURTLE);
 		createEReference(turtleEClass, TURTLE__REACHED_POINTS);
 		createEReference(turtleEClass, TURTLE__POSITION);
@@ -257,6 +319,9 @@ public class VmPackageImpl extends EPackageImpl implements VmPackage {
 		segmentEClass = createEClass(SEGMENT);
 		createEReference(segmentEClass, SEGMENT__ORIGIN);
 		createEReference(segmentEClass, SEGMENT__DESTINATION);
+
+		// Create data types
+		paramMapEDataType = createEDataType(PARAM_MAP);
 	}
 
 	/**
@@ -283,13 +348,33 @@ public class VmPackageImpl extends EPackageImpl implements VmPackage {
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
 
+		// Obtain other dependent packages
+		LogoPackage theLogoPackage = (LogoPackage) EPackage.Registry.INSTANCE.getEPackage(LogoPackage.eNS_URI);
+
 		// Create type parameters
+		addETypeParameter(paramMapEDataType, "K");
+		addETypeParameter(paramMapEDataType, "V");
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		interpreterRuntimeContextEClass.getESuperTypes().add(theLogoPackage.getRuntimeContext());
 
 		// Initialize classes, features, and operations; add parameters
+		initEClass(interpreterRuntimeContextEClass, InterpreterRuntimeContext.class, "InterpreterRuntimeContext",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getInterpreterRuntimeContext_Turtle(), this.getTurtle(), null, "turtle", null, 1, 1,
+				InterpreterRuntimeContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		EGenericType g1 = createEGenericType(this.getParamMap());
+		EGenericType g2 = createEGenericType(ecorePackage.getEString());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEIntegerObject());
+		g1.getETypeArguments().add(g2);
+		initEAttribute(getInterpreterRuntimeContext_Stack(), g1, "stack", null, 0, -1, InterpreterRuntimeContext.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+
 		initEClass(turtleEClass, Turtle.class, "Turtle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTurtle_ReachedPoints(), this.getPoint(), null, "reachedPoints", null, 0, -1, Turtle.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
@@ -318,6 +403,9 @@ public class VmPackageImpl extends EPackageImpl implements VmPackage {
 		initEReference(getSegment_Destination(), this.getPoint(), null, "destination", null, 1, 1, Segment.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize data types
+		initEDataType(paramMapEDataType, HashMap.class, "ParamMap", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -2,6 +2,7 @@
  */
 package fr.inria.sed.logo.vm.model.vm.util;
 
+import fr.inria.sed.logo.RuntimeContext;
 import fr.inria.sed.logo.vm.model.vm.*;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -67,6 +68,11 @@ public class VmAdapterFactory extends AdapterFactoryImpl {
 	 */
 	protected VmSwitch<Adapter> modelSwitch = new VmSwitch<Adapter>() {
 		@Override
+		public Adapter caseInterpreterRuntimeContext(InterpreterRuntimeContext object) {
+			return createInterpreterRuntimeContextAdapter();
+		}
+
+		@Override
 		public Adapter caseTurtle(Turtle object) {
 			return createTurtleAdapter();
 		}
@@ -79,6 +85,11 @@ public class VmAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseSegment(Segment object) {
 			return createSegmentAdapter();
+		}
+
+		@Override
+		public Adapter caseRuntimeContext(RuntimeContext object) {
+			return createRuntimeContextAdapter();
 		}
 
 		@Override
@@ -98,6 +109,20 @@ public class VmAdapterFactory extends AdapterFactoryImpl {
 	@Override
 	public Adapter createAdapter(Notifier target) {
 		return modelSwitch.doSwitch((EObject) target);
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.inria.sed.logo.vm.model.vm.InterpreterRuntimeContext <em>Interpreter Runtime Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.inria.sed.logo.vm.model.vm.InterpreterRuntimeContext
+	 * @generated
+	 */
+	public Adapter createInterpreterRuntimeContextAdapter() {
+		return null;
 	}
 
 	/**
@@ -139,6 +164,20 @@ public class VmAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSegmentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.inria.sed.logo.RuntimeContext <em>Runtime Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.inria.sed.logo.RuntimeContext
+	 * @generated
+	 */
+	public Adapter createRuntimeContextAdapter() {
 		return null;
 	}
 

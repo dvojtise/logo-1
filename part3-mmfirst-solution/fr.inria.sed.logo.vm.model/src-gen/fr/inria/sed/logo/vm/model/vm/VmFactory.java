@@ -22,6 +22,15 @@ public interface VmFactory extends EFactory {
 	VmFactory eINSTANCE = fr.inria.sed.logo.vm.model.vm.impl.VmFactoryImpl.init();
 
 	/**
+	 * Returns a new object of class '<em>Interpreter Runtime Context</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Interpreter Runtime Context</em>'.
+	 * @generated
+	 */
+	InterpreterRuntimeContext createInterpreterRuntimeContext();
+
+	/**
 	 * Returns a new object of class '<em>Turtle</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

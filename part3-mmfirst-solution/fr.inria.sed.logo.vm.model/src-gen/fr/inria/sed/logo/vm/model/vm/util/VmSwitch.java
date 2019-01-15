@@ -2,6 +2,7 @@
  */
 package fr.inria.sed.logo.vm.model.vm.util;
 
+import fr.inria.sed.logo.RuntimeContext;
 import fr.inria.sed.logo.vm.model.vm.*;
 
 import org.eclipse.emf.ecore.EObject;
@@ -66,6 +67,15 @@ public class VmSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+		case VmPackage.INTERPRETER_RUNTIME_CONTEXT: {
+			InterpreterRuntimeContext interpreterRuntimeContext = (InterpreterRuntimeContext) theEObject;
+			T result = caseInterpreterRuntimeContext(interpreterRuntimeContext);
+			if (result == null)
+				result = caseRuntimeContext(interpreterRuntimeContext);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case VmPackage.TURTLE: {
 			Turtle turtle = (Turtle) theEObject;
 			T result = caseTurtle(turtle);
@@ -90,6 +100,21 @@ public class VmSwitch<T> extends Switch<T> {
 		default:
 			return defaultCase(theEObject);
 		}
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Interpreter Runtime Context</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Interpreter Runtime Context</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInterpreterRuntimeContext(InterpreterRuntimeContext object) {
+		return null;
 	}
 
 	/**
@@ -134,6 +159,21 @@ public class VmSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSegment(Segment object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Runtime Context</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Runtime Context</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRuntimeContext(RuntimeContext object) {
 		return null;
 	}
 

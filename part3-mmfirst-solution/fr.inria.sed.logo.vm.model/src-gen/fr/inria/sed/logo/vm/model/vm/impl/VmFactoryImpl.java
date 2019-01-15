@@ -4,7 +4,9 @@ package fr.inria.sed.logo.vm.model.vm.impl;
 
 import fr.inria.sed.logo.vm.model.vm.*;
 
+import java.util.HashMap;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -55,6 +57,8 @@ public class VmFactoryImpl extends EFactoryImpl implements VmFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
+		case VmPackage.INTERPRETER_RUNTIME_CONTEXT:
+			return createInterpreterRuntimeContext();
 		case VmPackage.TURTLE:
 			return createTurtle();
 		case VmPackage.POINT:
@@ -64,6 +68,46 @@ public class VmFactoryImpl extends EFactoryImpl implements VmFactory {
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+		case VmPackage.PARAM_MAP:
+			return createParamMapFromString(eDataType, initialValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+		case VmPackage.PARAM_MAP:
+			return convertParamMapToString(eDataType, instanceValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InterpreterRuntimeContext createInterpreterRuntimeContext() {
+		InterpreterRuntimeContextImpl interpreterRuntimeContext = new InterpreterRuntimeContextImpl();
+		return interpreterRuntimeContext;
 	}
 
 	/**
@@ -94,6 +138,24 @@ public class VmFactoryImpl extends EFactoryImpl implements VmFactory {
 	public Segment createSegment() {
 		SegmentImpl segment = new SegmentImpl();
 		return segment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public HashMap<?, ?> createParamMapFromString(EDataType eDataType, String initialValue) {
+		return (HashMap<?, ?>) super.createFromString(initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertParamMapToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(instanceValue);
 	}
 
 	/**

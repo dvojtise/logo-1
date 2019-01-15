@@ -5,11 +5,20 @@
     editDirectory="/fr.inria.sed.logo.vm.model.edit/src-gen" editorDirectory="/fr.inria.sed.logo.vm.model.editor/src-gen"
     modelPluginID="fr.inria.sed.logo.vm.model" modelName="Vm" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="10.0"
-    copyrightFields="false" operationReflection="true" importOrganizing="true">
+    copyrightFields="false" usedGenPackages="../../fr.inria.sed.logo.model/model/Logo.genmodel#//logo"
+    operationReflection="true" importOrganizing="true">
   <foreignModel>vm.ecore</foreignModel>
   <testsDirectory xsi:nil="true"/>
   <genPackages prefix="Vm" basePackage="fr.inria.sed.logo.vm.model" disposableProviderFactory="true"
       ecorePackage="vm.ecore#/">
+    <genDataTypes ecoreDataType="vm.ecore#//ParamMap">
+      <genTypeParameters ecoreTypeParameter="vm.ecore#//ParamMap/K"/>
+      <genTypeParameters ecoreTypeParameter="vm.ecore#//ParamMap/V"/>
+    </genDataTypes>
+    <genClasses ecoreClass="vm.ecore#//InterpreterRuntimeContext">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vm.ecore#//InterpreterRuntimeContext/turtle"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vm.ecore#//InterpreterRuntimeContext/stack"/>
+    </genClasses>
     <genClasses ecoreClass="vm.ecore#//Turtle">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vm.ecore#//Turtle/reachedPoints"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference vm.ecore#//Turtle/position"/>

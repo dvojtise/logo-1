@@ -1,6 +1,7 @@
 Manifest-Version: 1.0
 Bundle-SymbolicName: fr.inria.sed.logo.k3dsa; singleton:=true
-Export-Package: fr.inria.sed.logo.k3dsa.logo.aspects
+Export-Package: fr.inria.sed.logo.k3dsa.logo.aspects,
+ fr.inria.sed.logo.k3dsa.logo.vm.aspects
 Bundle-Name: fr.inria.sed.logo.k3dsa
 Bundle-Version: 1.0.0
 Bundle-ClassPath: .

@@ -4,6 +4,16 @@
   <eAnnotations source="http://www.eclipse.org/OCL/Import">
     <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
   </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="InterpreterRuntimeContext" eSuperTypes="../../fr.inria.sed.logo.model/model/Logo.ecore#//RuntimeContext">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="turtle" lowerBound="1"
+        eType="#//Turtle" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stack" unique="false" upperBound="-1">
+      <eGenericType eClassifier="#//ParamMap">
+        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+      </eGenericType>
+    </eStructuralFeatures>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Turtle">
     <eStructuralFeatures xsi:type="ecore:EReference" name="reachedPoints" upperBound="-1"
         eType="#//Point" containment="true"/>
@@ -23,5 +33,9 @@
         eType="#//Point"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="destination" lowerBound="1"
         eType="#//Point"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="ParamMap" instanceClassName="java.util.HashMap">
+    <eTypeParameters name="K"/>
+    <eTypeParameters name="V"/>
   </eClassifiers>
 </ecore:EPackage>

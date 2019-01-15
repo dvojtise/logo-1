@@ -1,0 +1,100 @@
+	// BeginInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.InstructionAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.PenUpAspect
+		if (_self instanceof fr.inria.sed.logo.PenUp){
+			fr.inria.sed.logo.k3dsa.logo.aspects.PenUpAspect.run((fr.inria.sed.logo.PenUp)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.InstructionAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.PenUpAspect
+	// BeginInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.InstructionAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.RightAspect
+		if (_self instanceof fr.inria.sed.logo.Right){
+			fr.inria.sed.logo.k3dsa.logo.aspects.RightAspect.run((fr.inria.sed.logo.Right)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.InstructionAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.RightAspect
+	// BeginInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.EqualsAspect
+		if (_self instanceof fr.inria.sed.logo.Equals){
+			result = fr.inria.sed.logo.k3dsa.logo.aspects.EqualsAspect.eval((fr.inria.sed.logo.Equals)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.EqualsAspect
+	// BeginInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.PlusAspect
+		if (_self instanceof fr.inria.sed.logo.Plus){
+			result = fr.inria.sed.logo.k3dsa.logo.aspects.PlusAspect.eval((fr.inria.sed.logo.Plus)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.PlusAspect
+	// BeginInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.InstructionAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.BackwardAspect
+		if (_self instanceof fr.inria.sed.logo.Backward){
+			fr.inria.sed.logo.k3dsa.logo.aspects.BackwardAspect.run((fr.inria.sed.logo.Backward)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.InstructionAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.BackwardAspect
+	// BeginInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.ConstantAspect
+		if (_self instanceof fr.inria.sed.logo.Constant){
+			result = fr.inria.sed.logo.k3dsa.logo.aspects.ConstantAspect.eval((fr.inria.sed.logo.Constant)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.ConstantAspect
+	// BeginInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.InstructionAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.ProcCallAspect
+		if (_self instanceof fr.inria.sed.logo.ProcCall){
+			fr.inria.sed.logo.k3dsa.logo.aspects.ProcCallAspect.run((fr.inria.sed.logo.ProcCall)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.InstructionAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.ProcCallAspect
+	// BeginInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.InstructionAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.LeftAspect
+		if (_self instanceof fr.inria.sed.logo.Left){
+			fr.inria.sed.logo.k3dsa.logo.aspects.LeftAspect.run((fr.inria.sed.logo.Left)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.InstructionAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.LeftAspect
+	// BeginInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.InstructionAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.ForwardAspect
+		if (_self instanceof fr.inria.sed.logo.Forward){
+			fr.inria.sed.logo.k3dsa.logo.aspects.ForwardAspect.run((fr.inria.sed.logo.Forward)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.InstructionAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.ForwardAspect
+	// BeginInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.InstructionAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.IfAspect
+		if (_self instanceof fr.inria.sed.logo.If){
+			fr.inria.sed.logo.k3dsa.logo.aspects.IfAspect.run((fr.inria.sed.logo.If)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.InstructionAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.IfAspect
+	// BeginInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.GreaterAspect
+		if (_self instanceof fr.inria.sed.logo.Greater){
+			result = fr.inria.sed.logo.k3dsa.logo.aspects.GreaterAspect.eval((fr.inria.sed.logo.Greater)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.GreaterAspect
+	// BeginInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.InstructionAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.RepeatAspect
+		if (_self instanceof fr.inria.sed.logo.Repeat){
+			fr.inria.sed.logo.k3dsa.logo.aspects.RepeatAspect.run((fr.inria.sed.logo.Repeat)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.InstructionAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.RepeatAspect
+	// BeginInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.DivAspect
+		if (_self instanceof fr.inria.sed.logo.Div){
+			result = fr.inria.sed.logo.k3dsa.logo.aspects.DivAspect.eval((fr.inria.sed.logo.Div)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.DivAspect
+	// BeginInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.InstructionAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.BlockAspect
+		if (_self instanceof fr.inria.sed.logo.Block){
+			fr.inria.sed.logo.k3dsa.logo.aspects.BlockAspect.run((fr.inria.sed.logo.Block)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.InstructionAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.BlockAspect
+	// BeginInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.MinusAspect
+		if (_self instanceof fr.inria.sed.logo.Minus){
+			result = fr.inria.sed.logo.k3dsa.logo.aspects.MinusAspect.eval((fr.inria.sed.logo.Minus)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.MinusAspect
+	// BeginInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.InstructionAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.PenDownAspect
+		if (_self instanceof fr.inria.sed.logo.PenDown){
+			fr.inria.sed.logo.k3dsa.logo.aspects.PenDownAspect.run((fr.inria.sed.logo.PenDown)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.InstructionAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.PenDownAspect
+	// BeginInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.InstructionAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.ProcDeclarationAspect
+		if (_self instanceof fr.inria.sed.logo.ProcDeclaration){
+			fr.inria.sed.logo.k3dsa.logo.aspects.ProcDeclarationAspect.run((fr.inria.sed.logo.ProcDeclaration)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.InstructionAspect#void run(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.ProcDeclarationAspect
+	// BeginInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.MultAspect
+		if (_self instanceof fr.inria.sed.logo.Mult){
+			result = fr.inria.sed.logo.k3dsa.logo.aspects.MultAspect.eval((fr.inria.sed.logo.Mult)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.MultAspect
+	// BeginInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.ParameterCallAspect
+		if (_self instanceof fr.inria.sed.logo.ParameterCall){
+			result = fr.inria.sed.logo.k3dsa.logo.aspects.ParameterCallAspect.eval((fr.inria.sed.logo.ParameterCall)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.ParameterCallAspect
+	// BeginInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.LowerAspect
+		if (_self instanceof fr.inria.sed.logo.Lower){
+			result = fr.inria.sed.logo.k3dsa.logo.aspects.LowerAspect.eval((fr.inria.sed.logo.Lower)_self,context);
+		} else
+		// EndInjectInto fr.inria.sed.logo.k3dsa.logo.aspects.ExpressionAspect#Integer eval(InterpreterRuntimeContext) from fr.inria.sed.logo.k3dsa.logo.aspects.LowerAspect

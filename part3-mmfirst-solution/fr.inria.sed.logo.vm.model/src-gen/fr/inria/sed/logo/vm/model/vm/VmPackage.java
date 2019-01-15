@@ -2,8 +2,10 @@
  */
 package fr.inria.sed.logo.vm.model.vm;
 
+import fr.inria.sed.logo.LogoPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -58,6 +60,52 @@ public interface VmPackage extends EPackage {
 	VmPackage eINSTANCE = fr.inria.sed.logo.vm.model.vm.impl.VmPackageImpl.init();
 
 	/**
+	 * The meta object id for the '{@link fr.inria.sed.logo.vm.model.vm.impl.InterpreterRuntimeContextImpl <em>Interpreter Runtime Context</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.sed.logo.vm.model.vm.impl.InterpreterRuntimeContextImpl
+	 * @see fr.inria.sed.logo.vm.model.vm.impl.VmPackageImpl#getInterpreterRuntimeContext()
+	 * @generated
+	 */
+	int INTERPRETER_RUNTIME_CONTEXT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Turtle</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERPRETER_RUNTIME_CONTEXT__TURTLE = LogoPackage.RUNTIME_CONTEXT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Stack</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERPRETER_RUNTIME_CONTEXT__STACK = LogoPackage.RUNTIME_CONTEXT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Interpreter Runtime Context</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERPRETER_RUNTIME_CONTEXT_FEATURE_COUNT = LogoPackage.RUNTIME_CONTEXT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Interpreter Runtime Context</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERPRETER_RUNTIME_CONTEXT_OPERATION_COUNT = LogoPackage.RUNTIME_CONTEXT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link fr.inria.sed.logo.vm.model.vm.impl.TurtleImpl <em>Turtle</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,7 +113,7 @@ public interface VmPackage extends EPackage {
 	 * @see fr.inria.sed.logo.vm.model.vm.impl.VmPackageImpl#getTurtle()
 	 * @generated
 	 */
-	int TURTLE = 0;
+	int TURTLE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Reached Points</b></em>' containment reference list.
@@ -138,7 +186,7 @@ public interface VmPackage extends EPackage {
 	 * @see fr.inria.sed.logo.vm.model.vm.impl.VmPackageImpl#getPoint()
 	 * @generated
 	 */
-	int POINT = 1;
+	int POINT = 2;
 
 	/**
 	 * The feature id for the '<em><b>X</b></em>' attribute.
@@ -184,7 +232,7 @@ public interface VmPackage extends EPackage {
 	 * @see fr.inria.sed.logo.vm.model.vm.impl.VmPackageImpl#getSegment()
 	 * @generated
 	 */
-	int SEGMENT = 2;
+	int SEGMENT = 3;
 
 	/**
 	 * The feature id for the '<em><b>Origin</b></em>' reference.
@@ -221,6 +269,48 @@ public interface VmPackage extends EPackage {
 	 * @ordered
 	 */
 	int SEGMENT_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '<em>Param Map</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.util.HashMap
+	 * @see fr.inria.sed.logo.vm.model.vm.impl.VmPackageImpl#getParamMap()
+	 * @generated
+	 */
+	int PARAM_MAP = 4;
+
+	/**
+	 * Returns the meta object for class '{@link fr.inria.sed.logo.vm.model.vm.InterpreterRuntimeContext <em>Interpreter Runtime Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Interpreter Runtime Context</em>'.
+	 * @see fr.inria.sed.logo.vm.model.vm.InterpreterRuntimeContext
+	 * @generated
+	 */
+	EClass getInterpreterRuntimeContext();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link fr.inria.sed.logo.vm.model.vm.InterpreterRuntimeContext#getTurtle <em>Turtle</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Turtle</em>'.
+	 * @see fr.inria.sed.logo.vm.model.vm.InterpreterRuntimeContext#getTurtle()
+	 * @see #getInterpreterRuntimeContext()
+	 * @generated
+	 */
+	EReference getInterpreterRuntimeContext_Turtle();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link fr.inria.sed.logo.vm.model.vm.InterpreterRuntimeContext#getStack <em>Stack</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Stack</em>'.
+	 * @see fr.inria.sed.logo.vm.model.vm.InterpreterRuntimeContext#getStack()
+	 * @see #getInterpreterRuntimeContext()
+	 * @generated
+	 */
+	EAttribute getInterpreterRuntimeContext_Stack();
 
 	/**
 	 * Returns the meta object for class '{@link fr.inria.sed.logo.vm.model.vm.Turtle <em>Turtle</em>}'.
@@ -352,6 +442,17 @@ public interface VmPackage extends EPackage {
 	EReference getSegment_Destination();
 
 	/**
+	 * Returns the meta object for data type '{@link java.util.HashMap <em>Param Map</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Param Map</em>'.
+	 * @see java.util.HashMap
+	 * @model instanceClass="java.util.HashMap" typeParameters="K V"
+	 * @generated
+	 */
+	EDataType getParamMap();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -374,6 +475,32 @@ public interface VmPackage extends EPackage {
 	 * @generated
 	 */
 	interface Literals {
+		/**
+		 * The meta object literal for the '{@link fr.inria.sed.logo.vm.model.vm.impl.InterpreterRuntimeContextImpl <em>Interpreter Runtime Context</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.inria.sed.logo.vm.model.vm.impl.InterpreterRuntimeContextImpl
+		 * @see fr.inria.sed.logo.vm.model.vm.impl.VmPackageImpl#getInterpreterRuntimeContext()
+		 * @generated
+		 */
+		EClass INTERPRETER_RUNTIME_CONTEXT = eINSTANCE.getInterpreterRuntimeContext();
+
+		/**
+		 * The meta object literal for the '<em><b>Turtle</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INTERPRETER_RUNTIME_CONTEXT__TURTLE = eINSTANCE.getInterpreterRuntimeContext_Turtle();
+
+		/**
+		 * The meta object literal for the '<em><b>Stack</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INTERPRETER_RUNTIME_CONTEXT__STACK = eINSTANCE.getInterpreterRuntimeContext_Stack();
+
 		/**
 		 * The meta object literal for the '{@link fr.inria.sed.logo.vm.model.vm.impl.TurtleImpl <em>Turtle</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -475,6 +602,16 @@ public interface VmPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SEGMENT__DESTINATION = eINSTANCE.getSegment_Destination();
+
+		/**
+		 * The meta object literal for the '<em>Param Map</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.util.HashMap
+		 * @see fr.inria.sed.logo.vm.model.vm.impl.VmPackageImpl#getParamMap()
+		 * @generated
+		 */
+		EDataType PARAM_MAP = eINSTANCE.getParamMap();
 
 	}
 
