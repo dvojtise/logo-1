@@ -6,6 +6,7 @@
     <semanticResources>platform:/resource/fr.inria.sed.logo.model/model/Logo.ecore</semanticResources>
     <semanticResources>http://www.eclipse.org/emf/2002/Ecore</semanticResources>
     <semanticResources>platform:/resource/fr.inria.sed.logo.model/model/Logo.genmodel</semanticResources>
+    <semanticResources>platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_z1AiQBTxEemKX8_qvVc5vA">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_z12PwBTxEemKX8_qvVc5vA" name="vm" repPath="#_z1TdMBTxEemKX8_qvVc5vA">

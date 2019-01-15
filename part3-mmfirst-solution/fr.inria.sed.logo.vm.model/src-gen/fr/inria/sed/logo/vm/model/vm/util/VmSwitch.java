@@ -4,7 +4,6 @@ package fr.inria.sed.logo.vm.model.vm.util;
 
 import fr.inria.sed.logo.RuntimeContext;
 import fr.inria.sed.logo.vm.model.vm.*;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -97,6 +96,20 @@ public class VmSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case VmPackage.PARAM_MAP_ENTRY: {
+			ParamMapEntry paramMapEntry = (ParamMapEntry) theEObject;
+			T result = caseParamMapEntry(paramMapEntry);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case VmPackage.PARAM_MAP: {
+			ParamMap paramMap = (ParamMap) theEObject;
+			T result = caseParamMap(paramMap);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -159,6 +172,36 @@ public class VmSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSegment(Segment object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Param Map Entry</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Param Map Entry</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseParamMapEntry(ParamMapEntry object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Param Map</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Param Map</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseParamMap(ParamMap object) {
 		return null;
 	}
 

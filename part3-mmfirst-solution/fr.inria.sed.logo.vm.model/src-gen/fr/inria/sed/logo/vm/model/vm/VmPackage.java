@@ -5,7 +5,6 @@ package fr.inria.sed.logo.vm.model.vm;
 import fr.inria.sed.logo.LogoPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -79,7 +78,7 @@ public interface VmPackage extends EPackage {
 	int INTERPRETER_RUNTIME_CONTEXT__TURTLE = LogoPackage.RUNTIME_CONTEXT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Stack</b></em>' attribute list.
+	 * The feature id for the '<em><b>Stack</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -271,14 +270,87 @@ public interface VmPackage extends EPackage {
 	int SEGMENT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '<em>Param Map</em>' data type.
+	 * The meta object id for the '{@link fr.inria.sed.logo.vm.model.vm.impl.ParamMapEntryImpl <em>Param Map Entry</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see java.util.HashMap
+	 * @see fr.inria.sed.logo.vm.model.vm.impl.ParamMapEntryImpl
+	 * @see fr.inria.sed.logo.vm.model.vm.impl.VmPackageImpl#getParamMapEntry()
+	 * @generated
+	 */
+	int PARAM_MAP_ENTRY = 4;
+
+	/**
+	 * The feature id for the '<em><b>Key</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAM_MAP_ENTRY__KEY = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAM_MAP_ENTRY__VALUE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Param Map Entry</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAM_MAP_ENTRY_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Param Map Entry</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAM_MAP_ENTRY_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link fr.inria.sed.logo.vm.model.vm.impl.ParamMapImpl <em>Param Map</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.sed.logo.vm.model.vm.impl.ParamMapImpl
 	 * @see fr.inria.sed.logo.vm.model.vm.impl.VmPackageImpl#getParamMap()
 	 * @generated
 	 */
-	int PARAM_MAP = 4;
+	int PARAM_MAP = 5;
+
+	/**
+	 * The feature id for the '<em><b>Entries</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAM_MAP__ENTRIES = 0;
+
+	/**
+	 * The number of structural features of the '<em>Param Map</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAM_MAP_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Param Map</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAM_MAP_OPERATION_COUNT = 0;
 
 	/**
 	 * Returns the meta object for class '{@link fr.inria.sed.logo.vm.model.vm.InterpreterRuntimeContext <em>Interpreter Runtime Context</em>}'.
@@ -302,15 +374,15 @@ public interface VmPackage extends EPackage {
 	EReference getInterpreterRuntimeContext_Turtle();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link fr.inria.sed.logo.vm.model.vm.InterpreterRuntimeContext#getStack <em>Stack</em>}'.
+	 * Returns the meta object for the containment reference list '{@link fr.inria.sed.logo.vm.model.vm.InterpreterRuntimeContext#getStack <em>Stack</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Stack</em>'.
+	 * @return the meta object for the containment reference list '<em>Stack</em>'.
 	 * @see fr.inria.sed.logo.vm.model.vm.InterpreterRuntimeContext#getStack()
 	 * @see #getInterpreterRuntimeContext()
 	 * @generated
 	 */
-	EAttribute getInterpreterRuntimeContext_Stack();
+	EReference getInterpreterRuntimeContext_Stack();
 
 	/**
 	 * Returns the meta object for class '{@link fr.inria.sed.logo.vm.model.vm.Turtle <em>Turtle</em>}'.
@@ -442,15 +514,57 @@ public interface VmPackage extends EPackage {
 	EReference getSegment_Destination();
 
 	/**
-	 * Returns the meta object for data type '{@link java.util.HashMap <em>Param Map</em>}'.
+	 * Returns the meta object for class '{@link fr.inria.sed.logo.vm.model.vm.ParamMapEntry <em>Param Map Entry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>Param Map</em>'.
-	 * @see java.util.HashMap
-	 * @model instanceClass="java.util.HashMap" typeParameters="K V"
+	 * @return the meta object for class '<em>Param Map Entry</em>'.
+	 * @see fr.inria.sed.logo.vm.model.vm.ParamMapEntry
 	 * @generated
 	 */
-	EDataType getParamMap();
+	EClass getParamMapEntry();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.inria.sed.logo.vm.model.vm.ParamMapEntry#getKey <em>Key</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Key</em>'.
+	 * @see fr.inria.sed.logo.vm.model.vm.ParamMapEntry#getKey()
+	 * @see #getParamMapEntry()
+	 * @generated
+	 */
+	EAttribute getParamMapEntry_Key();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.inria.sed.logo.vm.model.vm.ParamMapEntry#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see fr.inria.sed.logo.vm.model.vm.ParamMapEntry#getValue()
+	 * @see #getParamMapEntry()
+	 * @generated
+	 */
+	EAttribute getParamMapEntry_Value();
+
+	/**
+	 * Returns the meta object for class '{@link fr.inria.sed.logo.vm.model.vm.ParamMap <em>Param Map</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Param Map</em>'.
+	 * @see fr.inria.sed.logo.vm.model.vm.ParamMap
+	 * @generated
+	 */
+	EClass getParamMap();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link fr.inria.sed.logo.vm.model.vm.ParamMap#getEntries <em>Entries</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Entries</em>'.
+	 * @see fr.inria.sed.logo.vm.model.vm.ParamMap#getEntries()
+	 * @see #getParamMap()
+	 * @generated
+	 */
+	EReference getParamMap_Entries();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -494,12 +608,12 @@ public interface VmPackage extends EPackage {
 		EReference INTERPRETER_RUNTIME_CONTEXT__TURTLE = eINSTANCE.getInterpreterRuntimeContext_Turtle();
 
 		/**
-		 * The meta object literal for the '<em><b>Stack</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>Stack</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute INTERPRETER_RUNTIME_CONTEXT__STACK = eINSTANCE.getInterpreterRuntimeContext_Stack();
+		EReference INTERPRETER_RUNTIME_CONTEXT__STACK = eINSTANCE.getInterpreterRuntimeContext_Stack();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.sed.logo.vm.model.vm.impl.TurtleImpl <em>Turtle</em>}' class.
@@ -604,14 +718,48 @@ public interface VmPackage extends EPackage {
 		EReference SEGMENT__DESTINATION = eINSTANCE.getSegment_Destination();
 
 		/**
-		 * The meta object literal for the '<em>Param Map</em>' data type.
+		 * The meta object literal for the '{@link fr.inria.sed.logo.vm.model.vm.impl.ParamMapEntryImpl <em>Param Map Entry</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see java.util.HashMap
+		 * @see fr.inria.sed.logo.vm.model.vm.impl.ParamMapEntryImpl
+		 * @see fr.inria.sed.logo.vm.model.vm.impl.VmPackageImpl#getParamMapEntry()
+		 * @generated
+		 */
+		EClass PARAM_MAP_ENTRY = eINSTANCE.getParamMapEntry();
+
+		/**
+		 * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PARAM_MAP_ENTRY__KEY = eINSTANCE.getParamMapEntry_Key();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PARAM_MAP_ENTRY__VALUE = eINSTANCE.getParamMapEntry_Value();
+
+		/**
+		 * The meta object literal for the '{@link fr.inria.sed.logo.vm.model.vm.impl.ParamMapImpl <em>Param Map</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.inria.sed.logo.vm.model.vm.impl.ParamMapImpl
 		 * @see fr.inria.sed.logo.vm.model.vm.impl.VmPackageImpl#getParamMap()
 		 * @generated
 		 */
-		EDataType PARAM_MAP = eINSTANCE.getParamMap();
+		EClass PARAM_MAP = eINSTANCE.getParamMap();
+
+		/**
+		 * The meta object literal for the '<em><b>Entries</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PARAM_MAP__ENTRIES = eINSTANCE.getParamMap_Entries();
 
 	}
 

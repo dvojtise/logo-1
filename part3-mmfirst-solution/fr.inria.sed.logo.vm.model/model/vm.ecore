@@ -5,24 +5,32 @@
     <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="InterpreterRuntimeContext" eSuperTypes="../../fr.inria.sed.logo.model/model/Logo.ecore#//RuntimeContext">
+    <eAnnotations source="aspect"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="turtle" lowerBound="1"
-        eType="#//Turtle" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stack" unique="false" upperBound="-1">
-      <eGenericType eClassifier="#//ParamMap">
-        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
-      </eGenericType>
+        eType="#//Turtle" containment="true">
+      <eAnnotations source="aspect"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stack" upperBound="-1"
+        eType="#//ParamMap" containment="true">
+      <eAnnotations source="aspect"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Turtle">
+    <eAnnotations source="aspect"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="reachedPoints" upperBound="-1"
         eType="#//Point" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="position" eType="#//Point"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="segments" upperBound="-1"
-        eType="#//Segment" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="penUp" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        eType="#//Segment" containment="true">
+      <eAnnotations source="aspect"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="penUp" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="aspect"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="heading" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
+      <eAnnotations source="aspect"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Point">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
@@ -34,8 +42,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="destination" lowerBound="1"
         eType="#//Point"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="ParamMap" instanceClassName="java.util.HashMap">
-    <eTypeParameters name="K"/>
-    <eTypeParameters name="V"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ParamMapEntry">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ParamMap">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entries" upperBound="-1"
+        eType="#//ParamMapEntry" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

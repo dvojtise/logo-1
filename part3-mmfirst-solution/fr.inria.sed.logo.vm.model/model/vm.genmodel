@@ -11,13 +11,9 @@
   <testsDirectory xsi:nil="true"/>
   <genPackages prefix="Vm" basePackage="fr.inria.sed.logo.vm.model" disposableProviderFactory="true"
       ecorePackage="vm.ecore#/">
-    <genDataTypes ecoreDataType="vm.ecore#//ParamMap">
-      <genTypeParameters ecoreTypeParameter="vm.ecore#//ParamMap/K"/>
-      <genTypeParameters ecoreTypeParameter="vm.ecore#//ParamMap/V"/>
-    </genDataTypes>
     <genClasses ecoreClass="vm.ecore#//InterpreterRuntimeContext">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vm.ecore#//InterpreterRuntimeContext/turtle"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vm.ecore#//InterpreterRuntimeContext/stack"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference vm.ecore#//InterpreterRuntimeContext/stack"/>
     </genClasses>
     <genClasses ecoreClass="vm.ecore#//Turtle">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vm.ecore#//Turtle/reachedPoints"/>
@@ -33,6 +29,13 @@
     <genClasses ecoreClass="vm.ecore#//Segment">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference vm.ecore#//Segment/origin"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference vm.ecore#//Segment/destination"/>
+    </genClasses>
+    <genClasses ecoreClass="vm.ecore#//ParamMapEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vm.ecore#//ParamMapEntry/key"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vm.ecore#//ParamMapEntry/value"/>
+    </genClasses>
+    <genClasses ecoreClass="vm.ecore#//ParamMap">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference vm.ecore#//ParamMap/entries"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

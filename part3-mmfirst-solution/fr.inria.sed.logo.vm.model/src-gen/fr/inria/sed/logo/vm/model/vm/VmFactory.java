@@ -58,6 +58,24 @@ public interface VmFactory extends EFactory {
 	Segment createSegment();
 
 	/**
+	 * Returns a new object of class '<em>Param Map Entry</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Param Map Entry</em>'.
+	 * @generated
+	 */
+	ParamMapEntry createParamMapEntry();
+
+	/**
+	 * Returns a new object of class '<em>Param Map</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Param Map</em>'.
+	 * @generated
+	 */
+	ParamMap createParamMap();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

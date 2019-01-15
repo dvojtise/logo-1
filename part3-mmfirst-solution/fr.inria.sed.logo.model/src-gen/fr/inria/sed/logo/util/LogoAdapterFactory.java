@@ -207,6 +207,11 @@ public class LogoAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseRuntimeContext(RuntimeContext object) {
+			return createRuntimeContextAdapter();
+		}
+
+		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -614,6 +619,20 @@ public class LogoAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createControlStructureInstructionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.inria.sed.logo.RuntimeContext <em>Runtime Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.inria.sed.logo.RuntimeContext
+	 * @generated
+	 */
+	public Adapter createRuntimeContextAdapter() {
 		return null;
 	}
 

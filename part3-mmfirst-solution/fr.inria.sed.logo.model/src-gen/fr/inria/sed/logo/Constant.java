@@ -30,7 +30,7 @@ public interface Constant extends Expression {
 	 * @return the value of the '<em>Integer Value</em>' attribute.
 	 * @see #setIntegerValue(int)
 	 * @see fr.inria.sed.logo.LogoPackage#getConstant_IntegerValue()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	int getIntegerValue();

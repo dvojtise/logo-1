@@ -3,7 +3,7 @@ package fr.inria.sed.logo.k3dsa.logo.vm.aspects;
 import fr.inria.diverse.k3.al.annotationprocessor.Aspect;
 import fr.inria.sed.logo.k3dsa.logo.vm.aspects.InterpreterRuntimeContextAspectInterpreterRuntimeContextAspectProperties;
 import fr.inria.sed.logo.vm.model.vm.InterpreterRuntimeContext;
-import java.util.HashMap;
+import fr.inria.sed.logo.vm.model.vm.ParamMap;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.gemoc.commons.eclipse.messagingsystem.api.MessagingSystem;
 import org.eclipse.gemoc.commons.eclipse.messagingsystem.api.MessagingSystemManager;
@@ -25,32 +25,32 @@ public class InterpreterRuntimeContextAspect {
   /**
    * paramMap helpers
    */
-  public static void pushParamMap(final InterpreterRuntimeContext _self, final HashMap<String, Integer> paramMap) {
+  public static void pushParamMap(final InterpreterRuntimeContext _self, final ParamMap paramMap) {
     final fr.inria.sed.logo.k3dsa.logo.vm.aspects.InterpreterRuntimeContextAspectInterpreterRuntimeContextAspectProperties _self_ = fr.inria.sed.logo.k3dsa.logo.vm.aspects.InterpreterRuntimeContextAspectInterpreterRuntimeContextAspectContext.getSelf(_self);
-    // #DispatchPointCut_before# void pushParamMap(HashMap<String, Integer>)
+    // #DispatchPointCut_before# void pushParamMap(ParamMap)
     if (_self instanceof fr.inria.sed.logo.vm.model.vm.InterpreterRuntimeContext){
     	fr.inria.sed.logo.k3dsa.logo.vm.aspects.InterpreterRuntimeContextAspect._privk3_pushParamMap(_self_, (fr.inria.sed.logo.vm.model.vm.InterpreterRuntimeContext)_self,paramMap);
     };
   }
   
-  public static HashMap<String, Integer> peekParamMap(final InterpreterRuntimeContext _self) {
+  public static ParamMap peekParamMap(final InterpreterRuntimeContext _self) {
     final fr.inria.sed.logo.k3dsa.logo.vm.aspects.InterpreterRuntimeContextAspectInterpreterRuntimeContextAspectProperties _self_ = fr.inria.sed.logo.k3dsa.logo.vm.aspects.InterpreterRuntimeContextAspectInterpreterRuntimeContextAspectContext.getSelf(_self);
     Object result = null;
-    // #DispatchPointCut_before# HashMap<String, Integer> peekParamMap()
+    // #DispatchPointCut_before# ParamMap peekParamMap()
     if (_self instanceof fr.inria.sed.logo.vm.model.vm.InterpreterRuntimeContext){
     	result = fr.inria.sed.logo.k3dsa.logo.vm.aspects.InterpreterRuntimeContextAspect._privk3_peekParamMap(_self_, (fr.inria.sed.logo.vm.model.vm.InterpreterRuntimeContext)_self);
     };
-    return (java.util.HashMap<java.lang.String, java.lang.Integer>)result;
+    return (fr.inria.sed.logo.vm.model.vm.ParamMap)result;
   }
   
-  public static HashMap<String, Integer> popParamMap(final InterpreterRuntimeContext _self) {
+  public static ParamMap popParamMap(final InterpreterRuntimeContext _self) {
     final fr.inria.sed.logo.k3dsa.logo.vm.aspects.InterpreterRuntimeContextAspectInterpreterRuntimeContextAspectProperties _self_ = fr.inria.sed.logo.k3dsa.logo.vm.aspects.InterpreterRuntimeContextAspectInterpreterRuntimeContextAspectContext.getSelf(_self);
     Object result = null;
-    // #DispatchPointCut_before# HashMap<String, Integer> popParamMap()
+    // #DispatchPointCut_before# ParamMap popParamMap()
     if (_self instanceof fr.inria.sed.logo.vm.model.vm.InterpreterRuntimeContext){
     	result = fr.inria.sed.logo.k3dsa.logo.vm.aspects.InterpreterRuntimeContextAspect._privk3_popParamMap(_self_, (fr.inria.sed.logo.vm.model.vm.InterpreterRuntimeContext)_self);
     };
-    return (java.util.HashMap<java.lang.String, java.lang.Integer>)result;
+    return (fr.inria.sed.logo.vm.model.vm.ParamMap)result;
   }
   
   private static MessagingSystem internalLogger(final InterpreterRuntimeContext _self) {
@@ -81,19 +81,19 @@ public class InterpreterRuntimeContextAspect {
     return InterpreterRuntimeContextAspect.internalLogger(_self);
   }
   
-  protected static void _privk3_pushParamMap(final InterpreterRuntimeContextAspectInterpreterRuntimeContextAspectProperties _self_, final InterpreterRuntimeContext _self, final HashMap<String, Integer> paramMap) {
+  protected static void _privk3_pushParamMap(final InterpreterRuntimeContextAspectInterpreterRuntimeContextAspectProperties _self_, final InterpreterRuntimeContext _self, final ParamMap paramMap) {
     _self.getStack().add(paramMap);
   }
   
-  protected static HashMap<String, Integer> _privk3_peekParamMap(final InterpreterRuntimeContextAspectInterpreterRuntimeContextAspectProperties _self_, final InterpreterRuntimeContext _self) {
-    return IterableExtensions.<HashMap<String, Integer>>last(_self.getStack());
+  protected static ParamMap _privk3_peekParamMap(final InterpreterRuntimeContextAspectInterpreterRuntimeContextAspectProperties _self_, final InterpreterRuntimeContext _self) {
+    return IterableExtensions.<ParamMap>last(_self.getStack());
   }
   
-  protected static HashMap<String, Integer> _privk3_popParamMap(final InterpreterRuntimeContextAspectInterpreterRuntimeContextAspectProperties _self_, final InterpreterRuntimeContext _self) {
-    HashMap<String, Integer> _xblockexpression = null;
+  protected static ParamMap _privk3_popParamMap(final InterpreterRuntimeContextAspectInterpreterRuntimeContextAspectProperties _self_, final InterpreterRuntimeContext _self) {
+    ParamMap _xblockexpression = null;
     {
-      IterableExtensions.<HashMap<String, Integer>>last(_self.getStack());
-      EList<HashMap<String, Integer>> _stack = _self.getStack();
+      IterableExtensions.<ParamMap>last(_self.getStack());
+      EList<ParamMap> _stack = _self.getStack();
       int _size = _self.getStack().size();
       int _minus = (_size - 1);
       _xblockexpression = _stack.remove(_minus);

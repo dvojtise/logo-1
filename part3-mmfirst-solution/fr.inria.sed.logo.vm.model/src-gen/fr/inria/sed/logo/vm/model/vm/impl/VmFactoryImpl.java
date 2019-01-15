@@ -3,10 +3,7 @@
 package fr.inria.sed.logo.vm.model.vm.impl;
 
 import fr.inria.sed.logo.vm.model.vm.*;
-
-import java.util.HashMap;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -65,38 +62,12 @@ public class VmFactoryImpl extends EFactoryImpl implements VmFactory {
 			return createPoint();
 		case VmPackage.SEGMENT:
 			return createSegment();
+		case VmPackage.PARAM_MAP_ENTRY:
+			return createParamMapEntry();
+		case VmPackage.PARAM_MAP:
+			return createParamMap();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-		case VmPackage.PARAM_MAP:
-			return createParamMapFromString(eDataType, initialValue);
-		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-		case VmPackage.PARAM_MAP:
-			return convertParamMapToString(eDataType, instanceValue);
-		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -145,8 +116,9 @@ public class VmFactoryImpl extends EFactoryImpl implements VmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public HashMap<?, ?> createParamMapFromString(EDataType eDataType, String initialValue) {
-		return (HashMap<?, ?>) super.createFromString(initialValue);
+	public ParamMapEntry createParamMapEntry() {
+		ParamMapEntryImpl paramMapEntry = new ParamMapEntryImpl();
+		return paramMapEntry;
 	}
 
 	/**
@@ -154,8 +126,9 @@ public class VmFactoryImpl extends EFactoryImpl implements VmFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertParamMapToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(instanceValue);
+	public ParamMap createParamMap() {
+		ParamMapImpl paramMap = new ParamMapImpl();
+		return paramMap;
 	}
 
 	/**

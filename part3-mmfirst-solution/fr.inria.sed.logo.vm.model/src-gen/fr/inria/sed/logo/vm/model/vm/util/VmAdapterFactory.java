@@ -4,7 +4,6 @@ package fr.inria.sed.logo.vm.model.vm.util;
 
 import fr.inria.sed.logo.RuntimeContext;
 import fr.inria.sed.logo.vm.model.vm.*;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 
@@ -88,6 +87,16 @@ public class VmAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseParamMapEntry(ParamMapEntry object) {
+			return createParamMapEntryAdapter();
+		}
+
+		@Override
+		public Adapter caseParamMap(ParamMap object) {
+			return createParamMapAdapter();
+		}
+
+		@Override
 		public Adapter caseRuntimeContext(RuntimeContext object) {
 			return createRuntimeContextAdapter();
 		}
@@ -164,6 +173,34 @@ public class VmAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSegmentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.inria.sed.logo.vm.model.vm.ParamMapEntry <em>Param Map Entry</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.inria.sed.logo.vm.model.vm.ParamMapEntry
+	 * @generated
+	 */
+	public Adapter createParamMapEntryAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.inria.sed.logo.vm.model.vm.ParamMap <em>Param Map</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.inria.sed.logo.vm.model.vm.ParamMap
+	 * @generated
+	 */
+	public Adapter createParamMapAdapter() {
 		return null;
 	}
 

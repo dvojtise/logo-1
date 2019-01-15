@@ -69,6 +69,7 @@ import org.eclipse.emf.common.util.EList
 import fr.inria.sed.logo.vm.model.vm.VmFactory
 import fr.inria.sed.logo.vm.model.vm.InterpreterRuntimeContext
 import java.util.HashMap
+import fr.inria.sed.logo.vm.model.vm.ParamMap
 
 @Aspect(className=LogoProgram)
 class LogoProgramAspect {
@@ -171,10 +172,13 @@ class ProcCallAspect extends PrimitiveInstructionAspect {
 	@Step
 	def void run(InterpreterRuntimeContext context){
 		context.logger.debug("run of " +_self, "Logo")
-		val HashMap<String, Integer> params = newHashMap;
+		val ParamMap params = VmFactory.eINSTANCE.createParamMap;
 		(0..(_self.actualArgs.size-1)).forEach[i | 
 			val currentArg = _self.actualArgs.get(i).eval(context)
-			params.put(_self.declaration.args.get(i).name,currentArg)
+			val param = VmFactory.eINSTANCE.createParamMapEntry
+			param.key = _self.declaration.args.get(i).name
+			param.value = currentArg
+			params.entries.add(param)
 		]
 		context.pushParamMap(params)
 		_self.declaration.instructions.forEach[instruction | instruction.run(context)]
@@ -245,7 +249,7 @@ class ParameterCallAspect extends ExpressionAspect {
 	
 	def Integer eval(InterpreterRuntimeContext context){
 		context.logger.debug("eval of " +_self, "Logo")
-		return context.peekParamMap.get(_self.parameter.name);
+		return context.peekParamMap.entries.findFirst[m | m.key == _self.parameter.name].value;
 	}
 
 }

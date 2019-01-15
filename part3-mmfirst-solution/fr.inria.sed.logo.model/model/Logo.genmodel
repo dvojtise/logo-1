@@ -12,6 +12,7 @@
       ecorePackage="Logo.ecore#/">
     <genClasses ecoreClass="Logo.ecore#//LogoProgram">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logo.ecore#//LogoProgram/instructions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logo.ecore#//LogoProgram/runtimeContext"/>
     </genClasses>
     <genClasses ecoreClass="Logo.ecore#//Instruction"/>
     <genClasses ecoreClass="Logo.ecore#//Backward">
@@ -94,5 +95,6 @@
     </genClasses>
     <genClasses image="false" ecoreClass="Logo.ecore#//PrimitiveInstruction"/>
     <genClasses image="false" ecoreClass="Logo.ecore#//ControlStructureInstruction"/>
+    <genClasses image="false" ecoreClass="Logo.ecore#//RuntimeContext"/>
   </genPackages>
 </genmodel:GenModel>

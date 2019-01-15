@@ -31,6 +31,7 @@ import fr.inria.sed.logo.ProcCall;
 import fr.inria.sed.logo.ProcDeclaration;
 import fr.inria.sed.logo.Repeat;
 import fr.inria.sed.logo.Right;
+import fr.inria.sed.logo.RuntimeContext;
 import fr.inria.sed.logo.While;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -244,6 +245,13 @@ public class LogoPackageImpl extends EPackageImpl implements LogoPackage {
 	private EClass controlStructureInstructionEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass runtimeContextEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -323,6 +331,15 @@ public class LogoPackageImpl extends EPackageImpl implements LogoPackage {
 	 */
 	public EReference getLogoProgram_Instructions() {
 		return (EReference) logoProgramEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLogoProgram_RuntimeContext() {
+		return (EReference) logoProgramEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -879,6 +896,15 @@ public class LogoPackageImpl extends EPackageImpl implements LogoPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getRuntimeContext() {
+		return runtimeContextEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public LogoFactory getLogoFactory() {
 		return (LogoFactory) getEFactoryInstance();
 	}
@@ -905,6 +931,7 @@ public class LogoPackageImpl extends EPackageImpl implements LogoPackage {
 		// Create classes and their features
 		logoProgramEClass = createEClass(LOGO_PROGRAM);
 		createEReference(logoProgramEClass, LOGO_PROGRAM__INSTRUCTIONS);
+		createEReference(logoProgramEClass, LOGO_PROGRAM__RUNTIME_CONTEXT);
 
 		instructionEClass = createEClass(INSTRUCTION);
 
@@ -993,6 +1020,8 @@ public class LogoPackageImpl extends EPackageImpl implements LogoPackage {
 		primitiveInstructionEClass = createEClass(PRIMITIVE_INSTRUCTION);
 
 		controlStructureInstructionEClass = createEClass(CONTROL_STRUCTURE_INSTRUCTION);
+
+		runtimeContextEClass = createEClass(RUNTIME_CONTEXT);
 	}
 
 	/**
@@ -1056,6 +1085,9 @@ public class LogoPackageImpl extends EPackageImpl implements LogoPackage {
 		initEReference(getLogoProgram_Instructions(), this.getInstruction(), null, "instructions", null, 0, -1,
 				LogoProgram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLogoProgram_RuntimeContext(), this.getRuntimeContext(), null, "runtimeContext", null, 0, 1,
+				LogoProgram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(instructionEClass, Instruction.class, "Instruction", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -1089,7 +1121,7 @@ public class LogoPackageImpl extends EPackageImpl implements LogoPackage {
 
 		initEClass(constantEClass, Constant.class, "Constant", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getConstant_IntegerValue(), ecorePackage.getEInt(), "integerValue", null, 0, 1, Constant.class,
+		initEAttribute(getConstant_IntegerValue(), ecorePackage.getEInt(), "integerValue", null, 1, 1, Constant.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(procCallEClass, ProcCall.class, "ProcCall", !IS_ABSTRACT, !IS_INTERFACE,
@@ -1220,8 +1252,39 @@ public class LogoPackageImpl extends EPackageImpl implements LogoPackage {
 		initEClass(controlStructureInstructionEClass, ControlStructureInstruction.class, "ControlStructureInstruction",
 				IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		initEClass(runtimeContextEClass, RuntimeContext.class, "RuntimeContext", IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// http://www.eclipse.org/OCL/Import
+		createImportAnnotations();
+		// aspect
+		createAspectAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/OCL/Import</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createImportAnnotations() {
+		String source = "http://www.eclipse.org/OCL/Import";
+		addAnnotation(this, source, new String[] { "ecore", "http://www.eclipse.org/emf/2002/Ecore" });
+	}
+
+	/**
+	 * Initializes the annotations for <b>aspect</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createAspectAnnotations() {
+		String source = "aspect";
+		addAnnotation(getLogoProgram_RuntimeContext(), source, new String[] {});
 	}
 
 } //LogoPackageImpl

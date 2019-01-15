@@ -3,7 +3,6 @@
 package fr.inria.sed.logo.vm.model.vm;
 
 import fr.inria.sed.logo.RuntimeContext;
-import java.util.HashMap;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -51,19 +50,19 @@ public interface InterpreterRuntimeContext extends RuntimeContext {
 	void setTurtle(Turtle value);
 
 	/**
-	 * Returns the value of the '<em><b>Stack</b></em>' attribute list.
-	 * The list contents are of type {@link java.util.HashMap}<code>&lt;java.lang.String, java.lang.Integer&gt;</code>.
+	 * Returns the value of the '<em><b>Stack</b></em>' containment reference list.
+	 * The list contents are of type {@link fr.inria.sed.logo.vm.model.vm.ParamMap}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Stack</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Stack</em>' attribute list.
+	 * @return the value of the '<em>Stack</em>' containment reference list.
 	 * @see fr.inria.sed.logo.vm.model.vm.VmPackage#getInterpreterRuntimeContext_Stack()
-	 * @model unique="false" dataType="fr.inria.sed.logo.vm.model.vm.ParamMap&lt;org.eclipse.emf.ecore.EString, org.eclipse.emf.ecore.EIntegerObject&gt;"
+	 * @model containment="true"
 	 * @generated
 	 */
-	EList<HashMap<String, Integer>> getStack();
+	EList<ParamMap> getStack();
 
 } // InterpreterRuntimeContext

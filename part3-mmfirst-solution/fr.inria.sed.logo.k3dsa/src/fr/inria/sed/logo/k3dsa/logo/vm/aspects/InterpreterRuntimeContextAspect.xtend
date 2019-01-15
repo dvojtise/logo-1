@@ -6,6 +6,7 @@ import fr.inria.sed.logo.vm.model.vm.InterpreterRuntimeContext
 import org.eclipse.gemoc.commons.eclipse.messagingsystem.api.MessagingSystemManager
 import org.eclipse.gemoc.commons.eclipse.messagingsystem.api.MessagingSystem
 import java.util.HashMap
+import fr.inria.sed.logo.vm.model.vm.ParamMap
 
 @Aspect(className=InterpreterRuntimeContext)
 class InterpreterRuntimeContextAspect {
@@ -20,13 +21,13 @@ class InterpreterRuntimeContextAspect {
 	}
 	
 	/* paramMap helpers */
-	def void pushParamMap(HashMap<String, Integer> paramMap) {
+	def void pushParamMap(ParamMap paramMap) {
 		_self.stack.add(paramMap)
 	}
-	def HashMap<String, Integer> peekParamMap(){
+	def ParamMap peekParamMap(){
 		_self.stack.last
 	}
-	def  HashMap<String, Integer> popParamMap(){
+	def  ParamMap popParamMap(){
 		_self.stack.last
 		_self.stack.remove(_self.stack.size -1)
 	}

@@ -4,17 +4,15 @@ package fr.inria.sed.logo.vm.model.vm.impl;
 
 import fr.inria.sed.logo.LogoPackage;
 import fr.inria.sed.logo.vm.model.vm.InterpreterRuntimeContext;
+import fr.inria.sed.logo.vm.model.vm.ParamMap;
+import fr.inria.sed.logo.vm.model.vm.ParamMapEntry;
 import fr.inria.sed.logo.vm.model.vm.Point;
 import fr.inria.sed.logo.vm.model.vm.Segment;
 import fr.inria.sed.logo.vm.model.vm.Turtle;
 import fr.inria.sed.logo.vm.model.vm.VmFactory;
 import fr.inria.sed.logo.vm.model.vm.VmPackage;
-
-import java.util.HashMap;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -60,7 +58,14 @@ public class VmPackageImpl extends EPackageImpl implements VmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EDataType paramMapEDataType = null;
+	private EClass paramMapEntryEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass paramMapEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -151,8 +156,8 @@ public class VmPackageImpl extends EPackageImpl implements VmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getInterpreterRuntimeContext_Stack() {
-		return (EAttribute) interpreterRuntimeContextEClass.getEStructuralFeatures().get(1);
+	public EReference getInterpreterRuntimeContext_Stack() {
+		return (EReference) interpreterRuntimeContextEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -268,8 +273,44 @@ public class VmPackageImpl extends EPackageImpl implements VmPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EDataType getParamMap() {
-		return paramMapEDataType;
+	public EClass getParamMapEntry() {
+		return paramMapEntryEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getParamMapEntry_Key() {
+		return (EAttribute) paramMapEntryEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getParamMapEntry_Value() {
+		return (EAttribute) paramMapEntryEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getParamMap() {
+		return paramMapEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getParamMap_Entries() {
+		return (EReference) paramMapEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -303,7 +344,7 @@ public class VmPackageImpl extends EPackageImpl implements VmPackage {
 		// Create classes and their features
 		interpreterRuntimeContextEClass = createEClass(INTERPRETER_RUNTIME_CONTEXT);
 		createEReference(interpreterRuntimeContextEClass, INTERPRETER_RUNTIME_CONTEXT__TURTLE);
-		createEAttribute(interpreterRuntimeContextEClass, INTERPRETER_RUNTIME_CONTEXT__STACK);
+		createEReference(interpreterRuntimeContextEClass, INTERPRETER_RUNTIME_CONTEXT__STACK);
 
 		turtleEClass = createEClass(TURTLE);
 		createEReference(turtleEClass, TURTLE__REACHED_POINTS);
@@ -320,8 +361,12 @@ public class VmPackageImpl extends EPackageImpl implements VmPackage {
 		createEReference(segmentEClass, SEGMENT__ORIGIN);
 		createEReference(segmentEClass, SEGMENT__DESTINATION);
 
-		// Create data types
-		paramMapEDataType = createEDataType(PARAM_MAP);
+		paramMapEntryEClass = createEClass(PARAM_MAP_ENTRY);
+		createEAttribute(paramMapEntryEClass, PARAM_MAP_ENTRY__KEY);
+		createEAttribute(paramMapEntryEClass, PARAM_MAP_ENTRY__VALUE);
+
+		paramMapEClass = createEClass(PARAM_MAP);
+		createEReference(paramMapEClass, PARAM_MAP__ENTRIES);
 	}
 
 	/**
@@ -352,8 +397,6 @@ public class VmPackageImpl extends EPackageImpl implements VmPackage {
 		LogoPackage theLogoPackage = (LogoPackage) EPackage.Registry.INSTANCE.getEPackage(LogoPackage.eNS_URI);
 
 		// Create type parameters
-		addETypeParameter(paramMapEDataType, "K");
-		addETypeParameter(paramMapEDataType, "V");
 
 		// Set bounds for type parameters
 
@@ -366,14 +409,9 @@ public class VmPackageImpl extends EPackageImpl implements VmPackage {
 		initEReference(getInterpreterRuntimeContext_Turtle(), this.getTurtle(), null, "turtle", null, 1, 1,
 				InterpreterRuntimeContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		EGenericType g1 = createEGenericType(this.getParamMap());
-		EGenericType g2 = createEGenericType(ecorePackage.getEString());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEIntegerObject());
-		g1.getETypeArguments().add(g2);
-		initEAttribute(getInterpreterRuntimeContext_Stack(), g1, "stack", null, 0, -1, InterpreterRuntimeContext.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEReference(getInterpreterRuntimeContext_Stack(), this.getParamMap(), null, "stack", null, 0, -1,
+				InterpreterRuntimeContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(turtleEClass, Turtle.class, "Turtle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTurtle_ReachedPoints(), this.getPoint(), null, "reachedPoints", null, 0, -1, Turtle.class,
@@ -404,8 +442,18 @@ public class VmPackageImpl extends EPackageImpl implements VmPackage {
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		// Initialize data types
-		initEDataType(paramMapEDataType, HashMap.class, "ParamMap", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEClass(paramMapEntryEClass, ParamMapEntry.class, "ParamMapEntry", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getParamMapEntry_Key(), ecorePackage.getEString(), "key", null, 0, 1, ParamMapEntry.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getParamMapEntry_Value(), ecorePackage.getEInt(), "value", null, 0, 1, ParamMapEntry.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(paramMapEClass, ParamMap.class, "ParamMap", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getParamMap_Entries(), this.getParamMapEntry(), null, "entries", null, 0, -1, ParamMap.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -413,6 +461,8 @@ public class VmPackageImpl extends EPackageImpl implements VmPackage {
 		// Create annotations
 		// http://www.eclipse.org/OCL/Import
 		createImportAnnotations();
+		// aspect
+		createAspectAnnotations();
 	}
 
 	/**
@@ -424,6 +474,23 @@ public class VmPackageImpl extends EPackageImpl implements VmPackage {
 	protected void createImportAnnotations() {
 		String source = "http://www.eclipse.org/OCL/Import";
 		addAnnotation(this, source, new String[] { "ecore", "http://www.eclipse.org/emf/2002/Ecore" });
+	}
+
+	/**
+	 * Initializes the annotations for <b>aspect</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createAspectAnnotations() {
+		String source = "aspect";
+		addAnnotation(interpreterRuntimeContextEClass, source, new String[] {});
+		addAnnotation(getInterpreterRuntimeContext_Turtle(), source, new String[] {});
+		addAnnotation(getInterpreterRuntimeContext_Stack(), source, new String[] {});
+		addAnnotation(turtleEClass, source, new String[] {});
+		addAnnotation(getTurtle_Segments(), source, new String[] {});
+		addAnnotation(getTurtle_PenUp(), source, new String[] {});
+		addAnnotation(getTurtle_Heading(), source, new String[] {});
 	}
 
 } //VmPackageImpl

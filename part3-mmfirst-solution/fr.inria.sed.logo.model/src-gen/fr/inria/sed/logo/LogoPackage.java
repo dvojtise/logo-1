@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see fr.inria.sed.logo.LogoFactory
  * @model kind="package"
+ *        annotation="http://www.eclipse.org/OCL/Import ecore='http://www.eclipse.org/emf/2002/Ecore'"
  * @generated
  */
 public interface LogoPackage extends EPackage {
@@ -76,13 +77,22 @@ public interface LogoPackage extends EPackage {
 	int LOGO_PROGRAM__INSTRUCTIONS = 0;
 
 	/**
+	 * The feature id for the '<em><b>Runtime Context</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOGO_PROGRAM__RUNTIME_CONTEXT = 1;
+
+	/**
 	 * The number of structural features of the '<em>Program</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOGO_PROGRAM_FEATURE_COUNT = 1;
+	int LOGO_PROGRAM_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Program</em>' class.
@@ -1156,6 +1166,34 @@ public interface LogoPackage extends EPackage {
 	int DIV_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link fr.inria.sed.logo.impl.RuntimeContextImpl <em>Runtime Context</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.sed.logo.impl.RuntimeContextImpl
+	 * @see fr.inria.sed.logo.impl.LogoPackageImpl#getRuntimeContext()
+	 * @generated
+	 */
+	int RUNTIME_CONTEXT = 28;
+
+	/**
+	 * The number of structural features of the '<em>Runtime Context</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RUNTIME_CONTEXT_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Runtime Context</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RUNTIME_CONTEXT_OPERATION_COUNT = 0;
+
+	/**
 	 * Returns the meta object for class '{@link fr.inria.sed.logo.LogoProgram <em>Program</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1175,6 +1213,17 @@ public interface LogoPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getLogoProgram_Instructions();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link fr.inria.sed.logo.LogoProgram#getRuntimeContext <em>Runtime Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Runtime Context</em>'.
+	 * @see fr.inria.sed.logo.LogoProgram#getRuntimeContext()
+	 * @see #getLogoProgram()
+	 * @generated
+	 */
+	EReference getLogoProgram_RuntimeContext();
 
 	/**
 	 * Returns the meta object for class '{@link fr.inria.sed.logo.Instruction <em>Instruction</em>}'.
@@ -1821,6 +1870,16 @@ public interface LogoPackage extends EPackage {
 	EClass getControlStructureInstruction();
 
 	/**
+	 * Returns the meta object for class '{@link fr.inria.sed.logo.RuntimeContext <em>Runtime Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Runtime Context</em>'.
+	 * @see fr.inria.sed.logo.RuntimeContext
+	 * @generated
+	 */
+	EClass getRuntimeContext();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1860,6 +1919,14 @@ public interface LogoPackage extends EPackage {
 		 * @generated
 		 */
 		EReference LOGO_PROGRAM__INSTRUCTIONS = eINSTANCE.getLogoProgram_Instructions();
+
+		/**
+		 * The meta object literal for the '<em><b>Runtime Context</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LOGO_PROGRAM__RUNTIME_CONTEXT = eINSTANCE.getLogoProgram_RuntimeContext();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.sed.logo.impl.InstructionImpl <em>Instruction</em>}' class.
@@ -2402,6 +2469,16 @@ public interface LogoPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CONTROL_STRUCTURE_INSTRUCTION = eINSTANCE.getControlStructureInstruction();
+
+		/**
+		 * The meta object literal for the '{@link fr.inria.sed.logo.impl.RuntimeContextImpl <em>Runtime Context</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.inria.sed.logo.impl.RuntimeContextImpl
+		 * @see fr.inria.sed.logo.impl.LogoPackageImpl#getRuntimeContext()
+		 * @generated
+		 */
+		EClass RUNTIME_CONTEXT = eINSTANCE.getRuntimeContext();
 
 	}
 

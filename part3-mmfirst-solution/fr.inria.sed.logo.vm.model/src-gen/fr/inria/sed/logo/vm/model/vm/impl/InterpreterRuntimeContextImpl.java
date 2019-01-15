@@ -4,20 +4,19 @@ package fr.inria.sed.logo.vm.model.vm.impl;
 
 import fr.inria.sed.logo.impl.RuntimeContextImpl;
 import fr.inria.sed.logo.vm.model.vm.InterpreterRuntimeContext;
+import fr.inria.sed.logo.vm.model.vm.ParamMap;
 import fr.inria.sed.logo.vm.model.vm.Turtle;
 import fr.inria.sed.logo.vm.model.vm.VmPackage;
-
 import java.util.Collection;
-import java.util.HashMap;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,14 +44,14 @@ public class InterpreterRuntimeContextImpl extends RuntimeContextImpl implements
 	protected Turtle turtle;
 
 	/**
-	 * The cached value of the '{@link #getStack() <em>Stack</em>}' attribute list.
+	 * The cached value of the '{@link #getStack() <em>Stack</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getStack()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<HashMap<String, Integer>> stack;
+	protected EList<ParamMap> stack;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -128,9 +127,9 @@ public class InterpreterRuntimeContextImpl extends RuntimeContextImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<HashMap<String, Integer>> getStack() {
+	public EList<ParamMap> getStack() {
 		if (stack == null) {
-			stack = new EDataTypeEList<HashMap<String, Integer>>(HashMap.class, this,
+			stack = new EObjectContainmentEList<ParamMap>(ParamMap.class, this,
 					VmPackage.INTERPRETER_RUNTIME_CONTEXT__STACK);
 		}
 		return stack;
@@ -146,6 +145,8 @@ public class InterpreterRuntimeContextImpl extends RuntimeContextImpl implements
 		switch (featureID) {
 		case VmPackage.INTERPRETER_RUNTIME_CONTEXT__TURTLE:
 			return basicSetTurtle(null, msgs);
+		case VmPackage.INTERPRETER_RUNTIME_CONTEXT__STACK:
+			return ((InternalEList<?>) getStack()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -180,7 +181,7 @@ public class InterpreterRuntimeContextImpl extends RuntimeContextImpl implements
 			return;
 		case VmPackage.INTERPRETER_RUNTIME_CONTEXT__STACK:
 			getStack().clear();
-			getStack().addAll((Collection<? extends HashMap<String, Integer>>) newValue);
+			getStack().addAll((Collection<? extends ParamMap>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -218,23 +219,6 @@ public class InterpreterRuntimeContextImpl extends RuntimeContextImpl implements
 			return stack != null && !stack.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy())
-			return super.toString();
-
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (stack: ");
-		result.append(stack);
-		result.append(')');
-		return result.toString();
 	}
 
 } //InterpreterRuntimeContextImpl
