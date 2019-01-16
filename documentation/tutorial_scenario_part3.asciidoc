@@ -9,9 +9,9 @@ This document indicates the steps to follow in order to reproduce the tutorial.
 This part follows the work done in part2. 
 While you can start from your own work, I suggest to replace it and start from the solution of part2.
 
-so the starting projects are available in the folder _part2-mmfirst-solution_.
+so the starting projects are available in the folder https://github.com/dvojtise/mde-crashcourse-logo/tree/master/part2-mmfirst-solution[part2-mmfirst-solution] .
 
-The solution of this tutorial is available in the folder _part3-mmfirst-solution_.
+The solution of this tutorial is available in the folder https://github.com/dvojtise/mde-crashcourse-logo/tree/master/part3-mmfirst-solution[part3-mmfirst-solution] .
 
 
 
@@ -27,7 +27,7 @@ It will provide features such as:
 [NOTE]
 ====
 In order to keep the tutorial as simple as possible, we consider that we can modify the 
-metamodel directly. this is correct for most languages you create by your own, but in some situation 
+metamodel directly. This is correct for most languages you create by your own, but in some situation 
 you may prefer to keep a stricter separation between the static and dynamic parts of the language. 
 GEMOC offers several strategies to achieve this but they are out of the scope of this tutorial.
 ====
@@ -92,7 +92,7 @@ Add a _run_ method with *@Main* annotation in the class LogoProgramAspect.
 	}
 ---- 
 
-Launch the Modeling workbench.
+Launch the *Modeling workbench*.
 
 * _Run -> Debug configurations..._
 ** Right click on _Gemoc Sequential eXecutable Model_ -> _new configuration_
@@ -532,7 +532,7 @@ You must take care to long running process and consider using threads/jobs for t
 ====
 
 
-In the modeling workbench, launch an execution on a simple logo model to obser this simple GUI.
+In the *modeling workbench*, launch an execution on a simple logo model to obser this simple GUI.
 
 More complexe GUI can be written, for example by creating a view integrated in eclipse.
 

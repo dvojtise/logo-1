@@ -132,13 +132,13 @@ Using this technique you can directly add a Sirius representation on top of the 
 NOTE when using the second workbench, make sure to create the representation using the correct viewpoint, since it will appear twice.
 ====
  
-For our logo example, we'll mostly design the graphical represention from  the modeling workbench.  
+For our logo example, we'll mostly design the graphical representation from  the *modeling workbench*.  
 
 In the odesign:
 
 * on the viewpoint; _right click -> new representation -> diagram description_
 * on the diagram description; 
-** on the metamodel tab: add a reference to the ecore file (_add from registry_ if you work with xtext and are working in the modeling workbench, 
+** on the metamodel tab: add a reference to the ecore file (_add from registry_ if you work with xtext and are working in the *modeling workbench*, 
 otherwise use _add from workspace_)
 ** on the general tab:  
 *** Domain class = LogoProgram  (the completion should work)
@@ -377,9 +377,9 @@ We will create some java services to be used by sirius
 
 === Add xtext aware service static methods
 
-close the modeling worbench (will need to be restarted in order to take into account the new methods)
+close the *modeling worbench* (will need to be restarted in order to take into account the new methods)
 
-in the Language workbench.
+in the *Language workbench*.
 
 in the _xxx.design_ project
 open plugin.xml file, add a plugin dependency to _org.eclipse.xtext_, _org.eclipse.ui.ide_, 
@@ -456,7 +456,7 @@ add the following methods in the Services.java file. (or copy the file from http
 
 === Use services to improve labels
 
-restart the modeling workbench
+restart the *modeling workbench*
 
 TIP: If you start it in debug mode, small changes (code in an existing method) can be taken into account without a full restart.
 

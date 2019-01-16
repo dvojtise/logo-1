@@ -1,0 +1,2 @@
+The html version of this crash course are available online: <<https://dvojtise.github.io/mde-crashcourse-logo/,https://dvojtise.github.io/mde-crashcourse-logo/>> 
+
