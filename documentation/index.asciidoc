@@ -1,3 +1,5 @@
+Content of the 2 days of this crash course:
+
 * <<tutorial_scenario_part1.asciidoc#day-one-part1>>
-* <<tutorial_scenario_part1.asciidoc#day-two-part2>>
-* <<tutorial_scenario_part1.asciidoc#day-two-part3>>
+* <<tutorial_scenario_part2.asciidoc#day-two-part2>>
+* <<tutorial_scenario_part3.asciidoc#day-two-part3>>
