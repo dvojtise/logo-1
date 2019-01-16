@@ -10,13 +10,13 @@ services:
   - docker                  
 
 before_install:            
-  - mkdir -p output
+  - mkdir -p documentation/output
   - docker pull asciidoctor/docker-asciidoctor
 
 script:
   - docker run -v $TRAVIS_BUILD_DIR/documentation:/documents/ --name asciidoc-to-html asciidoctor/docker-asciidoctor asciidoctor -D /documents/output *.asciidoc      
   - docker run -v $TRAVIS_BUILD_DIR/documentation:/documents/ --name asciidoc-to-pdf asciidoctor/docker-asciidoctor asciidoctor-pdf -D /documents/output *.asciidoc
-  - cp -r images output/images  
+  - cp -r $TRAVIS_BUILD_DIR/documentation/images $TRAVIS_BUILD_DIR/documentation/output/images  
 
 after_error: 
   - docker logs asciidoc-to-html
