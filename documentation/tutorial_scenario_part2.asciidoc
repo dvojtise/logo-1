@@ -5,24 +5,17 @@
 
 This document indicates the steps to follow in order to reproduce the tutorial.
 
-The solution of this tutorial is available in the folder _part2-mmfirst-solution_.
-
-
-
-
-
-
-Principes généraux:
-** MM first
-**	trick pour éviter Melange et simplifier le tuto
-	ajout d'un object abstrait "RuntimeContext" pour faciliter l'ancrage des concepts du RTD
-	et possiblement la création de plusieurs sémantique différentes
-
+The solution of this tutorial is available in the folder https://github.com/dvojtise/mde-crashcourse-logo/tree/master/part2-mmfirst-solution[part2-mmfirst-solution] .
 
 
 == Convert Grammar first to metamodel first
 
-NOTE: As this part is not really important, as this is only code refactoring, you may also directly grab the version in _part2-mmfirst-base_
+[NOTE] 
+====
+As this part is not really important, as this is only code refactoring, 
+you may also directly grab the version in folder https://github.com/dvojtise/mde-crashcourse-logo/tree/master/part2-mmfirst-base[part2-mmfirst-base]  and move to 
+<<#sirius-graphical-editor>> section.
+====
 
 * _File -> New -> Ecore Modeling Project_
 ** name:  _fr.inria.sed.logo.model_
@@ -74,7 +67,7 @@ Do some refactoring in the metamodel:
 * add an abstract concept PrimitiveInstruction as super class for PenUp, Foward, clear, etc
 * add an abstract concept controlStructureInstruction as super class for If, Repeat, while, etc
 
-
+[#sirius-graphical-editor]
 == Sirius graphical editor
 
 We will create a block based graphical representation for Logo.
@@ -82,7 +75,7 @@ We will create a block based graphical representation for Logo.
 Create the project for the graphical editor:
 
 * _File -> new -> Viewpoint Specification Project_
-** name: fr.inria.sed.logo.design
+** name: `fr.inria.sed.logo.design`
 
 * on the project (plugin.xml or manifest.mf) add a dependency to _fr.inria.sed.logo.model_ project
 
@@ -116,7 +109,7 @@ IE. convert a logo file into an xmi file. To do that:
 
 * in the *Modeling workbench* (with xtext support available...)
 * right click on the _.logo_ file -> Open with -> Other -> Sample Reflective Ecore Model Editor
-* File -> save as -> choose a name ending with *.xmi*
+* _File -> save as_ -> choose a name ending with *.xmi*
 * verify that the file is correctly encoded in xmi (ie. a xml flavor) by opening it with the generic text editor
 * change the header in order to be
 [source>
@@ -139,7 +132,7 @@ Using this technique you can directly add a Sirius representation on top of the 
 NOTE when using the second workbench, make sure to create the representation using the correct viewpoint, since it will appear twice.
 ====
  
-For our logo example, we'll mostly design the graphical represention from  the moeling workbench.  
+For our logo example, we'll mostly design the graphical represention from  the modeling workbench.  
 
 In the odesign:
 
@@ -164,9 +157,10 @@ These representations will be contained in an _.aird_ file.
 [TIP]
 ====
 
-Sirius support another mode for the diagram using a project session:
+Sirius support another mode for the diagram using a _project session_:
 
-Using a _Modeling project_ does not require to create manually the _.aird_ file because it will create one by default for the project.
+When creating the project you can use the _Modeling project_ wizard.
+Projects with this nature do not require to create manually the _.aird_ file because it will create one by default for the project.
 
 However in this case, all representations of all models in the current project will be contained in a single "representation.aird" file. 
 While being convenient for some purposes, this behavior may not be suitable for all cases. 
