@@ -35,17 +35,6 @@ GEMOC offers several strategies to achieve this but they are out of the scope of
 
 
 
-
-
-Principes généraux:
-** MM first
-**	trick pour éviter Melange et simplifier le tuto
-	ajout d'un object abstrait "RuntimeContext" pour faciliter l'ancrage des concepts du RTD
-	et possiblement la création de plusieurs sémantique différentes
-
-
-
-
 == Define the dynamic semantic
 
 === Create a GEMOC Sequential project 
