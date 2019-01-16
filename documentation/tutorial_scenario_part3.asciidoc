@@ -10,6 +10,7 @@ This part follows the work done in part2.
 While you can start from your own work, I suggest to replace it and start from the solution of part2.
 
 so the starting projects are available in the folder https://github.com/dvojtise/mde-crashcourse-logo/tree/master/part2-mmfirst-solution[part2-mmfirst-solution] .
+(or download the https://github.com/dvojtise/mde-crashcourse-logo/part2-mmfirst-solution.zip[zip] and use import project)
 
 The solution of this tutorial is available in the folder https://github.com/dvojtise/mde-crashcourse-logo/tree/master/part3-mmfirst-solution[part3-mmfirst-solution] .
 
