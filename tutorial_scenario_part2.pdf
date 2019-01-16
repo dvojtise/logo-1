@@ -4,8 +4,8 @@
 << /Title (Scenario tutorial day two: Hands-on Sirius, the logo turtle language)
 /Creator (Asciidoctor PDF 1.5.0.alpha.16, based on Prawn 2.2.2)
 /Producer (Asciidoctor PDF 1.5.0.alpha.16, based on Prawn 2.2.2)
-/ModDate (D:20190116082736+00'00')
-/CreationDate (D:20190116082736+00'00')
+/ModDate (D:20190116091338+00'00')
+/CreationDate (D:20190116091338+00'00')
 >>
 endobj
 2 0 obj
@@ -9737,8 +9737,8 @@ endobj
 >>
 endobj
 71 0 obj
-<< /Limits [(_create_representation_for_if) (_use_services_to_improve_labels)]
-/Names [(_create_representation_for_if) 50 0 R (_display_all_instructions_of_the_procedure_declaration) 41 0 R (_display_all_procedure_declarations) 30 0 R (_display_all_root_instructions) 31 0 R (_display_all_root_instructions_2) 35 0 R (_improve_labels_and_xtext_integration) 55 0 R (_move_procedure_call_procedure_declaration_link_into_a_separate_layer) 48 0 R (_open_xtext_editor_via_right_click_popup) 65 0 R (_scenario_tutorial_day_two_hands_on_sirius_the_logo_turtle_language) 11 0 R (_sirius_graphical_editor) 24 0 R (_use_services_to_improve_labels) 61 0 R]
+<< /Limits [(_create_representation_for_if) (day-two-part2)]
+/Names [(_create_representation_for_if) 50 0 R (_display_all_instructions_of_the_procedure_declaration) 41 0 R (_display_all_procedure_declarations) 30 0 R (_display_all_root_instructions) 31 0 R (_display_all_root_instructions_2) 35 0 R (_improve_labels_and_xtext_integration) 55 0 R (_move_procedure_call_procedure_declaration_link_into_a_separate_layer) 48 0 R (_open_xtext_editor_via_right_click_popup) 65 0 R (_sirius_graphical_editor) 24 0 R (_use_services_to_improve_labels) 61 0 R (day-two-part2) 11 0 R]
 >>
 endobj
 72 0 obj
@@ -10423,63 +10423,63 @@ xref
 0000135703 00000 n 
 0000135747 00000 n 
 0000136329 00000 n 
-0000136994 00000 n 
-0000137264 00000 n 
-0000137534 00000 n 
-0000137609 00000 n 
-0000137987 00000 n 
-0000138378 00000 n 
-0000138657 00000 n 
-0000138897 00000 n 
-0000139172 00000 n 
-0000139432 00000 n 
-0000139672 00000 n 
-0000139912 00000 n 
-0000140249 00000 n 
-0000140577 00000 n 
-0000140954 00000 n 
-0000141354 00000 n 
-0000141554 00000 n 
-0000141773 00000 n 
-0000142051 00000 n 
-0000142310 00000 n 
-0000142551 00000 n 
-0000142807 00000 n 
-0000143091 00000 n 
-0000143334 00000 n 
-0000143549 00000 n 
-0000149739 00000 n 
-0000149958 00000 n 
-0000151320 00000 n 
-0000152411 00000 n 
-0000160745 00000 n 
-0000160961 00000 n 
-0000162324 00000 n 
-0000163386 00000 n 
-0000168279 00000 n 
-0000168505 00000 n 
-0000169868 00000 n 
-0000170962 00000 n 
-0000172217 00000 n 
-0000172443 00000 n 
-0000172745 00000 n 
-0000173883 00000 n 
-0000175253 00000 n 
-0000175469 00000 n 
-0000175785 00000 n 
-0000176921 00000 n 
-0000182002 00000 n 
-0000182216 00000 n 
-0000183579 00000 n 
-0000184642 00000 n 
-0000186065 00000 n 
-0000186283 00000 n 
-0000186585 00000 n 
+0000136922 00000 n 
+0000137192 00000 n 
+0000137462 00000 n 
+0000137537 00000 n 
+0000137915 00000 n 
+0000138306 00000 n 
+0000138585 00000 n 
+0000138825 00000 n 
+0000139100 00000 n 
+0000139360 00000 n 
+0000139600 00000 n 
+0000139840 00000 n 
+0000140177 00000 n 
+0000140505 00000 n 
+0000140882 00000 n 
+0000141282 00000 n 
+0000141482 00000 n 
+0000141701 00000 n 
+0000141979 00000 n 
+0000142238 00000 n 
+0000142479 00000 n 
+0000142735 00000 n 
+0000143019 00000 n 
+0000143262 00000 n 
+0000143477 00000 n 
+0000149667 00000 n 
+0000149886 00000 n 
+0000151248 00000 n 
+0000152339 00000 n 
+0000160673 00000 n 
+0000160889 00000 n 
+0000162252 00000 n 
+0000163314 00000 n 
+0000168207 00000 n 
+0000168433 00000 n 
+0000169796 00000 n 
+0000170890 00000 n 
+0000172145 00000 n 
+0000172371 00000 n 
+0000172673 00000 n 
+0000173811 00000 n 
+0000175181 00000 n 
+0000175397 00000 n 
+0000175713 00000 n 
+0000176849 00000 n 
+0000181930 00000 n 
+0000182144 00000 n 
+0000183507 00000 n 
+0000184570 00000 n 
+0000185993 00000 n 
+0000186211 00000 n 
+0000186513 00000 n 
 trailer
 << /Size 124
 /Root 2 0 R
 /Info 1 0 R
 >>
 startxref
-187723
+187651
 %%EOF
