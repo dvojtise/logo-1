@@ -171,22 +171,9 @@ While being convenient for some purposes, this behavior may not be suitable for 
   
 
 
-=== Display all procedure declarations:
-
-In the default layer
-
-* _New diagram element -> Container_ then in the properties view
-** Id: procDeclNode
-** domain class: logo::ProcDeclaration
-** New style -> Gradient
 
 
-[TIP]
-====
-I recommend to use explicit names as IDs in Sirius. 
-I usually start by the represented model element (ie. metaclass name) followed by the kind of representation (Container, Node, or edge) 
-using camel case text. 
-====
+
 
 
 === Display all root instructions:
@@ -203,6 +190,13 @@ then use this alternative to reject some kinds : ``aql:self.eContents()->reject(
 [TIP]
 ====
 If you have nice default icons defined in the _.edit_ project, they'll be directly displayed.
+====
+
+[TIP]
+====
+I recommend to use explicit names as IDs in Sirius. 
+I usually start by the represented model element (ie. metaclass name) followed by the kind of representation (Container, Node, or edge) 
+using camel case text. 
 ====
 
 === Display all root instructions:
@@ -327,7 +321,7 @@ on the Logo Block Diagram
 ** Id: thenPartContainer
 ** domain class: logo::Block
 ** semantic candidate expression:``aql: self.eContents()->filter(logo::If)->collect(i | i.thenPart))``
-** _New style -> Diamond_
+** _New style -> Gradient
 ** Label tab: 
 *** Label expression: _``aql:'then'`` 
 ** Color tab
@@ -337,7 +331,7 @@ on the Logo Block Diagram
 ** Id: elsePartContainer
 ** domain class: logo::Block
 ** semantic candidate expression: ``aql: self.eContents()->filter(logo::If)->collect(i | i.elsePart))``
-** _New style -> Diamond_
+** _New style -> gradient
 ** Label tab: 
 *** Label expression: ``aql:'else'`` 
 ** Color tab
