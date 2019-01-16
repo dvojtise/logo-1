@@ -1,3 +1,3 @@
-* <<day-one-part1>>
-* <<day-two-part2>>
-* <<day-two-part3>>
+* <<tutorial_scenario_part1.asciidoc#day-one-part1>>
+* <<tutorial_scenario_part1.asciidoc#day-two-part2>>
+* <<tutorial_scenario_part1.asciidoc#day-two-part3>>
