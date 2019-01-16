@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.8">
+<title>Scenario tutorial day two: Part 3: Hands-on GEMOC, the logo turtle language</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
+/* Uncomment @import statement below to use as custom stylesheet */
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
+audio,canvas,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+script{display:none!important}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+a{background:transparent}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+abbr[title]{border-bottom:1px dotted}
+b,strong{font-weight:bold}
+dfn{font-style:italic}
+hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,*::before,*::after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto;tab-size:4;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:none}
+p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+abbr,acronym{text-transform:uppercase;font-size:90%;color:rgba(0,0,0,.8);border-bottom:1px dotted #ddd;cursor:help}
+abbr{text-transform:none}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote cite{display:block;font-size:.9375em;color:rgba(0,0,0,.6)}
+blockquote cite::before{content:"\2014 \0020"}
+blockquote cite a,blockquote cite a:visited{color:rgba(0,0,0,.6)}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt,table tr:nth-of-type(even){background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+*:not(pre)>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background-color:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed;word-wrap:break-word}
+*:not(pre)>code.nobreak{word-wrap:normal}
+*:not(pre)>code.nowrap{white-space:nowrap}
+pre,pre>code{line-height:1.45;color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;text-rendering:optimizeSpeed}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background-color:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background-color:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:100%;background-color:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:rgba(255,255,255,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class="paragraph"]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+table.tableblock #preamble>.sectionbody>[class="paragraph"]:first-of-type p{font-size:inherit}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock pre:not(.highlight),.listingblock pre[class="highlight"],.listingblock pre[class^="highlight "],.listingblock pre.CodeRay,.listingblock pre.prettyprint{background:#f7f7f8}
+.sidebarblock .literalblock pre,.sidebarblock .listingblock pre:not(.highlight),.sidebarblock .listingblock pre[class="highlight"],.sidebarblock .listingblock pre[class^="highlight "],.sidebarblock .listingblock pre.CodeRay,.sidebarblock .listingblock pre.prettyprint{background:#f2f1f1}
+.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:1em}}
+.literalblock pre.nowrap,.literalblock pre.nowrap pre,.listingblock pre.nowrap,.listingblock pre.nowrap pre{white-space:pre;word-wrap:normal}
+.literalblock.output pre{color:#f7f7f8;background-color:rgba(0,0,0,.9)}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:#999}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:#999}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+table.pyhltable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.pyhltable td{vertical-align:top;padding-top:0;padding-bottom:0;line-height:1.45}
+table.pyhltable td.code{padding-left:.75em;padding-right:0}
+pre.pygments .lineno,table.pyhltable td:not(.code){color:#999;padding-left:0;padding-right:.5em;border-right:1px solid #dddddf}
+pre.pygments .lineno{display:inline-block;margin-right:.25em}
+table.pyhltable .linenodiv{background:none!important;padding-right:0!important}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin:0 0 1.25em;padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;text-align:left;margin-right:0}
+table.tableblock{max-width:100%;border-collapse:separate}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>thead>tr>.tableblock,table.grid-all>tbody>tr>.tableblock{border-width:0 1px 1px 0}
+table.grid-all>tfoot>tr>.tableblock{border-width:1px 1px 0 0}
+table.grid-cols>*>tr>.tableblock{border-width:0 1px 0 0}
+table.grid-rows>thead>tr>.tableblock,table.grid-rows>tbody>tr>.tableblock{border-width:0 0 1px}
+table.grid-rows>tfoot>tr>.tableblock{border-width:1px 0 0}
+table.grid-all>*>tr>.tableblock:last-child,table.grid-cols>*>tr>.tableblock:last-child{border-right-width:0}
+table.grid-all>tbody>tr:last-child>.tableblock,table.grid-all>thead:last-child>tr>.tableblock,table.grid-rows>tbody>tr:last-child>.tableblock,table.grid-rows>thead:last-child>tr>.tableblock{border-bottom-width:0}
+table.frame-all{border-width:1px}
+table.frame-sides{border-width:0 1px}
+table.frame-topbot,table.frame-ends{border-width:1px 0}
+table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd){background:#f8f8f7}
+table.stripes-none tr,table.stripes-odd tr:nth-of-type(even){background:none}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+td>div.verse{white-space:pre}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+ul.checklist{margin-left:.625em}
+ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist li>p:first-child>input[type="checkbox"]:first-child{margin-right:.25em}
+ul.inline{display:-ms-flexbox;display:-webkit-box;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background-color:#00fafa}
+.black{color:#000}
+.black-background{background-color:#000}
+.blue{color:#0000bf}
+.blue-background{background-color:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background-color:#fa00fa}
+.gray{color:#606060}
+.gray-background{background-color:#7d7d7d}
+.green{color:#006000}
+.green-background{background-color:#007d00}
+.lime{color:#00bf00}
+.lime-background{background-color:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background-color:#7d0000}
+.navy{color:#000060}
+.navy-background{background-color:#00007d}
+.olive{color:#606000}
+.olive-background{background-color:#7d7d00}
+.purple{color:#600060}
+.purple-background{background-color:#7d007d}
+.red{color:#bf0000}
+.red-background{background-color:#fa0000}
+.silver{color:#909090}
+.silver-background{background-color:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background-color:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background-color:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background-color:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background-color:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background-color:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media print,amzn-kf8{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+</head>
+<body class="article">
+<div id="header">
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_scenario_tutorial_day_two_part_3_hands_on_gemoc_the_logo_turtle_language">Scenario tutorial day two: Part 3: Hands-on GEMOC, the logo turtle language</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This document indicates the steps to follow in order to reproduce the tutorial.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisite">Prerequisite</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This part follows the work done in part2.
+While you can start from your own work, I suggest to replace it and start from the solution of part2.</p>
+</div>
+<div class="paragraph">
+<p>so the starting projects are available in the folder <em>part2-mmfirst-solution</em>.</p>
+</div>
+<div class="paragraph">
+<p>The solution of this tutorial is available in the folder <em>part3-mmfirst-solution</em>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_general_principles">General principles</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We&#8217;ll create an execution semantic for the behavior or our Logo language.</p>
+</div>
+<div class="paragraph">
+<p>It will provide features such as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>debugger</p>
+</li>
+<li>
+<p>animation</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>In order to keep the tutorial as simple as possible, we consider that we can modify the
+metamodel directly. this is correct for most languages you create by your own, but in some situation
+you may prefer to keep a stricter separation between the static and dynamic parts of the language.
+GEMOC offers several strategies to achieve this but they are out of the scope of this tutorial.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_define_the_dynamic_semantic">Define the dynamic semantic</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_create_a_gemoc_sequential_project">Create a GEMOC Sequential project</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><em>File &#8594; New &#8594; GEMOC Sequential XDSML Project</em></p>
+<div class="ulist">
+<ul>
+<li>
+<p>name: fr.inria.sed.logo.xdsml</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><em>Next</em></p>
+<div class="ulist">
+<ul>
+<li>
+<p>use the default template: Simple Sequential K3 language project</p>
+</li>
+<li>
+<p>Ecore file location: select the ecore file in <em>fr.inria.sed.logo.model/model/Logo.ecore</em></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><em>Finish</em></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_create_the_project_for_domain_specific_action_dsa">Create the project for domain specific action (DSA):</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>right click on the <em>fr.inria.sed.logo.xdsml</em> project &#8594; GEMOC Language &#8594; create
+DSA project for language</p>
+</li>
+<li>
+<p><em>next</em></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Select template: <em>User Ecore Basic Aspects</em></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><em>next</em></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Aspect package prefix: fr.inria.sed.logo.k3dsa</p>
+</li>
+<li>
+<p>Aspect package suffix: .aspects</p>
+</li>
+<li>
+<p>Aspect file name: LogoAspects</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><em>Finish</em></p>
+</li>
+<li>
+<p>add missing dependency from project <em>fr.inria.sed.logo.xdsml</em> to <em>fr.inria.sed.logo.k3dsa</em>.
+<em>(This action can be removed when <a href="https://github.com/eclipse/gemoc-studio-modeldebugging/issues/51">modeldebugging bug #51</a> is fixed)</em>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_write_a_gemoc_based_method_to_hello_world">Write a GEMOC based method to "hello world"</h3>
+<div class="paragraph">
+<p>In the k3dsa project,</p>
+</div>
+<div class="paragraph">
+<p>add a plugin dependency to <code>org.eclipse.gemoc.commons.eclipse.messagingsystem.api</code></p>
+</div>
+<div class="paragraph">
+<p>open the logoAspects.xtend file.</p>
+</div>
+<div class="paragraph">
+<p>add the following imports:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">import fr.inria.diverse.k3.al.annotationprocessor.Main</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Add a <em>run</em> method with <strong>@Main</strong> annotation in the class LogoProgramAspect.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">	@Main
+	def void run(){
+		// println('hello world')
+		val MessagingSystemManager msManager = new MessagingSystemManager
+		val ms = msManager.createBestPlatformMessagingSystem("Logo","Simple Logo interpreter")
+
+		ms.debug("Hello world on "+_self.eResource.URI, "Logo")
+	}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Launch the Modeling workbench.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>Run &#8594; Debug configurations&#8230;&#8203;</em></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Right click on <em>Gemoc Sequential eXecutable Model</em> &#8594; <em>new configuration</em></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Name: &lt;your model file name&gt;</p>
+</li>
+<li>
+<p>model to execute: browse and select the model file</p>
+</li>
+<li>
+<p>Languages: _fr.inria.sed.logo.Logo</p>
+</li>
+<li>
+<p>animator: (optionnal) the .aird file that has a diagram for your model</p>
+</li>
+<li>
+<p>Main method: select xxx.LogoProgramAspect.run(xxx)</p>
+</li>
+<li>
+<p>Main model element path: the LogoProgramImpl</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><em>Debug</em></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The console named "Simple Logo interpreter" will contain your output if you used the GEMOC MessagingSystem,
+otherwise, <code>printl</code> will go to the standard output which is shown by the <em>Default MessagingSystem console</em>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+you may have to switch between the console in order to retrieve the one with your message.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_define_runtime_data_structure">Define Runtime Data structure</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><em>new Ecore Modeling Project</em></p>
+<div class="ulist">
+<ul>
+<li>
+<p>project name: <em>fr.inria.sed.logo.vm.model</em></p>
+</li>
+<li>
+<p>Main package name: vm</p>
+</li>
+<li>
+<p>NsUris: <code><a href="http://www.inria.fr/sed/logo/vm" class="bare">http://www.inria.fr/sed/logo/vm</a></code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Installing OCLinEcore allows to write the ecore model in text instead of using the three editor or the graphica editor.
+In our case, this will help to to copy/paste actions.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>Help &#8594; Install new software&#8230;&#8203;</em></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Work with: <em>Eclipse Repository - <a href="http://download.eclipse.org/releases/photon" class="bare">http://download.eclipse.org/releases/photon</a></em></p>
+</li>
+<li>
+<p>get: <em>OCL Examples and Editors SDK</em></p>
+</li>
+<li>
+<p>proceed to the installation and accept to restart eclipse</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A new editor is now available with a right click on <code>ecore</code> files: <em>Open with &#8594; OCLInEcore Editor</em>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_create_a_data_structure_to_capture_the_runtime_state_of_the_turtle_running_the_logo_program">Create a data structure to capture the runtime state of the turtle running the logo program.</h4>
+<div class="paragraph">
+<p>The runtime will be turtle that also store the path it had drawn.</p>
+</div>
+<div class="paragraph">
+<p>The path is stored as an ordered list of segments.</p>
+</div>
+<div class="paragraph">
+<p>Some attributes need to be encoded as Double in order to get a simple but realistic simulation.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/vm_ecore_sirius.png" alt="vm ecore sirius" width="500">
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Instead of manually creating the various elements in the tree or Sirius editor you can directly
+use this source and copy/paste using oclinecore editor.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>import ecore : 'http://www.eclipse.org/emf/2002/Ecore' ;
+
+package logo_vm : logo_vm = 'http://fr.inria.sed/logo/logo_vm'
+{
+	class InterpreterRuntimeContext
+	{
+		property turtle : Turtle[1] {composes};
+	}
+	class Turtle
+	{
+		property reachedPoints : Point[*|1] { ordered composes };
+		property position : Point[?];
+		property segments : Segment[*|1] { ordered composes };
+		attribute penUp : Boolean[1];
+		attribute heading : ecore::EDouble[1];
+	}
+	class Point
+	{
+		attribute x : ecore::EDouble[1];
+		attribute y : ecore::EDouble[1];
+	}
+	class Segment
+	{
+		property origin : Point[1];
+		property destination : Point[1];
+	}
+}</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>right click on the vm.genmodel file &#8594; reload&#8230;&#8203;</p>
+</li>
+<li>
+<p>rigth click on the root element</p>
+</li>
+<li>
+<p>generate Model code</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>on the plugin.xml of the k3dsa project, add a dependency to <em>fr.inria.sed.logo.vm.model</em>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_link_the_runtimedata_to_the_logo_program">Link the RuntimeData to the Logo program</h4>
+<div class="paragraph">
+<p>Create an "anchor" element in the Logo program Logo.ecore. Ie add an class RuntimeContext and
+a composition to it from the root model element. This runtimecontext is annotated with "aspect" annotation
+in order to indicate that it can change during the execution.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+This is not mandatory for all execution scenarios but will help obtain all GEMOC features
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+For some language you may directly weave runtime data in the language ecore. This might be useful to help navigation in the models and data.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">in Logo.ecore</div>
+<div class="content">
+<pre class="highlight"><code>	class LogoProgram
+	{
+		property instructions : Instruction[*|1] { ordered composes };
+		property runtimeContext : RuntimeContext[?] { composes }
+		{
+			annotation aspect;
+		}
+	}
+
+	abstract class RuntimeContext;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>add a plugin dependencies from <em>fr.inria.sed.logo.vm.model</em> to <em>fr.inria.sed.logo.model</em></p>
+</div>
+<div class="listingblock">
+<div class="title">in VM.ecore</div>
+<div class="content">
+<pre class="highlight"><code>import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/' ;
+import logo : '../../fr.inria.sed.logo.model/model/Logo.ecore#/' ;
+
+package vm : vm = 'http://www.inria.fr/sed/logo/vm'
+{
+	class InterpreterRuntimeContext extends logo::RuntimeContext
+	{
+		property turtle : Turtle[1] { composes };
+	}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>regenerate model code of Logo and its VM (IE. from logo.genmodel and vm.genmodel files.)</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>when generating model from vm.genmodel, make sure to correctly reference and
+reuse the logo.genmodel. Otherwise you&#8217;ll get 2 copies of the java code for
+the logo.ecore model that may conflict with each other.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_initialize_runtimecontext_on_start">Initialize RuntimeContext on start</h3>
+<div class="paragraph">
+<p>In the k3dsa project.</p>
+</div>
+<div class="listingblock">
+<div class="title">in logoAspects.xtend</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">@Aspect(className=LogoProgram)
+class LogoProgramAspect {
+
+	@Step
+	@InitializeModel
+	def void initializeModel(EList&lt;String&gt; args){
+		val context = VmFactory.eINSTANCE.createInterpreterRuntimeContext
+		context.turtle = VmFactory.eINSTANCE.createTurtle
+		val point = VmFactory.eINSTANCE.createPoint
+		point.x = 0
+		point.y = 0
+		context.turtle.reachedPoints.add(point)
+		context.turtle.position = point
+		_self.runtimeContext = context
+	}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_write_a_simple_navigation">Write a simple navigation</h3>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>for better performances and cleaner code, the logger accessor can be moved to the context as a "singleton"</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">package fr.inria.sed.logo.k3dsa.logo.vm.aspects
+
+import fr.inria.diverse.k3.al.annotationprocessor.Aspect
+
+import fr.inria.sed.logo.vm.model.vm.InterpreterRuntimeContext
+import org.eclipse.gemoc.commons.eclipse.messagingsystem.api.MessagingSystemManager
+import org.eclipse.gemoc.commons.eclipse.messagingsystem.api.MessagingSystem
+
+@Aspect(className=InterpreterRuntimeContext)
+class InterpreterRuntimeContextAspect {
+	var MessagingSystem internalLogger
+	def MessagingSystem logger(){
+		if (_self.internalLogger === null) {
+			val MessagingSystemManager msManager = new MessagingSystemManager
+			_self.internalLogger = msManager.createBestPlatformMessagingSystem("Logo","Simple Logo interpreter")
+
+		}
+		return _self.internalLogger
+	}
+}</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">in logoAspect.xtend</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">@Aspect(className=LogoProgram)
+class LogoProgramAspect {
+	@Main
+	def void run(){
+		val context = _self.runtimeContext as InterpreterRuntimeContext
+ 		context.logger.debug("Running "+_self.eResource.URI, "Logo")
+
+		_self.instructions.forEach[i | i.run(_self.runtimeContext as InterpreterRuntimeContext)]
+	}
+}
+
+@Aspect(className=Instruction)
+class InstructionAspect {
+	@Step
+	def void run(InterpreterRuntimeContext context){
+		context.logger.error("run of " +_self +" should never occur, please write method run for this class",
+			"Logo")
+	}
+}
+
+@Aspect(className=Expression)
+class ExpressionAspect {
+	def Integer eval(InterpreterRuntimeContext context){
+		context.logger.error("eval of " +_self +" should never occur, please write method run for this class",
+			"Logo")
+		return 0;
+	}
+}
+
+@Aspect(className=If)
+class IfAspect extends ControlStructureInstructionAspect {
+	@Step
+	def void run(InterpreterRuntimeContext context){
+		context.logger.debug("run of " +_self, "Logo")
+		if(_self.condition.eval(context) == 1) {
+			_self.thenPart.run(context)
+		} else {
+			_self.elsePart.run(context)
+		}
+	}
+}
+
+@Aspect(className=Constant)
+class ConstantAspect extends ExpressionAspect {
+	def Integer eval(InterpreterRuntimeContext context){
+		context.logger.debug("eval of " +_self, "Logo")
+		return _self.integerValue
+	}
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>We put <strong>@Step</strong> only on <code>run</code> methods, since we do want the model debugger to allows to stop there.
+But do not add this annotation on the <code>eval</code> methods.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_implements_eval_methods_of_classes_that_inherit_from_expression">implements eval methods of classes that inherit from Expression</h3>
+<div class="paragraph">
+<p>This is quite simple, most of them maps to very simple code in java/xtend.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">@Aspect(className=Plus)
+class PlusAspect extends ExpressionAspect {
+	def Integer eval(InterpreterRuntimeContext context){
+		return _self.lhs.eval(context) + _self.rhs.eval(context)
+	}
+}
+
+@Aspect(className=Minus)
+class MinusAspect extends ExpressionAspect {
+	def Integer eval(InterpreterRuntimeContext context){
+		return _self.lhs.eval(context) - _self.rhs.eval(context)
+	}
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For boolean expressions, we simpliflied the problem in the metamodel by returning only integer, where 0 is false and 1 is true.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">@Aspect(className=Equals)
+class EqualsAspect extends ExpressionAspect {
+
+	def Integer eval(InterpreterRuntimeContext context){
+		if( _self.lhs.eval(context) ==  _self.rhs.eval(context)) return 1
+		else return 0
+	}
+}
+
+@Aspect(className=Greater)
+class GreaterAspect extends ExpressionAspect {
+	def Integer eval(InterpreterRuntimeContext context){
+		if( _self.lhs.eval(context) &gt;  _self.rhs.eval(context)) return 1
+		else return 0
+	}
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_make_the_turtle_move">Make the turtle move</h3>
+<div class="paragraph">
+<p>Ie. modify the runtime context (turtle, segment, &#8230;&#8203;)</p>
+</div>
+<div class="paragraph">
+<p>First add some helpers as aspect directly on the vm.</p>
+</div>
+<div class="listingblock">
+<div class="title">in fr.inria.sed.logo.k3dsa.logo.vm.aspects.TurtleAspect.xtend</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">package fr.inria.sed.logo.k3dsa.logo.vm.aspects
+
+import fr.inria.diverse.k3.al.annotationprocessor.Aspect
+
+import fr.inria.sed.logo.vm.model.vm.Turtle
+import fr.inria.sed.logo.vm.model.vm.VmFactory
+
+@Aspect(className=Turtle)
+class TurtleAspect {
+
+	def void rotate(Integer angle) {
+		_self.heading = (_self.heading + angle) % 360
+	}
+
+	def void move(double dx, double dy){
+		// create new Point for destination
+		val point = VmFactory.eINSTANCE.createPoint
+		point.x = _self.position.x + dx
+		point.y = _self.position.y + dy
+		_self.reachedPoints.add(point)
+
+		if(!_self.penUp){
+			val drawnSegment = VmFactory.eINSTANCE.createSegment
+			drawnSegment.origin = _self.position
+			drawnSegment.destination = point
+			_self.segments.add(drawnSegment)
+		}
+		_self.position = point
+	}
+
+	def void forward(Integer steps){
+		val headingAsRadian = Math.toRadians(_self.heading)
+		_self.move(_self.scale(steps, Math.sin(headingAsRadian)), _self.scale(steps, Math.cos(headingAsRadian)))
+	}
+
+	/**
+	 * scale the "steps" expressed using integer by a factor
+	 */
+	def double scale(Integer steps, Double factor){
+		return (steps.doubleValue * factor) as Double
+	}
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then use them.</p>
+</div>
+<div class="listingblock">
+<div class="title">in logoAspects.xtend</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">import static extension fr.inria.sed.logo.k3dsa.logo.vm.aspects.TurtleAspect.*
+
+@Aspect(className=Forward)
+class ForwardAspect extends PrimitiveInstructionAspect {
+	@Step
+	def void run(InterpreterRuntimeContext context){
+		context.turtle.forward(_self.steps.eval(context))
+	}
+}
+@Aspect(className=Forward)
+class BackwardAspect extends PrimitiveInstructionAspect {
+	@Step
+	def void run(InterpreterRuntimeContext context){
+		context.turtle.forward(- _self.steps.eval(context))
+	}
+}
+@Aspect(className=Left)
+class LeftAspect extends PrimitiveInstructionAspect {
+	@Step
+	def void run(InterpreterRuntimeContext context){
+		context.turtle.rotate(- _self.angle.eval(context))
+	}
+}
+
+@Aspect(className=Right)
+class RightAspect extends PrimitiveInstructionAspect {
+	@Step
+	def void run(InterpreterRuntimeContext context){
+		context.turtle.rotate(_self.angle.eval(context))
+	}
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_get_dedicated_custom_gui_using_engineaddon">Get dedicated custom GUI (using EngineAddon)</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+documentation about engine addon creation <a href="https://download.eclipse.org/gemoc/docs/nightly/_contributing.html#_developing_new_engines" class="bare">https://download.eclipse.org/gemoc/docs/nightly/_contributing.html#_developing_new_engines</a>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>There are many ways to create a GUI for the simulator. One of them is to create a language specific engine addon.
+It will be started automatically when the engine starts. It will then be notified by the engine about any relevant event.
+It has access to many informations including a full access to the model and runtime data model.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>open the plugin.xml file of the project <code>fr.inria.sed.logo.xdsml</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Right click on the  XDSML_Definition (fr.inria.sed.logo.Logo) &#8594; New &#8594; EngineAddon_Definition</p>
+</li>
+<li>
+<p>Click on the link (blue) _engineAddon_class to create the missing class</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Package: fr.inria.sed.logo.xdsml.ui.turtleboard</p>
+</li>
+<li>
+<p>Name: TurtleBoardEngineAddon</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Due to: <a href="https://github.com/eclipse/gemoc-studio-modeldebugging/issues/44" class="bare">https://github.com/eclipse/gemoc-studio-modeldebugging/issues/44</a> remove import, and then apply quick fix to retrieve the
+correct import ( org.eclipse.gemoc.xdsmlframework.api.engine_addon.IEngineAddon ).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>in the TurtleBoardEngineAddon java class</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Right click in the editor</p>
+<div class="ulist">
+<ul>
+<li>
+<p><em>source &#8594; override/implements methods</em></p>
+</li>
+<li>
+<p>select <code>engineStarted</code>, <code>engineAboutToDispose</code>, and <code>stepExecuted</code></p>
+</li>
+<li>
+<p>implement the methods to call a GUI reading the model in the engine</p>
+<div class="ulist">
+<ul>
+<li>
+<p>copy the simple AWT UI implementation from <a href="https://github.com/dvojtise/mde-crashcourse-logo/tree/master/part3-mmfirst-solution/fr.inria.sed.logo.xdsml/src/fr/inria/sed/logo/xdsml/ui/turtleboard">https://github.com/dvojtise/mde-crashcourse-logo/tree/master/part3-mmfirst-solution/fr.inria.sed.logo.xdsml/src/fr/inria/sed/logo/xdsml/ui/turtleboard</a>
+also copy the <code>engineStarted</code>, <code>engineAboutToDispose</code>, and <code>stepExecuted</code> content.</p>
+</li>
+<li>
+<p>You can observe in <a href="https://github.com/dvojtise/mde-crashcourse-logo/blob/master/part3-mmfirst-solution/fr.inria.sed.logo.xdsml/src/fr/inria/sed/logo/xdsml/ui/turtleboard/TurtleBoardEngineAddon.java">TurtleBoardEngineAddon.java</a>
+How to access the model and runtime data.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Callbacks to addons methods create pauses in the execution.</p>
+</div>
+<div class="paragraph">
+<p>You must take care to not crash in an addon, otherwise the execution will crash too.</p>
+</div>
+<div class="paragraph">
+<p>You must take care to long running process and consider using threads/jobs for them (unless this is an intended behavior of you UI).</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In the modeling workbench, launch an execution on a simple logo model to obser this simple GUI.</p>
+</div>
+<div class="paragraph">
+<p>More complexe GUI can be written, for example by creating a view integrated in eclipse.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_implement_procedurecall">implement ProcedureCall</h3>
+<div class="sect3">
+<h4 id="_add_a_stack_of_parameter_maps_in_the_runtime_context">add a stack of parameter maps in the runtime context</h4>
+<div class="listingblock">
+<div class="title">in the vm.ecore</div>
+<div class="content">
+<pre class="highlight"><code>	class InterpreterRuntimeContext extends logo::RuntimeContext
+	{
+		property turtle : Turtle[1] { composes };
+		attribute stack : ParamMap(String, ecore::EIntegerObject)[*|1] { ordered !unique };
+	}
+	datatype ParamMap(K, V) : 'java.util.HashMap' { serializable };</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You can write this kind of code with generics directly in the tree editor, for this you must
+open the vm.ecore files with the "sample reflective editor" and in the top menu, then click on <em>sample reflective editor</em>
+and  <em>Show generics</em></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Add some helpers methods to manipulate this stack.</p>
+</div>
+<div class="listingblock">
+<div class="title">in InterpreterRuntimeContextAspect.xtend</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">	/* paramMap helpers */
+	def void pushParamMap(HashMap&lt;String, Integer&gt; paramMap) {
+		_self.stack.add(paramMap)
+	}
+	def HashMap&lt;String, Integer&gt; peekParamMap(){
+		_self.stack.last
+	}
+	def  HashMap&lt;String, Integer&gt; popParamMap(){
+		_self.stack.last
+		_self.stack.remove(_self.stack.size -1)
+	}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_use_the_parameter_map_to_implement_the_procedure_call">Use the parameter map to implement the Procedure Call</h4>
+<div class="listingblock">
+<div class="title">in logoAspects.xtend</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">import static extension fr.inria.sed.logo.k3dsa.logo.vm.aspects.InterpreterRuntimeContextAspect.*
+
+@Aspect(className=ProcCall)
+class ProcCallAspect extends PrimitiveInstructionAspect {
+	@Step
+	def void run(InterpreterRuntimeContext context){
+		context.logger.debug("run of " +_self, "Logo")
+		val HashMap&lt;String, Integer&gt; params = newHashMap;
+		(0..(_self.actualArgs.size-1)).forEach[i |
+			val currentArg = _self.actualArgs.get(i).eval(context)
+			params.put(_self.declaration.args.get(i).name,currentArg)
+		]
+		context.pushParamMap(params)
+		_self.declaration.instructions.forEach[instruction | instruction.run(context)]
+		context.popParamMap()
+	}
+}
+
+@Aspect(className=ParameterCall, with=#[InstructionAspect] )
+class ParameterCallAspect extends ExpressionAspect {
+	def Integer eval(InterpreterRuntimeContext context){
+		context.logger.debug("eval of " +_self, "Logo")
+		return context.peekParamMap.get(_self.parameter.name);
+	}
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_add_sirius_debug_support">Add Sirius Debug support.</h3>
+<div class="paragraph">
+<p>This will create a dedicated layer that take into account debug interactions</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Right click on the <em>fr.inria.sed.logo.xdsml</em> project &#8594; <em>GEMOC language</em> &#8594; <em>Create animator project for language</em></p>
+<div class="ulist">
+<ul>
+<li>
+<p><em>Add a debug layer to an existing diagram description</em> &#8594; <em>Next</em> &#8594; <em>Finish</em></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>TODO main pur java</p>
+</div>
+<div class="paragraph">
+<p>TODO main GEMOC</p>
+</div>
+<div class="paragraph">
+<p>mettre au point la semantique</p>
+</div>
+<div class="paragraph">
+<p>ajout du @Step</p>
+</div>
+<div class="paragraph">
+<p>ajout d&#8217;un context / runtime data</p>
+</div>
+<div class="paragraph">
+<p>trick par ajout d&#8217;un attribut Context à LogoProgram</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>LogoProgram :
+	{LogoProgram}
+	instructions+=Instruction (  instructions+=Instruction)*
+	(runtimecontext = RuntimeContext)?
+	;
+
+RuntimeContext returns RuntimeContext:
+	{RuntimeContext}
+	'RuntimeContext'
+;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>discussion à propos du model first pou masquer cet aspect de la syntaxe</p>
+</div>
+<div class="paragraph">
+<p>ajout d&#8217;un projet ecore modeling "fr.inria.sed.logo.vm.model"</p>
+</div>
+<div class="paragraph">
+<p>ajout des concepts</p>
+</div>
+<div class="paragraph">
+<p>heritage de InterpreterContext vers RuntimeContext</p>
+</div>
+<div class="paragraph">
+<p>puis convertir en 2 languages avec melange : extended pour activer la timeline ou adapter le MM</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2019-01-16 08:27:09 UTC
+</div>
+</div>
+</body>
+</html>
