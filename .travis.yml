@@ -15,7 +15,8 @@ before_install:
 
 script:
   - docker run -v $TRAVIS_BUILD_DIR/documentation:/documents/ --name asciidoc-to-html asciidoctor/docker-asciidoctor asciidoctor -D /documents/output *.asciidoc      
-  - docker run -v $TRAVIS_BUILD_DIR/documentation:/documents/ --name asciidoc-to-pdf asciidoctor/docker-asciidoctor asciidoctor-pdf -D /documents/output *.asciidoc    
+  - docker run -v $TRAVIS_BUILD_DIR/documentation:/documents/ --name asciidoc-to-pdf asciidoctor/docker-asciidoctor asciidoctor-pdf -D /documents/output *.asciidoc
+  - cp -r images output/images  
 
 after_error: 
   - docker logs asciidoc-to-html
