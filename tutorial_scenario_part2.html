@@ -441,14 +441,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>This document indicates the steps to follow in order to reproduce the tutorial.</p>
 </div>
 <div class="paragraph">
-<p>The solution of this tutorial is available in the folder <em>part2-mmfirst-solution</em>.</p>
-</div>
-<div class="paragraph">
-<p>Principes généraux:
-<strong> MM first
-</strong>	trick pour éviter Melange et simplifier le tuto
-	ajout d&#8217;un object abstrait "RuntimeContext" pour faciliter l&#8217;ancrage des concepts du RTD
-	et possiblement la création de plusieurs sémantique différentes</p>
+<p>The solution of this tutorial is available in the folder <a href="https://github.com/dvojtise/mde-crashcourse-logo/tree/master/part2-mmfirst-solution">part2-mmfirst-solution</a> .</p>
 </div>
 </div>
 </div>
@@ -462,7 +455,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">Note</div>
 </td>
 <td class="content">
-As this part is not really important, as this is only code refactoring, you may also directly grab the version in <em>part2-mmfirst-base</em>
+<div class="paragraph">
+<p>As this part is not really important, as this is only code refactoring,
+you may also directly grab the version in folder <a href="https://github.com/dvojtise/mde-crashcourse-logo/tree/master/part2-mmfirst-base">part2-mmfirst-base</a>  and move to
+<a href="#sirius-graphical-editor">Sirius graphical editor</a> section.</p>
+</div>
 </td>
 </tr>
 </table>
@@ -565,7 +562,7 @@ Also make sure to reexport the dependency.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_sirius_graphical_editor">Sirius graphical editor</h2>
+<h2 id="sirius-graphical-editor">Sirius graphical editor</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>We will create a block based graphical representation for Logo.</p>
@@ -580,7 +577,7 @@ Also make sure to reexport the dependency.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>name: fr.inria.sed.logo.design</p>
+<p>name: <code>fr.inria.sed.logo.design</code></p>
 </li>
 </ul>
 </div>
@@ -655,7 +652,7 @@ IE. convert a logo file into an xmi file. To do that:</p>
 <p>right click on the <em>.logo</em> file &#8594; Open with &#8594; Other &#8594; Sample Reflective Ecore Model Editor</p>
 </li>
 <li>
-<p>File &#8594; save as &#8594; choose a name ending with <strong>.xmi</strong></p>
+<p><em>File &#8594; save as</em> &#8594; choose a name ending with <strong>.xmi</strong></p>
 </li>
 <li>
 <p>verify that the file is correctly encoded in xmi (ie. a xml flavor) by opening it with the generic text editor</p>
@@ -703,7 +700,7 @@ I recommend to open (import the project) the project containing the <em>design</
 </table>
 </div>
 <div class="paragraph">
-<p>For our logo example, we&#8217;ll mostly design the graphical represention from  the moeling workbench.</p>
+<p>For our logo example, we&#8217;ll mostly design the graphical represention from  the modeling workbench.</p>
 </div>
 <div class="paragraph">
 <p>In the odesign:</p>
@@ -762,10 +759,11 @@ These representations will be contained in an <em>.aird</em> file.</p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Sirius support another mode for the diagram using a project session:</p>
+<p>Sirius support another mode for the diagram using a <em>project session</em>:</p>
 </div>
 <div class="paragraph">
-<p>Using a <em>Modeling project</em> does not require to create manually the <em>.aird</em> file because it will create one by default for the project.</p>
+<p>When creating the project you can use the <em>Modeling project</em> wizard.
+Projects with this nature do not require to create manually the <em>.aird</em> file because it will create one by default for the project.</p>
 </div>
 <div class="paragraph">
 <p>However in this case, all representations of all models in the current project will be contained in a single "representation.aird" file.
@@ -1624,7 +1622,7 @@ service calling xtextPrettyPrint() might be usefull too in the <em>tooltip expre
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-01-16 09:48:00 UTC
+Last updated 2019-01-16 10:11:57 UTC
 </div>
 </div>
 </body>
