@@ -1,3 +1,4 @@
+[#day-two-part2]
 == Scenario tutorial day two: Hands-on Sirius, the logo turtle language
 
  
