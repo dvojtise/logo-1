@@ -1,6 +1,7 @@
 [#day-two-part2]
-== Scenario tutorial day two: Hands-on Sirius, the logo turtle language
-
+= Scenario tutorial day two: Hands-on Sirius, the logo turtle language
+:icons: font
+:source-highlighter: pygments
  
 
 This document indicates the steps to follow in order to reproduce the tutorial.
@@ -167,22 +168,15 @@ However in this case, all representations of all models in the current project w
 While being convenient for some purposes, this behavior may not be suitable for all cases. 
 ====
 
-
-  
-
-
-
-
-
-
-
 === Display all root instructions:
 
 * _New diagram element -> Node then in the properties view
 ** Id: PrimitiveInstructionNode
 ** domain class: logo::PrimitiveInstruction  (you can try with Instruction but you'll probably have to change it later ;-) )
 ** semantic candidate expression:  ``aql:self.eContents()``
-then use this alternative to reject some kinds : ``aql:self.eContents()->reject(x |  x.oclIsKindOf(logo::ProcDeclaration))``
+then use this alternative to reject some kinds : 
+`+aql:self.eContents()->reject(x |  x.oclIsKindOf(logo::ProcDeclaration))+`
+
 ** _New style -> Square_
 ** Label tab: Label expression: ``aql:self.eClass().name`` (for a start, will be improved later)
 ** advanced tab: size computation expression: ``aql:self.eClass().name.size()``
@@ -204,11 +198,11 @@ using camel case text.
 * _New diagram element -> Node_ then in the properties view
 ** Id: PrimitiveInstructionNode
 ** domain class: logo::PrimitiveInstruction  (you can try with Instruction but you'll probably have to change it later ;-) )
-** semantic candidate expression: ``aql:self.eContents()``
-(alternative to reject some kinds : ``aql:self.eContents()->reject(x |  x.oclIsKindOf(logo::ProcDeclaration))``
+** semantic candidate expression: `+aql:self.eContents()+`
+(alternative to reject some kinds : `+aql:self.eContents()->reject(x |  x.oclIsKindOf(logo::ProcDeclaration))+`
 ** _New style -> Dot_
 ** Label tab: 
-*** Label expression: ``aql:self.eClass().name`` (for a start, will be improved later)
+*** Label expression: `+aql:self.eClass().name+` (for a start, will be improved later)
 *** Label position: border
 ** Advanced tab:
 *** allow resizing : uncheck
@@ -218,7 +212,7 @@ using camel case text.
 [TIP]
 ====
 you can try with a more generic type such as _Instruction_ and then reject some elements using a query such as:
-``aql:self.eContents()->reject(x |  x.oclIsKindOf(logo::ProcDeclaration))``
+`+aql:self.eContents()->reject(x |  x.oclIsKindOf(logo::ProcDeclaration))+`
 
 However, this will not fit our final design. and using the _PrimitiveInstruction_ and _ControlStructureInstruction_ structure 
 of the metamodel allow to factorize some representation rules for each group. 
@@ -255,7 +249,11 @@ We will indicates to the ProcedureDeclaration container that we want to reuse so
 ** Id: instructionSequenceEdge
 ** source mapping: InstructionNode
 ** target mapping: InstructionNode
-** Target finder expression: ``aql:let i = self.eInverse('instructions').instructions->asSequence() in i->at(i->indexOf(self)+1)``
+** Target finder expression: 
+[source,]
+----
+aql:let i = self.eInverse('instructions').instructions->asSequence() in i->at(i->indexOf(self)+1)
+----
 
 
 === Add a link between procedure call and the procedure declaration:
@@ -264,7 +262,7 @@ We will indicates to the ProcedureDeclaration container that we want to reuse so
 ** Id: procCallEdge
 ** source mapping: InstructionNode
 ** target mapping: procDeclNode
-** Target finder expression: ``aql:if self.oclIsKindOf(logo::ProcCall) then self.oclAsType(logo::ProcCall).declaration else null endif``
+** Target finder expression: `+aql:if self.oclIsKindOf(logo::ProcCall) then self.oclAsType(logo::ProcCall).declaration else null endif+`
 ** make this link use dashed line
 
 
@@ -308,10 +306,10 @@ on the Logo Block Diagram
 * _New diagram element -> Node_ then in the properties view
 ** Id: IfNode
 ** domain class: logo::If
-** semantic candidate expression: ``aql:self.eContents()``
+** semantic candidate expression: `+aql:self.eContents()+`
 ** _New style -> Diamond_
 ** Label tab: 
-*** Label expression: ``aql:self.eClass().name`` (for a start, will be improved later)
+*** Label expression: `+aql:self.eClass().name+` (for a start, will be improved later)
 *** Label position: border
 ** Advanced tab:
 *** allow resizing : uncheck
@@ -320,20 +318,20 @@ on the Logo Block Diagram
 * _New diagram element -> Container_ then in the properties view
 ** Id: thenPartContainer
 ** domain class: logo::Block
-** semantic candidate expression:``aql: self.eContents()->filter(logo::If)->collect(i | i.thenPart))``
+** semantic candidate expression: `+aql: self.eContents()->filter(logo::If)->collect(i | i.thenPart))+` 
 ** _New style -> Gradient
 ** Label tab: 
-*** Label expression: _``aql:'then'`` 
+*** Label expression: `+aql:'then'+` 
 ** Color tab
 *** Foreground color: light_green
 
 * _New diagram element -> Container_ then in the properties view
 ** Id: elsePartContainer
 ** domain class: logo::Block
-** semantic candidate expression: ``aql: self.eContents()->filter(logo::If)->collect(i | i.elsePart))``
+** semantic candidate expression: `+aql: self.eContents()->filter(logo::If)->collect(i | i.elsePart))+`
 ** _New style -> gradient
 ** Label tab: 
-*** Label expression: ``aql:'else'`` 
+*** Label expression: `+aql:'else'+` 
 ** Color tab
 *** Foreground color: light_red
 
@@ -349,19 +347,23 @@ in the following containers: procDeclContainer,  thenPartContainer, and elsePart
 ** Id: IfThenEdge
 ** source mapping: IfNode
 ** target mapping: thenPartContainer
-** semantic candidate expression: ``aql: self.thenPart``
+** semantic candidate expression: `+aql: self.thenPart+`
 
 * _New diagram element -> Relation based Edge_ then in the properties view
 ** Id: IfElseEdge
 ** source mapping: IfNode
 ** target mapping: elsePartContainer
-** semantic candidate expression: ``aql: self.elsePart``
+** semantic candidate expression: `+aql: self.elsePart+`
 
 * _New diagram element -> Relation based Edge_ then in the properties view
 ** Id: EndIfSequenceEdge
 ** source mapping: thenPartContainer, elsePartContainer
 ** target mapping: PrimitiveInstructionNode, IfNode
-** semantic candidate expression: ``aql:let i = self.eContainer().eInverse('instructions').instructions->asSequence() in i->at(i->indexOf(self.eContainer())+1)``
+** semantic candidate expression: 
+[source,]
+----
+aql:let i = self.eContainer().eInverse('instructions').instructions->asSequence() in i->at(i->indexOf(self.eContainer())+1)
+----
 
 NOTE: Exercise for the motivated: reproduce similar structure for Repeat and While control structure
 
@@ -458,7 +460,7 @@ TIP: If you start it in debug mode, small changes (code in an existing method) c
 On the IfNode
 
 * Label tab
-** Label expression: ``aql:self.condition.xtextPrettyPrint()``
+** Label expression: `+aql:self.condition.xtextPrettyPrint()+`
 
 On PrimitiveInstructionNode
 
@@ -466,7 +468,11 @@ On PrimitiveInstructionNode
 ** Predicate expression: [self.oclIsKindOf(logo::Left) or self.oclIsKindOf(logo::Right) /]
 ** copy the style of the PrimitiveInstructionNode into this new conditional style
 *** Label tab
-*** Label expression : ``aql:self.eClass().name+' '+self.angle.xtextPrettyPrint()``
+*** Label expression : 
+[source,]
+----
+aql:self.eClass().name+' '+self.angle.xtextPrettyPrint()
+----
 
 do the same for other types such as Forward, Backward, ProcCall ...
 
@@ -488,7 +494,7 @@ TIP: service calling xtextPrettyPrint() might be usefull too in the _tooltip exp
 in the Begin element:
 
 * _new operation -> change context_
-** browse expression: `service:self.openTextEditor()`
+** browse expression: `+service:self.openTextEditor()+`
 
 
 === Add action that create  elements (Palette)
@@ -500,7 +506,7 @@ in the Begin element:
 on Begin 
 
 * _new operation -> change context_
-** browse expression: `var:container`
+** browse expression: `+var:container+`
 *** _new operation -> create instance_
 **** reference name: _instructions_
 **** Type name: _logo::PenUp_

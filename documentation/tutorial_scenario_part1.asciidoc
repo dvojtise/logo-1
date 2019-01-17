@@ -1,5 +1,7 @@
 [#day-one-part1]
-# Tutorial scenario day one: Hands-on xText, the logo turtle language 
+= Tutorial scenario day one: Hands-on xText, the logo turtle language 
+:icons: font
+:source-highlighter: pygments
 
 This document indicates the steps to follow in order to reproduce the tutorial.
 
@@ -11,7 +13,7 @@ The solution of this tutorial is available in the folder _part1-grammarfirst-sol
 support of openFX used for the day 2 tutorial)  
 * grab and unzip the latest dev version of GEMOC Studio  http://download.eclipse.org/gemoc/packages/nightly/
 
-## Create project and basic grammar
+== Create project and basic grammar
 
 NOTE: Start the first Eclipse, we will call it the *Language Workbench*
 

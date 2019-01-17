@@ -1,6 +1,7 @@
 [#day-two-part3]
-== Scenario tutorial day two: Part 3: Hands-on GEMOC, the logo turtle language
-
+= Scenario tutorial day two: Part 3: Hands-on GEMOC, the logo turtle language
+:icons: font
+:source-highlighter: pygments
 
 This document indicates the steps to follow in order to reproduce the tutorial.
 

@@ -6,12 +6,12 @@ It follows the concepts recommended by the books:
 * https://www.crcpress.com/Engineering-Modeling-Languages/Combemale-France-Jezequel-Rumpe-Steel-Vojtisek/p/book/9781466583733[Engineering Modeling Languages: Turning Domain Knowledge into Tools] ( Companion http://mdebook.irisa.fr/[web site] )  
 * https://www.amazon.fr/Ing%C3%A9nierie-Dirig%C3%A9e-par-Mod%C3%A8les-concepts/dp/2729871969[Ingénierie Dirigée par les Modèles : des concepts a la pratique] 
 
-and applies then in order to create an example language (Logo turtle) using https://www.eclipse.org/Xtext/[Xtext], 
-https://www.eclipse.org/sirius/[Sirius] , and https://www.eclipse.org/gemoc/[GEMOC] . 
+and applies them in order to create an example language (Logo turtle) using https://www.eclipse.org/Xtext/[Xtext], 
+https://www.eclipse.org/sirius/[Sirius] , and https://www.eclipse.org/gemoc/[GEMOC] technologies. 
 (Ie. with modern textual editor, graphical editor, simulation, animation and debug support)
 
 
-The course is organized to be run in 4 session (half a day each). 
+The course is organized to be run in 4 sessions (half a day each). 
 
 * 1rst half day:
 ** presentation of the example language [https://github.com/dvojtise/mde-crashcourse-logo/raw/master/documentation/slides/1-Tutorial-target-domain-presentation-Logo.pptx[slides] ]
