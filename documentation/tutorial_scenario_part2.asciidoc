@@ -30,7 +30,12 @@ support of openFX used for the tutorial part 3)
 ** _Select archive file -> Browse_ and select the file _part2-mmfirst-base.zip_ you've downloaded
 ** Finish
 
+In case of trouble and error in your projects:
+* In the problem view, configure it in order to show only errors and warning on the selected project. 
+This will help analyze the error (for example create missing empty folders or fix java minimum version)
+* you may have to regenerate the xtext editor code (right click on the Logo.xtext file -> Run as -> Generate Xtext Artifacts)
 
+  
 
 [#sirius-graphical-editor]
 == Sirius graphical editor
@@ -153,8 +158,9 @@ If you have nice default icons defined in the _.edit_ project, they'll be direct
 ====
 I recommend to use explicit names as IDs in Sirius. 
 I usually start by the represented model element (ie. metaclass name) followed by the kind of representation (Container, Node, or edge) 
-using camel case text. 
+using camel case text.
 ====
+
 
 === Display all root instructions:
 
