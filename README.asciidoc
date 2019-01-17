@@ -4,7 +4,7 @@ and more specifically SLE (Software Language Engineering) in a fast and pragmati
 It follows the concepts recommended by the books:
 
 * https://www.crcpress.com/Engineering-Modeling-Languages/Combemale-France-Jezequel-Rumpe-Steel-Vojtisek/p/book/9781466583733[Engineering Modeling Languages: Turning Domain Knowledge into Tools] ( Companion http://mdebook.irisa.fr/[web site] )  
-* https://www.amazon.fr/Ing%C3%A9nierie-Dirig%C3%A9e-par-Mod%C3%A8les-concepts/dp/2729871969[Ingénierie Dirigée par les Modèles : des concepts a la pratique] 
+* https://www.amazon.fr/Ing%C3%A9nierie-Dirig%C3%A9e-par-Mod%C3%A8les-concepts/dp/2729871969[Ingénierie Dirigée par les Modèles : des concepts à la pratique] 
 
 and applies them in order to create an example language (Logo turtle) using https://www.eclipse.org/Xtext/[Xtext], 
 https://www.eclipse.org/sirius/[Sirius] , and https://www.eclipse.org/gemoc/[GEMOC] technologies. 
@@ -18,6 +18,8 @@ The course is organized to be run in 4 sessions (half a day each).
 ** textual editors with xtext (practical coding session support [https://dvojtise.github.io/mde-crashcourse-logo/tutorial_scenario_part1.html[html] , https://dvojtise.github.io/mde-crashcourse-logo/tutorial_scenario_part1.pdf[pdf] ])
 ** generalization to Software Language Engineering (theoretical part [https://github.com/dvojtise/mde-crashcourse-logo/raw/master/documentation/slides/2-MDE-SLE-CrashCourse.pptx[slides] ])
 * 2nd half day:
+** (Optional) Conversion of projects from grammar first to metamodel first approach 
+	(support [https://dvojtise.github.io/mde-crashcourse-logo/tutorial_scenario_part1postprocess.html[html] , https://dvojtise.github.io/mde-crashcourse-logo/tutorial_scenario_part1postprocess.pdf[pdf] ])
 ** Graphical editors with Sirius, (practical coding session support [https://dvojtise.github.io/mde-crashcourse-logo/tutorial_scenario_part2.html[html] , https://dvojtise.github.io/mde-crashcourse-logo/tutorial_scenario_part2.pdf[pdf] ])
 * 3rd half day:
 ** animation, debugger and execution semantic with GEMOC, (practical coding session support [https://dvojtise.github.io/mde-crashcourse-logo/tutorial_scenario_part3.html[html] , https://dvojtise.github.io/mde-crashcourse-logo/tutorial_scenario_part3.pdf[pdf] ])

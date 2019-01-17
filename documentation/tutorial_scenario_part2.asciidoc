@@ -6,68 +6,30 @@
 
 This document indicates the steps to follow in order to reproduce the tutorial.
 
-The solution of this tutorial is available in the folder https://github.com/dvojtise/mde-crashcourse-logo/tree/master/part2-mmfirst-solution[part2-mmfirst-solution] 
-(or download the https://github.com/dvojtise/mde-crashcourse-logo/part2-mmfirst-base.zip[zip] and use import project) .
+The result of this tutorial is available in the folder https://github.com/dvojtise/mde-crashcourse-logo/tree/master/part2-mmfirst-solution[part2-mmfirst-solution] 
+in githug repo or as a download in the following  https://github.com/dvojtise/mde-crashcourse-logo/zips/part2-mmfirst-solution.zip[zip].
 
 
-== Convert Grammar first to metamodel first
 
-[NOTE] 
-====
-As this part is not really important, as this is only code refactoring, 
-you may also directly grab the version in folder https://github.com/dvojtise/mde-crashcourse-logo/tree/master/part2-mmfirst-base[part2-mmfirst-base]  and move to 
-<<#sirius-graphical-editor>> section.
-====
+== Installation
 
-* _File -> New -> Ecore Modeling Project_
-** name:  _fr.inria.sed.logo.model_
-** nsuri: http://www.inria.fr/sed/logo
-** package: Logo
-
-replace the _fr.inria.sed.logo.model/model/logo.ecore_ by the one in _fr.inria.sed.logo.xtext/model/generated/Logo.ecore_
-
-Optionnaly, open the ecore file, on the root package change _http://www.inria.fr/sed/logo/xtext/Logo_ to http://www.inria.fr/sed/logo/Logo_ 
-
-right click on Logo.genmodel -> Reload...
-
-* open the genmodel file
-* on the second node (Package "Logo"), in the "All" section, change the base package from _fr.inria.sed.logo.model_ to _fr.inria.sed_  
-* right click on the root node -> generate Model code ; 
+* If you haven't followed the previous tutorials <<tutorial_scenario_part1.asciidoc>> or <<tutorial_scenario_part1postprocess.asciidoc>>:
+** Install an Oracle Java JDK (minimum 8, max 10,  Oracle is preferred due to 
+support of openFX used for the tutorial part 3)  
+** grab and unzip the latest dev version of GEMOC Studio  http://download.eclipse.org/gemoc/packages/nightly/
+* If you have followed one the previous tutorial <<tutorial_scenario_part1.asciidoc>> or <<tutorial_scenario_part1postprocess.asciidoc>>:
+** Either use a brand new workspace or clean it by deleting the projects in it since the projects we will create will have the same names.
 
 
-* in _fr.inria.sed.logo.xtext/src/fr/inria/sed/logo/xtext/Logo.xtext_ replace 
-[source]
-----
-generate logo "http://www.inria.fr/sed/logo/xtext/Logo"
----- 
-by 
-[source]
-----
-// import "http://www.inria.fr/sed/logo/Logo"
-import "platform:/resource/fr.inria.sed.logo.model/model/Logo.ecore"
-----
+*Then*
 
-in xtext project
-
-in the mwe2 file, add:
-[source]
-----
-language = StandardLanguage {
-			...
-			referencedResource = "platform:/resource/fr.inria.sed.logo.model/model/Logo.genmodel"
-----
-add a dependency to the fr.inria.sed.logo.model project (by opening either plugin.xml or manifest.mf, then the Dependencies tab)
-Also make sure to reexport the dependency.
-
-run the mwe2 generator
-
-fix any import such as _import fr.inria.sed.logo.xtext.logo.LogoProgram_ into _import fr.inria.sed.logo.LogoProgram_
+* download the file *https://dvojtise.github.io/mde-crashcourse-logo/zips/part2-mmfirst-base.zip*
+* in Eclipse, 
+** _File -> Import... -> General -> Existing projects into Workspace -> Next_
+** _Select archive file -> Browse_ and select the file _part2-mmfirst-base.zip_ you've downloaded
+** Finish
 
 
-Do some refactoring in the metamodel:
-
-* add an abstract concept PrimitiveInstruction as super class for PenUp, Foward, clear, etc
-* add an abstract concept controlStructureInstruction as super class for If, Repeat, while, etc
 
 [#sirius-graphical-editor]
 == Sirius graphical editor
