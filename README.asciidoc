@@ -1,2 +1,33 @@
-The html version of this crash course are available online: <<https://dvojtise.github.io/mde-crashcourse-logo/,https://dvojtise.github.io/mde-crashcourse-logo/>> 
+The goal of this crash course is to discover the principles of MDE (Model Driven Engineering) 
+and more specifically SLE (Software Language Engineering) in a fast and pragmatic way: doing by yourself on an example.
+
+It follows the concepts recommended by the books:
+
+* https://www.crcpress.com/Engineering-Modeling-Languages/Combemale-France-Jezequel-Rumpe-Steel-Vojtisek/p/book/9781466583733[Engineering Modeling Languages: Turning Domain Knowledge into Tools] ( Companion http://mdebook.irisa.fr/[web site] )  
+* https://www.amazon.fr/Ing%C3%A9nierie-Dirig%C3%A9e-par-Mod%C3%A8les-concepts/dp/2729871969[Ingénierie Dirigée par les Modèles : des concepts a la pratique] 
+
+and applies then in order to create an example language (Logo turtle) using https://www.eclipse.org/Xtext/[Xtext], 
+https://www.eclipse.org/sirius/[Sirius] , and https://www.eclipse.org/gemoc/[GEMOC] . 
+(Ie. with modern textual editor, graphical editor, simulation, animation and debug support)
+
+
+The course is organized to be run in 4 session (half a day each). 
+
+* 1rst half day:
+** presentation of the example language [https://github.com/dvojtise/mde-crashcourse-logo/raw/master/documentation/slides/1-Tutorial-target-domain-presentation-Logo.pptx[slides] ]
+** textual editors with xtext (practical coding session support [https://dvojtise.github.io/mde-crashcourse-logo/tutorial_scenario_part1.html[html] , https://dvojtise.github.io/mde-crashcourse-logo/tutorial_scenario_part1.pdf[pdf] ])
+** generalization to Software Language Engineering (theoretical part [https://github.com/dvojtise/mde-crashcourse-logo/raw/master/documentation/slides/2-MDE-SLE-CrashCourse.pptx[slides] ])
+* 2nd half day:
+** Graphical editors with Sirius, (practical coding session support [https://dvojtise.github.io/mde-crashcourse-logo/tutorial_scenario_part2.html[html] , https://dvojtise.github.io/mde-crashcourse-logo/tutorial_scenario_part2.pdf[pdf] ])
+* 3rd half day:
+** animation, debugger and execution semantic with GEMOC, (practical coding session support [https://dvojtise.github.io/mde-crashcourse-logo/tutorial_scenario_part3.html[html] , https://dvojtise.github.io/mde-crashcourse-logo/tutorial_scenario_part3.pdf[pdf] ])
+** and other common toolings
+* 4th half day: (theoretical part [https://github.com/dvojtise/mde-crashcourse-logo/raw/master/documentation/slides/4-BuildingEclipsePluginCourse_2018.pptx[slides] ]) (may be a short practical part will come too)
+** tip and tricks to write eclipse UI, 
+** tip and trick to easily build (ie. target continuous integration) and deploy. Ie. how to achieve reproducible builds 
+for demos and simplify distribution to the end-users.
+ generalization, SLE in the web, recent progress about deploying your languages in the browser. (theoretical part)
+
+
+Please feel free to contact me for reporting improvement or successful use of these course supports. 
 
