@@ -2,6 +2,7 @@
 = Scenario tutorial day two: Part 3: Hands-on GEMOC, the logo turtle language
 :icons: font
 :source-highlighter: pygments
+:tabsize: 4
 
 This document indicates the steps to follow in order to reproduce the tutorial.
 
@@ -101,14 +102,14 @@ Add a _run_ method with *@Main* annotation in the class LogoProgramAspect.
 
 [source,java]
 ----
-	@Main
-	def void run(){
-		// println('hello world')
-		val MessagingSystemManager msManager = new MessagingSystemManager
-		val ms = msManager.createBestPlatformMessagingSystem("Logo","Simple Logo interpreter")
- 		
-		ms.debug("Hello world on "+_self.eResource.URI, "Logo")
-	}
+@Main
+def void run(){
+	// println('hello world')
+	val MessagingSystemManager msManager = new MessagingSystemManager
+	val ms = msManager.createBestPlatformMessagingSystem("Logo","Simple Logo interpreter")
+	
+	ms.debug("Hello world on "+_self.eResource.URI, "Logo")
+}
 ---- 
 
 Launch the *Modeling workbench*.
@@ -220,16 +221,16 @@ TIP: For some language you may directly weave runtime data in the language ecore
 .in Logo.ecore
 [source,]
 ----
-	class LogoProgram
+class LogoProgram
+{
+	property instructions : Instruction[*|1] { ordered composes };
+	property runtimeContext : RuntimeContext[?] { composes }
 	{
-		property instructions : Instruction[*|1] { ordered composes };
-		property runtimeContext : RuntimeContext[?] { composes }
-		{
-			annotation aspect;
-		}
+		annotation aspect;
 	}
-	
-	abstract class RuntimeContext;
+}
+
+abstract class RuntimeContext;
 ----
 
 add a plugin dependencies from _fr.inria.sed.logo.vm.model_ to _fr.inria.sed.logo.model_ 

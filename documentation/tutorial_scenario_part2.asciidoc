@@ -2,6 +2,7 @@
 = Scenario tutorial day two: Hands-on Sirius, the logo turtle language
 :icons: font
 :source-highlighter: pygments
+:tabsize: 4
  
 
 This document indicates the steps to follow in order to reproduce the tutorial.
@@ -352,63 +353,63 @@ add the following methods in the Services.java file. (or copy the file from http
  
 [source, java]
 ----
-    /**
-     * Try to retrieve an xtext resource for the given element and then get its String representation
-     * @param any EObject
-     * @return the xtext representation of the EObject or an empty string
-     */
-    public String xtextPrettyPrint(EObject any) {
-    	if (any != null && any.eResource() instanceof XtextResource && any.eResource().getURI() != null) {
-			String fileURI = any.eResource().getURI().toPlatformString(true);
-			IFile workspaceFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(fileURI));
-			if (workspaceFile != null) {
-				ICompositeNode node = NodeModelUtils.findActualNodeFor(any);
-				if (node != null) {
-					return node.getText().trim();
-				}
+/**
+ * Try to retrieve an xtext resource for the given element and then get its String representation
+ * @param any EObject
+ * @return the xtext representation of the EObject or an empty string
+ */
+public String xtextPrettyPrint(EObject any) {
+	if (any != null && any.eResource() instanceof XtextResource && any.eResource().getURI() != null) {
+		String fileURI = any.eResource().getURI().toPlatformString(true);
+		IFile workspaceFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(fileURI));
+		if (workspaceFile != null) {
+			ICompositeNode node = NodeModelUtils.findActualNodeFor(any);
+			if (node != null) {
+				return node.getText().trim();
 			}
-    	}
-    	return "";
-    }
-    
-    public EObject openTextEditor(EObject any) {
-		if (any != null && any.eResource() instanceof XtextResource && any.eResource().getURI() != null) {
+		}
+	}
+	return "";
+}
 
-			String fileURI = any.eResource().getURI().toPlatformString(true);
-			IFile workspaceFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(fileURI));
-			if (workspaceFile != null) {
-				IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-				try {
-					IEditorPart openEditor = IDE.openEditor(page, workspaceFile,
-							"fr.inria.sed.logo.xtext.Logo", true);
-					if (openEditor instanceof AbstractTextEditor) {
-						ICompositeNode node = NodeModelUtils.findActualNodeFor(any);
-						if (node != null) {
-							int offset = node.getOffset();
-							int length = node.getTotalEndOffset() - offset;
-							((AbstractTextEditor) openEditor).selectAndReveal(offset, length);
-						}
+public EObject openTextEditor(EObject any) {
+	if (any != null && any.eResource() instanceof XtextResource && any.eResource().getURI() != null) {
+
+		String fileURI = any.eResource().getURI().toPlatformString(true);
+		IFile workspaceFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(fileURI));
+		if (workspaceFile != null) {
+			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+			try {
+				IEditorPart openEditor = IDE.openEditor(page, workspaceFile,
+						"fr.inria.sed.logo.xtext.Logo", true);
+				if (openEditor instanceof AbstractTextEditor) {
+					ICompositeNode node = NodeModelUtils.findActualNodeFor(any);
+					if (node != null) {
+						int offset = node.getOffset();
+						int length = node.getTotalEndOffset() - offset;
+						((AbstractTextEditor) openEditor).selectAndReveal(offset, length);
 					}
-					// editorInput.
-				} catch (PartInitException e) {
-					Activator.error(e.getMessage(), e);
 				}
+				// editorInput.
+			} catch (PartInitException e) {
+				Activator.error(e.getMessage(), e);
 			}
 		}
-		System.out.println(any);
-		return any;
 	}
-	
-	public EObject openBasicHoveringDialog(EObject any) {
-		String xtextString = xtextPrettyPrint(any);
-		if (xtextString != null && !xtextString.isEmpty()) {
-			IEditorPart part = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();							
-			InfoPopUp pop = new InfoPopUp( part.getSite().getShell() , "Textual representation of the element","press ESC to close");
-			pop.setText(xtextString);
-			pop.open();
-		}
-		return any;
+	System.out.println(any);
+	return any;
+}
+
+public EObject openBasicHoveringDialog(EObject any) {
+	String xtextString = xtextPrettyPrint(any);
+	if (xtextString != null && !xtextString.isEmpty()) {
+		IEditorPart part = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();							
+		InfoPopUp pop = new InfoPopUp( part.getSite().getShell() , "Textual representation of the element","press ESC to close");
+		pop.setText(xtextString);
+		pop.open();
 	}
+	return any;
+}
 
 ----
 
@@ -417,7 +418,7 @@ add the following methods in the Services.java file. (or copy the file from http
 
 restart the *modeling workbench*
 
-TIP: If you start it in debug mode, small changes (code in an existing method) can be taken into account without a full restart.
+TIP: If you start the second eclipse in debug mode, small java changes (code in an existing method) can be taken into account without a full restart.
 
 On the IfNode
 
