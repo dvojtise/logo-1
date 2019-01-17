@@ -441,7 +441,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>This document indicates the steps to follow in order to reproduce the tutorial.</p>
 </div>
 <div class="paragraph">
-<p>The solution of this tutorial is available in the folder <a href="https://github.com/dvojtise/mde-crashcourse-logo/tree/master/part2-mmfirst-solution">part2-mmfirst-solution</a> .</p>
+<p>The solution of this tutorial is available in the folder <a href="https://github.com/dvojtise/mde-crashcourse-logo/tree/master/part2-mmfirst-solution">part2-mmfirst-solution</a>
+(or download the <a href="https://github.com/dvojtise/mde-crashcourse-logo/part2-mmfirst-base.zip">zip</a> and use import project) .</p>
 </div>
 </div>
 </div>
@@ -700,7 +701,7 @@ I recommend to open (import the project) the project containing the <em>design</
 </table>
 </div>
 <div class="paragraph">
-<p>For our logo example, we&#8217;ll mostly design the graphical represention from  the modeling workbench.</p>
+<p>For our logo example, we&#8217;ll mostly design the graphical representation from  the <strong>modeling workbench</strong>.</p>
 </div>
 <div class="paragraph">
 <p>In the odesign:</p>
@@ -715,7 +716,7 @@ I recommend to open (import the project) the project containing the <em>design</
 <div class="ulist">
 <ul>
 <li>
-<p>on the metamodel tab: add a reference to the ecore file (<em>add from registry</em> if you work with xtext and are working in the modeling workbench,
+<p>on the metamodel tab: add a reference to the ecore file (<em>add from registry</em> if you work with xtext and are working in the <strong>modeling workbench</strong>,
 otherwise use <em>add from workspace</em>)</p>
 </li>
 <li>
@@ -775,48 +776,6 @@ While being convenient for some purposes, this behavior may not be suitable for 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_display_all_procedure_declarations">Display all procedure declarations:</h3>
-<div class="paragraph">
-<p>In the default layer</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><em>New diagram element &#8594; Container</em> then in the properties view</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Id: procDeclNode</p>
-</li>
-<li>
-<p>domain class: logo::ProcDeclaration</p>
-</li>
-<li>
-<p>New style &#8594; Gradient</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Tip</div>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>I recommend to use explicit names as IDs in Sirius.
-I usually start by the represented model element (ie. metaclass name) followed by the kind of representation (Container, Node, or edge)
-using camel case text.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
 <h3 id="_display_all_root_instructions">Display all root instructions:</h3>
 <div class="ulist">
 <ul>
@@ -857,6 +816,22 @@ then use this alternative to reject some kinds : <code>aql:self.eContents()&#859
 <td class="content">
 <div class="paragraph">
 <p>If you have nice default icons defined in the <em>.edit</em> project, they&#8217;ll be directly displayed.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>I recommend to use explicit names as IDs in Sirius.
+I usually start by the represented model element (ie. metaclass name) followed by the kind of representation (Container, Node, or edge)
+using camel case text.</p>
 </div>
 </td>
 </tr>
@@ -1171,7 +1146,7 @@ then switch to "Sirius" mode instead of "Acceleo" mode.</pre>
 <p>semantic candidate expression:<code>aql: self.eContents()&#8594;filter(logo::If)&#8594;collect(i | i.thenPart))</code></p>
 </li>
 <li>
-<p><em>New style &#8594; Diamond</em></p>
+<p>_New style &#8594; Gradient</p>
 </li>
 <li>
 <p>Label tab:</p>
@@ -1210,7 +1185,7 @@ then switch to "Sirius" mode instead of "Acceleo" mode.</pre>
 <p>semantic candidate expression: <code>aql: self.eContents()&#8594;filter(logo::If)&#8594;collect(i | i.elsePart))</code></p>
 </li>
 <li>
-<p><em>New style &#8594; Diamond</em></p>
+<p>_New style &#8594; gradient</p>
 </li>
 <li>
 <p>Label tab:</p>
@@ -1338,10 +1313,10 @@ Exercise for the motivated: reproduce similar structure for Repeat and While con
 <div class="sect2">
 <h3 id="_add_xtext_aware_service_static_methods">Add xtext aware service static methods</h3>
 <div class="paragraph">
-<p>close the modeling worbench (will need to be restarted in order to take into account the new methods)</p>
+<p>close the <strong>modeling worbench</strong> (will need to be restarted in order to take into account the new methods)</p>
 </div>
 <div class="paragraph">
-<p>in the Language workbench.</p>
+<p>in the <strong>Language workbench</strong>.</p>
 </div>
 <div class="paragraph">
 <p>in the <em>xxx.design</em> project
@@ -1420,7 +1395,7 @@ in the package next to the Services.java class.</p>
 <div class="sect2">
 <h3 id="_use_services_to_improve_labels">Use services to improve labels</h3>
 <div class="paragraph">
-<p>restart the modeling workbench</p>
+<p>restart the <strong>modeling workbench</strong></p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1622,7 +1597,7 @@ service calling xtextPrettyPrint() might be usefull too in the <em>tooltip expre
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-01-16 10:11:57 UTC
+Last updated 2019-01-17 09:31:56 UTC
 </div>
 </div>
 </body>
