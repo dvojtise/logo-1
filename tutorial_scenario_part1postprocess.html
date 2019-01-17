@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.8">
-<title>Scenario tutorial day two: Hands-on Sirius, the logo turtle language</title>
+<title>Scenario tutorial day two: Converting grammar first projects to Metamodel first projects</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -502,29 +502,62 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .listingblock .pygments .tok-il { color: #666666 } /* Literal.Number.Integer.Long */
 </style>
 </head>
-<body id="day-two-part2" class="article">
+<body class="article">
 <div id="header">
-<h1>Scenario tutorial day two: Hands-on Sirius, the logo turtle language</h1>
+<h1>Scenario tutorial day two: Converting grammar first projects to Metamodel first projects</h1>
 </div>
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
+<p>In part <a href="#tutorial_scenario_part1.asciidoc">[tutorial_scenario_part1.asciidoc]</a>, the tutorial started from the grammar (xtext)
+and then produced an ecore metamodel. While this approach is correct and rather intuitive for an introduction to MDE,
+it may lead to poorly organized metamodels. For example, it is difficult to create abstract super classes
+using Xtext.</p>
+</div>
+<div class="paragraph">
+<p>This is why is is often better to start by writing the ecore metamodel and then connect the Xtext grammar on it.</p>
+</div>
+<div class="paragraph">
+<p>If you haven&#8217;t wrote the ecore first, you can convert your projects in order to do so.</p>
+</div>
+<div class="paragraph">
+<p>This document describes how to achieve that.
+It starts from the solution projects of the part1 and will produce the base projects for the part2.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>As this is only code refactoring, this part is not really important for understanding the crash course content.</p>
+</div>
+<div class="paragraph">
+<p>Most reader should jump directly to the next tutorial (<a href="#tutorial_scenario_part2.asciidoc">[tutorial_scenario_part2.asciidoc]</a>) and use this one only as a reference
+if she has to to this task someday on another language.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
 <p>This document indicates the steps to follow in order to reproduce the tutorial.</p>
 </div>
 <div class="paragraph">
-<p>The result of this tutorial is available in the folder <a href="https://github.com/dvojtise/mde-crashcourse-logo/tree/master/part2-mmfirst-solution">part2-mmfirst-solution</a>
-in githug repo or as a download in the following  <a href="https://github.com/dvojtise/mde-crashcourse-logo/zips/part2-mmfirst-solution.zip">zip</a>.</p>
+<p>The result of this tutorial is available in the folder <a href="https://github.com/dvojtise/mde-crashcourse-logo/tree/master/part2-mmfirst-base">part2-mmfirst-base</a>
+in githug repo or as a download in the following  <a href="https://github.com/dvojtise/mde-crashcourse-logo/zips/part2-mmfirst-base.zip">zip</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_installation">Installation</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>If you haven&#8217;t followed the previous tutorials <a href="#tutorial_scenario_part1.asciidoc">[tutorial_scenario_part1.asciidoc]</a> or <a href="#tutorial_scenario_part1postprocess.asciidoc">[tutorial_scenario_part1postprocess.asciidoc]</a>:</p>
+<div class="paragraph">
+<p>If you haven&#8217;t followed the previous tutorial <a href="#tutorial_scenario_part1.asciidoc">[tutorial_scenario_part1.asciidoc]</a>:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -536,16 +569,13 @@ support of openFX used for the tutorial part 3)</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>If you have followed one the previous tutorial <a href="#tutorial_scenario_part1.asciidoc">[tutorial_scenario_part1.asciidoc]</a> or <a href="#tutorial_scenario_part1postprocess.asciidoc">[tutorial_scenario_part1postprocess.asciidoc]</a>:</p>
+<div class="paragraph">
+<p>If you have followed the previous tutorial <a href="#tutorial_scenario_part1.asciidoc">[tutorial_scenario_part1.asciidoc]</a>:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Either use a brand new workspace or clean it by deleting the projects in it since the projects we will create will have the same names.</p>
-</li>
-</ul>
-</div>
+<p>Either use a brand new workspace or clean it by deleting the projects in it since the project we will create will have the same names.</p>
 </li>
 </ul>
 </div>
@@ -555,7 +585,7 @@ support of openFX used for the tutorial part 3)</p>
 <div class="ulist">
 <ul>
 <li>
-<p>download the file <strong><a href="https://dvojtise.github.io/mde-crashcourse-logo/zips/part2-mmfirst-base.zip" class="bare">https://dvojtise.github.io/mde-crashcourse-logo/zips/part2-mmfirst-base.zip</a></strong></p>
+<p>download the file <strong><a href="https://dvojtise.github.io/mde-crashcourse-logo/zips/part1-grammarfirst-solution.zip" class="bare">https://dvojtise.github.io/mde-crashcourse-logo/zips/part1-grammarfirst-solution.zip</a></strong></p>
 </li>
 <li>
 <p>in Eclipse,</p>
@@ -565,7 +595,7 @@ support of openFX used for the tutorial part 3)</p>
 <p><em>File &#8594; Import&#8230;&#8203; &#8594; General &#8594; Existing projects into Workspace &#8594; Next</em></p>
 </li>
 <li>
-<p><em>Select archive file &#8594; Browse</em> and select the file <em>part2-mmfirst-base.zip</em> you&#8217;ve downloaded</p>
+<p><em>Select archive file &#8594; Browse</em> and select the file <em>part2-grammarfirst-solution.zip</em> you&#8217;ve downloaded</p>
 </li>
 <li>
 <p>Finish</p>
@@ -578,35 +608,22 @@ support of openFX used for the tutorial part 3)</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="sirius-graphical-editor">Sirius graphical editor</h2>
+<h2 id="_convert_grammar_first_to_metamodel_first">Convert Grammar first to metamodel first</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>We will create a block based graphical representation for Logo.</p>
-</div>
-<div class="paragraph">
-<p>Create the project for the graphical editor:</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
-<p><em>File &#8594; new &#8594; Viewpoint Specification Project</em></p>
+<p><em>File &#8594; New &#8594; Ecore Modeling Project</em></p>
 <div class="ulist">
 <ul>
 <li>
-<p>name: <code>fr.inria.sed.logo.design</code></p>
-</li>
-</ul>
-</div>
+<p>name:  <em>fr.inria.sed.logo.model</em></p>
 </li>
 <li>
-<p>on the project (plugin.xml or manifest.mf) add a dependency to <em>fr.inria.sed.logo.model</em> project</p>
+<p>nsuri: <a href="http://www.inria.fr/sed/logo" class="bare">http://www.inria.fr/sed/logo</a></p>
 </li>
 <li>
-<p>open the odesign</p>
-<div class="ulist">
-<ul>
-<li>
-<p>rename the viewpoint from <em>MyViewpoint</em> to <em>LogoBlockViewpoint</em></p>
+<p>package: Logo</p>
 </li>
 </ul>
 </div>
@@ -614,1014 +631,79 @@ support of openFX used for the tutorial part 3)</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s open some example using our representation. This can be done in the <strong>Modeling Workbench</strong> like xtext directly on .logo files.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Most parts of Sirius are interpreted, a big part of the diagram specification can be done directly in the
-<strong>Language Worbench</strong> and changes in the diagram specification are directly reported to the opened model.
-This greatly simplifies the design of the diagram editor.</p>
+<p>replace the <em>fr.inria.sed.logo.model/model/logo.ecore</em> by the one in <em>fr.inria.sed.logo.xtext/model/generated/Logo.ecore</em></p>
 </div>
 <div class="paragraph">
-<p>However, since xtext does not work this way we need to convert our .logo files into .xmi that don&#8217;t require xtext.</p>
+<p>Optionnaly, open the ecore file, on the root package change <em><a href="http://www.inria.fr/sed/logo/xtext/Logo" class="bare">http://www.inria.fr/sed/logo/xtext/Logo</a></em> to <a href="http://www.inria.fr/sed/logo/Logo_" class="bare">http://www.inria.fr/sed/logo/Logo_</a></p>
 </div>
 <div class="paragraph">
-<p>You can directly create an xmi test file by :</p>
+<p>right click on Logo.genmodel &#8594; Reload&#8230;&#8203;</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>open the ecore file &#8594; Select the LogoProgram class &#8594; right click &#8594; Create dynamic instance</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>This is the recommended way if you do not have an xtext representation.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>In some situation you may wish to convert an xtext represensation into xmi.
-IE. convert a logo file into an xmi file. To do that:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>in the <strong>Modeling workbench</strong> (with xtext support available&#8230;&#8203;)</p>
+<p>open the genmodel file</p>
 </li>
 <li>
-<p>right click on the <em>.logo</em> file &#8594; Open with &#8594; Other &#8594; Sample Reflective Ecore Model Editor</p>
+<p>on the second node (Package "Logo"), in the "All" section, change the base package from <em>fr.inria.sed.logo.model</em> to <em>fr.inria.sed</em></p>
 </li>
 <li>
-<p><em>File &#8594; save as</em> &#8594; choose a name ending with <strong>.xmi</strong></p>
+<p>right click on the root node &#8594; generate Model code ;</p>
 </li>
 <li>
-<p>verify that the file is correctly encoded in xmi (ie. a xml flavor) by opening it with the generic text editor</p>
-</li>
-<li>
-<p>change the header in order to be
-[source&gt;</p>
+<p>in <em>fr.inria.sed.logo.xtext/src/fr/inria/sed/logo/xtext/Logo.xtext</em> replace</p>
 </li>
 </ul>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>&lt;logo:LogoProgram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:logo="http://www.inria.fr/sed/logo/Logo"
-	xsi:schemaLocation="http://www.inria.fr/sed/logo/Logo ../fr.inria.sed.logo.model/model/Logo.ecore"&gt;</pre>
+<pre>generate logo "http://www.inria.fr/sed/logo/xtext/Logo"</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>copy or import the file in some test project in the <strong>Language Workbench</strong></p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>For best result if working with both Sirius and Xtext.
-I recommend to open (import the project) the project containing the <em>design</em> file
- in both the Language workbench AND Modeling workbench.</p>
-</div>
-<div class="paragraph">
-<p>Using this technique you can directly add a Sirius representation on top of the <em>.logo</em> files without converting them in xmi.</p>
-</div>
-<div class="paragraph">
-<p>NOTE when using the second workbench, make sure to create the representation using the correct viewpoint, since it will appear twice.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>For our logo example, we&#8217;ll mostly design the graphical representation from  the <strong>modeling workbench</strong>.</p>
-</div>
-<div class="paragraph">
-<p>In the odesign:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>on the viewpoint; <em>right click &#8594; new representation &#8594; diagram description</em></p>
-</li>
-<li>
-<p>on the diagram description;</p>
-<div class="ulist">
-<ul>
-<li>
-<p>on the metamodel tab: add a reference to the ecore file (<em>add from registry</em> if you work with xtext and are working in the <strong>modeling workbench</strong>,
-otherwise use <em>add from workspace</em>)</p>
-</li>
-<li>
-<p>on the general tab:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Domain class = LogoProgram  (the completion should work)</p>
-</li>
-<li>
-<p>give an ID = LogoBlockDiagram (change the label for "Logo Block Diagram")</p>
-</li>
-<li>
-<p>tick "Initialization" and "show on startup"</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="sect2">
-<h3 id="_create_a_test_model_with_it_representation">Create a test model with it representation</h3>
-<div class="paragraph">
-<p>Create a test project and copy one or several <em>.logo</em> files for testing the representation.</p>
-</div>
-<div class="paragraph">
-<p>Right click on the <em>.logo</em> file &#8594; New &#8594; Representation file</p>
-</div>
-<div class="paragraph">
-<p>This allows to create one file containing the representations (ie. the diagrams) for the given <em>.logo</em> file.
-These representations will be contained in an <em>.aird</em> file.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Sirius support another mode for the diagram using a <em>project session</em>:</p>
-</div>
-<div class="paragraph">
-<p>When creating the project you can use the <em>Modeling project</em> wizard.
-Projects with this nature do not require to create manually the <em>.aird</em> file because it will create one by default for the project.</p>
-</div>
-<div class="paragraph">
-<p>However in this case, all representations of all models in the current project will be contained in a single "representation.aird" file.
-While being convenient for some purposes, this behavior may not be suitable for all cases.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_display_all_root_instructions">Display all root instructions:</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>_New diagram element &#8594; Node then in the properties view</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Id: PrimitiveInstructionNode</p>
-</li>
-<li>
-<p>domain class: logo::PrimitiveInstruction  (you can try with Instruction but you&#8217;ll probably have to change it later ;-) )</p>
-</li>
-<li>
-<p>semantic candidate expression:  <code>aql:self.eContents()</code>
-then use this alternative to reject some kinds :
-<code>aql:self.eContents()-&gt;reject(x |  x.oclIsKindOf(logo::ProcDeclaration))</code></p>
-</li>
-<li>
-<p><em>New style &#8594; Square</em></p>
-</li>
-<li>
-<p>Label tab: Label expression: <code>aql:self.eClass().name</code> (for a start, will be improved later)</p>
-</li>
-<li>
-<p>advanced tab: size computation expression: <code>aql:self.eClass().name.size()</code></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>If you have nice default icons defined in the <em>.edit</em> project, they&#8217;ll be directly displayed.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>I recommend to use explicit names as IDs in Sirius.
-I usually start by the represented model element (ie. metaclass name) followed by the kind of representation (Container, Node, or edge)
-using camel case text.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_display_all_root_instructions_2">Display all root instructions:</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><em>New diagram element &#8594; Node</em> then in the properties view</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Id: PrimitiveInstructionNode</p>
-</li>
-<li>
-<p>domain class: logo::PrimitiveInstruction  (you can try with Instruction but you&#8217;ll probably have to change it later ;-) )</p>
-</li>
-<li>
-<p>semantic candidate expression: <code>aql:self.eContents()</code>
-(alternative to reject some kinds : <code>aql:self.eContents()-&gt;reject(x |  x.oclIsKindOf(logo::ProcDeclaration))</code></p>
-</li>
-<li>
-<p><em>New style &#8594; Dot</em></p>
-</li>
-<li>
-<p>Label tab:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Label expression: <code>aql:self.eClass().name</code> (for a start, will be improved later)</p>
-</li>
-<li>
-<p>Label position: border</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Advanced tab:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>allow resizing : uncheck</p>
-</li>
-<li>
-<p>size computation expression: 1</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>you can try with a more generic type such as <em>Instruction</em> and then reject some elements using a query such as:
-<code>aql:self.eContents()-&gt;reject(x |  x.oclIsKindOf(logo::ProcDeclaration))</code></p>
-</div>
-<div class="paragraph">
-<p>However, this will not fit our final design. and using the <em>PrimitiveInstruction</em> and <em>ControlStructureInstruction</em> structure
-of the metamodel allow to factorize some representation rules for each group.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Reference documentation for writing queries
-<a href="https://www.eclipse.org/sirius/doc/specifier/general/Writing_Queries.html" class="bare">https://www.eclipse.org/sirius/doc/specifier/general/Writing_Queries.html</a>
-<a href="https://www.eclipse.org/acceleo/documentation/aql.html" class="bare">https://www.eclipse.org/acceleo/documentation/aql.html</a>
-<a href="https://www.eclipse.org/acceleo/documentation/" class="bare">https://www.eclipse.org/acceleo/documentation/</a></p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_display_all_instructions_of_the_procedure_declaration">Display all instructions of the procedure declaration:</h3>
-<div class="paragraph">
-<p>We will indicates to the ProcedureDeclaration container that we want to reuse some display rules.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>On the procDeclNode,</p>
-<div class="ulist">
-<ul>
-<li>
-<p><em>Import tab</em>, Reused Node Mapping: <em>PrimitiveInstructionNode</em></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_add_a_link_representing_the_sequence_of_instructions">Add a link representing the sequence of instructions</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><em>New diagram element &#8594; Relation based Edge</em> then in the properties view</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Id: instructionSequenceEdge</p>
-</li>
-<li>
-<p>source mapping: InstructionNode</p>
-</li>
-<li>
-<p>target mapping: InstructionNode</p>
-</li>
-<li>
-<p>Target finder expression:</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
+<p>by</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>aql:let i = self.eInverse('instructions').instructions-&gt;asSequence() in i-&gt;at(i-&gt;indexOf(self)+1)</pre>
+<pre class="pygments highlight"><code>// import "http://www.inria.fr/sed/logo/Logo"
+import "platform:/resource/fr.inria.sed.logo.model/model/Logo.ecore"</code></pre>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_add_a_link_between_procedure_call_and_the_procedure_declaration">Add a link between procedure call and the procedure declaration:</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><em>New diagram element &#8594; Relation based Edge</em> then in the properties view</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Id: procCallEdge</p>
-</li>
-<li>
-<p>source mapping: InstructionNode</p>
-</li>
-<li>
-<p>target mapping: procDeclNode</p>
-</li>
-<li>
-<p>Target finder expression: <code>aql:if self.oclIsKindOf(logo::ProcCall) then self.oclAsType(logo::ProcCall).declaration else null endif</code></p>
-</li>
-<li>
-<p>make this link use dashed line</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="literalblock">
-<div class="content">
-<pre>https://www.eclipse.org/sirius/doc/specifier/general/Writing_Queries.html</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>You can test your queries in order to write them: use the "Acceleo Model to Text &gt; Interpreter" view
-then switch to "Sirius" mode instead of "Acceleo" mode.</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>Warning: When using the Interpreter view from an element selected in a Sirius representation, the context of the expression is not the semantic element, but the view model element used internally by Sirius.</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>In the interpreter view, to get the semantic element, you must enter _aql:self.target_</pre>
-</div>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_move_procedure_call_procedure_declaration_link_into_a_separate_layer">Move procedure call - procedure declaration link into a separate layer</h3>
-<div class="paragraph">
-<p>on the Logo Block Diagram</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><em>New diagram element &#8594; additional layer</em> then in the properties view</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Id: ProcedureCall</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
 </div>
 <div class="paragraph">
-<p>move procCallEdge to this layer</p>
+<p>in xtext project</p>
 </div>
 <div class="paragraph">
-<p>In the diagram, observe how to enable/disable the layer.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_add_a_default_layout">Add a default layout</h3>
-<div class="paragraph">
-<p>on the Logo Block Diagram</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><em>New layout &#8594; Composite layout</em> then in the properties view</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Padding: 20</p>
-</li>
-<li>
-<p>top to bottom</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_create_representation_for_if">Create representation for If</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><em>New diagram element &#8594; Node</em> then in the properties view</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Id: IfNode</p>
-</li>
-<li>
-<p>domain class: logo::If</p>
-</li>
-<li>
-<p>semantic candidate expression: <code>aql:self.eContents()</code></p>
-</li>
-<li>
-<p><em>New style &#8594; Diamond</em></p>
-</li>
-<li>
-<p>Label tab:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Label expression: <code>aql:self.eClass().name</code> (for a start, will be improved later)</p>
-</li>
-<li>
-<p>Label position: border</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Advanced tab:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>allow resizing : uncheck</p>
-</li>
-<li>
-<p>size computation expression: 3</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><em>New diagram element &#8594; Container</em> then in the properties view</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Id: thenPartContainer</p>
-</li>
-<li>
-<p>domain class: logo::Block</p>
-</li>
-<li>
-<p>semantic candidate expression: <code>aql: self.eContents()-&gt;filter(logo::If)-&gt;collect(i | i.thenPart))</code></p>
-</li>
-<li>
-<p>_New style &#8594; Gradient</p>
-</li>
-<li>
-<p>Label tab:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Label expression: <code>aql:'then'</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Color tab</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Foreground color: light_green</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><em>New diagram element &#8594; Container</em> then in the properties view</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Id: elsePartContainer</p>
-</li>
-<li>
-<p>domain class: logo::Block</p>
-</li>
-<li>
-<p>semantic candidate expression: <code>aql: self.eContents()-&gt;filter(logo::If)-&gt;collect(i | i.elsePart))</code></p>
-</li>
-<li>
-<p>_New style &#8594; gradient</p>
-</li>
-<li>
-<p>Label tab:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Label expression: <code>aql:'else'</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Color tab</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Foreground color: light_red</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>in the following containers: procDeclContainer,  thenPartContainer, and elsePartContainer;</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Import tab:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Reused Node Mapping: PrimitiveIntrustionNode, IfNode</p>
-</li>
-<li>
-<p>Reused Container Mapping: elsePartContainer, thenPartContainer</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><em>New diagram element &#8594; Relation based Edge</em> then in the properties view</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Id: IfThenEdge</p>
-</li>
-<li>
-<p>source mapping: IfNode</p>
-</li>
-<li>
-<p>target mapping: thenPartContainer</p>
-</li>
-<li>
-<p>semantic candidate expression: <code>aql: self.thenPart</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><em>New diagram element &#8594; Relation based Edge</em> then in the properties view</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Id: IfElseEdge</p>
-</li>
-<li>
-<p>source mapping: IfNode</p>
-</li>
-<li>
-<p>target mapping: elsePartContainer</p>
-</li>
-<li>
-<p>semantic candidate expression: <code>aql: self.elsePart</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><em>New diagram element &#8594; Relation based Edge</em> then in the properties view</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Id: EndIfSequenceEdge</p>
-</li>
-<li>
-<p>source mapping: thenPartContainer, elsePartContainer</p>
-</li>
-<li>
-<p>target mapping: PrimitiveInstructionNode, IfNode</p>
-</li>
-<li>
-<p>semantic candidate expression:</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
+<p>in the mwe2 file, add:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>aql:let i = self.eContainer().eInverse('instructions').instructions-&gt;asSequence() in i-&gt;at(i-&gt;indexOf(self.eContainer())+1)</pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Exercise for the motivated: reproduce similar structure for Repeat and While control structure
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_improve_labels_and_xtext_integration">Improve labels and xtext integration</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>We will create some java services to be used by sirius</p>
-</div>
-<div class="sect2">
-<h3 id="_add_xtext_aware_service_static_methods">Add xtext aware service static methods</h3>
-<div class="paragraph">
-<p>close the <strong>modeling worbench</strong> (will need to be restarted in order to take into account the new methods)</p>
-</div>
-<div class="paragraph">
-<p>in the <strong>Language workbench</strong>.</p>
-</div>
-<div class="paragraph">
-<p>in the <em>xxx.design</em> project
-open plugin.xml file, add a plugin dependency to <em>org.eclipse.xtext</em>, <em>org.eclipse.ui.ide</em>,
-<em>org.eclipse.ui.workbench.texteditor</em>, and <em>org.eclipse.ui.workbench</em>.</p>
-</div>
-<div class="paragraph">
-<p>copy the file <a href="https://github.com/dvojtise/mde-crashcourse-logo/blob/master/part2-mmfirst-solution/fr.inria.sed.logo.design/src/fr/inria/sed/logo/design/InfoPopUp.java">InfoPopUp.java</a>
-in the package next to the Services.java class.</p>
-</div>
-<div class="paragraph">
-<p>add the following methods in the Services.java file. (or copy the file from <a href="https://github.com/dvojtise/mde-crashcourse-logo/blob/master/part2-mmfirst-solution/fr.inria.sed.logo.design/src/fr/inria/sed/logo/design/Services.java">Services.java</a>).</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="java"><span></span>    <span class="tok-cm">/**</span>
-<span class="tok-cm">     * Try to retrieve an xtext resource for the given element and then get its String representation</span>
-<span class="tok-cm">     * @param any EObject</span>
-<span class="tok-cm">     * @return the xtext representation of the EObject or an empty string</span>
-<span class="tok-cm">     */</span>
-    <span class="tok-kd">public</span> <span class="tok-n">String</span> <span class="tok-nf">xtextPrettyPrint</span><span class="tok-o">(</span><span class="tok-n">EObject</span> <span class="tok-n">any</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-    	<span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">any</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span> <span class="tok-o">&amp;&amp;</span> <span class="tok-n">any</span><span class="tok-o">.</span><span class="tok-na">eResource</span><span class="tok-o">()</span> <span class="tok-k">instanceof</span> <span class="tok-n">XtextResource</span> <span class="tok-o">&amp;&amp;</span> <span class="tok-n">any</span><span class="tok-o">.</span><span class="tok-na">eResource</span><span class="tok-o">().</span><span class="tok-na">getURI</span><span class="tok-o">()</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-			<span class="tok-n">String</span> <span class="tok-n">fileURI</span> <span class="tok-o">=</span> <span class="tok-n">any</span><span class="tok-o">.</span><span class="tok-na">eResource</span><span class="tok-o">().</span><span class="tok-na">getURI</span><span class="tok-o">().</span><span class="tok-na">toPlatformString</span><span class="tok-o">(</span><span class="tok-kc">true</span><span class="tok-o">);</span>
-			<span class="tok-n">IFile</span> <span class="tok-n">workspaceFile</span> <span class="tok-o">=</span> <span class="tok-n">ResourcesPlugin</span><span class="tok-o">.</span><span class="tok-na">getWorkspace</span><span class="tok-o">().</span><span class="tok-na">getRoot</span><span class="tok-o">().</span><span class="tok-na">getFile</span><span class="tok-o">(</span><span class="tok-k">new</span> <span class="tok-n">Path</span><span class="tok-o">(</span><span class="tok-n">fileURI</span><span class="tok-o">));</span>
-			<span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">workspaceFile</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-				<span class="tok-n">ICompositeNode</span> <span class="tok-n">node</span> <span class="tok-o">=</span> <span class="tok-n">NodeModelUtils</span><span class="tok-o">.</span><span class="tok-na">findActualNodeFor</span><span class="tok-o">(</span><span class="tok-n">any</span><span class="tok-o">);</span>
-				<span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">node</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-					<span class="tok-k">return</span> <span class="tok-n">node</span><span class="tok-o">.</span><span class="tok-na">getText</span><span class="tok-o">().</span><span class="tok-na">trim</span><span class="tok-o">();</span>
-				<span class="tok-o">}</span>
-			<span class="tok-o">}</span>
-    	<span class="tok-o">}</span>
-    	<span class="tok-k">return</span> <span class="tok-s">&quot;&quot;</span><span class="tok-o">;</span>
-    <span class="tok-o">}</span>
-
-    <span class="tok-kd">public</span> <span class="tok-n">EObject</span> <span class="tok-nf">openTextEditor</span><span class="tok-o">(</span><span class="tok-n">EObject</span> <span class="tok-n">any</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-		<span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">any</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span> <span class="tok-o">&amp;&amp;</span> <span class="tok-n">any</span><span class="tok-o">.</span><span class="tok-na">eResource</span><span class="tok-o">()</span> <span class="tok-k">instanceof</span> <span class="tok-n">XtextResource</span> <span class="tok-o">&amp;&amp;</span> <span class="tok-n">any</span><span class="tok-o">.</span><span class="tok-na">eResource</span><span class="tok-o">().</span><span class="tok-na">getURI</span><span class="tok-o">()</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-
-			<span class="tok-n">String</span> <span class="tok-n">fileURI</span> <span class="tok-o">=</span> <span class="tok-n">any</span><span class="tok-o">.</span><span class="tok-na">eResource</span><span class="tok-o">().</span><span class="tok-na">getURI</span><span class="tok-o">().</span><span class="tok-na">toPlatformString</span><span class="tok-o">(</span><span class="tok-kc">true</span><span class="tok-o">);</span>
-			<span class="tok-n">IFile</span> <span class="tok-n">workspaceFile</span> <span class="tok-o">=</span> <span class="tok-n">ResourcesPlugin</span><span class="tok-o">.</span><span class="tok-na">getWorkspace</span><span class="tok-o">().</span><span class="tok-na">getRoot</span><span class="tok-o">().</span><span class="tok-na">getFile</span><span class="tok-o">(</span><span class="tok-k">new</span> <span class="tok-n">Path</span><span class="tok-o">(</span><span class="tok-n">fileURI</span><span class="tok-o">));</span>
-			<span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">workspaceFile</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-				<span class="tok-n">IWorkbenchPage</span> <span class="tok-n">page</span> <span class="tok-o">=</span> <span class="tok-n">PlatformUI</span><span class="tok-o">.</span><span class="tok-na">getWorkbench</span><span class="tok-o">().</span><span class="tok-na">getActiveWorkbenchWindow</span><span class="tok-o">().</span><span class="tok-na">getActivePage</span><span class="tok-o">();</span>
-				<span class="tok-k">try</span> <span class="tok-o">{</span>
-					<span class="tok-n">IEditorPart</span> <span class="tok-n">openEditor</span> <span class="tok-o">=</span> <span class="tok-n">IDE</span><span class="tok-o">.</span><span class="tok-na">openEditor</span><span class="tok-o">(</span><span class="tok-n">page</span><span class="tok-o">,</span> <span class="tok-n">workspaceFile</span><span class="tok-o">,</span>
-							<span class="tok-s">&quot;fr.inria.sed.logo.xtext.Logo&quot;</span><span class="tok-o">,</span> <span class="tok-kc">true</span><span class="tok-o">);</span>
-					<span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">openEditor</span> <span class="tok-k">instanceof</span> <span class="tok-n">AbstractTextEditor</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-						<span class="tok-n">ICompositeNode</span> <span class="tok-n">node</span> <span class="tok-o">=</span> <span class="tok-n">NodeModelUtils</span><span class="tok-o">.</span><span class="tok-na">findActualNodeFor</span><span class="tok-o">(</span><span class="tok-n">any</span><span class="tok-o">);</span>
-						<span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">node</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-							<span class="tok-kt">int</span> <span class="tok-n">offset</span> <span class="tok-o">=</span> <span class="tok-n">node</span><span class="tok-o">.</span><span class="tok-na">getOffset</span><span class="tok-o">();</span>
-							<span class="tok-kt">int</span> <span class="tok-n">length</span> <span class="tok-o">=</span> <span class="tok-n">node</span><span class="tok-o">.</span><span class="tok-na">getTotalEndOffset</span><span class="tok-o">()</span> <span class="tok-o">-</span> <span class="tok-n">offset</span><span class="tok-o">;</span>
-							<span class="tok-o">((</span><span class="tok-n">AbstractTextEditor</span><span class="tok-o">)</span> <span class="tok-n">openEditor</span><span class="tok-o">).</span><span class="tok-na">selectAndReveal</span><span class="tok-o">(</span><span class="tok-n">offset</span><span class="tok-o">,</span> <span class="tok-n">length</span><span class="tok-o">);</span>
-						<span class="tok-o">}</span>
-					<span class="tok-o">}</span>
-					<span class="tok-c1">// editorInput.</span>
-				<span class="tok-o">}</span> <span class="tok-k">catch</span> <span class="tok-o">(</span><span class="tok-n">PartInitException</span> <span class="tok-n">e</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-					<span class="tok-n">Activator</span><span class="tok-o">.</span><span class="tok-na">error</span><span class="tok-o">(</span><span class="tok-n">e</span><span class="tok-o">.</span><span class="tok-na">getMessage</span><span class="tok-o">(),</span> <span class="tok-n">e</span><span class="tok-o">);</span>
-				<span class="tok-o">}</span>
-			<span class="tok-o">}</span>
-		<span class="tok-o">}</span>
-		<span class="tok-n">System</span><span class="tok-o">.</span><span class="tok-na">out</span><span class="tok-o">.</span><span class="tok-na">println</span><span class="tok-o">(</span><span class="tok-n">any</span><span class="tok-o">);</span>
-		<span class="tok-k">return</span> <span class="tok-n">any</span><span class="tok-o">;</span>
-	<span class="tok-o">}</span>
-
-	<span class="tok-kd">public</span> <span class="tok-n">EObject</span> <span class="tok-nf">openBasicHoveringDialog</span><span class="tok-o">(</span><span class="tok-n">EObject</span> <span class="tok-n">any</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-		<span class="tok-n">String</span> <span class="tok-n">xtextString</span> <span class="tok-o">=</span> <span class="tok-n">xtextPrettyPrint</span><span class="tok-o">(</span><span class="tok-n">any</span><span class="tok-o">);</span>
-		<span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">xtextString</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span> <span class="tok-o">&amp;&amp;</span> <span class="tok-o">!</span><span class="tok-n">xtextString</span><span class="tok-o">.</span><span class="tok-na">isEmpty</span><span class="tok-o">())</span> <span class="tok-o">{</span>
-			<span class="tok-n">IEditorPart</span> <span class="tok-n">part</span> <span class="tok-o">=</span> <span class="tok-n">PlatformUI</span><span class="tok-o">.</span><span class="tok-na">getWorkbench</span><span class="tok-o">().</span><span class="tok-na">getActiveWorkbenchWindow</span><span class="tok-o">().</span><span class="tok-na">getActivePage</span><span class="tok-o">().</span><span class="tok-na">getActiveEditor</span><span class="tok-o">();</span>
-			<span class="tok-n">InfoPopUp</span> <span class="tok-n">pop</span> <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-n">InfoPopUp</span><span class="tok-o">(</span> <span class="tok-n">part</span><span class="tok-o">.</span><span class="tok-na">getSite</span><span class="tok-o">().</span><span class="tok-na">getShell</span><span class="tok-o">()</span> <span class="tok-o">,</span> <span class="tok-s">&quot;Textual representation of the element&quot;</span><span class="tok-o">,</span><span class="tok-s">&quot;press ESC to close&quot;</span><span class="tok-o">);</span>
-			<span class="tok-n">pop</span><span class="tok-o">.</span><span class="tok-na">setText</span><span class="tok-o">(</span><span class="tok-n">xtextString</span><span class="tok-o">);</span>
-			<span class="tok-n">pop</span><span class="tok-o">.</span><span class="tok-na">open</span><span class="tok-o">();</span>
-		<span class="tok-o">}</span>
-		<span class="tok-k">return</span> <span class="tok-n">any</span><span class="tok-o">;</span>
-	<span class="tok-o">}</span></code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_use_services_to_improve_labels">Use services to improve labels</h3>
-<div class="paragraph">
-<p>restart the <strong>modeling workbench</strong></p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-If you start it in debug mode, small changes (code in an existing method) can be taken into account without a full restart.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>On the IfNode</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Label tab</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Label expression: <code>aql:self.condition.xtextPrettyPrint()</code></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>On PrimitiveInstructionNode</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><em>New conditional style</em></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Predicate expression: [self.oclIsKindOf(logo::Left) or self.oclIsKindOf(logo::Right) /]</p>
-</li>
-<li>
-<p>copy the style of the PrimitiveInstructionNode into this new conditional style</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Label tab</p>
-</li>
-<li>
-<p>Label expression :</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>aql:self.eClass().name+' '+self.angle.xtextPrettyPrint()</pre>
+<pre class="pygments highlight"><code>language = StandardLanguage {
+			...
+			referencedResource = "platform:/resource/fr.inria.sed.logo.model/model/Logo.genmodel"</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>do the same for other types such as Forward, Backward, ProcCall &#8230;&#8203;</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-service calling xtextPrettyPrint() might be usefull too in the <em>tooltip expression</em> on the General tab of the styles.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_add_actions_that_open_xtext_editor">Add actions that open xtext editor</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><em>new tool &#8594; Section</em></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Id: edition</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="sect3">
-<h4 id="_open_xtext_editor_via_right_click_popup">Open xtext editor via right click popup</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><em>new menu &#8594; Popup menu</em></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Id: OpenInTextEditorPopUp</p>
-</li>
-<li>
-<p>Icon: add an icon from your own (or get one from the solution)</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
+<p>add a dependency to the fr.inria.sed.logo.model project (by opening either plugin.xml or manifest.mf, then the Dependencies tab)
+Also make sure to reexport the dependency.</p>
 </div>
 <div class="paragraph">
-<p>in the Begin element:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><em>new operation &#8594; change context</em></p>
-<div class="ulist">
-<ul>
-<li>
-<p>browse expression: <code>service:self.openTextEditor()</code></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_add_action_that_create_elements_palette">Add action that create  elements (Palette)</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><em>new element creation &#8594; node creation</em></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Id: addPenUp  (also change the label for a nicer name in the Paletter)</p>
-</li>
-<li>
-<p>Node Mappings: PrimitiveInstructionNode</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
+<p>run the mwe2 generator</p>
 </div>
 <div class="paragraph">
-<p>on Begin</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><em>new operation &#8594; change context</em></p>
-<div class="ulist">
-<ul>
-<li>
-<p>browse expression: <code>var:container</code></p>
-<div class="ulist">
-<ul>
-<li>
-<p><em>new operation &#8594; create instance</em></p>
-<div class="ulist">
-<ul>
-<li>
-<p>reference name: <em>instructions</em></p>
-</li>
-<li>
-<p>Type name: <em>logo::PenUp</em></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_add_validation_rule_error_marker">Add Validation rule (error marker)</h3>
-<div class="paragraph">
-<p>Sirius provide a way to define rules that&#8217;ll report errors. (Markers)</p>
+<p>fix any import such as <em>import fr.inria.sed.logo.xtext.logo.LogoProgram</em> into <em>import fr.inria.sed.logo.LogoProgram</em></p>
 </div>
 <div class="paragraph">
-<p>It is useful for example when creating element in sirius may lead to models that cannot be serialized in xtext.</p>
+<p>Do some refactoring in the metamodel inorder to enhance it:</p>
 </div>
-<div class="paragraph">
-<p>The validation rule can also contains quickfix actions.</p>
-</div>
+<div class="ulist">
+<ul>
+<li>
+<p>add an abstract concept PrimitiveInstruction as super class for PenUp, Foward, clear, etc</p>
+</li>
+<li>
+<p>add an abstract concept controlStructureInstruction as super class for If, Repeat, while, etc</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
