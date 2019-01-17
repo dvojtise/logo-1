@@ -723,14 +723,14 @@ DSA project for language</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="java"><span></span>	<span class="tok-nd">@Main</span>
-	<span class="tok-n">def</span> <span class="tok-kt">void</span> <span class="tok-nf">run</span><span class="tok-o">(){</span>
-		<span class="tok-c1">// println(&#39;hello world&#39;)</span>
-		<span class="tok-n">val</span> <span class="tok-n">MessagingSystemManager</span> <span class="tok-n">msManager</span> <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-n">MessagingSystemManager</span>
-		<span class="tok-n">val</span> <span class="tok-n">ms</span> <span class="tok-o">=</span> <span class="tok-n">msManager</span><span class="tok-o">.</span><span class="tok-na">createBestPlatformMessagingSystem</span><span class="tok-o">(</span><span class="tok-s">&quot;Logo&quot;</span><span class="tok-o">,</span><span class="tok-s">&quot;Simple Logo interpreter&quot;</span><span class="tok-o">)</span>
+<pre class="pygments highlight"><code data-lang="java"><span></span><span class="tok-nd">@Main</span>
+<span class="tok-n">def</span> <span class="tok-kt">void</span> <span class="tok-nf">run</span><span class="tok-o">(){</span>
+    <span class="tok-c1">// println(&#39;hello world&#39;)</span>
+    <span class="tok-n">val</span> <span class="tok-n">MessagingSystemManager</span> <span class="tok-n">msManager</span> <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-n">MessagingSystemManager</span>
+    <span class="tok-n">val</span> <span class="tok-n">ms</span> <span class="tok-o">=</span> <span class="tok-n">msManager</span><span class="tok-o">.</span><span class="tok-na">createBestPlatformMessagingSystem</span><span class="tok-o">(</span><span class="tok-s">&quot;Logo&quot;</span><span class="tok-o">,</span><span class="tok-s">&quot;Simple Logo interpreter&quot;</span><span class="tok-o">)</span>
 
-		<span class="tok-n">ms</span><span class="tok-o">.</span><span class="tok-na">debug</span><span class="tok-o">(</span><span class="tok-s">&quot;Hello world on &quot;</span><span class="tok-o">+</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">eResource</span><span class="tok-o">.</span><span class="tok-na">URI</span><span class="tok-o">,</span> <span class="tok-s">&quot;Logo&quot;</span><span class="tok-o">)</span>
-	<span class="tok-o">}</span></code></pre>
+    <span class="tok-n">ms</span><span class="tok-o">.</span><span class="tok-na">debug</span><span class="tok-o">(</span><span class="tok-s">&quot;Hello world on &quot;</span><span class="tok-o">+</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">eResource</span><span class="tok-o">.</span><span class="tok-na">URI</span><span class="tok-o">,</span> <span class="tok-s">&quot;Logo&quot;</span><span class="tok-o">)</span>
+<span class="tok-o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -885,28 +885,28 @@ use this source and copy/paste using oclinecore editor.</p>
 
 package logo_vm : logo_vm = 'http://fr.inria.sed/logo/logo_vm'
 {
-	class InterpreterRuntimeContext
-	{
-		property turtle : Turtle[1] {composes};
-	}
-	class Turtle
-	{
-		property reachedPoints : Point[*|1] { ordered composes };
-		property position : Point[?];
-		property segments : Segment[*|1] { ordered composes };
-		attribute penUp : Boolean[1];
-		attribute heading : ecore::EDouble[1];
-	}
-	class Point
-	{
-		attribute x : ecore::EDouble[1];
-		attribute y : ecore::EDouble[1];
-	}
-	class Segment
-	{
-		property origin : Point[1];
-		property destination : Point[1];
-	}
+    class InterpreterRuntimeContext
+    {
+        property turtle : Turtle[1] {composes};
+    }
+    class Turtle
+    {
+        property reachedPoints : Point[*|1] { ordered composes };
+        property position : Point[?];
+        property segments : Segment[*|1] { ordered composes };
+        attribute penUp : Boolean[1];
+        attribute heading : ecore::EDouble[1];
+    }
+    class Point
+    {
+        attribute x : ecore::EDouble[1];
+        attribute y : ecore::EDouble[1];
+    }
+    class Segment
+    {
+        property origin : Point[1];
+        property destination : Point[1];
+    }
 }</code></pre>
 </div>
 </div>
@@ -965,16 +965,16 @@ For some language you may directly weave runtime data in the language ecore. Thi
 <div class="listingblock">
 <div class="title">in Logo.ecore</div>
 <div class="content">
-<pre class="pygments highlight"><code>	class LogoProgram
-	{
-		property instructions : Instruction[*|1] { ordered composes };
-		property runtimeContext : RuntimeContext[?] { composes }
-		{
-			annotation aspect;
-		}
-	}
+<pre class="pygments highlight"><code>class LogoProgram
+{
+    property instructions : Instruction[*|1] { ordered composes };
+    property runtimeContext : RuntimeContext[?] { composes }
+    {
+        annotation aspect;
+    }
+}
 
-	abstract class RuntimeContext;</code></pre>
+abstract class RuntimeContext;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -988,10 +988,10 @@ import logo : '../../fr.inria.sed.logo.model/model/Logo.ecore#/' ;
 
 package vm : vm = 'http://www.inria.fr/sed/logo/vm'
 {
-	class InterpreterRuntimeContext extends logo::RuntimeContext
-	{
-		property turtle : Turtle[1] { composes };
-	}</code></pre>
+    class InterpreterRuntimeContext extends logo::RuntimeContext
+    {
+        property turtle : Turtle[1] { composes };
+    }</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1026,18 +1026,18 @@ the logo.ecore model that may conflict with each other.</p>
 <pre class="pygments highlight"><code data-lang="java"><span></span><span class="tok-nd">@Aspect</span><span class="tok-o">(</span><span class="tok-n">className</span><span class="tok-o">=</span><span class="tok-n">LogoProgram</span><span class="tok-o">)</span>
 <span class="tok-kd">class</span> <span class="tok-nc">LogoProgramAspect</span> <span class="tok-o">{</span>
 
-	<span class="tok-nd">@Step</span>
-	<span class="tok-nd">@InitializeModel</span>
-	<span class="tok-n">def</span> <span class="tok-kt">void</span> <span class="tok-nf">initializeModel</span><span class="tok-o">(</span><span class="tok-n">EList</span><span class="tok-o">&lt;</span><span class="tok-n">String</span><span class="tok-o">&gt;</span> <span class="tok-n">args</span><span class="tok-o">){</span>
-		<span class="tok-n">val</span> <span class="tok-n">context</span> <span class="tok-o">=</span> <span class="tok-n">VmFactory</span><span class="tok-o">.</span><span class="tok-na">eINSTANCE</span><span class="tok-o">.</span><span class="tok-na">createInterpreterRuntimeContext</span>
-		<span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">turtle</span> <span class="tok-o">=</span> <span class="tok-n">VmFactory</span><span class="tok-o">.</span><span class="tok-na">eINSTANCE</span><span class="tok-o">.</span><span class="tok-na">createTurtle</span>
-		<span class="tok-n">val</span> <span class="tok-n">point</span> <span class="tok-o">=</span> <span class="tok-n">VmFactory</span><span class="tok-o">.</span><span class="tok-na">eINSTANCE</span><span class="tok-o">.</span><span class="tok-na">createPoint</span>
-		<span class="tok-n">point</span><span class="tok-o">.</span><span class="tok-na">x</span> <span class="tok-o">=</span> <span class="tok-mi">0</span>
-		<span class="tok-n">point</span><span class="tok-o">.</span><span class="tok-na">y</span> <span class="tok-o">=</span> <span class="tok-mi">0</span>
-		<span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">turtle</span><span class="tok-o">.</span><span class="tok-na">reachedPoints</span><span class="tok-o">.</span><span class="tok-na">add</span><span class="tok-o">(</span><span class="tok-n">point</span><span class="tok-o">)</span>
-		<span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">turtle</span><span class="tok-o">.</span><span class="tok-na">position</span> <span class="tok-o">=</span> <span class="tok-n">point</span>
-		<span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">runtimeContext</span> <span class="tok-o">=</span> <span class="tok-n">context</span>
-	<span class="tok-o">}</span></code></pre>
+    <span class="tok-nd">@Step</span>
+    <span class="tok-nd">@InitializeModel</span>
+    <span class="tok-n">def</span> <span class="tok-kt">void</span> <span class="tok-nf">initializeModel</span><span class="tok-o">(</span><span class="tok-n">EList</span><span class="tok-o">&lt;</span><span class="tok-n">String</span><span class="tok-o">&gt;</span> <span class="tok-n">args</span><span class="tok-o">){</span>
+        <span class="tok-n">val</span> <span class="tok-n">context</span> <span class="tok-o">=</span> <span class="tok-n">VmFactory</span><span class="tok-o">.</span><span class="tok-na">eINSTANCE</span><span class="tok-o">.</span><span class="tok-na">createInterpreterRuntimeContext</span>
+        <span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">turtle</span> <span class="tok-o">=</span> <span class="tok-n">VmFactory</span><span class="tok-o">.</span><span class="tok-na">eINSTANCE</span><span class="tok-o">.</span><span class="tok-na">createTurtle</span>
+        <span class="tok-n">val</span> <span class="tok-n">point</span> <span class="tok-o">=</span> <span class="tok-n">VmFactory</span><span class="tok-o">.</span><span class="tok-na">eINSTANCE</span><span class="tok-o">.</span><span class="tok-na">createPoint</span>
+        <span class="tok-n">point</span><span class="tok-o">.</span><span class="tok-na">x</span> <span class="tok-o">=</span> <span class="tok-mi">0</span>
+        <span class="tok-n">point</span><span class="tok-o">.</span><span class="tok-na">y</span> <span class="tok-o">=</span> <span class="tok-mi">0</span>
+        <span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">turtle</span><span class="tok-o">.</span><span class="tok-na">reachedPoints</span><span class="tok-o">.</span><span class="tok-na">add</span><span class="tok-o">(</span><span class="tok-n">point</span><span class="tok-o">)</span>
+        <span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">turtle</span><span class="tok-o">.</span><span class="tok-na">position</span> <span class="tok-o">=</span> <span class="tok-n">point</span>
+        <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">runtimeContext</span> <span class="tok-o">=</span> <span class="tok-n">context</span>
+    <span class="tok-o">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -1065,15 +1065,15 @@ the logo.ecore model that may conflict with each other.</p>
 
 <span class="tok-nd">@Aspect</span><span class="tok-o">(</span><span class="tok-n">className</span><span class="tok-o">=</span><span class="tok-n">InterpreterRuntimeContext</span><span class="tok-o">)</span>
 <span class="tok-kd">class</span> <span class="tok-nc">InterpreterRuntimeContextAspect</span> <span class="tok-o">{</span>
-	<span class="tok-n">var</span> <span class="tok-n">MessagingSystem</span> <span class="tok-n">internalLogger</span>
-	<span class="tok-n">def</span> <span class="tok-n">MessagingSystem</span> <span class="tok-nf">logger</span><span class="tok-o">(){</span>
-		<span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">internalLogger</span> <span class="tok-o">===</span> <span class="tok-kc">null</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-			<span class="tok-n">val</span> <span class="tok-n">MessagingSystemManager</span> <span class="tok-n">msManager</span> <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-n">MessagingSystemManager</span>
-			<span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">internalLogger</span> <span class="tok-o">=</span> <span class="tok-n">msManager</span><span class="tok-o">.</span><span class="tok-na">createBestPlatformMessagingSystem</span><span class="tok-o">(</span><span class="tok-s">&quot;Logo&quot;</span><span class="tok-o">,</span><span class="tok-s">&quot;Simple Logo interpreter&quot;</span><span class="tok-o">)</span>
+    <span class="tok-n">var</span> <span class="tok-n">MessagingSystem</span> <span class="tok-n">internalLogger</span>
+    <span class="tok-n">def</span> <span class="tok-n">MessagingSystem</span> <span class="tok-nf">logger</span><span class="tok-o">(){</span>
+        <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">internalLogger</span> <span class="tok-o">===</span> <span class="tok-kc">null</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+            <span class="tok-n">val</span> <span class="tok-n">MessagingSystemManager</span> <span class="tok-n">msManager</span> <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-n">MessagingSystemManager</span>
+            <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">internalLogger</span> <span class="tok-o">=</span> <span class="tok-n">msManager</span><span class="tok-o">.</span><span class="tok-na">createBestPlatformMessagingSystem</span><span class="tok-o">(</span><span class="tok-s">&quot;Logo&quot;</span><span class="tok-o">,</span><span class="tok-s">&quot;Simple Logo interpreter&quot;</span><span class="tok-o">)</span>
 
-		<span class="tok-o">}</span>
-		<span class="tok-k">return</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">internalLogger</span>
-	<span class="tok-o">}</span>
+        <span class="tok-o">}</span>
+        <span class="tok-k">return</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">internalLogger</span>
+    <span class="tok-o">}</span>
 <span class="tok-o">}</span></code></pre>
 </div>
 </div>
@@ -1086,52 +1086,52 @@ the logo.ecore model that may conflict with each other.</p>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="java"><span></span><span class="tok-nd">@Aspect</span><span class="tok-o">(</span><span class="tok-n">className</span><span class="tok-o">=</span><span class="tok-n">LogoProgram</span><span class="tok-o">)</span>
 <span class="tok-kd">class</span> <span class="tok-nc">LogoProgramAspect</span> <span class="tok-o">{</span>
-	<span class="tok-nd">@Main</span>
-	<span class="tok-n">def</span> <span class="tok-kt">void</span> <span class="tok-nf">run</span><span class="tok-o">(){</span>
-		<span class="tok-n">val</span> <span class="tok-n">context</span> <span class="tok-o">=</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">runtimeContext</span> <span class="tok-n">as</span> <span class="tok-n">InterpreterRuntimeContext</span>
- 		<span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">logger</span><span class="tok-o">.</span><span class="tok-na">debug</span><span class="tok-o">(</span><span class="tok-s">&quot;Running &quot;</span><span class="tok-o">+</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">eResource</span><span class="tok-o">.</span><span class="tok-na">URI</span><span class="tok-o">,</span> <span class="tok-s">&quot;Logo&quot;</span><span class="tok-o">)</span>
+    <span class="tok-nd">@Main</span>
+    <span class="tok-n">def</span> <span class="tok-kt">void</span> <span class="tok-nf">run</span><span class="tok-o">(){</span>
+        <span class="tok-n">val</span> <span class="tok-n">context</span> <span class="tok-o">=</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">runtimeContext</span> <span class="tok-n">as</span> <span class="tok-n">InterpreterRuntimeContext</span>
+        <span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">logger</span><span class="tok-o">.</span><span class="tok-na">debug</span><span class="tok-o">(</span><span class="tok-s">&quot;Running &quot;</span><span class="tok-o">+</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">eResource</span><span class="tok-o">.</span><span class="tok-na">URI</span><span class="tok-o">,</span> <span class="tok-s">&quot;Logo&quot;</span><span class="tok-o">)</span>
 
-		<span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">instructions</span><span class="tok-o">.</span><span class="tok-na">forEach</span><span class="tok-o">[</span><span class="tok-n">i</span> <span class="tok-o">|</span> <span class="tok-n">i</span><span class="tok-o">.</span><span class="tok-na">run</span><span class="tok-o">(</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">runtimeContext</span> <span class="tok-n">as</span> <span class="tok-n">InterpreterRuntimeContext</span><span class="tok-o">)]</span>
-	<span class="tok-o">}</span>
+        <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">instructions</span><span class="tok-o">.</span><span class="tok-na">forEach</span><span class="tok-o">[</span><span class="tok-n">i</span> <span class="tok-o">|</span> <span class="tok-n">i</span><span class="tok-o">.</span><span class="tok-na">run</span><span class="tok-o">(</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">runtimeContext</span> <span class="tok-n">as</span> <span class="tok-n">InterpreterRuntimeContext</span><span class="tok-o">)]</span>
+    <span class="tok-o">}</span>
 <span class="tok-o">}</span>
 
 <span class="tok-nd">@Aspect</span><span class="tok-o">(</span><span class="tok-n">className</span><span class="tok-o">=</span><span class="tok-n">Instruction</span><span class="tok-o">)</span>
 <span class="tok-kd">class</span> <span class="tok-nc">InstructionAspect</span> <span class="tok-o">{</span>
-	<span class="tok-nd">@Step</span>
-	<span class="tok-n">def</span> <span class="tok-kt">void</span> <span class="tok-nf">run</span><span class="tok-o">(</span><span class="tok-n">InterpreterRuntimeContext</span> <span class="tok-n">context</span><span class="tok-o">){</span>
-		<span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">logger</span><span class="tok-o">.</span><span class="tok-na">error</span><span class="tok-o">(</span><span class="tok-s">&quot;run of &quot;</span> <span class="tok-o">+</span><span class="tok-n">_self</span> <span class="tok-o">+</span><span class="tok-s">&quot; should never occur, please write method run for this class&quot;</span><span class="tok-o">,</span>
-			<span class="tok-s">&quot;Logo&quot;</span><span class="tok-o">)</span>
-	<span class="tok-o">}</span>
+    <span class="tok-nd">@Step</span>
+    <span class="tok-n">def</span> <span class="tok-kt">void</span> <span class="tok-nf">run</span><span class="tok-o">(</span><span class="tok-n">InterpreterRuntimeContext</span> <span class="tok-n">context</span><span class="tok-o">){</span>
+        <span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">logger</span><span class="tok-o">.</span><span class="tok-na">error</span><span class="tok-o">(</span><span class="tok-s">&quot;run of &quot;</span> <span class="tok-o">+</span><span class="tok-n">_self</span> <span class="tok-o">+</span><span class="tok-s">&quot; should never occur, please write method run for this class&quot;</span><span class="tok-o">,</span>
+            <span class="tok-s">&quot;Logo&quot;</span><span class="tok-o">)</span>
+    <span class="tok-o">}</span>
 <span class="tok-o">}</span>
 
 <span class="tok-nd">@Aspect</span><span class="tok-o">(</span><span class="tok-n">className</span><span class="tok-o">=</span><span class="tok-n">Expression</span><span class="tok-o">)</span>
 <span class="tok-kd">class</span> <span class="tok-nc">ExpressionAspect</span> <span class="tok-o">{</span>
-	<span class="tok-n">def</span> <span class="tok-n">Integer</span> <span class="tok-nf">eval</span><span class="tok-o">(</span><span class="tok-n">InterpreterRuntimeContext</span> <span class="tok-n">context</span><span class="tok-o">){</span>
-		<span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">logger</span><span class="tok-o">.</span><span class="tok-na">error</span><span class="tok-o">(</span><span class="tok-s">&quot;eval of &quot;</span> <span class="tok-o">+</span><span class="tok-n">_self</span> <span class="tok-o">+</span><span class="tok-s">&quot; should never occur, please write method run for this class&quot;</span><span class="tok-o">,</span>
-			<span class="tok-s">&quot;Logo&quot;</span><span class="tok-o">)</span>
-		<span class="tok-k">return</span> <span class="tok-mi">0</span><span class="tok-o">;</span>
-	<span class="tok-o">}</span>
+    <span class="tok-n">def</span> <span class="tok-n">Integer</span> <span class="tok-nf">eval</span><span class="tok-o">(</span><span class="tok-n">InterpreterRuntimeContext</span> <span class="tok-n">context</span><span class="tok-o">){</span>
+        <span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">logger</span><span class="tok-o">.</span><span class="tok-na">error</span><span class="tok-o">(</span><span class="tok-s">&quot;eval of &quot;</span> <span class="tok-o">+</span><span class="tok-n">_self</span> <span class="tok-o">+</span><span class="tok-s">&quot; should never occur, please write method run for this class&quot;</span><span class="tok-o">,</span>
+            <span class="tok-s">&quot;Logo&quot;</span><span class="tok-o">)</span>
+        <span class="tok-k">return</span> <span class="tok-mi">0</span><span class="tok-o">;</span>
+    <span class="tok-o">}</span>
 <span class="tok-o">}</span>
 
 <span class="tok-nd">@Aspect</span><span class="tok-o">(</span><span class="tok-n">className</span><span class="tok-o">=</span><span class="tok-n">If</span><span class="tok-o">)</span>
 <span class="tok-kd">class</span> <span class="tok-nc">IfAspect</span> <span class="tok-kd">extends</span> <span class="tok-n">ControlStructureInstructionAspect</span> <span class="tok-o">{</span>
-	<span class="tok-nd">@Step</span>
-	<span class="tok-n">def</span> <span class="tok-kt">void</span> <span class="tok-nf">run</span><span class="tok-o">(</span><span class="tok-n">InterpreterRuntimeContext</span> <span class="tok-n">context</span><span class="tok-o">){</span>
-		<span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">logger</span><span class="tok-o">.</span><span class="tok-na">debug</span><span class="tok-o">(</span><span class="tok-s">&quot;run of &quot;</span> <span class="tok-o">+</span><span class="tok-n">_self</span><span class="tok-o">,</span> <span class="tok-s">&quot;Logo&quot;</span><span class="tok-o">)</span>
-		<span class="tok-k">if</span><span class="tok-o">(</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">condition</span><span class="tok-o">.</span><span class="tok-na">eval</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">)</span> <span class="tok-o">==</span> <span class="tok-mi">1</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-			<span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">thenPart</span><span class="tok-o">.</span><span class="tok-na">run</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">)</span>
-		<span class="tok-o">}</span> <span class="tok-k">else</span> <span class="tok-o">{</span>
-			<span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">elsePart</span><span class="tok-o">.</span><span class="tok-na">run</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">)</span>
-		<span class="tok-o">}</span>
-	<span class="tok-o">}</span>
+    <span class="tok-nd">@Step</span>
+    <span class="tok-n">def</span> <span class="tok-kt">void</span> <span class="tok-nf">run</span><span class="tok-o">(</span><span class="tok-n">InterpreterRuntimeContext</span> <span class="tok-n">context</span><span class="tok-o">){</span>
+        <span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">logger</span><span class="tok-o">.</span><span class="tok-na">debug</span><span class="tok-o">(</span><span class="tok-s">&quot;run of &quot;</span> <span class="tok-o">+</span><span class="tok-n">_self</span><span class="tok-o">,</span> <span class="tok-s">&quot;Logo&quot;</span><span class="tok-o">)</span>
+        <span class="tok-k">if</span><span class="tok-o">(</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">condition</span><span class="tok-o">.</span><span class="tok-na">eval</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">)</span> <span class="tok-o">==</span> <span class="tok-mi">1</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+            <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">thenPart</span><span class="tok-o">.</span><span class="tok-na">run</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">)</span>
+        <span class="tok-o">}</span> <span class="tok-k">else</span> <span class="tok-o">{</span>
+            <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">elsePart</span><span class="tok-o">.</span><span class="tok-na">run</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">)</span>
+        <span class="tok-o">}</span>
+    <span class="tok-o">}</span>
 <span class="tok-o">}</span>
 
 <span class="tok-nd">@Aspect</span><span class="tok-o">(</span><span class="tok-n">className</span><span class="tok-o">=</span><span class="tok-n">Constant</span><span class="tok-o">)</span>
 <span class="tok-kd">class</span> <span class="tok-nc">ConstantAspect</span> <span class="tok-kd">extends</span> <span class="tok-n">ExpressionAspect</span> <span class="tok-o">{</span>
-	<span class="tok-n">def</span> <span class="tok-n">Integer</span> <span class="tok-nf">eval</span><span class="tok-o">(</span><span class="tok-n">InterpreterRuntimeContext</span> <span class="tok-n">context</span><span class="tok-o">){</span>
-		<span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">logger</span><span class="tok-o">.</span><span class="tok-na">debug</span><span class="tok-o">(</span><span class="tok-s">&quot;eval of &quot;</span> <span class="tok-o">+</span><span class="tok-n">_self</span><span class="tok-o">,</span> <span class="tok-s">&quot;Logo&quot;</span><span class="tok-o">)</span>
-		<span class="tok-k">return</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">integerValue</span>
-	<span class="tok-o">}</span>
+    <span class="tok-n">def</span> <span class="tok-n">Integer</span> <span class="tok-nf">eval</span><span class="tok-o">(</span><span class="tok-n">InterpreterRuntimeContext</span> <span class="tok-n">context</span><span class="tok-o">){</span>
+        <span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">logger</span><span class="tok-o">.</span><span class="tok-na">debug</span><span class="tok-o">(</span><span class="tok-s">&quot;eval of &quot;</span> <span class="tok-o">+</span><span class="tok-n">_self</span><span class="tok-o">,</span> <span class="tok-s">&quot;Logo&quot;</span><span class="tok-o">)</span>
+        <span class="tok-k">return</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">integerValue</span>
+    <span class="tok-o">}</span>
 <span class="tok-o">}</span></code></pre>
 </div>
 </div>
@@ -1160,16 +1160,16 @@ But do not add this annotation on the <code>eval</code> methods.</p>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="java"><span></span><span class="tok-nd">@Aspect</span><span class="tok-o">(</span><span class="tok-n">className</span><span class="tok-o">=</span><span class="tok-n">Plus</span><span class="tok-o">)</span>
 <span class="tok-kd">class</span> <span class="tok-nc">PlusAspect</span> <span class="tok-kd">extends</span> <span class="tok-n">ExpressionAspect</span> <span class="tok-o">{</span>
-	<span class="tok-n">def</span> <span class="tok-n">Integer</span> <span class="tok-nf">eval</span><span class="tok-o">(</span><span class="tok-n">InterpreterRuntimeContext</span> <span class="tok-n">context</span><span class="tok-o">){</span>
-		<span class="tok-k">return</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">lhs</span><span class="tok-o">.</span><span class="tok-na">eval</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">)</span> <span class="tok-o">+</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">rhs</span><span class="tok-o">.</span><span class="tok-na">eval</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">)</span>
-	<span class="tok-o">}</span>
+    <span class="tok-n">def</span> <span class="tok-n">Integer</span> <span class="tok-nf">eval</span><span class="tok-o">(</span><span class="tok-n">InterpreterRuntimeContext</span> <span class="tok-n">context</span><span class="tok-o">){</span>
+        <span class="tok-k">return</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">lhs</span><span class="tok-o">.</span><span class="tok-na">eval</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">)</span> <span class="tok-o">+</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">rhs</span><span class="tok-o">.</span><span class="tok-na">eval</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">)</span>
+    <span class="tok-o">}</span>
 <span class="tok-o">}</span>
 
 <span class="tok-nd">@Aspect</span><span class="tok-o">(</span><span class="tok-n">className</span><span class="tok-o">=</span><span class="tok-n">Minus</span><span class="tok-o">)</span>
 <span class="tok-kd">class</span> <span class="tok-nc">MinusAspect</span> <span class="tok-kd">extends</span> <span class="tok-n">ExpressionAspect</span> <span class="tok-o">{</span>
-	<span class="tok-n">def</span> <span class="tok-n">Integer</span> <span class="tok-nf">eval</span><span class="tok-o">(</span><span class="tok-n">InterpreterRuntimeContext</span> <span class="tok-n">context</span><span class="tok-o">){</span>
-		<span class="tok-k">return</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">lhs</span><span class="tok-o">.</span><span class="tok-na">eval</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">)</span> <span class="tok-o">-</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">rhs</span><span class="tok-o">.</span><span class="tok-na">eval</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">)</span>
-	<span class="tok-o">}</span>
+    <span class="tok-n">def</span> <span class="tok-n">Integer</span> <span class="tok-nf">eval</span><span class="tok-o">(</span><span class="tok-n">InterpreterRuntimeContext</span> <span class="tok-n">context</span><span class="tok-o">){</span>
+        <span class="tok-k">return</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">lhs</span><span class="tok-o">.</span><span class="tok-na">eval</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">)</span> <span class="tok-o">-</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">rhs</span><span class="tok-o">.</span><span class="tok-na">eval</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">)</span>
+    <span class="tok-o">}</span>
 <span class="tok-o">}</span></code></pre>
 </div>
 </div>
@@ -1181,18 +1181,18 @@ But do not add this annotation on the <code>eval</code> methods.</p>
 <pre class="pygments highlight"><code data-lang="java"><span></span><span class="tok-nd">@Aspect</span><span class="tok-o">(</span><span class="tok-n">className</span><span class="tok-o">=</span><span class="tok-n">Equals</span><span class="tok-o">)</span>
 <span class="tok-kd">class</span> <span class="tok-nc">EqualsAspect</span> <span class="tok-kd">extends</span> <span class="tok-n">ExpressionAspect</span> <span class="tok-o">{</span>
 
-	<span class="tok-n">def</span> <span class="tok-n">Integer</span> <span class="tok-nf">eval</span><span class="tok-o">(</span><span class="tok-n">InterpreterRuntimeContext</span> <span class="tok-n">context</span><span class="tok-o">){</span>
-		<span class="tok-k">if</span><span class="tok-o">(</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">lhs</span><span class="tok-o">.</span><span class="tok-na">eval</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">)</span> <span class="tok-o">==</span>  <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">rhs</span><span class="tok-o">.</span><span class="tok-na">eval</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">))</span> <span class="tok-k">return</span> <span class="tok-mi">1</span>
-		<span class="tok-k">else</span> <span class="tok-k">return</span> <span class="tok-mi">0</span>
-	<span class="tok-o">}</span>
+    <span class="tok-n">def</span> <span class="tok-n">Integer</span> <span class="tok-nf">eval</span><span class="tok-o">(</span><span class="tok-n">InterpreterRuntimeContext</span> <span class="tok-n">context</span><span class="tok-o">){</span>
+        <span class="tok-k">if</span><span class="tok-o">(</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">lhs</span><span class="tok-o">.</span><span class="tok-na">eval</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">)</span> <span class="tok-o">==</span>  <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">rhs</span><span class="tok-o">.</span><span class="tok-na">eval</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">))</span> <span class="tok-k">return</span> <span class="tok-mi">1</span>
+        <span class="tok-k">else</span> <span class="tok-k">return</span> <span class="tok-mi">0</span>
+    <span class="tok-o">}</span>
 <span class="tok-o">}</span>
 
 <span class="tok-nd">@Aspect</span><span class="tok-o">(</span><span class="tok-n">className</span><span class="tok-o">=</span><span class="tok-n">Greater</span><span class="tok-o">)</span>
 <span class="tok-kd">class</span> <span class="tok-nc">GreaterAspect</span> <span class="tok-kd">extends</span> <span class="tok-n">ExpressionAspect</span> <span class="tok-o">{</span>
-	<span class="tok-n">def</span> <span class="tok-n">Integer</span> <span class="tok-nf">eval</span><span class="tok-o">(</span><span class="tok-n">InterpreterRuntimeContext</span> <span class="tok-n">context</span><span class="tok-o">){</span>
-		<span class="tok-k">if</span><span class="tok-o">(</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">lhs</span><span class="tok-o">.</span><span class="tok-na">eval</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">)</span> <span class="tok-o">&gt;</span>  <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">rhs</span><span class="tok-o">.</span><span class="tok-na">eval</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">))</span> <span class="tok-k">return</span> <span class="tok-mi">1</span>
-		<span class="tok-k">else</span> <span class="tok-k">return</span> <span class="tok-mi">0</span>
-	<span class="tok-o">}</span>
+    <span class="tok-n">def</span> <span class="tok-n">Integer</span> <span class="tok-nf">eval</span><span class="tok-o">(</span><span class="tok-n">InterpreterRuntimeContext</span> <span class="tok-n">context</span><span class="tok-o">){</span>
+        <span class="tok-k">if</span><span class="tok-o">(</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">lhs</span><span class="tok-o">.</span><span class="tok-na">eval</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">)</span> <span class="tok-o">&gt;</span>  <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">rhs</span><span class="tok-o">.</span><span class="tok-na">eval</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">))</span> <span class="tok-k">return</span> <span class="tok-mi">1</span>
+        <span class="tok-k">else</span> <span class="tok-k">return</span> <span class="tok-mi">0</span>
+    <span class="tok-o">}</span>
 <span class="tok-o">}</span></code></pre>
 </div>
 </div>
@@ -1218,37 +1218,37 @@ But do not add this annotation on the <code>eval</code> methods.</p>
 <span class="tok-nd">@Aspect</span><span class="tok-o">(</span><span class="tok-n">className</span><span class="tok-o">=</span><span class="tok-n">Turtle</span><span class="tok-o">)</span>
 <span class="tok-kd">class</span> <span class="tok-nc">TurtleAspect</span> <span class="tok-o">{</span>
 
-	<span class="tok-n">def</span> <span class="tok-kt">void</span> <span class="tok-nf">rotate</span><span class="tok-o">(</span><span class="tok-n">Integer</span> <span class="tok-n">angle</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-		<span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">heading</span> <span class="tok-o">=</span> <span class="tok-o">(</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">heading</span> <span class="tok-o">+</span> <span class="tok-n">angle</span><span class="tok-o">)</span> <span class="tok-o">%</span> <span class="tok-mi">360</span>
-	<span class="tok-o">}</span>
+    <span class="tok-n">def</span> <span class="tok-kt">void</span> <span class="tok-nf">rotate</span><span class="tok-o">(</span><span class="tok-n">Integer</span> <span class="tok-n">angle</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+        <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">heading</span> <span class="tok-o">=</span> <span class="tok-o">(</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">heading</span> <span class="tok-o">+</span> <span class="tok-n">angle</span><span class="tok-o">)</span> <span class="tok-o">%</span> <span class="tok-mi">360</span>
+    <span class="tok-o">}</span>
 
-	<span class="tok-n">def</span> <span class="tok-kt">void</span> <span class="tok-nf">move</span><span class="tok-o">(</span><span class="tok-kt">double</span> <span class="tok-n">dx</span><span class="tok-o">,</span> <span class="tok-kt">double</span> <span class="tok-n">dy</span><span class="tok-o">){</span>
-		<span class="tok-c1">// create new Point for destination</span>
-		<span class="tok-n">val</span> <span class="tok-n">point</span> <span class="tok-o">=</span> <span class="tok-n">VmFactory</span><span class="tok-o">.</span><span class="tok-na">eINSTANCE</span><span class="tok-o">.</span><span class="tok-na">createPoint</span>
-		<span class="tok-n">point</span><span class="tok-o">.</span><span class="tok-na">x</span> <span class="tok-o">=</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">position</span><span class="tok-o">.</span><span class="tok-na">x</span> <span class="tok-o">+</span> <span class="tok-n">dx</span>
-		<span class="tok-n">point</span><span class="tok-o">.</span><span class="tok-na">y</span> <span class="tok-o">=</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">position</span><span class="tok-o">.</span><span class="tok-na">y</span> <span class="tok-o">+</span> <span class="tok-n">dy</span>
-		<span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">reachedPoints</span><span class="tok-o">.</span><span class="tok-na">add</span><span class="tok-o">(</span><span class="tok-n">point</span><span class="tok-o">)</span>
+    <span class="tok-n">def</span> <span class="tok-kt">void</span> <span class="tok-nf">move</span><span class="tok-o">(</span><span class="tok-kt">double</span> <span class="tok-n">dx</span><span class="tok-o">,</span> <span class="tok-kt">double</span> <span class="tok-n">dy</span><span class="tok-o">){</span>
+        <span class="tok-c1">// create new Point for destination</span>
+        <span class="tok-n">val</span> <span class="tok-n">point</span> <span class="tok-o">=</span> <span class="tok-n">VmFactory</span><span class="tok-o">.</span><span class="tok-na">eINSTANCE</span><span class="tok-o">.</span><span class="tok-na">createPoint</span>
+        <span class="tok-n">point</span><span class="tok-o">.</span><span class="tok-na">x</span> <span class="tok-o">=</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">position</span><span class="tok-o">.</span><span class="tok-na">x</span> <span class="tok-o">+</span> <span class="tok-n">dx</span>
+        <span class="tok-n">point</span><span class="tok-o">.</span><span class="tok-na">y</span> <span class="tok-o">=</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">position</span><span class="tok-o">.</span><span class="tok-na">y</span> <span class="tok-o">+</span> <span class="tok-n">dy</span>
+        <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">reachedPoints</span><span class="tok-o">.</span><span class="tok-na">add</span><span class="tok-o">(</span><span class="tok-n">point</span><span class="tok-o">)</span>
 
-		<span class="tok-k">if</span><span class="tok-o">(!</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">penUp</span><span class="tok-o">){</span>
-			<span class="tok-n">val</span> <span class="tok-n">drawnSegment</span> <span class="tok-o">=</span> <span class="tok-n">VmFactory</span><span class="tok-o">.</span><span class="tok-na">eINSTANCE</span><span class="tok-o">.</span><span class="tok-na">createSegment</span>
-			<span class="tok-n">drawnSegment</span><span class="tok-o">.</span><span class="tok-na">origin</span> <span class="tok-o">=</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">position</span>
-			<span class="tok-n">drawnSegment</span><span class="tok-o">.</span><span class="tok-na">destination</span> <span class="tok-o">=</span> <span class="tok-n">point</span>
-			<span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">segments</span><span class="tok-o">.</span><span class="tok-na">add</span><span class="tok-o">(</span><span class="tok-n">drawnSegment</span><span class="tok-o">)</span>
-		<span class="tok-o">}</span>
-		<span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">position</span> <span class="tok-o">=</span> <span class="tok-n">point</span>
-	<span class="tok-o">}</span>
+        <span class="tok-k">if</span><span class="tok-o">(!</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">penUp</span><span class="tok-o">){</span>
+            <span class="tok-n">val</span> <span class="tok-n">drawnSegment</span> <span class="tok-o">=</span> <span class="tok-n">VmFactory</span><span class="tok-o">.</span><span class="tok-na">eINSTANCE</span><span class="tok-o">.</span><span class="tok-na">createSegment</span>
+            <span class="tok-n">drawnSegment</span><span class="tok-o">.</span><span class="tok-na">origin</span> <span class="tok-o">=</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">position</span>
+            <span class="tok-n">drawnSegment</span><span class="tok-o">.</span><span class="tok-na">destination</span> <span class="tok-o">=</span> <span class="tok-n">point</span>
+            <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">segments</span><span class="tok-o">.</span><span class="tok-na">add</span><span class="tok-o">(</span><span class="tok-n">drawnSegment</span><span class="tok-o">)</span>
+        <span class="tok-o">}</span>
+        <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">position</span> <span class="tok-o">=</span> <span class="tok-n">point</span>
+    <span class="tok-o">}</span>
 
-	<span class="tok-n">def</span> <span class="tok-kt">void</span> <span class="tok-nf">forward</span><span class="tok-o">(</span><span class="tok-n">Integer</span> <span class="tok-n">steps</span><span class="tok-o">){</span>
-		<span class="tok-n">val</span> <span class="tok-n">headingAsRadian</span> <span class="tok-o">=</span> <span class="tok-n">Math</span><span class="tok-o">.</span><span class="tok-na">toRadians</span><span class="tok-o">(</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">heading</span><span class="tok-o">)</span>
-		<span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">move</span><span class="tok-o">(</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">scale</span><span class="tok-o">(</span><span class="tok-n">steps</span><span class="tok-o">,</span> <span class="tok-n">Math</span><span class="tok-o">.</span><span class="tok-na">sin</span><span class="tok-o">(</span><span class="tok-n">headingAsRadian</span><span class="tok-o">)),</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">scale</span><span class="tok-o">(</span><span class="tok-n">steps</span><span class="tok-o">,</span> <span class="tok-n">Math</span><span class="tok-o">.</span><span class="tok-na">cos</span><span class="tok-o">(</span><span class="tok-n">headingAsRadian</span><span class="tok-o">)))</span>
-	<span class="tok-o">}</span>
+    <span class="tok-n">def</span> <span class="tok-kt">void</span> <span class="tok-nf">forward</span><span class="tok-o">(</span><span class="tok-n">Integer</span> <span class="tok-n">steps</span><span class="tok-o">){</span>
+        <span class="tok-n">val</span> <span class="tok-n">headingAsRadian</span> <span class="tok-o">=</span> <span class="tok-n">Math</span><span class="tok-o">.</span><span class="tok-na">toRadians</span><span class="tok-o">(</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">heading</span><span class="tok-o">)</span>
+        <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">move</span><span class="tok-o">(</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">scale</span><span class="tok-o">(</span><span class="tok-n">steps</span><span class="tok-o">,</span> <span class="tok-n">Math</span><span class="tok-o">.</span><span class="tok-na">sin</span><span class="tok-o">(</span><span class="tok-n">headingAsRadian</span><span class="tok-o">)),</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">scale</span><span class="tok-o">(</span><span class="tok-n">steps</span><span class="tok-o">,</span> <span class="tok-n">Math</span><span class="tok-o">.</span><span class="tok-na">cos</span><span class="tok-o">(</span><span class="tok-n">headingAsRadian</span><span class="tok-o">)))</span>
+    <span class="tok-o">}</span>
 
-	<span class="tok-cm">/**</span>
-<span class="tok-cm">	 * scale the &quot;steps&quot; expressed using integer by a factor</span>
-<span class="tok-cm">	 */</span>
-	<span class="tok-n">def</span> <span class="tok-kt">double</span> <span class="tok-nf">scale</span><span class="tok-o">(</span><span class="tok-n">Integer</span> <span class="tok-n">steps</span><span class="tok-o">,</span> <span class="tok-n">Double</span> <span class="tok-n">factor</span><span class="tok-o">){</span>
-		<span class="tok-k">return</span> <span class="tok-o">(</span><span class="tok-n">steps</span><span class="tok-o">.</span><span class="tok-na">doubleValue</span> <span class="tok-o">*</span> <span class="tok-n">factor</span><span class="tok-o">)</span> <span class="tok-n">as</span> <span class="tok-n">Double</span>
-	<span class="tok-o">}</span>
+    <span class="tok-cm">/**</span>
+<span class="tok-cm">     * scale the &quot;steps&quot; expressed using integer by a factor</span>
+<span class="tok-cm">     */</span>
+    <span class="tok-n">def</span> <span class="tok-kt">double</span> <span class="tok-nf">scale</span><span class="tok-o">(</span><span class="tok-n">Integer</span> <span class="tok-n">steps</span><span class="tok-o">,</span> <span class="tok-n">Double</span> <span class="tok-n">factor</span><span class="tok-o">){</span>
+        <span class="tok-k">return</span> <span class="tok-o">(</span><span class="tok-n">steps</span><span class="tok-o">.</span><span class="tok-na">doubleValue</span> <span class="tok-o">*</span> <span class="tok-n">factor</span><span class="tok-o">)</span> <span class="tok-n">as</span> <span class="tok-n">Double</span>
+    <span class="tok-o">}</span>
 <span class="tok-o">}</span></code></pre>
 </div>
 </div>
@@ -1263,32 +1263,32 @@ But do not add this annotation on the <code>eval</code> methods.</p>
 
 <span class="tok-nd">@Aspect</span><span class="tok-o">(</span><span class="tok-n">className</span><span class="tok-o">=</span><span class="tok-n">Forward</span><span class="tok-o">)</span>
 <span class="tok-kd">class</span> <span class="tok-nc">ForwardAspect</span> <span class="tok-kd">extends</span> <span class="tok-n">PrimitiveInstructionAspect</span> <span class="tok-o">{</span>
-	<span class="tok-nd">@Step</span>
-	<span class="tok-n">def</span> <span class="tok-kt">void</span> <span class="tok-nf">run</span><span class="tok-o">(</span><span class="tok-n">InterpreterRuntimeContext</span> <span class="tok-n">context</span><span class="tok-o">){</span>
-		<span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">turtle</span><span class="tok-o">.</span><span class="tok-na">forward</span><span class="tok-o">(</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">steps</span><span class="tok-o">.</span><span class="tok-na">eval</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">))</span>
-	<span class="tok-o">}</span>
+    <span class="tok-nd">@Step</span>
+    <span class="tok-n">def</span> <span class="tok-kt">void</span> <span class="tok-nf">run</span><span class="tok-o">(</span><span class="tok-n">InterpreterRuntimeContext</span> <span class="tok-n">context</span><span class="tok-o">){</span>
+        <span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">turtle</span><span class="tok-o">.</span><span class="tok-na">forward</span><span class="tok-o">(</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">steps</span><span class="tok-o">.</span><span class="tok-na">eval</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">))</span>
+    <span class="tok-o">}</span>
 <span class="tok-o">}</span>
 <span class="tok-nd">@Aspect</span><span class="tok-o">(</span><span class="tok-n">className</span><span class="tok-o">=</span><span class="tok-n">Forward</span><span class="tok-o">)</span>
 <span class="tok-kd">class</span> <span class="tok-nc">BackwardAspect</span> <span class="tok-kd">extends</span> <span class="tok-n">PrimitiveInstructionAspect</span> <span class="tok-o">{</span>
-	<span class="tok-nd">@Step</span>
-	<span class="tok-n">def</span> <span class="tok-kt">void</span> <span class="tok-nf">run</span><span class="tok-o">(</span><span class="tok-n">InterpreterRuntimeContext</span> <span class="tok-n">context</span><span class="tok-o">){</span>
-		<span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">turtle</span><span class="tok-o">.</span><span class="tok-na">forward</span><span class="tok-o">(-</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">steps</span><span class="tok-o">.</span><span class="tok-na">eval</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">))</span>
-	<span class="tok-o">}</span>
+    <span class="tok-nd">@Step</span>
+    <span class="tok-n">def</span> <span class="tok-kt">void</span> <span class="tok-nf">run</span><span class="tok-o">(</span><span class="tok-n">InterpreterRuntimeContext</span> <span class="tok-n">context</span><span class="tok-o">){</span>
+        <span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">turtle</span><span class="tok-o">.</span><span class="tok-na">forward</span><span class="tok-o">(-</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">steps</span><span class="tok-o">.</span><span class="tok-na">eval</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">))</span>
+    <span class="tok-o">}</span>
 <span class="tok-o">}</span>
 <span class="tok-nd">@Aspect</span><span class="tok-o">(</span><span class="tok-n">className</span><span class="tok-o">=</span><span class="tok-n">Left</span><span class="tok-o">)</span>
 <span class="tok-kd">class</span> <span class="tok-nc">LeftAspect</span> <span class="tok-kd">extends</span> <span class="tok-n">PrimitiveInstructionAspect</span> <span class="tok-o">{</span>
-	<span class="tok-nd">@Step</span>
-	<span class="tok-n">def</span> <span class="tok-kt">void</span> <span class="tok-nf">run</span><span class="tok-o">(</span><span class="tok-n">InterpreterRuntimeContext</span> <span class="tok-n">context</span><span class="tok-o">){</span>
-		<span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">turtle</span><span class="tok-o">.</span><span class="tok-na">rotate</span><span class="tok-o">(-</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">angle</span><span class="tok-o">.</span><span class="tok-na">eval</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">))</span>
-	<span class="tok-o">}</span>
+    <span class="tok-nd">@Step</span>
+    <span class="tok-n">def</span> <span class="tok-kt">void</span> <span class="tok-nf">run</span><span class="tok-o">(</span><span class="tok-n">InterpreterRuntimeContext</span> <span class="tok-n">context</span><span class="tok-o">){</span>
+        <span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">turtle</span><span class="tok-o">.</span><span class="tok-na">rotate</span><span class="tok-o">(-</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">angle</span><span class="tok-o">.</span><span class="tok-na">eval</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">))</span>
+    <span class="tok-o">}</span>
 <span class="tok-o">}</span>
 
 <span class="tok-nd">@Aspect</span><span class="tok-o">(</span><span class="tok-n">className</span><span class="tok-o">=</span><span class="tok-n">Right</span><span class="tok-o">)</span>
 <span class="tok-kd">class</span> <span class="tok-nc">RightAspect</span> <span class="tok-kd">extends</span> <span class="tok-n">PrimitiveInstructionAspect</span> <span class="tok-o">{</span>
-	<span class="tok-nd">@Step</span>
-	<span class="tok-n">def</span> <span class="tok-kt">void</span> <span class="tok-nf">run</span><span class="tok-o">(</span><span class="tok-n">InterpreterRuntimeContext</span> <span class="tok-n">context</span><span class="tok-o">){</span>
-		<span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">turtle</span><span class="tok-o">.</span><span class="tok-na">rotate</span><span class="tok-o">(</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">angle</span><span class="tok-o">.</span><span class="tok-na">eval</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">))</span>
-	<span class="tok-o">}</span>
+    <span class="tok-nd">@Step</span>
+    <span class="tok-n">def</span> <span class="tok-kt">void</span> <span class="tok-nf">run</span><span class="tok-o">(</span><span class="tok-n">InterpreterRuntimeContext</span> <span class="tok-n">context</span><span class="tok-o">){</span>
+        <span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">turtle</span><span class="tok-o">.</span><span class="tok-na">rotate</span><span class="tok-o">(</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">angle</span><span class="tok-o">.</span><span class="tok-na">eval</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">))</span>
+    <span class="tok-o">}</span>
 <span class="tok-o">}</span></code></pre>
 </div>
 </div>
@@ -1416,12 +1416,12 @@ How to access the model and runtime data.</p>
 <div class="listingblock">
 <div class="title">in the vm.ecore</div>
 <div class="content">
-<pre class="pygments highlight"><code>	class InterpreterRuntimeContext extends logo::RuntimeContext
-	{
-		property turtle : Turtle[1] { composes };
-		attribute stack : ParamMap(String, ecore::EIntegerObject)[*|1] { ordered !unique };
-	}
-	datatype ParamMap(K, V) : 'java.util.HashMap' { serializable };</code></pre>
+<pre class="pygments highlight"><code>    class InterpreterRuntimeContext extends logo::RuntimeContext
+    {
+        property turtle : Turtle[1] { composes };
+        attribute stack : ParamMap(String, ecore::EIntegerObject)[*|1] { ordered !unique };
+    }
+    datatype ParamMap(K, V) : 'java.util.HashMap' { serializable };</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -1446,17 +1446,17 @@ and  <em>Show generics</em></p>
 <div class="listingblock">
 <div class="title">in InterpreterRuntimeContextAspect.xtend</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="java"><span></span>	<span class="tok-cm">/* paramMap helpers */</span>
-	<span class="tok-n">def</span> <span class="tok-kt">void</span> <span class="tok-nf">pushParamMap</span><span class="tok-o">(</span><span class="tok-n">HashMap</span><span class="tok-o">&lt;</span><span class="tok-n">String</span><span class="tok-o">,</span> <span class="tok-n">Integer</span><span class="tok-o">&gt;</span> <span class="tok-n">paramMap</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-		<span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">stack</span><span class="tok-o">.</span><span class="tok-na">add</span><span class="tok-o">(</span><span class="tok-n">paramMap</span><span class="tok-o">)</span>
-	<span class="tok-o">}</span>
-	<span class="tok-n">def</span> <span class="tok-n">HashMap</span><span class="tok-o">&lt;</span><span class="tok-n">String</span><span class="tok-o">,</span> <span class="tok-n">Integer</span><span class="tok-o">&gt;</span> <span class="tok-nf">peekParamMap</span><span class="tok-o">(){</span>
-		<span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">stack</span><span class="tok-o">.</span><span class="tok-na">last</span>
-	<span class="tok-o">}</span>
-	<span class="tok-n">def</span>  <span class="tok-n">HashMap</span><span class="tok-o">&lt;</span><span class="tok-n">String</span><span class="tok-o">,</span> <span class="tok-n">Integer</span><span class="tok-o">&gt;</span> <span class="tok-nf">popParamMap</span><span class="tok-o">(){</span>
-		<span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">stack</span><span class="tok-o">.</span><span class="tok-na">last</span>
-		<span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">stack</span><span class="tok-o">.</span><span class="tok-na">remove</span><span class="tok-o">(</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">stack</span><span class="tok-o">.</span><span class="tok-na">size</span> <span class="tok-o">-</span><span class="tok-mi">1</span><span class="tok-o">)</span>
-	<span class="tok-o">}</span></code></pre>
+<pre class="pygments highlight"><code data-lang="java"><span></span>    <span class="tok-cm">/* paramMap helpers */</span>
+    <span class="tok-n">def</span> <span class="tok-kt">void</span> <span class="tok-nf">pushParamMap</span><span class="tok-o">(</span><span class="tok-n">HashMap</span><span class="tok-o">&lt;</span><span class="tok-n">String</span><span class="tok-o">,</span> <span class="tok-n">Integer</span><span class="tok-o">&gt;</span> <span class="tok-n">paramMap</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+        <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">stack</span><span class="tok-o">.</span><span class="tok-na">add</span><span class="tok-o">(</span><span class="tok-n">paramMap</span><span class="tok-o">)</span>
+    <span class="tok-o">}</span>
+    <span class="tok-n">def</span> <span class="tok-n">HashMap</span><span class="tok-o">&lt;</span><span class="tok-n">String</span><span class="tok-o">,</span> <span class="tok-n">Integer</span><span class="tok-o">&gt;</span> <span class="tok-nf">peekParamMap</span><span class="tok-o">(){</span>
+        <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">stack</span><span class="tok-o">.</span><span class="tok-na">last</span>
+    <span class="tok-o">}</span>
+    <span class="tok-n">def</span>  <span class="tok-n">HashMap</span><span class="tok-o">&lt;</span><span class="tok-n">String</span><span class="tok-o">,</span> <span class="tok-n">Integer</span><span class="tok-o">&gt;</span> <span class="tok-nf">popParamMap</span><span class="tok-o">(){</span>
+        <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">stack</span><span class="tok-o">.</span><span class="tok-na">last</span>
+        <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">stack</span><span class="tok-o">.</span><span class="tok-na">remove</span><span class="tok-o">(</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">stack</span><span class="tok-o">.</span><span class="tok-na">size</span> <span class="tok-o">-</span><span class="tok-mi">1</span><span class="tok-o">)</span>
+    <span class="tok-o">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -1469,26 +1469,26 @@ and  <em>Show generics</em></p>
 
 <span class="tok-nd">@Aspect</span><span class="tok-o">(</span><span class="tok-n">className</span><span class="tok-o">=</span><span class="tok-n">ProcCall</span><span class="tok-o">)</span>
 <span class="tok-kd">class</span> <span class="tok-nc">ProcCallAspect</span> <span class="tok-kd">extends</span> <span class="tok-n">PrimitiveInstructionAspect</span> <span class="tok-o">{</span>
-	<span class="tok-nd">@Step</span>
-	<span class="tok-n">def</span> <span class="tok-kt">void</span> <span class="tok-nf">run</span><span class="tok-o">(</span><span class="tok-n">InterpreterRuntimeContext</span> <span class="tok-n">context</span><span class="tok-o">){</span>
-		<span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">logger</span><span class="tok-o">.</span><span class="tok-na">debug</span><span class="tok-o">(</span><span class="tok-s">&quot;run of &quot;</span> <span class="tok-o">+</span><span class="tok-n">_self</span><span class="tok-o">,</span> <span class="tok-s">&quot;Logo&quot;</span><span class="tok-o">)</span>
-		<span class="tok-n">val</span> <span class="tok-n">HashMap</span><span class="tok-o">&lt;</span><span class="tok-n">String</span><span class="tok-o">,</span> <span class="tok-n">Integer</span><span class="tok-o">&gt;</span> <span class="tok-n">params</span> <span class="tok-o">=</span> <span class="tok-n">newHashMap</span><span class="tok-o">;</span>
-		<span class="tok-o">(</span><span class="tok-mf">0.</span><span class="tok-o">.(</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">actualArgs</span><span class="tok-o">.</span><span class="tok-na">size</span><span class="tok-o">-</span><span class="tok-mi">1</span><span class="tok-o">)).</span><span class="tok-na">forEach</span><span class="tok-o">[</span><span class="tok-n">i</span> <span class="tok-o">|</span>
-			<span class="tok-n">val</span> <span class="tok-n">currentArg</span> <span class="tok-o">=</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">actualArgs</span><span class="tok-o">.</span><span class="tok-na">get</span><span class="tok-o">(</span><span class="tok-n">i</span><span class="tok-o">).</span><span class="tok-na">eval</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">)</span>
-			<span class="tok-n">params</span><span class="tok-o">.</span><span class="tok-na">put</span><span class="tok-o">(</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">declaration</span><span class="tok-o">.</span><span class="tok-na">args</span><span class="tok-o">.</span><span class="tok-na">get</span><span class="tok-o">(</span><span class="tok-n">i</span><span class="tok-o">).</span><span class="tok-na">name</span><span class="tok-o">,</span><span class="tok-n">currentArg</span><span class="tok-o">)</span>
-		<span class="tok-o">]</span>
-		<span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">pushParamMap</span><span class="tok-o">(</span><span class="tok-n">params</span><span class="tok-o">)</span>
-		<span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">declaration</span><span class="tok-o">.</span><span class="tok-na">instructions</span><span class="tok-o">.</span><span class="tok-na">forEach</span><span class="tok-o">[</span><span class="tok-n">instruction</span> <span class="tok-o">|</span> <span class="tok-n">instruction</span><span class="tok-o">.</span><span class="tok-na">run</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">)]</span>
-		<span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">popParamMap</span><span class="tok-o">()</span>
-	<span class="tok-o">}</span>
+    <span class="tok-nd">@Step</span>
+    <span class="tok-n">def</span> <span class="tok-kt">void</span> <span class="tok-nf">run</span><span class="tok-o">(</span><span class="tok-n">InterpreterRuntimeContext</span> <span class="tok-n">context</span><span class="tok-o">){</span>
+        <span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">logger</span><span class="tok-o">.</span><span class="tok-na">debug</span><span class="tok-o">(</span><span class="tok-s">&quot;run of &quot;</span> <span class="tok-o">+</span><span class="tok-n">_self</span><span class="tok-o">,</span> <span class="tok-s">&quot;Logo&quot;</span><span class="tok-o">)</span>
+        <span class="tok-n">val</span> <span class="tok-n">HashMap</span><span class="tok-o">&lt;</span><span class="tok-n">String</span><span class="tok-o">,</span> <span class="tok-n">Integer</span><span class="tok-o">&gt;</span> <span class="tok-n">params</span> <span class="tok-o">=</span> <span class="tok-n">newHashMap</span><span class="tok-o">;</span>
+        <span class="tok-o">(</span><span class="tok-mf">0.</span><span class="tok-o">.(</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">actualArgs</span><span class="tok-o">.</span><span class="tok-na">size</span><span class="tok-o">-</span><span class="tok-mi">1</span><span class="tok-o">)).</span><span class="tok-na">forEach</span><span class="tok-o">[</span><span class="tok-n">i</span> <span class="tok-o">|</span>
+            <span class="tok-n">val</span> <span class="tok-n">currentArg</span> <span class="tok-o">=</span> <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">actualArgs</span><span class="tok-o">.</span><span class="tok-na">get</span><span class="tok-o">(</span><span class="tok-n">i</span><span class="tok-o">).</span><span class="tok-na">eval</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">)</span>
+            <span class="tok-n">params</span><span class="tok-o">.</span><span class="tok-na">put</span><span class="tok-o">(</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">declaration</span><span class="tok-o">.</span><span class="tok-na">args</span><span class="tok-o">.</span><span class="tok-na">get</span><span class="tok-o">(</span><span class="tok-n">i</span><span class="tok-o">).</span><span class="tok-na">name</span><span class="tok-o">,</span><span class="tok-n">currentArg</span><span class="tok-o">)</span>
+        <span class="tok-o">]</span>
+        <span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">pushParamMap</span><span class="tok-o">(</span><span class="tok-n">params</span><span class="tok-o">)</span>
+        <span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">declaration</span><span class="tok-o">.</span><span class="tok-na">instructions</span><span class="tok-o">.</span><span class="tok-na">forEach</span><span class="tok-o">[</span><span class="tok-n">instruction</span> <span class="tok-o">|</span> <span class="tok-n">instruction</span><span class="tok-o">.</span><span class="tok-na">run</span><span class="tok-o">(</span><span class="tok-n">context</span><span class="tok-o">)]</span>
+        <span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">popParamMap</span><span class="tok-o">()</span>
+    <span class="tok-o">}</span>
 <span class="tok-o">}</span>
 
 <span class="tok-nd">@Aspect</span><span class="tok-o">(</span><span class="tok-n">className</span><span class="tok-o">=</span><span class="tok-n">ParameterCall</span><span class="tok-o">,</span> <span class="tok-n">with</span><span class="tok-o">=</span><span class="tok-err">#</span><span class="tok-o">[</span><span class="tok-n">InstructionAspect</span><span class="tok-o">]</span> <span class="tok-o">)</span>
 <span class="tok-kd">class</span> <span class="tok-nc">ParameterCallAspect</span> <span class="tok-kd">extends</span> <span class="tok-n">ExpressionAspect</span> <span class="tok-o">{</span>
-	<span class="tok-n">def</span> <span class="tok-n">Integer</span> <span class="tok-nf">eval</span><span class="tok-o">(</span><span class="tok-n">InterpreterRuntimeContext</span> <span class="tok-n">context</span><span class="tok-o">){</span>
-		<span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">logger</span><span class="tok-o">.</span><span class="tok-na">debug</span><span class="tok-o">(</span><span class="tok-s">&quot;eval of &quot;</span> <span class="tok-o">+</span><span class="tok-n">_self</span><span class="tok-o">,</span> <span class="tok-s">&quot;Logo&quot;</span><span class="tok-o">)</span>
-		<span class="tok-k">return</span> <span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">peekParamMap</span><span class="tok-o">.</span><span class="tok-na">get</span><span class="tok-o">(</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">parameter</span><span class="tok-o">.</span><span class="tok-na">name</span><span class="tok-o">);</span>
-	<span class="tok-o">}</span>
+    <span class="tok-n">def</span> <span class="tok-n">Integer</span> <span class="tok-nf">eval</span><span class="tok-o">(</span><span class="tok-n">InterpreterRuntimeContext</span> <span class="tok-n">context</span><span class="tok-o">){</span>
+        <span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">logger</span><span class="tok-o">.</span><span class="tok-na">debug</span><span class="tok-o">(</span><span class="tok-s">&quot;eval of &quot;</span> <span class="tok-o">+</span><span class="tok-n">_self</span><span class="tok-o">,</span> <span class="tok-s">&quot;Logo&quot;</span><span class="tok-o">)</span>
+        <span class="tok-k">return</span> <span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">peekParamMap</span><span class="tok-o">.</span><span class="tok-na">get</span><span class="tok-o">(</span><span class="tok-n">_self</span><span class="tok-o">.</span><span class="tok-na">parameter</span><span class="tok-o">.</span><span class="tok-na">name</span><span class="tok-o">);</span>
+    <span class="tok-o">}</span>
 <span class="tok-o">}</span></code></pre>
 </div>
 </div>
@@ -1534,14 +1534,14 @@ and  <em>Show generics</em></p>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code>LogoProgram :
-	{LogoProgram}
-	instructions+=Instruction (  instructions+=Instruction)*
-	(runtimecontext = RuntimeContext)?
-	;
+    {LogoProgram}
+    instructions+=Instruction (  instructions+=Instruction)*
+    (runtimecontext = RuntimeContext)?
+    ;
 
 RuntimeContext returns RuntimeContext:
-	{RuntimeContext}
-	'RuntimeContext'
+    {RuntimeContext}
+    'RuntimeContext'
 ;</code></pre>
 </div>
 </div>
@@ -1566,7 +1566,7 @@ RuntimeContext returns RuntimeContext:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-01-17 16:43:40 UTC
+Last updated 2019-01-17 17:07:33 UTC
 </div>
 </div>
 </body>

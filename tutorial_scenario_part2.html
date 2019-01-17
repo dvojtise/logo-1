@@ -575,6 +575,12 @@ support of openFX used for the tutorial part 3)</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>In case of trouble and error in your projects:
+* In the problem view, configure it in order to show only errors and warning on the selected project.
+This will help analyze the error (for example create missing empty folders or fix java minimum version)
+* you may have to regenerate the xtext editor code (right click on the Logo.xtext file &#8594; Run as &#8594; Generate Xtext Artifacts)</p>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -682,8 +688,8 @@ IE. convert a logo file into an xmi file. To do that:</p>
 <div class="listingblock">
 <div class="content">
 <pre>&lt;logo:LogoProgram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:logo="http://www.inria.fr/sed/logo/Logo"
-	xsi:schemaLocation="http://www.inria.fr/sed/logo/Logo ../fr.inria.sed.logo.model/model/Logo.ecore"&gt;</pre>
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:logo="http://www.inria.fr/sed/logo/Logo"
+    xsi:schemaLocation="http://www.inria.fr/sed/logo/Logo ../fr.inria.sed.logo.model/model/Logo.ecore"&gt;</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1358,63 +1364,63 @@ in the package next to the Services.java class.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="java"><span></span>    <span class="tok-cm">/**</span>
-<span class="tok-cm">     * Try to retrieve an xtext resource for the given element and then get its String representation</span>
-<span class="tok-cm">     * @param any EObject</span>
-<span class="tok-cm">     * @return the xtext representation of the EObject or an empty string</span>
-<span class="tok-cm">     */</span>
-    <span class="tok-kd">public</span> <span class="tok-n">String</span> <span class="tok-nf">xtextPrettyPrint</span><span class="tok-o">(</span><span class="tok-n">EObject</span> <span class="tok-n">any</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-    	<span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">any</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span> <span class="tok-o">&amp;&amp;</span> <span class="tok-n">any</span><span class="tok-o">.</span><span class="tok-na">eResource</span><span class="tok-o">()</span> <span class="tok-k">instanceof</span> <span class="tok-n">XtextResource</span> <span class="tok-o">&amp;&amp;</span> <span class="tok-n">any</span><span class="tok-o">.</span><span class="tok-na">eResource</span><span class="tok-o">().</span><span class="tok-na">getURI</span><span class="tok-o">()</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-			<span class="tok-n">String</span> <span class="tok-n">fileURI</span> <span class="tok-o">=</span> <span class="tok-n">any</span><span class="tok-o">.</span><span class="tok-na">eResource</span><span class="tok-o">().</span><span class="tok-na">getURI</span><span class="tok-o">().</span><span class="tok-na">toPlatformString</span><span class="tok-o">(</span><span class="tok-kc">true</span><span class="tok-o">);</span>
-			<span class="tok-n">IFile</span> <span class="tok-n">workspaceFile</span> <span class="tok-o">=</span> <span class="tok-n">ResourcesPlugin</span><span class="tok-o">.</span><span class="tok-na">getWorkspace</span><span class="tok-o">().</span><span class="tok-na">getRoot</span><span class="tok-o">().</span><span class="tok-na">getFile</span><span class="tok-o">(</span><span class="tok-k">new</span> <span class="tok-n">Path</span><span class="tok-o">(</span><span class="tok-n">fileURI</span><span class="tok-o">));</span>
-			<span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">workspaceFile</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-				<span class="tok-n">ICompositeNode</span> <span class="tok-n">node</span> <span class="tok-o">=</span> <span class="tok-n">NodeModelUtils</span><span class="tok-o">.</span><span class="tok-na">findActualNodeFor</span><span class="tok-o">(</span><span class="tok-n">any</span><span class="tok-o">);</span>
-				<span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">node</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-					<span class="tok-k">return</span> <span class="tok-n">node</span><span class="tok-o">.</span><span class="tok-na">getText</span><span class="tok-o">().</span><span class="tok-na">trim</span><span class="tok-o">();</span>
-				<span class="tok-o">}</span>
-			<span class="tok-o">}</span>
-    	<span class="tok-o">}</span>
-    	<span class="tok-k">return</span> <span class="tok-s">&quot;&quot;</span><span class="tok-o">;</span>
+<pre class="pygments highlight"><code data-lang="java"><span></span><span class="tok-cm">/**</span>
+<span class="tok-cm"> * Try to retrieve an xtext resource for the given element and then get its String representation</span>
+<span class="tok-cm"> * @param any EObject</span>
+<span class="tok-cm"> * @return the xtext representation of the EObject or an empty string</span>
+<span class="tok-cm"> */</span>
+<span class="tok-kd">public</span> <span class="tok-n">String</span> <span class="tok-nf">xtextPrettyPrint</span><span class="tok-o">(</span><span class="tok-n">EObject</span> <span class="tok-n">any</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+    <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">any</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span> <span class="tok-o">&amp;&amp;</span> <span class="tok-n">any</span><span class="tok-o">.</span><span class="tok-na">eResource</span><span class="tok-o">()</span> <span class="tok-k">instanceof</span> <span class="tok-n">XtextResource</span> <span class="tok-o">&amp;&amp;</span> <span class="tok-n">any</span><span class="tok-o">.</span><span class="tok-na">eResource</span><span class="tok-o">().</span><span class="tok-na">getURI</span><span class="tok-o">()</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+        <span class="tok-n">String</span> <span class="tok-n">fileURI</span> <span class="tok-o">=</span> <span class="tok-n">any</span><span class="tok-o">.</span><span class="tok-na">eResource</span><span class="tok-o">().</span><span class="tok-na">getURI</span><span class="tok-o">().</span><span class="tok-na">toPlatformString</span><span class="tok-o">(</span><span class="tok-kc">true</span><span class="tok-o">);</span>
+        <span class="tok-n">IFile</span> <span class="tok-n">workspaceFile</span> <span class="tok-o">=</span> <span class="tok-n">ResourcesPlugin</span><span class="tok-o">.</span><span class="tok-na">getWorkspace</span><span class="tok-o">().</span><span class="tok-na">getRoot</span><span class="tok-o">().</span><span class="tok-na">getFile</span><span class="tok-o">(</span><span class="tok-k">new</span> <span class="tok-n">Path</span><span class="tok-o">(</span><span class="tok-n">fileURI</span><span class="tok-o">));</span>
+        <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">workspaceFile</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+            <span class="tok-n">ICompositeNode</span> <span class="tok-n">node</span> <span class="tok-o">=</span> <span class="tok-n">NodeModelUtils</span><span class="tok-o">.</span><span class="tok-na">findActualNodeFor</span><span class="tok-o">(</span><span class="tok-n">any</span><span class="tok-o">);</span>
+            <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">node</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+                <span class="tok-k">return</span> <span class="tok-n">node</span><span class="tok-o">.</span><span class="tok-na">getText</span><span class="tok-o">().</span><span class="tok-na">trim</span><span class="tok-o">();</span>
+            <span class="tok-o">}</span>
+        <span class="tok-o">}</span>
     <span class="tok-o">}</span>
+    <span class="tok-k">return</span> <span class="tok-s">&quot;&quot;</span><span class="tok-o">;</span>
+<span class="tok-o">}</span>
 
-    <span class="tok-kd">public</span> <span class="tok-n">EObject</span> <span class="tok-nf">openTextEditor</span><span class="tok-o">(</span><span class="tok-n">EObject</span> <span class="tok-n">any</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-		<span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">any</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span> <span class="tok-o">&amp;&amp;</span> <span class="tok-n">any</span><span class="tok-o">.</span><span class="tok-na">eResource</span><span class="tok-o">()</span> <span class="tok-k">instanceof</span> <span class="tok-n">XtextResource</span> <span class="tok-o">&amp;&amp;</span> <span class="tok-n">any</span><span class="tok-o">.</span><span class="tok-na">eResource</span><span class="tok-o">().</span><span class="tok-na">getURI</span><span class="tok-o">()</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+<span class="tok-kd">public</span> <span class="tok-n">EObject</span> <span class="tok-nf">openTextEditor</span><span class="tok-o">(</span><span class="tok-n">EObject</span> <span class="tok-n">any</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+    <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">any</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span> <span class="tok-o">&amp;&amp;</span> <span class="tok-n">any</span><span class="tok-o">.</span><span class="tok-na">eResource</span><span class="tok-o">()</span> <span class="tok-k">instanceof</span> <span class="tok-n">XtextResource</span> <span class="tok-o">&amp;&amp;</span> <span class="tok-n">any</span><span class="tok-o">.</span><span class="tok-na">eResource</span><span class="tok-o">().</span><span class="tok-na">getURI</span><span class="tok-o">()</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span><span class="tok-o">)</span> <span class="tok-o">{</span>
 
-			<span class="tok-n">String</span> <span class="tok-n">fileURI</span> <span class="tok-o">=</span> <span class="tok-n">any</span><span class="tok-o">.</span><span class="tok-na">eResource</span><span class="tok-o">().</span><span class="tok-na">getURI</span><span class="tok-o">().</span><span class="tok-na">toPlatformString</span><span class="tok-o">(</span><span class="tok-kc">true</span><span class="tok-o">);</span>
-			<span class="tok-n">IFile</span> <span class="tok-n">workspaceFile</span> <span class="tok-o">=</span> <span class="tok-n">ResourcesPlugin</span><span class="tok-o">.</span><span class="tok-na">getWorkspace</span><span class="tok-o">().</span><span class="tok-na">getRoot</span><span class="tok-o">().</span><span class="tok-na">getFile</span><span class="tok-o">(</span><span class="tok-k">new</span> <span class="tok-n">Path</span><span class="tok-o">(</span><span class="tok-n">fileURI</span><span class="tok-o">));</span>
-			<span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">workspaceFile</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-				<span class="tok-n">IWorkbenchPage</span> <span class="tok-n">page</span> <span class="tok-o">=</span> <span class="tok-n">PlatformUI</span><span class="tok-o">.</span><span class="tok-na">getWorkbench</span><span class="tok-o">().</span><span class="tok-na">getActiveWorkbenchWindow</span><span class="tok-o">().</span><span class="tok-na">getActivePage</span><span class="tok-o">();</span>
-				<span class="tok-k">try</span> <span class="tok-o">{</span>
-					<span class="tok-n">IEditorPart</span> <span class="tok-n">openEditor</span> <span class="tok-o">=</span> <span class="tok-n">IDE</span><span class="tok-o">.</span><span class="tok-na">openEditor</span><span class="tok-o">(</span><span class="tok-n">page</span><span class="tok-o">,</span> <span class="tok-n">workspaceFile</span><span class="tok-o">,</span>
-							<span class="tok-s">&quot;fr.inria.sed.logo.xtext.Logo&quot;</span><span class="tok-o">,</span> <span class="tok-kc">true</span><span class="tok-o">);</span>
-					<span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">openEditor</span> <span class="tok-k">instanceof</span> <span class="tok-n">AbstractTextEditor</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-						<span class="tok-n">ICompositeNode</span> <span class="tok-n">node</span> <span class="tok-o">=</span> <span class="tok-n">NodeModelUtils</span><span class="tok-o">.</span><span class="tok-na">findActualNodeFor</span><span class="tok-o">(</span><span class="tok-n">any</span><span class="tok-o">);</span>
-						<span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">node</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-							<span class="tok-kt">int</span> <span class="tok-n">offset</span> <span class="tok-o">=</span> <span class="tok-n">node</span><span class="tok-o">.</span><span class="tok-na">getOffset</span><span class="tok-o">();</span>
-							<span class="tok-kt">int</span> <span class="tok-n">length</span> <span class="tok-o">=</span> <span class="tok-n">node</span><span class="tok-o">.</span><span class="tok-na">getTotalEndOffset</span><span class="tok-o">()</span> <span class="tok-o">-</span> <span class="tok-n">offset</span><span class="tok-o">;</span>
-							<span class="tok-o">((</span><span class="tok-n">AbstractTextEditor</span><span class="tok-o">)</span> <span class="tok-n">openEditor</span><span class="tok-o">).</span><span class="tok-na">selectAndReveal</span><span class="tok-o">(</span><span class="tok-n">offset</span><span class="tok-o">,</span> <span class="tok-n">length</span><span class="tok-o">);</span>
-						<span class="tok-o">}</span>
-					<span class="tok-o">}</span>
-					<span class="tok-c1">// editorInput.</span>
-				<span class="tok-o">}</span> <span class="tok-k">catch</span> <span class="tok-o">(</span><span class="tok-n">PartInitException</span> <span class="tok-n">e</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-					<span class="tok-n">Activator</span><span class="tok-o">.</span><span class="tok-na">error</span><span class="tok-o">(</span><span class="tok-n">e</span><span class="tok-o">.</span><span class="tok-na">getMessage</span><span class="tok-o">(),</span> <span class="tok-n">e</span><span class="tok-o">);</span>
-				<span class="tok-o">}</span>
-			<span class="tok-o">}</span>
-		<span class="tok-o">}</span>
-		<span class="tok-n">System</span><span class="tok-o">.</span><span class="tok-na">out</span><span class="tok-o">.</span><span class="tok-na">println</span><span class="tok-o">(</span><span class="tok-n">any</span><span class="tok-o">);</span>
-		<span class="tok-k">return</span> <span class="tok-n">any</span><span class="tok-o">;</span>
-	<span class="tok-o">}</span>
+        <span class="tok-n">String</span> <span class="tok-n">fileURI</span> <span class="tok-o">=</span> <span class="tok-n">any</span><span class="tok-o">.</span><span class="tok-na">eResource</span><span class="tok-o">().</span><span class="tok-na">getURI</span><span class="tok-o">().</span><span class="tok-na">toPlatformString</span><span class="tok-o">(</span><span class="tok-kc">true</span><span class="tok-o">);</span>
+        <span class="tok-n">IFile</span> <span class="tok-n">workspaceFile</span> <span class="tok-o">=</span> <span class="tok-n">ResourcesPlugin</span><span class="tok-o">.</span><span class="tok-na">getWorkspace</span><span class="tok-o">().</span><span class="tok-na">getRoot</span><span class="tok-o">().</span><span class="tok-na">getFile</span><span class="tok-o">(</span><span class="tok-k">new</span> <span class="tok-n">Path</span><span class="tok-o">(</span><span class="tok-n">fileURI</span><span class="tok-o">));</span>
+        <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">workspaceFile</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+            <span class="tok-n">IWorkbenchPage</span> <span class="tok-n">page</span> <span class="tok-o">=</span> <span class="tok-n">PlatformUI</span><span class="tok-o">.</span><span class="tok-na">getWorkbench</span><span class="tok-o">().</span><span class="tok-na">getActiveWorkbenchWindow</span><span class="tok-o">().</span><span class="tok-na">getActivePage</span><span class="tok-o">();</span>
+            <span class="tok-k">try</span> <span class="tok-o">{</span>
+                <span class="tok-n">IEditorPart</span> <span class="tok-n">openEditor</span> <span class="tok-o">=</span> <span class="tok-n">IDE</span><span class="tok-o">.</span><span class="tok-na">openEditor</span><span class="tok-o">(</span><span class="tok-n">page</span><span class="tok-o">,</span> <span class="tok-n">workspaceFile</span><span class="tok-o">,</span>
+                        <span class="tok-s">&quot;fr.inria.sed.logo.xtext.Logo&quot;</span><span class="tok-o">,</span> <span class="tok-kc">true</span><span class="tok-o">);</span>
+                <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">openEditor</span> <span class="tok-k">instanceof</span> <span class="tok-n">AbstractTextEditor</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+                    <span class="tok-n">ICompositeNode</span> <span class="tok-n">node</span> <span class="tok-o">=</span> <span class="tok-n">NodeModelUtils</span><span class="tok-o">.</span><span class="tok-na">findActualNodeFor</span><span class="tok-o">(</span><span class="tok-n">any</span><span class="tok-o">);</span>
+                    <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">node</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+                        <span class="tok-kt">int</span> <span class="tok-n">offset</span> <span class="tok-o">=</span> <span class="tok-n">node</span><span class="tok-o">.</span><span class="tok-na">getOffset</span><span class="tok-o">();</span>
+                        <span class="tok-kt">int</span> <span class="tok-n">length</span> <span class="tok-o">=</span> <span class="tok-n">node</span><span class="tok-o">.</span><span class="tok-na">getTotalEndOffset</span><span class="tok-o">()</span> <span class="tok-o">-</span> <span class="tok-n">offset</span><span class="tok-o">;</span>
+                        <span class="tok-o">((</span><span class="tok-n">AbstractTextEditor</span><span class="tok-o">)</span> <span class="tok-n">openEditor</span><span class="tok-o">).</span><span class="tok-na">selectAndReveal</span><span class="tok-o">(</span><span class="tok-n">offset</span><span class="tok-o">,</span> <span class="tok-n">length</span><span class="tok-o">);</span>
+                    <span class="tok-o">}</span>
+                <span class="tok-o">}</span>
+                <span class="tok-c1">// editorInput.</span>
+            <span class="tok-o">}</span> <span class="tok-k">catch</span> <span class="tok-o">(</span><span class="tok-n">PartInitException</span> <span class="tok-n">e</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+                <span class="tok-n">Activator</span><span class="tok-o">.</span><span class="tok-na">error</span><span class="tok-o">(</span><span class="tok-n">e</span><span class="tok-o">.</span><span class="tok-na">getMessage</span><span class="tok-o">(),</span> <span class="tok-n">e</span><span class="tok-o">);</span>
+            <span class="tok-o">}</span>
+        <span class="tok-o">}</span>
+    <span class="tok-o">}</span>
+    <span class="tok-n">System</span><span class="tok-o">.</span><span class="tok-na">out</span><span class="tok-o">.</span><span class="tok-na">println</span><span class="tok-o">(</span><span class="tok-n">any</span><span class="tok-o">);</span>
+    <span class="tok-k">return</span> <span class="tok-n">any</span><span class="tok-o">;</span>
+<span class="tok-o">}</span>
 
-	<span class="tok-kd">public</span> <span class="tok-n">EObject</span> <span class="tok-nf">openBasicHoveringDialog</span><span class="tok-o">(</span><span class="tok-n">EObject</span> <span class="tok-n">any</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-		<span class="tok-n">String</span> <span class="tok-n">xtextString</span> <span class="tok-o">=</span> <span class="tok-n">xtextPrettyPrint</span><span class="tok-o">(</span><span class="tok-n">any</span><span class="tok-o">);</span>
-		<span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">xtextString</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span> <span class="tok-o">&amp;&amp;</span> <span class="tok-o">!</span><span class="tok-n">xtextString</span><span class="tok-o">.</span><span class="tok-na">isEmpty</span><span class="tok-o">())</span> <span class="tok-o">{</span>
-			<span class="tok-n">IEditorPart</span> <span class="tok-n">part</span> <span class="tok-o">=</span> <span class="tok-n">PlatformUI</span><span class="tok-o">.</span><span class="tok-na">getWorkbench</span><span class="tok-o">().</span><span class="tok-na">getActiveWorkbenchWindow</span><span class="tok-o">().</span><span class="tok-na">getActivePage</span><span class="tok-o">().</span><span class="tok-na">getActiveEditor</span><span class="tok-o">();</span>
-			<span class="tok-n">InfoPopUp</span> <span class="tok-n">pop</span> <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-n">InfoPopUp</span><span class="tok-o">(</span> <span class="tok-n">part</span><span class="tok-o">.</span><span class="tok-na">getSite</span><span class="tok-o">().</span><span class="tok-na">getShell</span><span class="tok-o">()</span> <span class="tok-o">,</span> <span class="tok-s">&quot;Textual representation of the element&quot;</span><span class="tok-o">,</span><span class="tok-s">&quot;press ESC to close&quot;</span><span class="tok-o">);</span>
-			<span class="tok-n">pop</span><span class="tok-o">.</span><span class="tok-na">setText</span><span class="tok-o">(</span><span class="tok-n">xtextString</span><span class="tok-o">);</span>
-			<span class="tok-n">pop</span><span class="tok-o">.</span><span class="tok-na">open</span><span class="tok-o">();</span>
-		<span class="tok-o">}</span>
-		<span class="tok-k">return</span> <span class="tok-n">any</span><span class="tok-o">;</span>
-	<span class="tok-o">}</span></code></pre>
+<span class="tok-kd">public</span> <span class="tok-n">EObject</span> <span class="tok-nf">openBasicHoveringDialog</span><span class="tok-o">(</span><span class="tok-n">EObject</span> <span class="tok-n">any</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+    <span class="tok-n">String</span> <span class="tok-n">xtextString</span> <span class="tok-o">=</span> <span class="tok-n">xtextPrettyPrint</span><span class="tok-o">(</span><span class="tok-n">any</span><span class="tok-o">);</span>
+    <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">xtextString</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span> <span class="tok-o">&amp;&amp;</span> <span class="tok-o">!</span><span class="tok-n">xtextString</span><span class="tok-o">.</span><span class="tok-na">isEmpty</span><span class="tok-o">())</span> <span class="tok-o">{</span>
+        <span class="tok-n">IEditorPart</span> <span class="tok-n">part</span> <span class="tok-o">=</span> <span class="tok-n">PlatformUI</span><span class="tok-o">.</span><span class="tok-na">getWorkbench</span><span class="tok-o">().</span><span class="tok-na">getActiveWorkbenchWindow</span><span class="tok-o">().</span><span class="tok-na">getActivePage</span><span class="tok-o">().</span><span class="tok-na">getActiveEditor</span><span class="tok-o">();</span>
+        <span class="tok-n">InfoPopUp</span> <span class="tok-n">pop</span> <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-n">InfoPopUp</span><span class="tok-o">(</span> <span class="tok-n">part</span><span class="tok-o">.</span><span class="tok-na">getSite</span><span class="tok-o">().</span><span class="tok-na">getShell</span><span class="tok-o">()</span> <span class="tok-o">,</span> <span class="tok-s">&quot;Textual representation of the element&quot;</span><span class="tok-o">,</span><span class="tok-s">&quot;press ESC to close&quot;</span><span class="tok-o">);</span>
+        <span class="tok-n">pop</span><span class="tok-o">.</span><span class="tok-na">setText</span><span class="tok-o">(</span><span class="tok-n">xtextString</span><span class="tok-o">);</span>
+        <span class="tok-n">pop</span><span class="tok-o">.</span><span class="tok-na">open</span><span class="tok-o">();</span>
+    <span class="tok-o">}</span>
+    <span class="tok-k">return</span> <span class="tok-n">any</span><span class="tok-o">;</span>
+<span class="tok-o">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -1430,7 +1436,7 @@ in the package next to the Services.java class.</p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-If you start it in debug mode, small changes (code in an existing method) can be taken into account without a full restart.
+If you start the second eclipse in debug mode, small java changes (code in an existing method) can be taken into account without a full restart.
 </td>
 </tr>
 </table>
@@ -1628,7 +1634,7 @@ service calling xtextPrettyPrint() might be usefull too in the <em>tooltip expre
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-01-17 16:43:40 UTC
+Last updated 2019-01-17 17:07:33 UTC
 </div>
 </div>
 </body>
