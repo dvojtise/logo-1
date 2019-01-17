@@ -429,6 +429,78 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.listingblock .pygments .hll { background-color: #ffffcc }
+.listingblock .pygments, .listingblock .pygments code { background: #f8f8f8; }
+.listingblock .pygments .tok-c { color: #408080; font-style: italic } /* Comment */
+.listingblock .pygments .tok-err { border: 1px solid #FF0000 } /* Error */
+.listingblock .pygments .tok-k { color: #008000; font-weight: bold } /* Keyword */
+.listingblock .pygments .tok-o { color: #666666 } /* Operator */
+.listingblock .pygments .tok-ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.listingblock .pygments .tok-cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.listingblock .pygments .tok-cp { color: #BC7A00 } /* Comment.Preproc */
+.listingblock .pygments .tok-cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.listingblock .pygments .tok-c1 { color: #408080; font-style: italic } /* Comment.Single */
+.listingblock .pygments .tok-cs { color: #408080; font-style: italic } /* Comment.Special */
+.listingblock .pygments .tok-gd { color: #A00000 } /* Generic.Deleted */
+.listingblock .pygments .tok-ge { font-style: italic } /* Generic.Emph */
+.listingblock .pygments .tok-gr { color: #FF0000 } /* Generic.Error */
+.listingblock .pygments .tok-gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.listingblock .pygments .tok-gi { color: #00A000 } /* Generic.Inserted */
+.listingblock .pygments .tok-go { color: #888888 } /* Generic.Output */
+.listingblock .pygments .tok-gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.listingblock .pygments .tok-gs { font-weight: bold } /* Generic.Strong */
+.listingblock .pygments .tok-gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.listingblock .pygments .tok-gt { color: #0044DD } /* Generic.Traceback */
+.listingblock .pygments .tok-kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.listingblock .pygments .tok-kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.listingblock .pygments .tok-kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.listingblock .pygments .tok-kp { color: #008000 } /* Keyword.Pseudo */
+.listingblock .pygments .tok-kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.listingblock .pygments .tok-kt { color: #B00040 } /* Keyword.Type */
+.listingblock .pygments .tok-m { color: #666666 } /* Literal.Number */
+.listingblock .pygments .tok-s { color: #BA2121 } /* Literal.String */
+.listingblock .pygments .tok-na { color: #7D9029 } /* Name.Attribute */
+.listingblock .pygments .tok-nb { color: #008000 } /* Name.Builtin */
+.listingblock .pygments .tok-nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.listingblock .pygments .tok-no { color: #880000 } /* Name.Constant */
+.listingblock .pygments .tok-nd { color: #AA22FF } /* Name.Decorator */
+.listingblock .pygments .tok-ni { color: #999999; font-weight: bold } /* Name.Entity */
+.listingblock .pygments .tok-ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.listingblock .pygments .tok-nf { color: #0000FF } /* Name.Function */
+.listingblock .pygments .tok-nl { color: #A0A000 } /* Name.Label */
+.listingblock .pygments .tok-nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.listingblock .pygments .tok-nt { color: #008000; font-weight: bold } /* Name.Tag */
+.listingblock .pygments .tok-nv { color: #19177C } /* Name.Variable */
+.listingblock .pygments .tok-ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.listingblock .pygments .tok-w { color: #bbbbbb } /* Text.Whitespace */
+.listingblock .pygments .tok-mb { color: #666666 } /* Literal.Number.Bin */
+.listingblock .pygments .tok-mf { color: #666666 } /* Literal.Number.Float */
+.listingblock .pygments .tok-mh { color: #666666 } /* Literal.Number.Hex */
+.listingblock .pygments .tok-mi { color: #666666 } /* Literal.Number.Integer */
+.listingblock .pygments .tok-mo { color: #666666 } /* Literal.Number.Oct */
+.listingblock .pygments .tok-sa { color: #BA2121 } /* Literal.String.Affix */
+.listingblock .pygments .tok-sb { color: #BA2121 } /* Literal.String.Backtick */
+.listingblock .pygments .tok-sc { color: #BA2121 } /* Literal.String.Char */
+.listingblock .pygments .tok-dl { color: #BA2121 } /* Literal.String.Delimiter */
+.listingblock .pygments .tok-sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.listingblock .pygments .tok-s2 { color: #BA2121 } /* Literal.String.Double */
+.listingblock .pygments .tok-se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.listingblock .pygments .tok-sh { color: #BA2121 } /* Literal.String.Heredoc */
+.listingblock .pygments .tok-si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.listingblock .pygments .tok-sx { color: #008000 } /* Literal.String.Other */
+.listingblock .pygments .tok-sr { color: #BB6688 } /* Literal.String.Regex */
+.listingblock .pygments .tok-s1 { color: #BA2121 } /* Literal.String.Single */
+.listingblock .pygments .tok-ss { color: #19177C } /* Literal.String.Symbol */
+.listingblock .pygments .tok-bp { color: #008000 } /* Name.Builtin.Pseudo */
+.listingblock .pygments .tok-fm { color: #0000FF } /* Name.Function.Magic */
+.listingblock .pygments .tok-vc { color: #19177C } /* Name.Variable.Class */
+.listingblock .pygments .tok-vg { color: #19177C } /* Name.Variable.Global */
+.listingblock .pygments .tok-vi { color: #19177C } /* Name.Variable.Instance */
+.listingblock .pygments .tok-vm { color: #19177C } /* Name.Variable.Magic */
+.listingblock .pygments .tok-il { color: #666666 } /* Literal.Number.Integer.Long */
+</style>
 </head>
 <body id="day-one-part1" class="article">
 <div id="header">
@@ -468,7 +540,7 @@ support of openFX used for the day 2 tutorial)</p>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 Start the first Eclipse, we will call it the <strong>Language Workbench</strong>
@@ -516,7 +588,7 @@ Start the first Eclipse, we will call it the <strong>Language Workbench</strong>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -547,7 +619,7 @@ we will call it the <strong>Modeling workbench</strong></p>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 Switch back to the <strong>Language Workbench</strong>
@@ -598,7 +670,7 @@ Switch back to the <strong>Language Workbench</strong>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>left 45
+<pre class="pygments highlight"><code>left 45
 forward 15
 right 90
 forward 100</code></pre>
@@ -608,7 +680,7 @@ forward 100</code></pre>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 reference documentation <a href="https://www.eclipse.org/Xtext/documentation/301_grammarlanguage.html" class="bare">https://www.eclipse.org/Xtext/documentation/301_grammarlanguage.html</a>
@@ -618,7 +690,7 @@ reference documentation <a href="https://www.eclipse.org/Xtext/documentation/301
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+<pre class="pygments highlight"><code>import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 LogoProgram :
 	{LogoProgram}
@@ -648,7 +720,7 @@ EInt returns ecore::EInt:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>Instruction :
+<pre class="pygments highlight"><code>Instruction :
 	Forward | Left | Right | ProcDeclaration ;
 
 ProcDeclaration :
@@ -672,7 +744,7 @@ EString returns ecore::EString:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>Instruction :
+<pre class="pygments highlight"><code>Instruction :
 	Forward | Left | Right | ProcDeclaration | ProcCall;
 ProcCall :
 	declaration=[ProcDeclaration|EString]
@@ -684,7 +756,7 @@ ProcCall :
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 Switch to the <strong>Modeling Workbench</strong>
@@ -699,7 +771,7 @@ Switch to the <strong>Modeling Workbench</strong>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 Switch back to the <strong>Language Workbench</strong>
@@ -716,7 +788,7 @@ Switch back to the <strong>Language Workbench</strong>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 reference documentation: <a href="https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation" class="bare">https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation</a>
@@ -756,7 +828,7 @@ reference documentation: <a href="https://www.eclipse.org/Xtext/documentation/30
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 reference documentation: <a href="https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#quick-fixes" class="bare">https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#quick-fixes</a>
@@ -772,7 +844,7 @@ reference documentation: <a href="https://www.eclipse.org/Xtext/documentation/31
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>	// quickfix API
+<pre class="pygments highlight"><code>	// quickfix API
 			fragment = ui.quickfix.QuickfixProviderFragment2 {}</code></pre>
 </div>
 </div>
@@ -785,36 +857,36 @@ open new file <strong>LogoQuickfixProvider.xtend</strong> and add the following:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">import static extension org.eclipse.xtext.EcoreUtil2.*</code></pre>
+<pre class="pygments highlight"><code data-lang="java"><span></span><span class="tok-kn">import static</span> <span class="tok-nn">extension</span> <span class="tok-n">org</span><span class="tok-o">.</span><span class="tok-na">eclipse</span><span class="tok-o">.</span><span class="tok-na">xtext</span><span class="tok-o">.</span><span class="tok-na">EcoreUtil2</span><span class="tok-o">.*</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">	@Fix(Diagnostic.LINKING_DIAGNOSTIC)
-	def void fixMissingProcDecl(Issue issue,
-								IssueResolutionAcceptor acceptor) {
-		if (issue.message.contains("ProcDeclaration")) {
-			createMissingProcDecl(issue, acceptor);
-		}
-	}
+<pre class="pygments highlight"><code data-lang="java"><span></span>	<span class="tok-nd">@Fix</span><span class="tok-o">(</span><span class="tok-n">Diagnostic</span><span class="tok-o">.</span><span class="tok-na">LINKING_DIAGNOSTIC</span><span class="tok-o">)</span>
+	<span class="tok-n">def</span> <span class="tok-kt">void</span> <span class="tok-nf">fixMissingProcDecl</span><span class="tok-o">(</span><span class="tok-n">Issue</span> <span class="tok-n">issue</span><span class="tok-o">,</span>
+								<span class="tok-n">IssueResolutionAcceptor</span> <span class="tok-n">acceptor</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+		<span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">issue</span><span class="tok-o">.</span><span class="tok-na">message</span><span class="tok-o">.</span><span class="tok-na">contains</span><span class="tok-o">(</span><span class="tok-s">&quot;ProcDeclaration&quot;</span><span class="tok-o">))</span> <span class="tok-o">{</span>
+			<span class="tok-n">createMissingProcDecl</span><span class="tok-o">(</span><span class="tok-n">issue</span><span class="tok-o">,</span> <span class="tok-n">acceptor</span><span class="tok-o">);</span>
+		<span class="tok-o">}</span>
+	<span class="tok-o">}</span>
 
-	private def createMissingProcDecl(Issue issue, IssueResolutionAcceptor acceptor) {
-		acceptor.accept(issue,
-			"Create missing procedure declaration",
-			"Create a new empty procedure declaration at the beginning of the file",
-			null, // no icon
-			[ element, context |
-				val root = element.getContainerOfType(typeof(LogoProgram))
-				root.instructions.add(
-					0,
-					LogoFactory::eINSTANCE.createProcDeclaration() =&gt; [
-						name = context.xtextDocument.get(issue.offset,
-						issue.length)
-					]
-				)
-			]
-		);
-	}</code></pre>
+	<span class="tok-kd">private</span> <span class="tok-n">def</span> <span class="tok-nf">createMissingProcDecl</span><span class="tok-o">(</span><span class="tok-n">Issue</span> <span class="tok-n">issue</span><span class="tok-o">,</span> <span class="tok-n">IssueResolutionAcceptor</span> <span class="tok-n">acceptor</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+		<span class="tok-n">acceptor</span><span class="tok-o">.</span><span class="tok-na">accept</span><span class="tok-o">(</span><span class="tok-n">issue</span><span class="tok-o">,</span>
+			<span class="tok-s">&quot;Create missing procedure declaration&quot;</span><span class="tok-o">,</span>
+			<span class="tok-s">&quot;Create a new empty procedure declaration at the beginning of the file&quot;</span><span class="tok-o">,</span>
+			<span class="tok-kc">null</span><span class="tok-o">,</span> <span class="tok-c1">// no icon</span>
+			<span class="tok-o">[</span> <span class="tok-n">element</span><span class="tok-o">,</span> <span class="tok-n">context</span> <span class="tok-o">|</span>
+				<span class="tok-n">val</span> <span class="tok-n">root</span> <span class="tok-o">=</span> <span class="tok-n">element</span><span class="tok-o">.</span><span class="tok-na">getContainerOfType</span><span class="tok-o">(</span><span class="tok-n">typeof</span><span class="tok-o">(</span><span class="tok-n">LogoProgram</span><span class="tok-o">))</span>
+				<span class="tok-n">root</span><span class="tok-o">.</span><span class="tok-na">instructions</span><span class="tok-o">.</span><span class="tok-na">add</span><span class="tok-o">(</span>
+					<span class="tok-mi">0</span><span class="tok-o">,</span>
+					<span class="tok-n">LogoFactory</span><span class="tok-o">::</span><span class="tok-n">eINSTANCE</span><span class="tok-o">.</span><span class="tok-na">createProcDeclaration</span><span class="tok-o">()</span> <span class="tok-o">=&gt;</span> <span class="tok-o">[</span>
+						<span class="tok-n">name</span> <span class="tok-o">=</span> <span class="tok-n">context</span><span class="tok-o">.</span><span class="tok-na">xtextDocument</span><span class="tok-o">.</span><span class="tok-na">get</span><span class="tok-o">(</span><span class="tok-n">issue</span><span class="tok-o">.</span><span class="tok-na">offset</span><span class="tok-o">,</span>
+						<span class="tok-n">issue</span><span class="tok-o">.</span><span class="tok-na">length</span><span class="tok-o">)</span>
+					<span class="tok-o">]</span>
+				<span class="tok-o">)</span>
+			<span class="tok-o">]</span>
+		<span class="tok-o">);</span>
+	<span class="tok-o">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -826,7 +898,7 @@ open new file <strong>LogoQuickfixProvider.xtend</strong> and add the following:
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 reference documentation: see <a href="https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#formatting" class="bare">https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#formatting</a>
@@ -848,7 +920,7 @@ reference documentation: see <a href="https://www.eclipse.org/Xtext/documentatio
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>language = StandardLanguage {
+<pre class="pygments highlight"><code>language = StandardLanguage {
 			...
 			// formatter API
 			fragment = formatting.Formatter2Fragment2 {}
@@ -863,46 +935,46 @@ reference documentation: see <a href="https://www.eclipse.org/Xtext/documentatio
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">class LogoFormatter extends AbstractFormatter2 {
+<pre class="pygments highlight"><code data-lang="java"><span></span><span class="tok-kd">class</span> <span class="tok-nc">LogoFormatter</span> <span class="tok-kd">extends</span> <span class="tok-n">AbstractFormatter2</span> <span class="tok-o">{</span>
 
-	@Inject extension LogoGrammarAccess
+	<span class="tok-nd">@Inject</span> <span class="tok-n">extension</span> <span class="tok-n">LogoGrammarAccess</span>
 
-	def dispatch void format(LogoProgram logoProgram, extension IFormattableDocument document) {
-		for (instruction : logoProgram.instructions) {
-			instruction.format
-			instruction.append[setNewLines(1, 1, 2)]
-		}
-	}
+	<span class="tok-n">def</span> <span class="tok-n">dispatch</span> <span class="tok-kt">void</span> <span class="tok-nf">format</span><span class="tok-o">(</span><span class="tok-n">LogoProgram</span> <span class="tok-n">logoProgram</span><span class="tok-o">,</span> <span class="tok-n">extension</span> <span class="tok-n">IFormattableDocument</span> <span class="tok-n">document</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+		<span class="tok-k">for</span> <span class="tok-o">(</span><span class="tok-n">instruction</span> <span class="tok-o">:</span> <span class="tok-n">logoProgram</span><span class="tok-o">.</span><span class="tok-na">instructions</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+			<span class="tok-n">instruction</span><span class="tok-o">.</span><span class="tok-na">format</span>
+			<span class="tok-n">instruction</span><span class="tok-o">.</span><span class="tok-na">append</span><span class="tok-o">[</span><span class="tok-n">setNewLines</span><span class="tok-o">(</span><span class="tok-mi">1</span><span class="tok-o">,</span> <span class="tok-mi">1</span><span class="tok-o">,</span> <span class="tok-mi">2</span><span class="tok-o">)]</span>
+		<span class="tok-o">}</span>
+	<span class="tok-o">}</span>
 
-	def dispatch void format(ProcDeclaration procDeclaration, extension IFormattableDocument document) {
-		val to = procDeclaration.regionFor.keyword("to")
-		val end = procDeclaration.regionFor.keyword("end")
-		if(procDeclaration.args.empty) {
-			val declName = procDeclaration.regionFor.feature(LogoPackage.Literals.PROC_DECLARATION__NAME).append[newLine]
-			interior(declName, end)[indent]
-		} else {
-			for ( arg : procDeclaration.args) {
-				arg.surround[oneSpace]
-			}
-			procDeclaration.args.last.append[newLine]
-			interior(procDeclaration.args.last.regionFor.feature(LogoPackage.Literals.PARAMETER__NAME), end)[indent]
-		}
-		for (instruction : procDeclaration.instructions) {
-			instruction.format
-			instruction.append[setNewLines(1, 1, 2)]
-		}
-	}
+	<span class="tok-n">def</span> <span class="tok-n">dispatch</span> <span class="tok-kt">void</span> <span class="tok-nf">format</span><span class="tok-o">(</span><span class="tok-n">ProcDeclaration</span> <span class="tok-n">procDeclaration</span><span class="tok-o">,</span> <span class="tok-n">extension</span> <span class="tok-n">IFormattableDocument</span> <span class="tok-n">document</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+		<span class="tok-n">val</span> <span class="tok-n">to</span> <span class="tok-o">=</span> <span class="tok-n">procDeclaration</span><span class="tok-o">.</span><span class="tok-na">regionFor</span><span class="tok-o">.</span><span class="tok-na">keyword</span><span class="tok-o">(</span><span class="tok-s">&quot;to&quot;</span><span class="tok-o">)</span>
+		<span class="tok-n">val</span> <span class="tok-n">end</span> <span class="tok-o">=</span> <span class="tok-n">procDeclaration</span><span class="tok-o">.</span><span class="tok-na">regionFor</span><span class="tok-o">.</span><span class="tok-na">keyword</span><span class="tok-o">(</span><span class="tok-s">&quot;end&quot;</span><span class="tok-o">)</span>
+		<span class="tok-k">if</span><span class="tok-o">(</span><span class="tok-n">procDeclaration</span><span class="tok-o">.</span><span class="tok-na">args</span><span class="tok-o">.</span><span class="tok-na">empty</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+			<span class="tok-n">val</span> <span class="tok-n">declName</span> <span class="tok-o">=</span> <span class="tok-n">procDeclaration</span><span class="tok-o">.</span><span class="tok-na">regionFor</span><span class="tok-o">.</span><span class="tok-na">feature</span><span class="tok-o">(</span><span class="tok-n">LogoPackage</span><span class="tok-o">.</span><span class="tok-na">Literals</span><span class="tok-o">.</span><span class="tok-na">PROC_DECLARATION__NAME</span><span class="tok-o">).</span><span class="tok-na">append</span><span class="tok-o">[</span><span class="tok-n">newLine</span><span class="tok-o">]</span>
+			<span class="tok-nf">interior</span><span class="tok-o">(</span><span class="tok-n">declName</span><span class="tok-o">,</span> <span class="tok-n">end</span><span class="tok-o">)[</span><span class="tok-n">indent</span><span class="tok-o">]</span>
+		<span class="tok-o">}</span> <span class="tok-k">else</span> <span class="tok-o">{</span>
+			<span class="tok-k">for</span> <span class="tok-o">(</span> <span class="tok-n">arg</span> <span class="tok-o">:</span> <span class="tok-n">procDeclaration</span><span class="tok-o">.</span><span class="tok-na">args</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+				<span class="tok-n">arg</span><span class="tok-o">.</span><span class="tok-na">surround</span><span class="tok-o">[</span><span class="tok-n">oneSpace</span><span class="tok-o">]</span>
+			<span class="tok-o">}</span>
+			<span class="tok-n">procDeclaration</span><span class="tok-o">.</span><span class="tok-na">args</span><span class="tok-o">.</span><span class="tok-na">last</span><span class="tok-o">.</span><span class="tok-na">append</span><span class="tok-o">[</span><span class="tok-n">newLine</span><span class="tok-o">]</span>
+			<span class="tok-nf">interior</span><span class="tok-o">(</span><span class="tok-n">procDeclaration</span><span class="tok-o">.</span><span class="tok-na">args</span><span class="tok-o">.</span><span class="tok-na">last</span><span class="tok-o">.</span><span class="tok-na">regionFor</span><span class="tok-o">.</span><span class="tok-na">feature</span><span class="tok-o">(</span><span class="tok-n">LogoPackage</span><span class="tok-o">.</span><span class="tok-na">Literals</span><span class="tok-o">.</span><span class="tok-na">PARAMETER__NAME</span><span class="tok-o">),</span> <span class="tok-n">end</span><span class="tok-o">)[</span><span class="tok-n">indent</span><span class="tok-o">]</span>
+		<span class="tok-o">}</span>
+		<span class="tok-k">for</span> <span class="tok-o">(</span><span class="tok-n">instruction</span> <span class="tok-o">:</span> <span class="tok-n">procDeclaration</span><span class="tok-o">.</span><span class="tok-na">instructions</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+			<span class="tok-n">instruction</span><span class="tok-o">.</span><span class="tok-na">format</span>
+			<span class="tok-n">instruction</span><span class="tok-o">.</span><span class="tok-na">append</span><span class="tok-o">[</span><span class="tok-n">setNewLines</span><span class="tok-o">(</span><span class="tok-mi">1</span><span class="tok-o">,</span> <span class="tok-mi">1</span><span class="tok-o">,</span> <span class="tok-mi">2</span><span class="tok-o">)]</span>
+		<span class="tok-o">}</span>
+	<span class="tok-o">}</span>
 
-	def dispatch void format(Block block, extension IFormattableDocument document) {
-		val open = block.regionFor.keyword("[")
-		val close = block.regionFor.keyword("]")
-		open.append[newLine]
-		interior(open, close)[indent]
-		for (instruction : block.instructions) {
-			instruction.format
-			instruction.append[setNewLines(1, 1, 2)]
-		}
-	}</code></pre>
+	<span class="tok-n">def</span> <span class="tok-n">dispatch</span> <span class="tok-kt">void</span> <span class="tok-nf">format</span><span class="tok-o">(</span><span class="tok-n">Block</span> <span class="tok-n">block</span><span class="tok-o">,</span> <span class="tok-n">extension</span> <span class="tok-n">IFormattableDocument</span> <span class="tok-n">document</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+		<span class="tok-n">val</span> <span class="tok-n">open</span> <span class="tok-o">=</span> <span class="tok-n">block</span><span class="tok-o">.</span><span class="tok-na">regionFor</span><span class="tok-o">.</span><span class="tok-na">keyword</span><span class="tok-o">(</span><span class="tok-s">&quot;[&quot;</span><span class="tok-o">)</span>
+		<span class="tok-n">val</span> <span class="tok-n">close</span> <span class="tok-o">=</span> <span class="tok-n">block</span><span class="tok-o">.</span><span class="tok-na">regionFor</span><span class="tok-o">.</span><span class="tok-na">keyword</span><span class="tok-o">(</span><span class="tok-s">&quot;]&quot;</span><span class="tok-o">)</span>
+		<span class="tok-n">open</span><span class="tok-o">.</span><span class="tok-na">append</span><span class="tok-o">[</span><span class="tok-n">newLine</span><span class="tok-o">]</span>
+		<span class="tok-nf">interior</span><span class="tok-o">(</span><span class="tok-n">open</span><span class="tok-o">,</span> <span class="tok-n">close</span><span class="tok-o">)[</span><span class="tok-n">indent</span><span class="tok-o">]</span>
+		<span class="tok-nf">for</span> <span class="tok-o">(</span><span class="tok-n">instruction</span> <span class="tok-o">:</span> <span class="tok-n">block</span><span class="tok-o">.</span><span class="tok-na">instructions</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+			<span class="tok-n">instruction</span><span class="tok-o">.</span><span class="tok-na">format</span>
+			<span class="tok-n">instruction</span><span class="tok-o">.</span><span class="tok-na">append</span><span class="tok-o">[</span><span class="tok-n">setNewLines</span><span class="tok-o">(</span><span class="tok-mi">1</span><span class="tok-o">,</span> <span class="tok-mi">1</span><span class="tok-o">,</span> <span class="tok-mi">2</span><span class="tok-o">)]</span>
+		<span class="tok-o">}</span>
+	<span class="tok-o">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -937,7 +1009,7 @@ management of the containment in the  ecore (othewise the file cannot be seriali
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -957,7 +1029,7 @@ and <a href="https://news.obeo.fr/en/post/let-me-sirius-that-for-you-properties-
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 reference documentation: <a href="https://www.eclipse.org/Xtext/documentation/307_special_languages.html#expressions" class="bare">https://www.eclipse.org/Xtext/documentation/307_special_languages.html#expressions</a>
@@ -972,7 +1044,7 @@ reference documentation: <a href="https://www.eclipse.org/Xtext/documentation/30
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 for Left recursive grammar the keyword <em>current</em> might be useful, see Associativity section in  <a href="https://www.eclipse.org/Xtext/documentation/307_special_languages.html#expressions" class="bare">https://www.eclipse.org/Xtext/documentation/307_special_languages.html#expressions</a>
@@ -1007,7 +1079,7 @@ for Left recursive grammar the keyword <em>current</em> might be useful, see Ass
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -1022,7 +1094,7 @@ to the examples available in your eclipse <em>File &#8594; New &#8594; Examples&
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 ui tests (outline, content assist, etc) are in <em>xxx.logo.xtext.ui.tests</em>
@@ -1142,7 +1214,7 @@ ui tests (outline, content assist, etc) are in <em>xxx.logo.xtext.ui.tests</em>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 Xtend supports a template syntax that is really convenient for writing strings. See <a href="https://www.eclipse.org/xtend/documentation/203_xtend_expressions.html#templates" class="bare">https://www.eclipse.org/xtend/documentation/203_xtend_expressions.html#templates</a>
@@ -1152,22 +1224,22 @@ Xtend supports a template syntax that is really convenient for writing strings. 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">class LogoGenerator extends AbstractGenerator {
-	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-		val List&lt;ProcDeclaration&gt; allProcDecl = resource.allContents.filter(ProcDeclaration).toList
-		val content = '''
-		&lt;html&gt;
-			&lt;body&gt;
-				List of procedures declared in «resource.URI.segments.last».
-				«FOR procDecl : allProcDecl BEFORE '&lt;UL&gt;' AFTER '&lt;/UL&gt;'»
-					&lt;LI&gt;«procDecl.name» («FOR arg : procDecl.args SEPARATOR ', '» «arg.name»«ENDFOR»)&lt;/LI&gt;
-				«ENDFOR»
-			&lt;/body&gt;
-		&lt;/html&gt;
-		'''
-		fsa.generateFile(resource.URI.segments.last+"_summary.html", content)
-	}
-}</code></pre>
+<pre class="pygments highlight"><code data-lang="java"><span></span><span class="tok-kd">class</span> <span class="tok-nc">LogoGenerator</span> <span class="tok-kd">extends</span> <span class="tok-n">AbstractGenerator</span> <span class="tok-o">{</span>
+	<span class="tok-n">override</span> <span class="tok-kt">void</span> <span class="tok-nf">doGenerate</span><span class="tok-o">(</span><span class="tok-n">Resource</span> <span class="tok-n">resource</span><span class="tok-o">,</span> <span class="tok-n">IFileSystemAccess2</span> <span class="tok-n">fsa</span><span class="tok-o">,</span> <span class="tok-n">IGeneratorContext</span> <span class="tok-n">context</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+		<span class="tok-n">val</span> <span class="tok-n">List</span><span class="tok-o">&lt;</span><span class="tok-n">ProcDeclaration</span><span class="tok-o">&gt;</span> <span class="tok-n">allProcDecl</span> <span class="tok-o">=</span> <span class="tok-n">resource</span><span class="tok-o">.</span><span class="tok-na">allContents</span><span class="tok-o">.</span><span class="tok-na">filter</span><span class="tok-o">(</span><span class="tok-n">ProcDeclaration</span><span class="tok-o">).</span><span class="tok-na">toList</span>
+		<span class="tok-n">val</span> <span class="tok-n">content</span> <span class="tok-o">=</span> <span class="tok-sc">&#39;&#39;&#39;</span>
+		<span class="tok-o">&lt;</span><span class="tok-n">html</span><span class="tok-o">&gt;</span>
+			<span class="tok-o">&lt;</span><span class="tok-n">body</span><span class="tok-o">&gt;</span>
+				<span class="tok-n">List</span> <span class="tok-n">of</span> <span class="tok-n">procedures</span> <span class="tok-n">declared</span> <span class="tok-n">in</span> <span class="tok-err">«</span><span class="tok-n">resource</span><span class="tok-o">.</span><span class="tok-na">URI</span><span class="tok-o">.</span><span class="tok-na">segments</span><span class="tok-o">.</span><span class="tok-na">last</span><span class="tok-err">»</span><span class="tok-o">.</span>
+				<span class="tok-err">«</span><span class="tok-n">FOR</span> <span class="tok-n">procDecl</span> <span class="tok-o">:</span> <span class="tok-n">allProcDecl</span> <span class="tok-n">BEFORE</span> <span class="tok-err">&#39;</span><span class="tok-o">&lt;</span><span class="tok-n">UL</span><span class="tok-o">&gt;</span><span class="tok-err">&#39;</span> <span class="tok-n">AFTER</span> <span class="tok-err">&#39;</span><span class="tok-o">&lt;/</span><span class="tok-n">UL</span><span class="tok-o">&gt;</span><span class="tok-err">&#39;»</span>
+					<span class="tok-o">&lt;</span><span class="tok-n">LI</span><span class="tok-o">&gt;</span><span class="tok-err">«</span><span class="tok-n">procDecl</span><span class="tok-o">.</span><span class="tok-na">name</span><span class="tok-err">»</span> <span class="tok-o">(</span><span class="tok-err">«</span><span class="tok-n">FOR</span> <span class="tok-n">arg</span> <span class="tok-o">:</span> <span class="tok-n">procDecl</span><span class="tok-o">.</span><span class="tok-na">args</span> <span class="tok-n">SEPARATOR</span> <span class="tok-err">&#39;</span><span class="tok-o">,</span> <span class="tok-err">&#39;»</span> <span class="tok-err">«</span><span class="tok-n">arg</span><span class="tok-o">.</span><span class="tok-na">name</span><span class="tok-err">»«</span><span class="tok-n">ENDFOR</span><span class="tok-err">»</span><span class="tok-o">)&lt;/</span><span class="tok-n">LI</span><span class="tok-o">&gt;</span>
+				<span class="tok-err">«</span><span class="tok-n">ENDFOR</span><span class="tok-err">»</span>
+			<span class="tok-o">&lt;/</span><span class="tok-n">body</span><span class="tok-o">&gt;</span>
+		<span class="tok-o">&lt;/</span><span class="tok-n">html</span><span class="tok-o">&gt;</span>
+		<span class="tok-sc">&#39;&#39;&#39;</span>
+		<span class="tok-n">fsa</span><span class="tok-o">.</span><span class="tok-na">generateFile</span><span class="tok-o">(</span><span class="tok-n">resource</span><span class="tok-o">.</span><span class="tok-na">URI</span><span class="tok-o">.</span><span class="tok-na">segments</span><span class="tok-o">.</span><span class="tok-na">last</span><span class="tok-o">+</span><span class="tok-s">&quot;_summary.html&quot;</span><span class="tok-o">,</span> <span class="tok-n">content</span><span class="tok-o">)</span>
+	<span class="tok-o">}</span>
+<span class="tok-o">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -1179,7 +1251,7 @@ Xtend supports a template syntax that is really convenient for writing strings. 
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -1206,7 +1278,7 @@ It is sometime useful to install the reference example provided in eclipse and m
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-01-17 10:53:24 UTC
+Last updated 2019-01-17 15:15:07 UTC
 </div>
 </div>
 </body>
