@@ -12,15 +12,15 @@ Workflow {
 			project = StandardProjectConfig {
 				baseName = "fr.inria.sed.logo.xtext"
 				rootPath = rootPath
-				runtimeTest = {
+			/*	runtimeTest = {
 					enabled = true
-				}
+				}*/
 				eclipsePlugin = {
 					enabled = true
 				}
-				eclipsePluginTest = {
+			/*	eclipsePluginTest = {
 					enabled = true
-				}
+				} */
 				createEclipseMetaData = true
 			}
 			code = {

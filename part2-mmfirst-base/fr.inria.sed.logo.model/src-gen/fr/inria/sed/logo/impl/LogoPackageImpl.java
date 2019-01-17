@@ -6,6 +6,7 @@ import fr.inria.sed.logo.Backward;
 import fr.inria.sed.logo.Block;
 import fr.inria.sed.logo.Clear;
 import fr.inria.sed.logo.Constant;
+import fr.inria.sed.logo.ControlStructureInstruction;
 import fr.inria.sed.logo.Div;
 import fr.inria.sed.logo.Equals;
 import fr.inria.sed.logo.Expression;
@@ -25,6 +26,7 @@ import fr.inria.sed.logo.ParameterCall;
 import fr.inria.sed.logo.PenDown;
 import fr.inria.sed.logo.PenUp;
 import fr.inria.sed.logo.Plus;
+import fr.inria.sed.logo.PrimitiveInstruction;
 import fr.inria.sed.logo.ProcCall;
 import fr.inria.sed.logo.ProcDeclaration;
 import fr.inria.sed.logo.Repeat;
@@ -226,6 +228,20 @@ public class LogoPackageImpl extends EPackageImpl implements LogoPackage {
 	 * @generated
 	 */
 	private EClass divEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass primitiveInstructionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass controlStructureInstructionEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -845,6 +861,24 @@ public class LogoPackageImpl extends EPackageImpl implements LogoPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getPrimitiveInstruction() {
+		return primitiveInstructionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getControlStructureInstruction() {
+		return controlStructureInstructionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public LogoFactory getLogoFactory() {
 		return (LogoFactory) getEFactoryInstance();
 	}
@@ -955,6 +989,10 @@ public class LogoPackageImpl extends EPackageImpl implements LogoPackage {
 		divEClass = createEClass(DIV);
 		createEReference(divEClass, DIV__LHS);
 		createEReference(divEClass, DIV__RHS);
+
+		primitiveInstructionEClass = createEClass(PRIMITIVE_INSTRUCTION);
+
+		controlStructureInstructionEClass = createEClass(CONTROL_STRUCTURE_INSTRUCTION);
 	}
 
 	/**
@@ -986,22 +1024,22 @@ public class LogoPackageImpl extends EPackageImpl implements LogoPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		backwardEClass.getESuperTypes().add(this.getInstruction());
-		forwardEClass.getESuperTypes().add(this.getInstruction());
-		leftEClass.getESuperTypes().add(this.getInstruction());
-		rightEClass.getESuperTypes().add(this.getInstruction());
-		penDownEClass.getESuperTypes().add(this.getInstruction());
-		penUpEClass.getESuperTypes().add(this.getInstruction());
-		clearEClass.getESuperTypes().add(this.getInstruction());
+		backwardEClass.getESuperTypes().add(this.getPrimitiveInstruction());
+		forwardEClass.getESuperTypes().add(this.getPrimitiveInstruction());
+		leftEClass.getESuperTypes().add(this.getPrimitiveInstruction());
+		rightEClass.getESuperTypes().add(this.getPrimitiveInstruction());
+		penDownEClass.getESuperTypes().add(this.getPrimitiveInstruction());
+		penUpEClass.getESuperTypes().add(this.getPrimitiveInstruction());
+		clearEClass.getESuperTypes().add(this.getPrimitiveInstruction());
 		constantEClass.getESuperTypes().add(this.getExpression());
-		procCallEClass.getESuperTypes().add(this.getInstruction());
+		procCallEClass.getESuperTypes().add(this.getPrimitiveInstruction());
 		procDeclarationEClass.getESuperTypes().add(this.getInstruction());
 		blockEClass.getESuperTypes().add(this.getInstruction());
-		ifEClass.getESuperTypes().add(this.getInstruction());
-		repeatEClass.getESuperTypes().add(this.getInstruction());
-		whileEClass.getESuperTypes().add(this.getInstruction());
-		parameterCallEClass.getESuperTypes().add(this.getInstruction());
+		ifEClass.getESuperTypes().add(this.getControlStructureInstruction());
+		repeatEClass.getESuperTypes().add(this.getControlStructureInstruction());
+		whileEClass.getESuperTypes().add(this.getControlStructureInstruction());
 		parameterCallEClass.getESuperTypes().add(this.getExpression());
+		parameterCallEClass.getESuperTypes().add(this.getPrimitiveInstruction());
 		equalsEClass.getESuperTypes().add(this.getExpression());
 		greaterEClass.getESuperTypes().add(this.getExpression());
 		lowerEClass.getESuperTypes().add(this.getExpression());
@@ -1009,6 +1047,8 @@ public class LogoPackageImpl extends EPackageImpl implements LogoPackage {
 		minusEClass.getESuperTypes().add(this.getExpression());
 		multEClass.getESuperTypes().add(this.getExpression());
 		divEClass.getESuperTypes().add(this.getExpression());
+		primitiveInstructionEClass.getESuperTypes().add(this.getInstruction());
+		controlStructureInstructionEClass.getESuperTypes().add(this.getInstruction());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(logoProgramEClass, LogoProgram.class, "LogoProgram", !IS_ABSTRACT, !IS_INTERFACE,
@@ -1173,6 +1213,12 @@ public class LogoPackageImpl extends EPackageImpl implements LogoPackage {
 		initEReference(getDiv_Rhs(), this.getExpression(), null, "rhs", null, 0, 1, Div.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+
+		initEClass(primitiveInstructionEClass, PrimitiveInstruction.class, "PrimitiveInstruction", IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(controlStructureInstructionEClass, ControlStructureInstruction.class, "ControlStructureInstruction",
+				IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

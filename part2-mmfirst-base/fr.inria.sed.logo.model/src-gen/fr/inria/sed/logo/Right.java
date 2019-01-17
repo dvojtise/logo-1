@@ -18,7 +18,7 @@ package fr.inria.sed.logo;
  * @model
  * @generated
  */
-public interface Right extends Instruction {
+public interface Right extends PrimitiveInstruction {
 	/**
 	 * Returns the value of the '<em><b>Angle</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

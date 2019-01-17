@@ -197,6 +197,16 @@ public class LogoAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter casePrimitiveInstruction(PrimitiveInstruction object) {
+			return createPrimitiveInstructionAdapter();
+		}
+
+		@Override
+		public Adapter caseControlStructureInstruction(ControlStructureInstruction object) {
+			return createControlStructureInstructionAdapter();
+		}
+
+		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -576,6 +586,34 @@ public class LogoAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDivAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.inria.sed.logo.PrimitiveInstruction <em>Primitive Instruction</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.inria.sed.logo.PrimitiveInstruction
+	 * @generated
+	 */
+	public Adapter createPrimitiveInstructionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.inria.sed.logo.ControlStructureInstruction <em>Control Structure Instruction</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.inria.sed.logo.ControlStructureInstruction
+	 * @generated
+	 */
+	public Adapter createControlStructureInstructionAdapter() {
 		return null;
 	}
 

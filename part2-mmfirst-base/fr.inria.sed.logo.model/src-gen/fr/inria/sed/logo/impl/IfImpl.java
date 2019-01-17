@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class IfImpl extends InstructionImpl implements If {
+public class IfImpl extends ControlStructureInstructionImpl implements If {
 	/**
 	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
 	 * <!-- begin-user-doc -->

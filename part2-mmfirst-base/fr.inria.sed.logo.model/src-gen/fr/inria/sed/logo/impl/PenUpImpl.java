@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class PenUpImpl extends InstructionImpl implements PenUp {
+public class PenUpImpl extends PrimitiveInstructionImpl implements PenUp {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

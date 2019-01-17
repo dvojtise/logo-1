@@ -92,5 +92,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logo.ecore#//Div/lhs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logo.ecore#//Div/rhs"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="Logo.ecore#//PrimitiveInstruction"/>
+    <genClasses image="false" ecoreClass="Logo.ecore#//ControlStructureInstruction"/>
   </genPackages>
 </genmodel:GenModel>

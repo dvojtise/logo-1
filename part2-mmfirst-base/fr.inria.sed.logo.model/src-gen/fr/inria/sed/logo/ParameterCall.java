@@ -18,7 +18,7 @@ package fr.inria.sed.logo;
  * @model
  * @generated
  */
-public interface ParameterCall extends Instruction, Expression {
+public interface ParameterCall extends Expression, PrimitiveInstruction {
 	/**
 	 * Returns the value of the '<em><b>Parameter</b></em>' reference.
 	 * <!-- begin-user-doc -->

@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class PenDownImpl extends InstructionImpl implements PenDown {
+public class PenDownImpl extends PrimitiveInstructionImpl implements PenDown {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

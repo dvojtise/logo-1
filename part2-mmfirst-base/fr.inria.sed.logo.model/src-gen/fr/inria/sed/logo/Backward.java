@@ -18,7 +18,7 @@ package fr.inria.sed.logo;
  * @model
  * @generated
  */
-public interface Backward extends Instruction {
+public interface Backward extends PrimitiveInstruction {
 	/**
 	 * Returns the value of the '<em><b>Steps</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class RepeatImpl extends InstructionImpl implements Repeat {
+public class RepeatImpl extends ControlStructureInstructionImpl implements Repeat {
 	/**
 	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
 	 * <!-- begin-user-doc -->
