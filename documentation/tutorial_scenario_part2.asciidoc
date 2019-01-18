@@ -25,13 +25,23 @@ image::tutorial-part2-result-snowflake-screenshot.png[,500]
 [link=images/tutorial-part2-result-flower-screenshot.png] 
 image::tutorial-part2-result-flower-screenshot.png[,500]
 
+[NOTE]
+====
+Similarly to programming where several program may produce the same behavior, 
+it exist several ways to write Sirius diagram specification that draw the same diagram.
+
+In this course some attempt have been done to provide correct reuse of the rules and keep the global 
+design simple. However, it can probably be improved. If you see improvement that do 
+not blur the teaching goal feel free to contact the author and propose a change icon:smile[].  
+====
+
 == Installation
 
 * If you haven't followed the previous tutorials <<tutorial_scenario_part1.asciidoc#>> or <<tutorial_scenario_part1postprocess.asciidoc>>:
 ** Install an Oracle Java JDK (minimum 8, max 10,  Oracle is preferred due to 
 support of openFX used for the tutorial part 3)  
 ** grab and unzip the latest dev version of GEMOC Studio  http://download.eclipse.org/gemoc/packages/nightly/
-* If you have followed one the previous tutorial <<tutorial_scenario_part1.asciido#c>> or <<tutorial_scenario_part1postprocess.asciidoc#>>:
+* If you have followed one the previous tutorial <<tutorial_scenario_part1.asciidoc#>> or <<tutorial_scenario_part1postprocess.asciidoc#>>:
 ** Either use a brand new workspace or clean it by deleting the projects in it since the projects we will create will have the same names.
 
 
@@ -129,7 +139,7 @@ otherwise use _add from workspace_)
 *** tick "Initialization" and "show on startup"
 
 
-=== Create a test model with it representation
+=== Create a test model with its representation
 Create a test project and copy one or several _.logo_ files for testing the representation.
 
 Right click on the _.logo_ file -> New -> Representation file
@@ -224,26 +234,38 @@ We will indicates to the ProcedureDeclaration container that we want to reuse so
 * On the procDeclNode, 
 ** _Import tab_, Reused Node Mapping: _PrimitiveInstructionNode_ 
 
-
+[#seq-instruction-edge]
 === Add a link representing the sequence of instructions
 
 * _New diagram element -> Relation based Edge_ then in the properties view
 ** Id: instructionSequenceEdge
-** source mapping: InstructionNode
-** target mapping: InstructionNode
+** source mapping: _PrimitiveInstructionNode_
+** target mapping: _PrimitiveInstructionNode_
 ** Target finder expression: 
 [source,]
 ----
-aql:let i = self.eInverse('instructions').instructions->asSequence() in i->at(i->indexOf(self)+1)
+aql:let i = self.eContainer().instructions->asSequence() in i->at(i->indexOf(self)+1)
 ----
 
+[NOTE]
+====
+Explanation of the query above:
+
+from `self` (a PrimitiveInstruction) retrieve its container (a Block or a LogoProgram) 
+then get the list of instructions and store it in a variable named `i`.
+In this list of instruction compute the position of the Repeat block `+i->indexOf(self)+`
+Then returns the instruction that is at the following position.
+
+As aql does not fails if the range is wrong, it will simply return null instead.
+
+====
 
 === Add a link between procedure call and the procedure declaration:
 
 * _New diagram element -> Relation based Edge_ then in the properties view
 ** Id: procCallEdge
-** source mapping: InstructionNode
-** target mapping: procDeclNode
+** source mapping: _PrimitiveInstructionNode_
+** target mapping: _procDeclNode_
 ** Target finder expression: `+aql:if self.oclIsKindOf(logo::ProcCall) then self.oclAsType(logo::ProcCall).declaration else null endif+`
 ** make this link use dashed line
 
@@ -252,14 +274,14 @@ aql:let i = self.eInverse('instructions').instructions->asSequence() in i->at(i-
 [TIP]
 ====
  
- https://www.eclipse.org/sirius/doc/specifier/general/Writing_Queries.html
+https://www.eclipse.org/sirius/doc/specifier/general/Writing_Queries.html
  
- You can test your queries in order to write them: use the "Acceleo Model to Text > Interpreter" view
- then switch to "Sirius" mode instead of "Acceleo" mode.
+You can test your queries in order to write them: use the "Acceleo Model to Text > Interpreter" view
+then switch to "Sirius" mode instead of "Acceleo" mode.
  
- Warning: When using the Interpreter view from an element selected in a Sirius representation, the context of the expression is not the semantic element, but the view model element used internally by Sirius.
+Warning: When using the Interpreter view from an element selected in a Sirius representation, the context of the expression is not the semantic element, but the view model element used internally by Sirius.
  
-  In the interpreter view, to get the semantic element, you must enter _aql:self.target_
+In the interpreter view, to get the semantic element, you must enter `aql:self.target`
  
 ====
 
@@ -276,14 +298,88 @@ In the diagram, observe how to enable/disable the layer.
 
 === Add a default layout
 
-on the Logo Block Diagram
+On the Logo Block Diagram.
 
 * _New layout -> Composite layout_ then in the properties view
 ** Padding: 20
 ** top to bottom
 
+Now hyou can use the _Arrange all_ button to have a better looking diagram automatically.
+
+=== Create representation for Repeat
+
+On the _default_ layer.
+
+* _New diagram element -> Container_ then in the properties view
+** Id: RepeatPartContainer
+** domain class: logo::Block
+** semantic candidate expression: `+aql: self.eContents()->filter(logo::Repeat)->collect(i | i.block))+` 
+** _New style -> Gradient_
+*** Label tab: 
+**** Label expression: `+aql:'repeat ' +self.eContainer().condition.xtextPrettyPrint()+` 
+*** Color tab
+**** Foreground color: light_blue
+
+On the _RepeatPartContainer_
+
+* _New diagram element -> BorderedNode_ then in the properties view
+** Id: RepeatPartContainer
+** domain class: logo::Repeat
+** semantic candidate expression: `+aql:self.eContainer()+`
+** _New style -> BasicShape_
+*** General tab
+**** Shape: square 
+*** Label tab: 
+**** Hide label by default 
+*** Advanced tab:
+**** Authorized sides: North only
+ 
+
+In order to reuse rules: in procDeclContainer
+
+* Import tab:
+** Reused Container Mapping: repeatPartContainer
+
+Allow link from Primitive instruction to repeat:
+
+In _InstructionSequenceEdge_
+
+* General tab:
+** Target Mapping: _PrimitiveInstructionNode, Bordered RepeatBeginBNode_
+
+Create link from repeat to other instructions.
+
+* _New diagram element -> Relation based Edge_ then in the properties view
+** Id: endRepeatSequenceEdge
+** source mapping: _RepeatPartContainer_
+** target mapping: _PrimitiveInstructionNode, Bordered RepeatBeginNode_
+** Target finder expression: 
+[source,]
+----
+aql:let i = self.eContainer().eContainer().instructions->asSequence() in i->at(i->indexOf(self.eContainer())+1)
+----
+
+[NOTE]
+====
+Explanation of the query above which is a variant of the one in <<#seq-instruction-edge>>:
+
+from `self` (a Block contained by a Repeat instruction) retrieve its container (a Repeat instruction)
+then its container (a Block or a LogoProgram) then get the list of instructions and store it in a variable named `i`.
+In this list of instruction compute the position of the Repeat block `+i->indexOf(self.eContainer())+`
+Then returns the instruction (including the bordered RepeatBeginnode) that is at the following position.
+
+====
 
 === Create representation for If
+
+[NOTE]
+====
+This section a quite similar to the one about the Repeat instruction and doesn't introduce significant new  Sirius concepts.
+(It simply creates a separate node for the _If_ then links it to 2 blocks: thenPart and elsePart. Whereas Repeat creates a bordered node on a single Block.)
+If you do not have much time, you can jump to the next section <<#improve-labels-and-xtext-integration>>. 
+====
+
+On the _default_ layer.
 
 * _New diagram element -> Node_ then in the properties view
 ** Id: IfNode
@@ -318,12 +414,13 @@ on the Logo Block Diagram
 *** Foreground color: light_red
 
 
-in the following containers: procDeclContainer,  thenPartContainer, and elsePartContainer;
+Do in all following containers: procDeclContainer, repeatPartContainer, thenPartContainer, and elsePartContainer;
 
 * Import tab:
 ** Reused Node Mapping: PrimitiveIntrustionNode, IfNode
-** Reused Container Mapping: elsePartContainer, thenPartContainer
+** Reused Container Mapping: repeatPartContainer, elsePartContainer, thenPartContainer
 
+On the _Default_ layer.
 
 * _New diagram element -> Relation based Edge_ then in the properties view
 ** Id: IfThenEdge
@@ -344,15 +441,15 @@ in the following containers: procDeclContainer,  thenPartContainer, and elsePart
 ** semantic candidate expression: 
 [source,]
 ----
-aql:let i = self.eContainer().eInverse('instructions').instructions->asSequence() in i->at(i->indexOf(self.eContainer())+1)
+aql:let i = self.eContainer().eContainer().instructions->asSequence() in i->at(i->indexOf(self.eContainer())+1)
 ----
 
 NOTE: Exercise for the motivated: reproduce similar structure for Repeat and While control structure
 
-
+[#improve-labels-and-xtext-integration]
 == Improve labels and xtext integration
 
-We will create some java services to be used by sirius
+We will create some java services to be used by sirius.
 
 === Add xtext aware service static methods
 
@@ -478,6 +575,8 @@ in the Begin element:
 * _new operation -> change context_
 ** browse expression: `+service:self.openTextEditor()+`
 
+
+== Some other actions and palette integration
 
 === Add action that create  elements (Palette)
 
