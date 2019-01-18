@@ -14,6 +14,6 @@ Require-Bundle: fr.inria.sed.logo.xtext.ui,
  org.eclipse.xtext.xbase.junit,
  org.eclipse.core.runtime,
  org.eclipse.ui.workbench;resolution:=optional
-Bundle-RequiredExecutionEnvironment: JavaSE-10
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: fr.inria.sed.logo.xtext.ui.tests;x-internal=true
 

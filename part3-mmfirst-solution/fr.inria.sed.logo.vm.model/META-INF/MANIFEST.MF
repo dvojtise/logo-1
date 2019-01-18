@@ -7,7 +7,7 @@ Bundle-Version: 0.1.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-10
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: fr.inria.sed.logo.vm.model.vm,
  fr.inria.sed.logo.vm.model.vm.impl,
  fr.inria.sed.logo.vm.model.vm.util
