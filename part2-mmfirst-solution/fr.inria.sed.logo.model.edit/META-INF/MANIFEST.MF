@@ -8,7 +8,7 @@ Bundle-ClassPath: .
 Bundle-Activator: fr.inria.sed.logo.provider.LogoEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-10
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: fr.inria.sed.logo.provider
 Require-Bundle: org.eclipse.core.runtime,
  fr.inria.sed.logo.model;visibility:=reexport,
