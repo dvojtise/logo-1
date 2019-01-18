@@ -430,81 +430,38 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-.listingblock .pygments .hll { background-color: #ffffcc }
-.listingblock .pygments, .listingblock .pygments code { background: #f8f8f8; }
-.listingblock .pygments .tok-c { color: #408080; font-style: italic } /* Comment */
-.listingblock .pygments .tok-err { border: 1px solid #FF0000 } /* Error */
-.listingblock .pygments .tok-k { color: #008000; font-weight: bold } /* Keyword */
-.listingblock .pygments .tok-o { color: #666666 } /* Operator */
-.listingblock .pygments .tok-ch { color: #408080; font-style: italic } /* Comment.Hashbang */
-.listingblock .pygments .tok-cm { color: #408080; font-style: italic } /* Comment.Multiline */
-.listingblock .pygments .tok-cp { color: #BC7A00 } /* Comment.Preproc */
-.listingblock .pygments .tok-cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
-.listingblock .pygments .tok-c1 { color: #408080; font-style: italic } /* Comment.Single */
-.listingblock .pygments .tok-cs { color: #408080; font-style: italic } /* Comment.Special */
-.listingblock .pygments .tok-gd { color: #A00000 } /* Generic.Deleted */
-.listingblock .pygments .tok-ge { font-style: italic } /* Generic.Emph */
-.listingblock .pygments .tok-gr { color: #FF0000 } /* Generic.Error */
-.listingblock .pygments .tok-gh { color: #000080; font-weight: bold } /* Generic.Heading */
-.listingblock .pygments .tok-gi { color: #00A000 } /* Generic.Inserted */
-.listingblock .pygments .tok-go { color: #888888 } /* Generic.Output */
-.listingblock .pygments .tok-gp { color: #000080; font-weight: bold } /* Generic.Prompt */
-.listingblock .pygments .tok-gs { font-weight: bold } /* Generic.Strong */
-.listingblock .pygments .tok-gu { color: #800080; font-weight: bold } /* Generic.Subheading */
-.listingblock .pygments .tok-gt { color: #0044DD } /* Generic.Traceback */
-.listingblock .pygments .tok-kc { color: #008000; font-weight: bold } /* Keyword.Constant */
-.listingblock .pygments .tok-kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
-.listingblock .pygments .tok-kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
-.listingblock .pygments .tok-kp { color: #008000 } /* Keyword.Pseudo */
-.listingblock .pygments .tok-kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
-.listingblock .pygments .tok-kt { color: #B00040 } /* Keyword.Type */
-.listingblock .pygments .tok-m { color: #666666 } /* Literal.Number */
-.listingblock .pygments .tok-s { color: #BA2121 } /* Literal.String */
-.listingblock .pygments .tok-na { color: #7D9029 } /* Name.Attribute */
-.listingblock .pygments .tok-nb { color: #008000 } /* Name.Builtin */
-.listingblock .pygments .tok-nc { color: #0000FF; font-weight: bold } /* Name.Class */
-.listingblock .pygments .tok-no { color: #880000 } /* Name.Constant */
-.listingblock .pygments .tok-nd { color: #AA22FF } /* Name.Decorator */
-.listingblock .pygments .tok-ni { color: #999999; font-weight: bold } /* Name.Entity */
-.listingblock .pygments .tok-ne { color: #D2413A; font-weight: bold } /* Name.Exception */
-.listingblock .pygments .tok-nf { color: #0000FF } /* Name.Function */
-.listingblock .pygments .tok-nl { color: #A0A000 } /* Name.Label */
-.listingblock .pygments .tok-nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
-.listingblock .pygments .tok-nt { color: #008000; font-weight: bold } /* Name.Tag */
-.listingblock .pygments .tok-nv { color: #19177C } /* Name.Variable */
-.listingblock .pygments .tok-ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
-.listingblock .pygments .tok-w { color: #bbbbbb } /* Text.Whitespace */
-.listingblock .pygments .tok-mb { color: #666666 } /* Literal.Number.Bin */
-.listingblock .pygments .tok-mf { color: #666666 } /* Literal.Number.Float */
-.listingblock .pygments .tok-mh { color: #666666 } /* Literal.Number.Hex */
-.listingblock .pygments .tok-mi { color: #666666 } /* Literal.Number.Integer */
-.listingblock .pygments .tok-mo { color: #666666 } /* Literal.Number.Oct */
-.listingblock .pygments .tok-sa { color: #BA2121 } /* Literal.String.Affix */
-.listingblock .pygments .tok-sb { color: #BA2121 } /* Literal.String.Backtick */
-.listingblock .pygments .tok-sc { color: #BA2121 } /* Literal.String.Char */
-.listingblock .pygments .tok-dl { color: #BA2121 } /* Literal.String.Delimiter */
-.listingblock .pygments .tok-sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
-.listingblock .pygments .tok-s2 { color: #BA2121 } /* Literal.String.Double */
-.listingblock .pygments .tok-se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
-.listingblock .pygments .tok-sh { color: #BA2121 } /* Literal.String.Heredoc */
-.listingblock .pygments .tok-si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
-.listingblock .pygments .tok-sx { color: #008000 } /* Literal.String.Other */
-.listingblock .pygments .tok-sr { color: #BB6688 } /* Literal.String.Regex */
-.listingblock .pygments .tok-s1 { color: #BA2121 } /* Literal.String.Single */
-.listingblock .pygments .tok-ss { color: #19177C } /* Literal.String.Symbol */
-.listingblock .pygments .tok-bp { color: #008000 } /* Name.Builtin.Pseudo */
-.listingblock .pygments .tok-fm { color: #0000FF } /* Name.Function.Magic */
-.listingblock .pygments .tok-vc { color: #19177C } /* Name.Variable.Class */
-.listingblock .pygments .tok-vg { color: #19177C } /* Name.Variable.Global */
-.listingblock .pygments .tok-vi { color: #19177C } /* Name.Variable.Instance */
-.listingblock .pygments .tok-vm { color: #19177C } /* Name.Variable.Magic */
-.listingblock .pygments .tok-il { color: #666666 } /* Literal.Number.Integer.Long */
-</style>
 </head>
-<body id="day-two-part2" class="article">
+<body id="day-two-part2" class="article toc2 toc-left">
 <div id="header">
 <h1>Scenario tutorial day two: Hands-on Sirius, the logo turtle language</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_installation">1. Installation</a></li>
+<li><a href="#sirius-graphical-editor">2. Sirius graphical editor</a>
+<ul class="sectlevel2">
+<li><a href="#_create_a_test_model_with_it_representation">2.1. Create a test model with it representation</a></li>
+<li><a href="#_display_all_root_instructions">2.2. Display all root instructions:</a></li>
+<li><a href="#_display_all_root_instructions_2">2.3. Display all root instructions:</a></li>
+<li><a href="#_display_all_instructions_of_the_procedure_declaration">2.4. Display all instructions of the procedure declaration:</a></li>
+<li><a href="#_add_a_link_representing_the_sequence_of_instructions">2.5. Add a link representing the sequence of instructions</a></li>
+<li><a href="#_add_a_link_between_procedure_call_and_the_procedure_declaration">2.6. Add a link between procedure call and the procedure declaration:</a></li>
+<li><a href="#_move_procedure_call_procedure_declaration_link_into_a_separate_layer">2.7. Move procedure call - procedure declaration link into a separate layer</a></li>
+<li><a href="#_add_a_default_layout">2.8. Add a default layout</a></li>
+<li><a href="#_create_representation_for_if">2.9. Create representation for If</a></li>
+</ul>
+</li>
+<li><a href="#_improve_labels_and_xtext_integration">3. Improve labels and xtext integration</a>
+<ul class="sectlevel2">
+<li><a href="#_add_xtext_aware_service_static_methods">3.1. Add xtext aware service static methods</a></li>
+<li><a href="#_use_services_to_improve_labels">3.2. Use services to improve labels</a></li>
+<li><a href="#_add_actions_that_open_xtext_editor">3.3. Add actions that open xtext editor</a></li>
+<li><a href="#_add_action_that_create_elements_palette">3.4. Add action that create  elements (Palette)</a></li>
+<li><a href="#_add_validation_rule_error_marker">3.5. Add Validation rule (error marker)</a></li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 <div id="content">
 <div id="preamble">
@@ -516,10 +473,25 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>The result of this tutorial is available in the folder <a href="https://github.com/dvojtise/mde-crashcourse-logo/tree/master/part2-mmfirst-solution">part2-mmfirst-solution</a>
 in githug repo or as a download in the following  <a href="https://github.com/dvojtise/mde-crashcourse-logo/zips/part2-mmfirst-solution.zip">zip</a>.</p>
 </div>
+<div class="paragraph">
+<p>In the end you&#8217;ll obtain an editor that should look like this:</p>
+</div>
+<div id="img-part2-result-snowflake-screenshot" class="imageblock">
+<div class="content">
+<a class="image" href="images/tutorial-part2-result-snowflake-screenshot.png"><img src="images/tutorial-part2-result-snowflake-screenshot.png" alt="tutorial part2 result snowflake screenshot" width="500"></a>
+</div>
+<div class="title">Figure 1. Tutorial resulting editor on Snowflake model example</div>
+</div>
+<div id="img-part2-result-flower-screenshot" class="imageblock">
+<div class="content">
+<a class="image" href="images/tutorial-part2-result-flower-screenshot.png"><img src="images/tutorial-part2-result-flower-screenshot.png" alt="tutorial part2 result flower screenshot" width="500"></a>
+</div>
+<div class="title">Figure 2. Tutorial resulting editor on Flower model example</div>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_installation">Installation</h2>
+<h2 id="_installation">1. Installation</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -584,7 +556,7 @@ This will help analyze the error (for example create missing empty folders or fi
 </div>
 </div>
 <div class="sect1">
-<h2 id="sirius-graphical-editor">Sirius graphical editor</h2>
+<h2 id="sirius-graphical-editor">2. Sirius graphical editor</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>We will create a block based graphical representation for Logo.</p>
@@ -762,7 +734,7 @@ otherwise use <em>add from workspace</em>)</p>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="_create_a_test_model_with_it_representation">Create a test model with it representation</h3>
+<h3 id="_create_a_test_model_with_it_representation">2.1. Create a test model with it representation</h3>
 <div class="paragraph">
 <p>Create a test project and copy one or several <em>.logo</em> files for testing the representation.</p>
 </div>
@@ -797,7 +769,7 @@ While being convenient for some purposes, this behavior may not be suitable for 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_display_all_root_instructions">Display all root instructions:</h3>
+<h3 id="_display_all_root_instructions">2.2. Display all root instructions:</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -861,7 +833,7 @@ using camel case text.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_display_all_root_instructions_2">Display all root instructions:</h3>
+<h3 id="_display_all_root_instructions_2">2.3. Display all root instructions:</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -950,7 +922,7 @@ of the metamodel allow to factorize some representation rules for each group.</p
 </div>
 </div>
 <div class="sect2">
-<h3 id="_display_all_instructions_of_the_procedure_declaration">Display all instructions of the procedure declaration:</h3>
+<h3 id="_display_all_instructions_of_the_procedure_declaration">2.4. Display all instructions of the procedure declaration:</h3>
 <div class="paragraph">
 <p>We will indicates to the ProcedureDeclaration container that we want to reuse some display rules.</p>
 </div>
@@ -970,7 +942,7 @@ of the metamodel allow to factorize some representation rules for each group.</p
 </div>
 </div>
 <div class="sect2">
-<h3 id="_add_a_link_representing_the_sequence_of_instructions">Add a link representing the sequence of instructions</h3>
+<h3 id="_add_a_link_representing_the_sequence_of_instructions">2.5. Add a link representing the sequence of instructions</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1001,7 +973,7 @@ of the metamodel allow to factorize some representation rules for each group.</p
 </div>
 </div>
 <div class="sect2">
-<h3 id="_add_a_link_between_procedure_call_and_the_procedure_declaration">Add a link between procedure call and the procedure declaration:</h3>
+<h3 id="_add_a_link_between_procedure_call_and_the_procedure_declaration">2.6. Add a link between procedure call and the procedure declaration:</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1062,7 +1034,7 @@ then switch to "Sirius" mode instead of "Acceleo" mode.</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_move_procedure_call_procedure_declaration_link_into_a_separate_layer">Move procedure call - procedure declaration link into a separate layer</h3>
+<h3 id="_move_procedure_call_procedure_declaration_link_into_a_separate_layer">2.7. Move procedure call - procedure declaration link into a separate layer</h3>
 <div class="paragraph">
 <p>on the Logo Block Diagram</p>
 </div>
@@ -1088,7 +1060,7 @@ then switch to "Sirius" mode instead of "Acceleo" mode.</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_add_a_default_layout">Add a default layout</h3>
+<h3 id="_add_a_default_layout">2.8. Add a default layout</h3>
 <div class="paragraph">
 <p>on the Logo Block Diagram</p>
 </div>
@@ -1111,7 +1083,7 @@ then switch to "Sirius" mode instead of "Acceleo" mode.</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_create_representation_for_if">Create representation for If</h3>
+<h3 id="_create_representation_for_if">2.9. Create representation for If</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1337,13 +1309,13 @@ Exercise for the motivated: reproduce similar structure for Repeat and While con
 </div>
 </div>
 <div class="sect1">
-<h2 id="_improve_labels_and_xtext_integration">Improve labels and xtext integration</h2>
+<h2 id="_improve_labels_and_xtext_integration">3. Improve labels and xtext integration</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>We will create some java services to be used by sirius</p>
 </div>
 <div class="sect2">
-<h3 id="_add_xtext_aware_service_static_methods">Add xtext aware service static methods</h3>
+<h3 id="_add_xtext_aware_service_static_methods">3.1. Add xtext aware service static methods</h3>
 <div class="paragraph">
 <p>close the <strong>modeling worbench</strong> (will need to be restarted in order to take into account the new methods)</p>
 </div>
@@ -1364,68 +1336,68 @@ in the package next to the Services.java class.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="java"><span></span><span class="tok-cm">/**</span>
-<span class="tok-cm"> * Try to retrieve an xtext resource for the given element and then get its String representation</span>
-<span class="tok-cm"> * @param any EObject</span>
-<span class="tok-cm"> * @return the xtext representation of the EObject or an empty string</span>
-<span class="tok-cm"> */</span>
-<span class="tok-kd">public</span> <span class="tok-n">String</span> <span class="tok-nf">xtextPrettyPrint</span><span class="tok-o">(</span><span class="tok-n">EObject</span> <span class="tok-n">any</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-    <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">any</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span> <span class="tok-o">&amp;&amp;</span> <span class="tok-n">any</span><span class="tok-o">.</span><span class="tok-na">eResource</span><span class="tok-o">()</span> <span class="tok-k">instanceof</span> <span class="tok-n">XtextResource</span> <span class="tok-o">&amp;&amp;</span> <span class="tok-n">any</span><span class="tok-o">.</span><span class="tok-na">eResource</span><span class="tok-o">().</span><span class="tok-na">getURI</span><span class="tok-o">()</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-        <span class="tok-n">String</span> <span class="tok-n">fileURI</span> <span class="tok-o">=</span> <span class="tok-n">any</span><span class="tok-o">.</span><span class="tok-na">eResource</span><span class="tok-o">().</span><span class="tok-na">getURI</span><span class="tok-o">().</span><span class="tok-na">toPlatformString</span><span class="tok-o">(</span><span class="tok-kc">true</span><span class="tok-o">);</span>
-        <span class="tok-n">IFile</span> <span class="tok-n">workspaceFile</span> <span class="tok-o">=</span> <span class="tok-n">ResourcesPlugin</span><span class="tok-o">.</span><span class="tok-na">getWorkspace</span><span class="tok-o">().</span><span class="tok-na">getRoot</span><span class="tok-o">().</span><span class="tok-na">getFile</span><span class="tok-o">(</span><span class="tok-k">new</span> <span class="tok-n">Path</span><span class="tok-o">(</span><span class="tok-n">fileURI</span><span class="tok-o">));</span>
-        <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">workspaceFile</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-            <span class="tok-n">ICompositeNode</span> <span class="tok-n">node</span> <span class="tok-o">=</span> <span class="tok-n">NodeModelUtils</span><span class="tok-o">.</span><span class="tok-na">findActualNodeFor</span><span class="tok-o">(</span><span class="tok-n">any</span><span class="tok-o">);</span>
-            <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">node</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-                <span class="tok-k">return</span> <span class="tok-n">node</span><span class="tok-o">.</span><span class="tok-na">getText</span><span class="tok-o">().</span><span class="tok-na">trim</span><span class="tok-o">();</span>
-            <span class="tok-o">}</span>
-        <span class="tok-o">}</span>
-    <span class="tok-o">}</span>
-    <span class="tok-k">return</span> <span class="tok-s">&quot;&quot;</span><span class="tok-o">;</span>
-<span class="tok-o">}</span>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Try to retrieve an xtext resource for the given element and then get its String representation
+ * @param any EObject
+ * @return the xtext representation of the EObject or an empty string
+ */
+public String xtextPrettyPrint(EObject any) {
+    if (any != null &amp;&amp; any.eResource() instanceof XtextResource &amp;&amp; any.eResource().getURI() != null) {
+        String fileURI = any.eResource().getURI().toPlatformString(true);
+        IFile workspaceFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(fileURI));
+        if (workspaceFile != null) {
+            ICompositeNode node = NodeModelUtils.findActualNodeFor(any);
+            if (node != null) {
+                return node.getText().trim();
+            }
+        }
+    }
+    return "";
+}
 
-<span class="tok-kd">public</span> <span class="tok-n">EObject</span> <span class="tok-nf">openTextEditor</span><span class="tok-o">(</span><span class="tok-n">EObject</span> <span class="tok-n">any</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-    <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">any</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span> <span class="tok-o">&amp;&amp;</span> <span class="tok-n">any</span><span class="tok-o">.</span><span class="tok-na">eResource</span><span class="tok-o">()</span> <span class="tok-k">instanceof</span> <span class="tok-n">XtextResource</span> <span class="tok-o">&amp;&amp;</span> <span class="tok-n">any</span><span class="tok-o">.</span><span class="tok-na">eResource</span><span class="tok-o">().</span><span class="tok-na">getURI</span><span class="tok-o">()</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span><span class="tok-o">)</span> <span class="tok-o">{</span>
+public EObject openTextEditor(EObject any) {
+    if (any != null &amp;&amp; any.eResource() instanceof XtextResource &amp;&amp; any.eResource().getURI() != null) {
 
-        <span class="tok-n">String</span> <span class="tok-n">fileURI</span> <span class="tok-o">=</span> <span class="tok-n">any</span><span class="tok-o">.</span><span class="tok-na">eResource</span><span class="tok-o">().</span><span class="tok-na">getURI</span><span class="tok-o">().</span><span class="tok-na">toPlatformString</span><span class="tok-o">(</span><span class="tok-kc">true</span><span class="tok-o">);</span>
-        <span class="tok-n">IFile</span> <span class="tok-n">workspaceFile</span> <span class="tok-o">=</span> <span class="tok-n">ResourcesPlugin</span><span class="tok-o">.</span><span class="tok-na">getWorkspace</span><span class="tok-o">().</span><span class="tok-na">getRoot</span><span class="tok-o">().</span><span class="tok-na">getFile</span><span class="tok-o">(</span><span class="tok-k">new</span> <span class="tok-n">Path</span><span class="tok-o">(</span><span class="tok-n">fileURI</span><span class="tok-o">));</span>
-        <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">workspaceFile</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-            <span class="tok-n">IWorkbenchPage</span> <span class="tok-n">page</span> <span class="tok-o">=</span> <span class="tok-n">PlatformUI</span><span class="tok-o">.</span><span class="tok-na">getWorkbench</span><span class="tok-o">().</span><span class="tok-na">getActiveWorkbenchWindow</span><span class="tok-o">().</span><span class="tok-na">getActivePage</span><span class="tok-o">();</span>
-            <span class="tok-k">try</span> <span class="tok-o">{</span>
-                <span class="tok-n">IEditorPart</span> <span class="tok-n">openEditor</span> <span class="tok-o">=</span> <span class="tok-n">IDE</span><span class="tok-o">.</span><span class="tok-na">openEditor</span><span class="tok-o">(</span><span class="tok-n">page</span><span class="tok-o">,</span> <span class="tok-n">workspaceFile</span><span class="tok-o">,</span>
-                        <span class="tok-s">&quot;fr.inria.sed.logo.xtext.Logo&quot;</span><span class="tok-o">,</span> <span class="tok-kc">true</span><span class="tok-o">);</span>
-                <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">openEditor</span> <span class="tok-k">instanceof</span> <span class="tok-n">AbstractTextEditor</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-                    <span class="tok-n">ICompositeNode</span> <span class="tok-n">node</span> <span class="tok-o">=</span> <span class="tok-n">NodeModelUtils</span><span class="tok-o">.</span><span class="tok-na">findActualNodeFor</span><span class="tok-o">(</span><span class="tok-n">any</span><span class="tok-o">);</span>
-                    <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">node</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-                        <span class="tok-kt">int</span> <span class="tok-n">offset</span> <span class="tok-o">=</span> <span class="tok-n">node</span><span class="tok-o">.</span><span class="tok-na">getOffset</span><span class="tok-o">();</span>
-                        <span class="tok-kt">int</span> <span class="tok-n">length</span> <span class="tok-o">=</span> <span class="tok-n">node</span><span class="tok-o">.</span><span class="tok-na">getTotalEndOffset</span><span class="tok-o">()</span> <span class="tok-o">-</span> <span class="tok-n">offset</span><span class="tok-o">;</span>
-                        <span class="tok-o">((</span><span class="tok-n">AbstractTextEditor</span><span class="tok-o">)</span> <span class="tok-n">openEditor</span><span class="tok-o">).</span><span class="tok-na">selectAndReveal</span><span class="tok-o">(</span><span class="tok-n">offset</span><span class="tok-o">,</span> <span class="tok-n">length</span><span class="tok-o">);</span>
-                    <span class="tok-o">}</span>
-                <span class="tok-o">}</span>
-                <span class="tok-c1">// editorInput.</span>
-            <span class="tok-o">}</span> <span class="tok-k">catch</span> <span class="tok-o">(</span><span class="tok-n">PartInitException</span> <span class="tok-n">e</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-                <span class="tok-n">Activator</span><span class="tok-o">.</span><span class="tok-na">error</span><span class="tok-o">(</span><span class="tok-n">e</span><span class="tok-o">.</span><span class="tok-na">getMessage</span><span class="tok-o">(),</span> <span class="tok-n">e</span><span class="tok-o">);</span>
-            <span class="tok-o">}</span>
-        <span class="tok-o">}</span>
-    <span class="tok-o">}</span>
-    <span class="tok-n">System</span><span class="tok-o">.</span><span class="tok-na">out</span><span class="tok-o">.</span><span class="tok-na">println</span><span class="tok-o">(</span><span class="tok-n">any</span><span class="tok-o">);</span>
-    <span class="tok-k">return</span> <span class="tok-n">any</span><span class="tok-o">;</span>
-<span class="tok-o">}</span>
+        String fileURI = any.eResource().getURI().toPlatformString(true);
+        IFile workspaceFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(fileURI));
+        if (workspaceFile != null) {
+            IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+            try {
+                IEditorPart openEditor = IDE.openEditor(page, workspaceFile,
+                        "fr.inria.sed.logo.xtext.Logo", true);
+                if (openEditor instanceof AbstractTextEditor) {
+                    ICompositeNode node = NodeModelUtils.findActualNodeFor(any);
+                    if (node != null) {
+                        int offset = node.getOffset();
+                        int length = node.getTotalEndOffset() - offset;
+                        ((AbstractTextEditor) openEditor).selectAndReveal(offset, length);
+                    }
+                }
+                // editorInput.
+            } catch (PartInitException e) {
+                Activator.error(e.getMessage(), e);
+            }
+        }
+    }
+    System.out.println(any);
+    return any;
+}
 
-<span class="tok-kd">public</span> <span class="tok-n">EObject</span> <span class="tok-nf">openBasicHoveringDialog</span><span class="tok-o">(</span><span class="tok-n">EObject</span> <span class="tok-n">any</span><span class="tok-o">)</span> <span class="tok-o">{</span>
-    <span class="tok-n">String</span> <span class="tok-n">xtextString</span> <span class="tok-o">=</span> <span class="tok-n">xtextPrettyPrint</span><span class="tok-o">(</span><span class="tok-n">any</span><span class="tok-o">);</span>
-    <span class="tok-k">if</span> <span class="tok-o">(</span><span class="tok-n">xtextString</span> <span class="tok-o">!=</span> <span class="tok-kc">null</span> <span class="tok-o">&amp;&amp;</span> <span class="tok-o">!</span><span class="tok-n">xtextString</span><span class="tok-o">.</span><span class="tok-na">isEmpty</span><span class="tok-o">())</span> <span class="tok-o">{</span>
-        <span class="tok-n">IEditorPart</span> <span class="tok-n">part</span> <span class="tok-o">=</span> <span class="tok-n">PlatformUI</span><span class="tok-o">.</span><span class="tok-na">getWorkbench</span><span class="tok-o">().</span><span class="tok-na">getActiveWorkbenchWindow</span><span class="tok-o">().</span><span class="tok-na">getActivePage</span><span class="tok-o">().</span><span class="tok-na">getActiveEditor</span><span class="tok-o">();</span>
-        <span class="tok-n">InfoPopUp</span> <span class="tok-n">pop</span> <span class="tok-o">=</span> <span class="tok-k">new</span> <span class="tok-n">InfoPopUp</span><span class="tok-o">(</span> <span class="tok-n">part</span><span class="tok-o">.</span><span class="tok-na">getSite</span><span class="tok-o">().</span><span class="tok-na">getShell</span><span class="tok-o">()</span> <span class="tok-o">,</span> <span class="tok-s">&quot;Textual representation of the element&quot;</span><span class="tok-o">,</span><span class="tok-s">&quot;press ESC to close&quot;</span><span class="tok-o">);</span>
-        <span class="tok-n">pop</span><span class="tok-o">.</span><span class="tok-na">setText</span><span class="tok-o">(</span><span class="tok-n">xtextString</span><span class="tok-o">);</span>
-        <span class="tok-n">pop</span><span class="tok-o">.</span><span class="tok-na">open</span><span class="tok-o">();</span>
-    <span class="tok-o">}</span>
-    <span class="tok-k">return</span> <span class="tok-n">any</span><span class="tok-o">;</span>
-<span class="tok-o">}</span></code></pre>
+public EObject openBasicHoveringDialog(EObject any) {
+    String xtextString = xtextPrettyPrint(any);
+    if (xtextString != null &amp;&amp; !xtextString.isEmpty()) {
+        IEditorPart part = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+        InfoPopUp pop = new InfoPopUp( part.getSite().getShell() , "Textual representation of the element","press ESC to close");
+        pop.setText(xtextString);
+        pop.open();
+    }
+    return any;
+}</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_use_services_to_improve_labels">Use services to improve labels</h3>
+<h3 id="_use_services_to_improve_labels">3.2. Use services to improve labels</h3>
 <div class="paragraph">
 <p>restart the <strong>modeling workbench</strong></p>
 </div>
@@ -1510,7 +1482,7 @@ service calling xtextPrettyPrint() might be usefull too in the <em>tooltip expre
 </div>
 </div>
 <div class="sect2">
-<h3 id="_add_actions_that_open_xtext_editor">Add actions that open xtext editor</h3>
+<h3 id="_add_actions_that_open_xtext_editor">3.3. Add actions that open xtext editor</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1526,7 +1498,7 @@ service calling xtextPrettyPrint() might be usefull too in the <em>tooltip expre
 </ul>
 </div>
 <div class="sect3">
-<h4 id="_open_xtext_editor_via_right_click_popup">Open xtext editor via right click popup</h4>
+<h4 id="_open_xtext_editor_via_right_click_popup">3.3.1. Open xtext editor via right click popup</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1564,7 +1536,7 @@ service calling xtextPrettyPrint() might be usefull too in the <em>tooltip expre
 </div>
 </div>
 <div class="sect2">
-<h3 id="_add_action_that_create_elements_palette">Add action that create  elements (Palette)</h3>
+<h3 id="_add_action_that_create_elements_palette">3.4. Add action that create  elements (Palette)</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1618,7 +1590,7 @@ service calling xtextPrettyPrint() might be usefull too in the <em>tooltip expre
 </div>
 </div>
 <div class="sect2">
-<h3 id="_add_validation_rule_error_marker">Add Validation rule (error marker)</h3>
+<h3 id="_add_validation_rule_error_marker">3.5. Add Validation rule (error marker)</h3>
 <div class="paragraph">
 <p>Sirius provide a way to define rules that&#8217;ll report errors. (Markers)</p>
 </div>
@@ -1634,8 +1606,11 @@ service calling xtextPrettyPrint() might be usefull too in the <em>tooltip expre
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-01-17 17:07:33 UTC
+Last updated 2019-01-18 10:53:27 UTC
 </div>
 </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
 </body>
 </html>
