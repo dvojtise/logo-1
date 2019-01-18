@@ -37,7 +37,7 @@ not blur the teaching goal feel free to contact the author and propose a change 
 
 == Installation
 
-* If you haven't followed the previous tutorials <<tutorial_scenario_part1.asciidoc#>> or <<tutorial_scenario_part1postprocess.asciidoc>>:
+* If you haven't followed the previous tutorials <<tutorial_scenario_part1.asciidoc#>> or <<tutorial_scenario_part1postprocess.asciidoc#>>:
 ** Install an Oracle Java JDK (minimum 8, max 10,  Oracle is preferred due to 
 support of openFX used for the tutorial part 3)  
 ** grab and unzip the latest dev version of GEMOC Studio  http://download.eclipse.org/gemoc/packages/nightly/
@@ -105,7 +105,7 @@ IE. convert a logo file into an xmi file. To do that:
 * _File -> save as_ -> choose a name ending with *.xmi*
 * verify that the file is correctly encoded in xmi (ie. a xml flavor) by opening it with the generic text editor
 * change the header in order to be
-[source>
+[source,xml]
 ----
 <logo:LogoProgram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:logo="http://www.inria.fr/sed/logo/Logo"
