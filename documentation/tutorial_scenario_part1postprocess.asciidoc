@@ -7,7 +7,7 @@
  
 
 
-In part <<tutorial_scenario_part1.asciidoc>>, the tutorial started from the grammar (xtext) 
+In part <<tutorial_scenario_part1.asciidoc#>>, the tutorial started from the grammar (xtext) 
 and then produced an ecore metamodel. While this approach is correct and rather intuitive for an introduction to MDE, 
 it may lead to poorly organized metamodels. For example, it is difficult to create abstract super classes 
 using Xtext. 
@@ -24,7 +24,7 @@ It starts from the solution projects of the part1 and will produce the base proj
 ====
 As this is only code refactoring, this part is not really important for understanding the crash course content. 
 
-Most reader should jump directly to the next tutorial (<<tutorial_scenario_part2.asciidoc>>) and use this one only as a reference 
+Most reader should jump directly to the next tutorial (<<tutorial_scenario_part2.asciidoc#>>) and use this one only as a reference 
 if she has to to this task someday on another language. 
 ====  
 
@@ -36,13 +36,13 @@ in githug repo or as a download in the following  https://github.com/dvojtise/md
 
 == Installation
 
-If you haven't followed the previous tutorial <<tutorial_scenario_part1.asciidoc>>:
+If you haven't followed the previous tutorial <<tutorial_scenario_part1.asciidoc#>>:
 
 * Install an Oracle Java JDK (minimum 8, max 10,  Oracle is preferred due to 
 support of openFX used for the tutorial part 3)  
 * grab and unzip the latest dev version of GEMOC Studio  http://download.eclipse.org/gemoc/packages/nightly/
 
-If you have followed the previous tutorial <<tutorial_scenario_part1.asciidoc>>:
+If you have followed the previous tutorial <<tutorial_scenario_part1.asciidoc#>>:
 
 * Either use a brand new workspace or clean it by deleting the projects in it since the project we will create will have the same names.
 

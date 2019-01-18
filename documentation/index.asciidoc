@@ -6,6 +6,6 @@ Please look at https://github.com/dvojtise/mde-crashcourse-logo for details of t
 
 Tutorial content of this crash course:
 
-* <<tutorial_scenario_part1.asciidoc>>
-* <<tutorial_scenario_part2.asciidoc>>
-* <<tutorial_scenario_part3.asciidoc>>
+* <<tutorial_scenario_part1.asciidoc#>>
+* <<tutorial_scenario_part2.asciidoc#>>
+* <<tutorial_scenario_part3.asciidoc#>>

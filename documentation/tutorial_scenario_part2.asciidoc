@@ -27,11 +27,11 @@ image::tutorial-part2-result-flower-screenshot.png[,500]
 
 == Installation
 
-* If you haven't followed the previous tutorials <<tutorial_scenario_part1.asciidoc>> or <<tutorial_scenario_part1postprocess.asciidoc>>:
+* If you haven't followed the previous tutorials <<tutorial_scenario_part1.asciidoc#>> or <<tutorial_scenario_part1postprocess.asciidoc>>:
 ** Install an Oracle Java JDK (minimum 8, max 10,  Oracle is preferred due to 
 support of openFX used for the tutorial part 3)  
 ** grab and unzip the latest dev version of GEMOC Studio  http://download.eclipse.org/gemoc/packages/nightly/
-* If you have followed one the previous tutorial <<tutorial_scenario_part1.asciidoc>> or <<tutorial_scenario_part1postprocess.asciidoc>>:
+* If you have followed one the previous tutorial <<tutorial_scenario_part1.asciido#c>> or <<tutorial_scenario_part1postprocess.asciidoc#>>:
 ** Either use a brand new workspace or clean it by deleting the projects in it since the projects we will create will have the same names.
 
 
