@@ -1,8 +1,11 @@
 [#day-two-part2]
 = Scenario tutorial day two: Hands-on Sirius, the logo turtle language
 :icons: font
-:source-highlighter: pygments
+:source-highlighter: highlightjs
+:toc: left
+:sectnums:
 :tabsize: 4
+:imagesdir: images
  
 
 This document indicates the steps to follow in order to reproduce the tutorial.
@@ -10,7 +13,17 @@ This document indicates the steps to follow in order to reproduce the tutorial.
 The result of this tutorial is available in the folder https://github.com/dvojtise/mde-crashcourse-logo/tree/master/part2-mmfirst-solution[part2-mmfirst-solution] 
 in githug repo or as a download in the following  https://github.com/dvojtise/mde-crashcourse-logo/zips/part2-mmfirst-solution.zip[zip].
 
+In the end you'll obtain an editor that should look like this:
 
+[#img-part2-result-snowflake-screenshot] 
+.Tutorial resulting editor on Snowflake model example
+[link=images/tutorial-part2-result-snowflake-screenshot.png] 
+image::tutorial-part2-result-snowflake-screenshot.png[,500]
+
+[#img-part2-result-flower-screenshot] 
+.Tutorial resulting editor on Flower model example
+[link=images/tutorial-part2-result-flower-screenshot.png] 
+image::tutorial-part2-result-flower-screenshot.png[,500]
 
 == Installation
 

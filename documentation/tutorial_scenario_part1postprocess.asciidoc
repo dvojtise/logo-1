@@ -1,6 +1,9 @@
 = Scenario tutorial day two: Converting grammar first projects to Metamodel first projects
 :icons: font
-:source-highlighter: pygments
+:source-highlighter: highlightjs
+:toc: left
+:sectnums:
+:tabsize: 4
  
 
 
