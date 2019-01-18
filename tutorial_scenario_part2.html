@@ -440,24 +440,29 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_installation">1. Installation</a></li>
 <li><a href="#sirius-graphical-editor">2. Sirius graphical editor</a>
 <ul class="sectlevel2">
-<li><a href="#_create_a_test_model_with_it_representation">2.1. Create a test model with it representation</a></li>
+<li><a href="#_create_a_test_model_with_its_representation">2.1. Create a test model with its representation</a></li>
 <li><a href="#_display_all_root_instructions">2.2. Display all root instructions:</a></li>
 <li><a href="#_display_all_root_instructions_2">2.3. Display all root instructions:</a></li>
 <li><a href="#_display_all_instructions_of_the_procedure_declaration">2.4. Display all instructions of the procedure declaration:</a></li>
-<li><a href="#_add_a_link_representing_the_sequence_of_instructions">2.5. Add a link representing the sequence of instructions</a></li>
+<li><a href="#seq-instruction-edge">2.5. Add a link representing the sequence of instructions</a></li>
 <li><a href="#_add_a_link_between_procedure_call_and_the_procedure_declaration">2.6. Add a link between procedure call and the procedure declaration:</a></li>
 <li><a href="#_move_procedure_call_procedure_declaration_link_into_a_separate_layer">2.7. Move procedure call - procedure declaration link into a separate layer</a></li>
 <li><a href="#_add_a_default_layout">2.8. Add a default layout</a></li>
-<li><a href="#_create_representation_for_if">2.9. Create representation for If</a></li>
+<li><a href="#_create_representation_for_repeat">2.9. Create representation for Repeat</a></li>
+<li><a href="#_create_representation_for_if">2.10. Create representation for If</a></li>
 </ul>
 </li>
-<li><a href="#_improve_labels_and_xtext_integration">3. Improve labels and xtext integration</a>
+<li><a href="#improve-labels-and-xtext-integration">3. Improve labels and xtext integration</a>
 <ul class="sectlevel2">
 <li><a href="#_add_xtext_aware_service_static_methods">3.1. Add xtext aware service static methods</a></li>
 <li><a href="#_use_services_to_improve_labels">3.2. Use services to improve labels</a></li>
 <li><a href="#_add_actions_that_open_xtext_editor">3.3. Add actions that open xtext editor</a></li>
-<li><a href="#_add_action_that_create_elements_palette">3.4. Add action that create  elements (Palette)</a></li>
-<li><a href="#_add_validation_rule_error_marker">3.5. Add Validation rule (error marker)</a></li>
+</ul>
+</li>
+<li><a href="#_some_other_actions_and_palette_integration">4. Some other actions and palette integration</a>
+<ul class="sectlevel2">
+<li><a href="#_add_action_that_create_elements_palette">4.1. Add action that create  elements (Palette)</a></li>
+<li><a href="#_add_validation_rule_error_marker">4.2. Add Validation rule (error marker)</a></li>
 </ul>
 </li>
 </ul>
@@ -488,6 +493,26 @@ in githug repo or as a download in the following  <a href="https://github.com/dv
 </div>
 <div class="title">Figure 2. Tutorial resulting editor on Flower model example</div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Similarly to programming where several program may produce the same behavior,
+it exist several ways to write Sirius diagram specification that draw the same diagram.</p>
+</div>
+<div class="paragraph">
+<p>In this course some attempt have been done to provide correct reuse of the rules and keep the global
+design simple. However, it can probably be improved. If you see improvement that do
+not blur the teaching goal feel free to contact the author and propose a change <span class="icon"><i class="fa fa-smile"></i></span>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -510,7 +535,7 @@ support of openFX used for the tutorial part 3)</p>
 </div>
 </li>
 <li>
-<p>If you have followed one the previous tutorial <a href="tutorial_scenario_part1.asciido#c">tutorial_scenario_part1.asciido</a> or <a href="tutorial_scenario_part1postprocess.html">tutorial_scenario_part1postprocess.html</a>:</p>
+<p>If you have followed one the previous tutorial <a href="tutorial_scenario_part1.html">tutorial_scenario_part1.html</a> or <a href="tutorial_scenario_part1postprocess.html">tutorial_scenario_part1postprocess.html</a>:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -734,7 +759,7 @@ otherwise use <em>add from workspace</em>)</p>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="_create_a_test_model_with_it_representation">2.1. Create a test model with it representation</h3>
+<h3 id="_create_a_test_model_with_its_representation">2.1. Create a test model with its representation</h3>
 <div class="paragraph">
 <p>Create a test project and copy one or several <em>.logo</em> files for testing the representation.</p>
 </div>
@@ -942,7 +967,7 @@ of the metamodel allow to factorize some representation rules for each group.</p
 </div>
 </div>
 <div class="sect2">
-<h3 id="_add_a_link_representing_the_sequence_of_instructions">2.5. Add a link representing the sequence of instructions</h3>
+<h3 id="seq-instruction-edge">2.5. Add a link representing the sequence of instructions</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -953,10 +978,10 @@ of the metamodel allow to factorize some representation rules for each group.</p
 <p>Id: instructionSequenceEdge</p>
 </li>
 <li>
-<p>source mapping: InstructionNode</p>
+<p>source mapping: <em>PrimitiveInstructionNode</em></p>
 </li>
 <li>
-<p>target mapping: InstructionNode</p>
+<p>target mapping: <em>PrimitiveInstructionNode</em></p>
 </li>
 <li>
 <p>Target finder expression:</p>
@@ -968,8 +993,31 @@ of the metamodel allow to factorize some representation rules for each group.</p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>aql:let i = self.eInverse('instructions').instructions-&gt;asSequence() in i-&gt;at(i-&gt;indexOf(self)+1)</pre>
+<pre>aql:let i = self.eContainer().instructions-&gt;asSequence() in i-&gt;at(i-&gt;indexOf(self)+1)</pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Explanation of the query above:</p>
+</div>
+<div class="paragraph">
+<p>from <code>self</code> (a PrimitiveInstruction) retrieve its container (a Block or a LogoProgram)
+then get the list of instructions and store it in a variable named <code>i</code>.
+In this list of instruction compute the position of the Repeat block <code>i-&gt;indexOf(self)</code>
+Then returns the instruction that is at the following position.</p>
+</div>
+<div class="paragraph">
+<p>As aql does not fails if the range is wrong, it will simply return null instead.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -984,10 +1032,10 @@ of the metamodel allow to factorize some representation rules for each group.</p
 <p>Id: procCallEdge</p>
 </li>
 <li>
-<p>source mapping: InstructionNode</p>
+<p>source mapping: <em>PrimitiveInstructionNode</em></p>
 </li>
 <li>
-<p>target mapping: procDeclNode</p>
+<p>target mapping: <em>procDeclNode</em></p>
 </li>
 <li>
 <p>Target finder expression: <code>aql:if self.oclIsKindOf(logo::ProcCall) then self.oclAsType(logo::ProcCall).declaration else null endif</code></p>
@@ -1007,26 +1055,18 @@ of the metamodel allow to factorize some representation rules for each group.</p
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-<div class="literalblock">
-<div class="content">
-<pre>https://www.eclipse.org/sirius/doc/specifier/general/Writing_Queries.html</pre>
+<div class="paragraph">
+<p><a href="https://www.eclipse.org/sirius/doc/specifier/general/Writing_Queries.html" class="bare">https://www.eclipse.org/sirius/doc/specifier/general/Writing_Queries.html</a></p>
 </div>
+<div class="paragraph">
+<p>You can test your queries in order to write them: use the "Acceleo Model to Text &gt; Interpreter" view
+then switch to "Sirius" mode instead of "Acceleo" mode.</p>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>You can test your queries in order to write them: use the "Acceleo Model to Text &gt; Interpreter" view
-then switch to "Sirius" mode instead of "Acceleo" mode.</pre>
+<div class="paragraph">
+<p>Warning: When using the Interpreter view from an element selected in a Sirius representation, the context of the expression is not the semantic element, but the view model element used internally by Sirius.</p>
 </div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>Warning: When using the Interpreter view from an element selected in a Sirius representation, the context of the expression is not the semantic element, but the view model element used internally by Sirius.</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>In the interpreter view, to get the semantic element, you must enter _aql:self.target_</pre>
-</div>
+<div class="paragraph">
+<p>In the interpreter view, to get the semantic element, you must enter <code>aql:self.target</code></p>
 </div>
 </td>
 </tr>
@@ -1062,7 +1102,7 @@ then switch to "Sirius" mode instead of "Acceleo" mode.</pre>
 <div class="sect2">
 <h3 id="_add_a_default_layout">2.8. Add a default layout</h3>
 <div class="paragraph">
-<p>on the Logo Block Diagram</p>
+<p>On the Logo Block Diagram.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1081,9 +1121,232 @@ then switch to "Sirius" mode instead of "Acceleo" mode.</pre>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Now hyou can use the <em>Arrange all</em> button to have a better looking diagram automatically.</p>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_create_representation_for_if">2.9. Create representation for If</h3>
+<h3 id="_create_representation_for_repeat">2.9. Create representation for Repeat</h3>
+<div class="paragraph">
+<p>On the <em>default</em> layer.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>New diagram element &#8594; Container</em> then in the properties view</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Id: RepeatPartContainer</p>
+</li>
+<li>
+<p>domain class: logo::Block</p>
+</li>
+<li>
+<p>semantic candidate expression: <code>aql: self.eContents()-&gt;filter(logo::Repeat)-&gt;collect(i | i.block))</code></p>
+</li>
+<li>
+<p><em>New style &#8594; Gradient</em></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Label tab:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Label expression: <code>aql:'repeat ' +self.eContainer().condition.xtextPrettyPrint()</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Color tab</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Foreground color: light_blue</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>On the <em>RepeatPartContainer</em></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>New diagram element &#8594; BorderedNode</em> then in the properties view</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Id: RepeatPartContainer</p>
+</li>
+<li>
+<p>domain class: logo::Repeat</p>
+</li>
+<li>
+<p>semantic candidate expression: <code>aql:self.eContainer()</code></p>
+</li>
+<li>
+<p><em>New style &#8594; BasicShape</em></p>
+<div class="ulist">
+<ul>
+<li>
+<p>General tab</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Shape: square</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Label tab:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Hide label by default</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Advanced tab:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Authorized sides: North only</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In order to reuse rules: in procDeclContainer</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Import tab:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Reused Container Mapping: repeatPartContainer</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Allow link from Primitive instruction to repeat:</p>
+</div>
+<div class="paragraph">
+<p>In <em>InstructionSequenceEdge</em></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>General tab:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Target Mapping: <em>PrimitiveInstructionNode, Bordered RepeatBeginBNode</em></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Create link from repeat to other instructions.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>New diagram element &#8594; Relation based Edge</em> then in the properties view</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Id: endRepeatSequenceEdge</p>
+</li>
+<li>
+<p>source mapping: <em>RepeatPartContainer</em></p>
+</li>
+<li>
+<p>target mapping: <em>PrimitiveInstructionNode, Bordered RepeatBeginNode</em></p>
+</li>
+<li>
+<p>Target finder expression:</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>aql:let i = self.eContainer().eContainer().instructions-&gt;asSequence() in i-&gt;at(i-&gt;indexOf(self.eContainer())+1)</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Explanation of the query above which is a variant of the one in <a href="#seq-instruction-edge">Add a link representing the sequence of instructions</a>:</p>
+</div>
+<div class="paragraph">
+<p>from <code>self</code> (a Block contained by a Repeat instruction) retrieve its container (a Repeat instruction)
+then its container (a Block or a LogoProgram) then get the list of instructions and store it in a variable named <code>i</code>.
+In this list of instruction compute the position of the Repeat block <code>i-&gt;indexOf(self.eContainer())</code>
+Then returns the instruction (including the bordered RepeatBeginnode) that is at the following position.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_create_representation_for_if">2.10. Create representation for If</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This section a quite similar to the one about the Repeat instruction and doesn&#8217;t introduce significant new  Sirius concepts.
+(It simply creates a separate node for the <em>If</em> then links it to 2 blocks: thenPart and elsePart. Whereas Repeat creates a bordered node on a single Block.)
+If you do not have much time, you can jump to the next section <a href="#improve-labels-and-xtext-integration">Improve labels and xtext integration</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>On the <em>default</em> layer.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -1212,7 +1475,7 @@ then switch to "Sirius" mode instead of "Acceleo" mode.</pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>in the following containers: procDeclContainer,  thenPartContainer, and elsePartContainer;</p>
+<p>Do in all following containers: procDeclContainer, repeatPartContainer, thenPartContainer, and elsePartContainer;</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1224,11 +1487,18 @@ then switch to "Sirius" mode instead of "Acceleo" mode.</pre>
 <p>Reused Node Mapping: PrimitiveIntrustionNode, IfNode</p>
 </li>
 <li>
-<p>Reused Container Mapping: elsePartContainer, thenPartContainer</p>
+<p>Reused Container Mapping: repeatPartContainer, elsePartContainer, thenPartContainer</p>
 </li>
 </ul>
 </div>
 </li>
+</ul>
+</div>
+<div class="paragraph">
+<p>On the <em>Default</em> layer.</p>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p><em>New diagram element &#8594; Relation based Edge</em> then in the properties view</p>
 <div class="ulist">
@@ -1290,7 +1560,7 @@ then switch to "Sirius" mode instead of "Acceleo" mode.</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>aql:let i = self.eContainer().eInverse('instructions').instructions-&gt;asSequence() in i-&gt;at(i-&gt;indexOf(self.eContainer())+1)</pre>
+<pre>aql:let i = self.eContainer().eContainer().instructions-&gt;asSequence() in i-&gt;at(i-&gt;indexOf(self.eContainer())+1)</pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -1309,10 +1579,10 @@ Exercise for the motivated: reproduce similar structure for Repeat and While con
 </div>
 </div>
 <div class="sect1">
-<h2 id="_improve_labels_and_xtext_integration">3. Improve labels and xtext integration</h2>
+<h2 id="improve-labels-and-xtext-integration">3. Improve labels and xtext integration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>We will create some java services to be used by sirius</p>
+<p>We will create some java services to be used by sirius.</p>
 </div>
 <div class="sect2">
 <h3 id="_add_xtext_aware_service_static_methods">3.1. Add xtext aware service static methods</h3>
@@ -1535,8 +1805,13 @@ service calling xtextPrettyPrint() might be usefull too in the <em>tooltip expre
 </div>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_some_other_actions_and_palette_integration">4. Some other actions and palette integration</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="_add_action_that_create_elements_palette">3.4. Add action that create  elements (Palette)</h3>
+<h3 id="_add_action_that_create_elements_palette">4.1. Add action that create  elements (Palette)</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1590,7 +1865,7 @@ service calling xtextPrettyPrint() might be usefull too in the <em>tooltip expre
 </div>
 </div>
 <div class="sect2">
-<h3 id="_add_validation_rule_error_marker">3.5. Add Validation rule (error marker)</h3>
+<h3 id="_add_validation_rule_error_marker">4.2. Add Validation rule (error marker)</h3>
 <div class="paragraph">
 <p>Sirius provide a way to define rules that&#8217;ll report errors. (Markers)</p>
 </div>
@@ -1606,7 +1881,7 @@ service calling xtextPrettyPrint() might be usefull too in the <em>tooltip expre
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-01-18 11:06:53 UTC
+Last updated 2019-01-18 14:22:38 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">
