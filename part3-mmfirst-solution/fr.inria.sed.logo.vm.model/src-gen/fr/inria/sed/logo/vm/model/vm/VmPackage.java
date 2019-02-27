@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see fr.inria.sed.logo.vm.model.vm.VmFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/OCL/Import ecore='http://www.eclipse.org/emf/2002/Ecore'"
+ *        annotation="http://www.eclipse.org/OCL/Import ecore='http://www.eclipse.org/emf/2002/Ecore' logo='../../fr.inria.sed.logo.model/model/Logo.ecore#/'"
  * @generated
  */
 public interface VmPackage extends EPackage {

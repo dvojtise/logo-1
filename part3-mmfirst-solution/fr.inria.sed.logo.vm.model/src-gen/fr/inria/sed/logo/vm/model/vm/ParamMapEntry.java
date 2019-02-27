@@ -33,7 +33,7 @@ public interface ParamMapEntry extends EObject {
 	 * @return the value of the '<em>Key</em>' attribute.
 	 * @see #setKey(String)
 	 * @see fr.inria.sed.logo.vm.model.vm.VmPackage#getParamMapEntry_Key()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	String getKey();
@@ -50,6 +50,7 @@ public interface ParamMapEntry extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Value</em>' attribute isn't clear,
@@ -59,7 +60,7 @@ public interface ParamMapEntry extends EObject {
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(int)
 	 * @see fr.inria.sed.logo.vm.model.vm.VmPackage#getParamMapEntry_Value()
-	 * @model
+	 * @model default="0" required="true"
 	 * @generated
 	 */
 	int getValue();

@@ -444,9 +444,9 @@ public class VmPackageImpl extends EPackageImpl implements VmPackage {
 
 		initEClass(paramMapEntryEClass, ParamMapEntry.class, "ParamMapEntry", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getParamMapEntry_Key(), ecorePackage.getEString(), "key", null, 0, 1, ParamMapEntry.class,
+		initEAttribute(getParamMapEntry_Key(), ecorePackage.getEString(), "key", null, 1, 1, ParamMapEntry.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getParamMapEntry_Value(), ecorePackage.getEInt(), "value", null, 0, 1, ParamMapEntry.class,
+		initEAttribute(getParamMapEntry_Value(), ecorePackage.getEInt(), "value", "0", 1, 1, ParamMapEntry.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(paramMapEClass, ParamMap.class, "ParamMap", !IS_ABSTRACT, !IS_INTERFACE,
@@ -473,7 +473,8 @@ public class VmPackageImpl extends EPackageImpl implements VmPackage {
 	 */
 	protected void createImportAnnotations() {
 		String source = "http://www.eclipse.org/OCL/Import";
-		addAnnotation(this, source, new String[] { "ecore", "http://www.eclipse.org/emf/2002/Ecore" });
+		addAnnotation(this, source, new String[] { "ecore", "http://www.eclipse.org/emf/2002/Ecore", "logo",
+				"../../fr.inria.sed.logo.model/model/Logo.ecore#/" });
 	}
 
 	/**
@@ -488,9 +489,22 @@ public class VmPackageImpl extends EPackageImpl implements VmPackage {
 		addAnnotation(getInterpreterRuntimeContext_Turtle(), source, new String[] {});
 		addAnnotation(getInterpreterRuntimeContext_Stack(), source, new String[] {});
 		addAnnotation(turtleEClass, source, new String[] {});
+		addAnnotation(getTurtle_ReachedPoints(), source, new String[] {});
+		addAnnotation(getTurtle_Position(), source, new String[] {});
 		addAnnotation(getTurtle_Segments(), source, new String[] {});
 		addAnnotation(getTurtle_PenUp(), source, new String[] {});
 		addAnnotation(getTurtle_Heading(), source, new String[] {});
+		addAnnotation(pointEClass, source, new String[] {});
+		addAnnotation(getPoint_X(), source, new String[] {});
+		addAnnotation(getPoint_Y(), source, new String[] {});
+		addAnnotation(segmentEClass, source, new String[] {});
+		addAnnotation(getSegment_Origin(), source, new String[] {});
+		addAnnotation(getSegment_Destination(), source, new String[] {});
+		addAnnotation(paramMapEntryEClass, source, new String[] {});
+		addAnnotation(getParamMapEntry_Key(), source, new String[] {});
+		addAnnotation(getParamMapEntry_Value(), source, new String[] {});
+		addAnnotation(paramMapEClass, source, new String[] {});
+		addAnnotation(getParamMap_Entries(), source, new String[] {});
 	}
 
 } //VmPackageImpl
