@@ -88,6 +88,7 @@ class LogoProgramAspect {
 		_self.runtimeContext = context
 	}
 	
+	@Step
 	@Main
 	def void run(){
 		val context = _self.runtimeContext as InterpreterRuntimeContext
