@@ -179,6 +179,7 @@ package logo_vm : logo_vm = 'http://fr.inria.sed/logo/logo_vm'
 	class InterpreterRuntimeContext
 	{
 		property turtle : Turtle[1] {composes};
+		property stack : ParamMap[*|1] { ordered composes };
 	}
 	class Turtle
 	{
@@ -198,6 +199,15 @@ package logo_vm : logo_vm = 'http://fr.inria.sed/logo/logo_vm'
 		property origin : Point[1];
 		property destination : Point[1];
 	}
+	class ParamMapEntry
+	{
+		attribute key : String[1] ;
+		attribute value : ecore::EInt[1] = '0';
+	}
+	class ParamMap
+	{
+		property entries : ParamMapEntry[*|1] { ordered composes };
+	}
 }
 ----
 
@@ -212,7 +222,7 @@ on the plugin.xml of the k3dsa project, add a dependency to _fr.inria.sed.logo.v
 
 ==== Link the RuntimeData to the Logo program
 
-Create an "anchor" element in the Logo program Logo.ecore. Ie add an class RuntimeContext and 
+Create an "anchor" element in the Logo program Logo.ecore. Ie. add an class RuntimeContext and 
 a composition to it from the root model element. This runtimecontext is annotated with "aspect" annotation 
 in order to indicate that it can change during the execution. 
 
@@ -226,7 +236,7 @@ TIP: For some language you may directly weave runtime data in the language ecore
 class LogoProgram
 {
 	property instructions : Instruction[*|1] { ordered composes };
-	property runtimeContext : RuntimeContext[?] { composes }
+	property runtimeContext : RuntimeContext[?] { composes };
 	{
 		annotation aspect;
 	}
@@ -248,6 +258,7 @@ package vm : vm = 'http://www.inria.fr/sed/logo/vm'
 	class InterpreterRuntimeContext extends logo::RuntimeContext
 	{
 		property turtle : Turtle[1] { composes };
+		property stack : ParamMap[*|1] { ordered composes }
 	}
 ----
 
@@ -259,6 +270,65 @@ reuse the logo.genmodel. Otherwise you'll get 2 copies of the java code for
 the logo.ecore model that may conflict with each other.
 ====
 
+
+you  should end up with somthing similar to:
+[Note]
+====
+On every elements in the runtime data, add an EAnnotation "aspect". This will drive the display of the Variable view and the Multidimentional Timeline.
+
+right click on an element, _New Child -> EAnnotation_ and then in the properties view, set the _source_ to _aspect_.
+
+Tip: once one annotation has been created you can use copy-paste to duplicate it. 
+====
+
+
+[source,]
+----
+import ecore : 'http://www.eclipse.org/emf/2002/Ecore' ;
+import logo : '../../fr.inria.sed.logo.model/model/Logo.ecore#/' ;
+
+package vm : vm = 'http://www.inria.fr/sed/logo/vm'
+{
+	class InterpreterRuntimeContext extends logo::RuntimeContext
+	{
+		annotation aspect;
+		property turtle : Turtle[1] { composes }{			annotation aspect;	}
+		property stack : ParamMap[*|1] { ordered composes }	{annotation aspect;	}
+	}
+	class Turtle
+	{
+		annotation aspect;
+		property reachedPoints : Point[*|1] { ordered composes }{annotation aspect;	}
+		property position : Point[?]{annotation aspect;	}
+		property segments : Segment[*|1] { ordered composes }{	annotation aspect;}
+		attribute penUp : Boolean[1]{	annotation aspect;	}
+		attribute heading : ecore::EDouble[1]	{annotation aspect;	}
+	}
+	class Point
+	{
+		annotation aspect;
+		attribute x : ecore::EDouble[1]{annotation aspect;}
+		attribute y : ecore::EDouble[1]{annotation aspect;}
+	}
+	class Segment
+	{
+		annotation aspect;
+		property origin : Point[1]{annotation aspect;}
+		property destination : Point[1]{annotation aspect;}
+	}
+	class ParamMapEntry
+	{
+		annotation aspect;
+		attribute key : String[1] {annotation aspect;}
+		attribute value : ecore::EInt[1] = '0' {	annotation aspect;	}
+	}
+	class ParamMap
+	{
+		annotation aspect;
+		property entries : ParamMapEntry[*|1] { ordered composes }{	annotation aspect;	}
+	}
+}
+----
 
 === Initialize RuntimeContext on start
 
