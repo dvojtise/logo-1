@@ -12,6 +12,14 @@ The result of this tutorial is available in the folder https://github.com/dvojti
 in githug repo or as a download in the following  https://github.com/dvojtise/mde-crashcourse-logo/zips/part3-mmfirst-solution.zip[zip].
 
 
+In the end you should obtain a debugger that should look like the following:
+
+[#img-tutorial-part3-result-debugger-on-square-screenshot] 
+.Tutorial resulting debugge on Square model example
+[link=images/tutorial-part3-result-debugger-on-square-screenshot.png] 
+image::tutorial-part3-result-debugger-on-square-screenshot.png[,500]
+
+
 == Prerequisite
 
 This part follows the work done in part2. 
@@ -39,6 +47,8 @@ support of openFX used for the tutorial part 3)
 
 == General principles
 
+
+
 We'll create an execution semantic for the behavior or our Logo language.
 
 It will provide features such as:
@@ -54,7 +64,6 @@ you may prefer to keep a stricter separation between the static and dynamic part
 GEMOC offers several strategies to achieve this but they are out of the scope of this tutorial.
 ====
  
-
 
 
 
