@@ -452,6 +452,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_get_dedicated_custom_gui_using_engineaddon">3.9. Get dedicated custom GUI (using EngineAddon)</a></li>
 <li><a href="#_implement_procedurecall">3.10. implement ProcedureCall</a></li>
 <li><a href="#_add_sirius_debug_support">3.11. Add Sirius Debug support.</a></li>
+<li><a href="#_add_sirius_animation">3.12. Add Sirius animation</a></li>
 </ul>
 </li>
 </ul>
@@ -992,6 +993,7 @@ the logo.ecore model that may conflict with each other.</p>
 </div>
 </div>
 <div class="listingblock">
+<div class="title">in vm.ecore (using oclinecore editor)</div>
 <div class="content">
 <pre class="highlightjs highlight"><code>import ecore : 'http://www.eclipse.org/emf/2002/Ecore' ;
 import logo : '../../fr.inria.sed.logo.model/model/Logo.ecore#/' ;
@@ -1112,6 +1114,7 @@ class InterpreterRuntimeContextAspect {
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Aspect(className=LogoProgram)
 class LogoProgramAspect {
+    @Step
     @Main
     def void run(){
         val context = _self.runtimeContext as InterpreterRuntimeContext
@@ -1538,52 +1541,240 @@ class ParameterCallAspect extends ExpressionAspect {
 </li>
 </ul>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_add_sirius_animation">3.12. Add Sirius animation</h3>
 <div class="paragraph">
-<p>TODO main pur java</p>
+<p>Using the same principle of layers, one can create dedicated diagram or layer for the runtime data.</p>
 </div>
 <div class="paragraph">
-<p>TODO main GEMOC</p>
+<p>for example: the FSM example available as default in the "Examples" in the studio, uses this technique to highlight the current State with a green arrow.</p>
 </div>
 <div class="paragraph">
-<p>mettre au point la semantique</p>
+<p>Anyway for our turtle, this will be less impressive than the dedicated blackboard UI.</p>
 </div>
 <div class="paragraph">
-<p>ajout du @Step</p>
-</div>
-<div class="paragraph">
-<p>ajout d&#8217;un context / runtime data</p>
-</div>
-<div class="paragraph">
-<p>trick par ajout d&#8217;un attribut Context à LogoProgram</p>
+<p>Add new animator service class</p>
 </div>
 <div class="listingblock">
+<div class="title">in fr.inria.sed.logo.design  LogoblockdiagramAnimatorServices.java</div>
 <div class="content">
-<pre class="highlightjs highlight"><code>LogoProgram :
-    {LogoProgram}
-    instructions+=Instruction (  instructions+=Instruction)*
-    (runtimecontext = RuntimeContext)?
-    ;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package fr.inria.sed.logo.design.services;
 
-RuntimeContext returns RuntimeContext:
-    {RuntimeContext}
-    'RuntimeContext'
-;</code></pre>
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.gemoc.executionframework.extensions.sirius.services.AbstractGemocAnimatorServices;
+
+public class LogoblockdiagramAnimatorServices extends AbstractGemocAnimatorServices {
+
+    @Override
+    protected List&lt;StringCouple&gt; getRepresentationRefreshList() {
+        final List&lt;StringCouple&gt; res = new ArrayList&lt;StringCouple&gt;();
+        res.add(new StringCouple("LogoBlockDiagram", "Animation"));
+        return res;
+    }
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>discussion à propos du model first pou masquer cet aspect de la syntaxe</p>
+<p>In the logo.odesign file:</p>
 </div>
 <div class="paragraph">
-<p>ajout d&#8217;un projet ecore modeling "fr.inria.sed.logo.vm.model"</p>
+<p>on the <em>LogoBlockViewpoint</em>,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>New extension</p>
+<div class="ulist">
+<ul>
+<li>
+<p>New Java Extension, set the name to the java class: <code>fr.inria.sed.logo.design.services.LogoblockdiagramAnimatorServices</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>ajout des concepts</p>
+<p>on the <em>LogoBlockDiagram</em></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>New diagram element</p>
+<div class="ulist">
+<ul>
+<li>
+<p>additional layer</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Id: <code>Animation</code>  (must be the same as the one declared in <code>res.add(new StringCouple("LogoBlockDiagram", "Animation"));</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>New diagram element</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Container</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Id: <code>ProgramRuntimeContainer</code></p>
+</li>
+<li>
+<p>domain class: <code>logo::LogoProgram</code></p>
+</li>
+<li>
+<p>sematic expression: <code>[self/]</code></p>
+</li>
+<li>
+<p>children representation: List</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>heritage de InterpreterContext vers RuntimeContext</p>
+<p>on the container</p>
 </div>
-<div class="paragraph">
-<p>puis convertir en 2 languages avec melange : extended pour activer la timeline ou adapter le MM</p>
+<div class="ulist">
+<ul>
+<li>
+<p>New Style : Gradient</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Label: <code>aql:'RuntimeOverview'</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>New diagram element</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Sub node:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Id: <code>TurtlePosition</code></p>
+</li>
+<li>
+<p>domain class: <code>vm::Turtle</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>new Style</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Basic shape</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Label: <code>aql:'position x='+self.position.x+' y='+self.position.y</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>New diagram element</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Sub node:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Id: <code>TurtleHeading</code></p>
+</li>
+<li>
+<p>domain class: <code>vm::Turtle</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>new Style</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Basic shape</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Label: `aql:'heading '+self.heading</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>New diagram element</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Sub node:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Id: <code>TurtlePen</code></p>
+</li>
+<li>
+<p>domain class: <code>vm::Turtle</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>new Style</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Basic shape</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Label: `aql:'pen '+self.penUp
+Repeat this last part in order to also display the heading and the pen status (activated or not)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1591,7 +1782,7 @@ RuntimeContext returns RuntimeContext:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-02-27 09:53:47 UTC
+Last updated 2019-02-27 12:18:39 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">
