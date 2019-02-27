@@ -839,6 +839,7 @@ package logo_vm : logo_vm = 'http://fr.inria.sed/logo/logo_vm'
     class InterpreterRuntimeContext
     {
         property turtle : Turtle[1] {composes};
+        property stack : ParamMap[*|1] { ordered composes };
     }
     class Turtle
     {
@@ -857,6 +858,15 @@ package logo_vm : logo_vm = 'http://fr.inria.sed/logo/logo_vm'
     {
         property origin : Point[1];
         property destination : Point[1];
+    }
+    class ParamMapEntry
+    {
+        attribute key : String[1] ;
+        attribute value : ecore::EInt[1] = '0';
+    }
+    class ParamMap
+    {
+        property entries : ParamMapEntry[*|1] { ordered composes };
     }
 }</code></pre>
 </div>
@@ -885,7 +895,7 @@ package logo_vm : logo_vm = 'http://fr.inria.sed/logo/logo_vm'
 <div class="sect3">
 <h4 id="_link_the_runtimedata_to_the_logo_program">3.4.2. Link the RuntimeData to the Logo program</h4>
 <div class="paragraph">
-<p>Create an "anchor" element in the Logo program Logo.ecore. Ie add an class RuntimeContext and
+<p>Create an "anchor" element in the Logo program Logo.ecore. Ie. add an class RuntimeContext and
 a composition to it from the root model element. This runtimecontext is annotated with "aspect" annotation
 in order to indicate that it can change during the execution.</p>
 </div>
@@ -919,7 +929,7 @@ For some language you may directly weave runtime data in the language ecore. Thi
 <pre class="highlightjs highlight"><code>class LogoProgram
 {
     property instructions : Instruction[*|1] { ordered composes };
-    property runtimeContext : RuntimeContext[?] { composes }
+    property runtimeContext : RuntimeContext[?] { composes };
     {
         annotation aspect;
     }
@@ -942,6 +952,7 @@ package vm : vm = 'http://www.inria.fr/sed/logo/vm'
     class InterpreterRuntimeContext extends logo::RuntimeContext
     {
         property turtle : Turtle[1] { composes };
+        property stack : ParamMap[*|1] { ordered composes }
     }</code></pre>
 </div>
 </div>
@@ -963,6 +974,70 @@ the logo.ecore model that may conflict with each other.</p>
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>you  should end up with somthing similar to:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>On every elements in the runtime data, add an EAnnotation "aspect". This will drive the display of the Variable view and the Multidimentional Timeline.</p>
+</div>
+<div class="paragraph">
+<p>right click on an element, <em>New Child &#8594; EAnnotation</em> and then in the properties view, set the <em>source</em> to <em>aspect</em>.</p>
+</div>
+<div class="paragraph">
+<p>Tip: once one annotation has been created you can use copy-paste to duplicate it.</p>
+</div>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>import ecore : 'http://www.eclipse.org/emf/2002/Ecore' ;
+import logo : '../../fr.inria.sed.logo.model/model/Logo.ecore#/' ;
+
+package vm : vm = 'http://www.inria.fr/sed/logo/vm'
+{
+    class InterpreterRuntimeContext extends logo::RuntimeContext
+    {
+        annotation aspect;
+        property turtle : Turtle[1] { composes }{           annotation aspect;  }
+        property stack : ParamMap[*|1] { ordered composes } {annotation aspect; }
+    }
+    class Turtle
+    {
+        annotation aspect;
+        property reachedPoints : Point[*|1] { ordered composes }{annotation aspect; }
+        property position : Point[?]{annotation aspect; }
+        property segments : Segment[*|1] { ordered composes }{  annotation aspect;}
+        attribute penUp : Boolean[1]{   annotation aspect;  }
+        attribute heading : ecore::EDouble[1]   {annotation aspect; }
+    }
+    class Point
+    {
+        annotation aspect;
+        attribute x : ecore::EDouble[1]{annotation aspect;}
+        attribute y : ecore::EDouble[1]{annotation aspect;}
+    }
+    class Segment
+    {
+        annotation aspect;
+        property origin : Point[1]{annotation aspect;}
+        property destination : Point[1]{annotation aspect;}
+    }
+    class ParamMapEntry
+    {
+        annotation aspect;
+        attribute key : String[1] {annotation aspect;}
+        attribute value : ecore::EInt[1] = '0' {    annotation aspect;  }
+    }
+    class ParamMap
+    {
+        annotation aspect;
+        property entries : ParamMapEntry[*|1] { ordered composes }{ annotation aspect;  }
+    }
+}</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -1516,7 +1591,7 @@ RuntimeContext returns RuntimeContext:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-02-27 09:14:52 UTC
+Last updated 2019-02-27 09:49:27 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">
