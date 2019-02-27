@@ -281,7 +281,7 @@ right click on an element, _New Child -> EAnnotation_ and then in the properties
 Tip: once one annotation has been created you can use copy-paste to duplicate it. 
 ====
 
-
+.in vm.ecore (using oclinecore editor)
 [source,]
 ----
 import ecore : 'http://www.eclipse.org/emf/2002/Ecore' ;
@@ -395,6 +395,7 @@ class InterpreterRuntimeContextAspect {
 ----
 @Aspect(className=LogoProgram)
 class LogoProgramAspect {
+	@Step
 	@Main
 	def void run(){
 		val context = _self.runtimeContext as InterpreterRuntimeContext
@@ -714,46 +715,88 @@ This will create a dedicated layer that take into account debug interactions
 
 
 
-TODO main pur java
+=== Add Sirius animation 
 
-TODO main GEMOC
+Using the same principle of layers, one can create dedicated diagram or layer for the runtime data.
 
+for example: the FSM example available as default in the "Examples" in the studio, uses this technique to highlight the current State with a green arrow.
 
-mettre au point la semantique
-
-ajout du @Step
-
-ajout d'un context / runtime data
+Anyway for our turtle, this will be less impressive than the dedicated blackboard UI.
 
 
-trick par ajout d'un attribut Context à LogoProgram
+Add new animator service class
 
-[source,]
+.in fr.inria.sed.logo.design  LogoblockdiagramAnimatorServices.java
+[source,java]
 ----
-LogoProgram :
-	{LogoProgram}
-	instructions+=Instruction (  instructions+=Instruction)* 
-	(runtimecontext = RuntimeContext)? 
-	;
+package fr.inria.sed.logo.design.services;
 
-RuntimeContext returns RuntimeContext:
-	{RuntimeContext}
-	'RuntimeContext'
-;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.gemoc.executionframework.extensions.sirius.services.AbstractGemocAnimatorServices;
+
+public class LogoblockdiagramAnimatorServices extends AbstractGemocAnimatorServices {
+
+	@Override
+	protected List<StringCouple> getRepresentationRefreshList() {  
+		final List<StringCouple> res = new ArrayList<StringCouple>();
+		res.add(new StringCouple("LogoBlockDiagram", "Animation"));
+		return res;
+	}
+}
 ----
 
 
-discussion à propos du model first pou masquer cet aspect de la syntaxe
+In the logo.odesign file:
 
-ajout d'un projet ecore modeling "fr.inria.sed.logo.vm.model"
+on the _LogoBlockViewpoint_, 
+ 
+* New extension
+** New Java Extension, set the name to the java class: `fr.inria.sed.logo.design.services.LogoblockdiagramAnimatorServices`
 
-ajout des concepts
+on the _LogoBlockDiagram_
 
-heritage de InterpreterContext vers RuntimeContext
+* New diagram element
+** additional layer
+***  Id: `Animation`  (must be the same as the one declared in `res.add(new StringCouple("LogoBlockDiagram", "Animation"));`
 
+* New diagram element
+** Container
+*** Id: `ProgramRuntimeContainer`
+*** domain class: `logo::LogoProgram`
+*** sematic expression: `[self/]`
+*** children representation: List
 
-puis convertir en 2 languages avec melange : extended pour activer la timeline ou adapter le MM
+on the container
 
+* New Style : Gradient
+** Label: `aql:'RuntimeOverview'`
+
+* New diagram element
+** Sub node: 
+*** Id: `TurtlePosition`
+*** domain class: `vm::Turtle`
+* new Style
+** Basic shape
+*** Label: `aql:'position x='+self.position.x+' y='+self.position.y`
+
+* New diagram element
+** Sub node: 
+*** Id: `TurtleHeading`
+*** domain class: `vm::Turtle`
+* new Style
+** Basic shape
+*** Label: `aql:'heading '+self.heading
+
+* New diagram element
+** Sub node: 
+*** Id: `TurtlePen`
+*** domain class: `vm::Turtle`
+* new Style
+** Basic shape
+*** Label: `aql:'pen '+self.penUp
+Repeat this last part in order to also display the heading and the pen status (activated or not)
 
 
 
