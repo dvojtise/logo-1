@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-  <extension point="org.eclipse.gemoc.gemoc_language_workbench.sequential.xdsml">
+  <extension point="org.eclipse.gemoc.gemoc_language_workbench.xdsml">
     <XDSML_Definition modelLoader_class="org.eclipse.gemoc.executionframework.extensions.sirius.modelloader.DefaultModelLoader" name="fr.inria.sed.logo.Logo" xdsmlFilePath="platform:/plugin/fr.inria.sed.logo.xdsml/Logo.dsl">
-      <EngineAddon_Definition engineAddon_class="fr.inria.sed.logo.xdsml.ui.turtleboard.TurtleBoardEngineAddon" />
+      <engineAddon_Definition
+            class="fr.inria.sed.logo.xdsml.ui.turtleboard.TurtleBoardEngineAddon"
+            id="fr.inria.sed.logo.xdsml.ui.turtleboard.TurtleBoardEngineAddon"
+            name="fr.inria.sed.logo.xdsml.ui.turtleboard.TurtleBoardEngineAddon">
+      </engineAddon_Definition>
     </XDSML_Definition>
   </extension>
 </plugin>
