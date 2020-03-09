@@ -44,7 +44,7 @@ public class TurtleSimpleAWTGUI extends JFrame  implements ITurtleGUI {
         turtleCanvas = new TurtleCanvas();
         getContentPane().add(turtleCanvas);
         setVisible(true);
-        turtleCanvas.createBufferStrategy(2);
+        //turtleCanvas.createBufferStrategy(2);
         
  
         
@@ -93,13 +93,16 @@ public class TurtleSimpleAWTGUI extends JFrame  implements ITurtleGUI {
 			finalG.fillPolygon(xPoints, yPoints, nPoints);
 		else
 			finalG.drawPolygon(xPoints, yPoints, nPoints);
+		Graphics g = this.turtleCanvas.getGraphics();
+		g.drawImage(finalImage, 0, 0, size, size, null);
+		this.repaint();
 		
-		
+		/*
 		Graphics g = turtleCanvas.getBufferStrategy().getDrawGraphics();
 		g.drawImage(finalImage, 0, 0, size, size, null);
 		g.dispose();
 		turtleCanvas.getBufferStrategy().show();
-
+*/
 		//repaint();
 	}
 

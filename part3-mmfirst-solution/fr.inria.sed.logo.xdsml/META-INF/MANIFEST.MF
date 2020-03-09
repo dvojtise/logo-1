@@ -4,19 +4,21 @@ Bundle-SymbolicName: fr.inria.sed.logo.xdsml; singleton:=true
 Bundle-Name: fr.inria.sed.logo.xdsml
 Bundle-Version: 1.0.0
 Bundle-ClassPath: .
-Require-Bundle: org.eclipse.xtend.lib;bundle-version="2.14.0";visibility:="private",
- org.eclipse.xtext.xbase.lib;bundle-version="2.14.0";visibility:="private",
- com.google.guava;bundle-version="0.0.0";visibility:="private",
- org.eclipse.emf.ecore.xmi;bundle-version="2.8.0";visibility:="reexport",
- org.eclipse.emf.ecore;bundle-version="2.8.0";visibility:="reexport",
- org.eclipse.emf.common;bundle-version="2.8.0";visibility:="reexport",
- fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version="0.0.0";visibility:="reexport",
- org.eclipse.gemoc.xdsmlframework.api;bundle-version="0.0.0";visibility:="reexport",
- org.eclipse.gemoc.executionframework.engine;bundle-version="0.0.0";visibility:="reexport",
- fr.inria.sed.logo.model;bundle-version="0.0.0";visibility:="private",
+Require-Bundle: org.eclipse.xtend.lib;bundle-version="2.14.0";visibility:=private,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0";visibility:=private,
+ com.google.guava;bundle-version="0.0.0";visibility:=private,
+ org.eclipse.emf.ecore.xmi;bundle-version="2.8.0";visibility:=reexport,
+ org.eclipse.emf.ecore;bundle-version="2.8.0";visibility:=reexport,
+ org.eclipse.emf.common;bundle-version="2.8.0";visibility:=reexport,
+ fr.inria.diverse.k3.al.annotationprocessor.plugin;bundle-version="0.0.0";visibility:=reexport,
+ org.eclipse.gemoc.xdsmlframework.api;bundle-version="0.0.0";visibility:=reexport,
+ org.eclipse.gemoc.executionframework.engine;bundle-version="0.0.0";visibility:=reexport,
+ fr.inria.sed.logo.model;bundle-version="0.0.0";visibility:=private,
  org.eclipse.gemoc.executionframework.extensions.sirius;bundle-version="0.0.0";visibility:=reexport,
  fr.inria.sed.logo.k3dsa;bundle-version="1.0.0",
- fr.inria.sed.logo.vm.model
+ fr.inria.sed.logo.vm.model,
+ org.eclipse.gemoc.trace.gemoc.api;bundle-version="3.0.1",
+ org.eclipse.swt
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
