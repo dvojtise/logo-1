@@ -1,7 +1,7 @@
 The goal of this crash course is to discover the principles of MDE (Model Driven Engineering) 
 and more specifically SLE (Software Language Engineering) in a fast and pragmatic way: doing by yourself on an example.
 
-It follows the concepts recommended by the books:
+It follows the concepts recommended by the book:
 
 * https://www.crcpress.com/Engineering-Modeling-Languages/Combemale-France-Jezequel-Rumpe-Steel-Vojtisek/p/book/9781466583733[Engineering Modeling Languages: Turning Domain Knowledge into Tools] ( Companion http://mdebook.irisa.fr/[web site] )  
 * https://www.amazon.fr/Ing%C3%A9nierie-Dirig%C3%A9e-par-Mod%C3%A8les-concepts/dp/2729871969[Ingénierie Dirigée par les Modèles : des concepts à la pratique] 
